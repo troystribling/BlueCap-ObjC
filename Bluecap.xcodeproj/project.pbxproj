@@ -327,11 +327,13 @@
 		05AA66B917B868F90019AC3C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: William Stribling (EP33FMNW27)";
 				DSTROOT = /tmp/Bluecap.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bluecap/Bluecap-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "46B00802-59D2-4B1D-9831-F0CF3FF91FD2";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -339,11 +341,13 @@
 		05AA66BA17B868F90019AC3C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: William Stribling (EP33FMNW27)";
 				DSTROOT = /tmp/Bluecap.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bluecap/Bluecap-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "46B00802-59D2-4B1D-9831-F0CF3FF91FD2";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -403,6 +407,7 @@
 				05AA66BA17B868F90019AC3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05AA66BB17B868F90019AC3C /* Build configuration list for PBXNativeTarget "BluecapTests" */ = {
 			isa = XCConfigurationList;
@@ -411,6 +416,7 @@
 				05AA66BD17B868F90019AC3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
