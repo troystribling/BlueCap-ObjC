@@ -21,6 +21,7 @@
 		052A003817BB2CD4006D7AB3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001A17BB2CD4006D7AB3 /* UIKit.framework */; };
 		052A004017BB2CD4006D7AB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 052A003E17BB2CD4006D7AB3 /* InfoPlist.strings */; };
 		052A004217BB2CD4006D7AB3 /* BlueCapUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 052A004117BB2CD4006D7AB3 /* BlueCapUITests.m */; };
+		05D6E51817BFD3BA0019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 052A001217BB2CD4006D7AB3;
 			remoteInfo = BlueCapUI;
+		};
+		052A005017BB2DD9006D7AB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 05AA669517B868F90019AC3C;
+			remoteInfo = Bluecap;
+		};
+		052A005217BB2DD9006D7AB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 05AA66A517B868F90019AC3C;
+			remoteInfo = BluecapTests;
+		};
+		05D6E51517BFD3AF0019B575 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 05AA669417B868F90019AC3C;
+			remoteInfo = Bluecap;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -53,6 +75,8 @@
 		052A003D17BB2CD4006D7AB3 /* BlueCapUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlueCapUITests-Info.plist"; sourceTree = "<group>"; };
 		052A003F17BB2CD4006D7AB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		052A004117BB2CD4006D7AB3 /* BlueCapUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueCapUITests.m; sourceTree = "<group>"; };
+		052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bluecap.xcodeproj; path = ../../Bluecap.xcodeproj; sourceTree = "<group>"; };
+		05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D6E51817BFD3BA0019B575 /* CoreBluetooth.framework in Frameworks */,
 				052A001917BB2CD4006D7AB3 /* CoreGraphics.framework in Frameworks */,
 				052A001B17BB2CD4006D7AB3 /* UIKit.framework in Frameworks */,
 				052A001717BB2CD4006D7AB3 /* Foundation.framework in Frameworks */,
@@ -82,6 +107,7 @@
 		052A000A17BB2CD4006D7AB3 = {
 			isa = PBXGroup;
 			children = (
+				052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */,
 				052A001C17BB2CD4006D7AB3 /* BlueCapUI */,
 				052A003B17BB2CD4006D7AB3 /* BlueCapUITests */,
 				052A001517BB2CD4006D7AB3 /* Frameworks */,
@@ -101,6 +127,7 @@
 		052A001517BB2CD4006D7AB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */,
 				052A001617BB2CD4006D7AB3 /* Foundation.framework */,
 				052A001817BB2CD4006D7AB3 /* CoreGraphics.framework */,
 				052A001A17BB2CD4006D7AB3 /* UIKit.framework */,
@@ -152,6 +179,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		052A004C17BB2DD8006D7AB3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				052A005117BB2DD9006D7AB3 /* libBluecap.a */,
+				052A005317BB2DD9006D7AB3 /* BluecapTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,6 +202,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				05D6E51617BFD3AF0019B575 /* PBXTargetDependency */,
 			);
 			name = BlueCapUI;
 			productName = BlueCapUI;
@@ -215,6 +252,12 @@
 			mainGroup = 052A000A17BB2CD4006D7AB3;
 			productRefGroup = 052A001417BB2CD4006D7AB3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 052A004C17BB2DD8006D7AB3 /* Products */;
+					ProjectRef = 052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				052A001217BB2CD4006D7AB3 /* BlueCapUI */,
@@ -222,6 +265,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		052A005117BB2DD9006D7AB3 /* libBluecap.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBluecap.a;
+			remoteRef = 052A005017BB2DD9006D7AB3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		052A005317BB2DD9006D7AB3 /* BluecapTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BluecapTests.xctest;
+			remoteRef = 052A005217BB2DD9006D7AB3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		052A001117BB2CD4006D7AB3 /* Resources */ = {
@@ -270,6 +330,11 @@
 			isa = PBXTargetDependency;
 			target = 052A001217BB2CD4006D7AB3 /* BlueCapUI */;
 			targetProxy = 052A003917BB2CD4006D7AB3 /* PBXContainerItemProxy */;
+		};
+		05D6E51617BFD3AF0019B575 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Bluecap;
+			targetProxy = 05D6E51517BFD3AF0019B575 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -454,6 +519,7 @@
 				052A004717BB2CD4006D7AB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		052A004817BB2CD4006D7AB3 /* Build configuration list for PBXNativeTarget "BlueCapUITests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +528,7 @@
 				052A004A17BB2CD4006D7AB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
