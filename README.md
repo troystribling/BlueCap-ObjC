@@ -1,4 +1,4 @@
 bluecap
 =======
 
-Playing wit iOS7 bluetooth
+Playing with iOS7 bluetooth
