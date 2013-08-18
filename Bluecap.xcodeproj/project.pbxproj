@@ -16,6 +16,7 @@
 		05AA66AD17B868F90019AC3C /* libBluecap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669517B868F90019AC3C /* libBluecap.a */; };
 		05AA66B317B868F90019AC3C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05AA66B117B868F90019AC3C /* InfoPlist.strings */; };
 		05AA66B517B868F90019AC3C /* BluecapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AA66B417B868F90019AC3C /* BluecapTests.m */; };
+		05D6E51B17BFDB220019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51A17BFDB220019B575 /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		05AA66B017B868F90019AC3C /* BluecapTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BluecapTests-Info.plist"; sourceTree = "<group>"; };
 		05AA66B217B868F90019AC3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05AA66B417B868F90019AC3C /* BluecapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BluecapTests.m; sourceTree = "<group>"; };
+		05D6E51A17BFDB220019B575 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D6E51B17BFDB220019B575 /* CoreBluetooth.framework in Frameworks */,
 				05AA669917B868F90019AC3C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +103,7 @@
 		05AA669717B868F90019AC3C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05D6E51A17BFDB220019B575 /* CoreBluetooth.framework */,
 				05AA669817B868F90019AC3C /* Foundation.framework */,
 				05AA66A617B868F90019AC3C /* XCTest.framework */,
 				05AA66A917B868F90019AC3C /* UIKit.framework */,
