@@ -1,5 +1,5 @@
 //
-//  DeviceViewController.h
+//  PeriphrealViewController.h
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 8/17/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DeviceViewController : UITableViewController
+@interface PeriphrealViewController : UITableViewController
 
 @end

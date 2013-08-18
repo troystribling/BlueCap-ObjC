@@ -11,4 +11,9 @@
 
 @interface BlueCapManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
++ (BlueCapManager*)sharedInstance;
+- (void)startScanning;
+- (void)startScanningForUUIDString:(NSString*)uuidString;
+- (void) stopScanning;
+
 @end

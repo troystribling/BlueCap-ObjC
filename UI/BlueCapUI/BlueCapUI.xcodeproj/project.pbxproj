@@ -21,7 +21,7 @@
 		052A004017BB2CD4006D7AB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 052A003E17BB2CD4006D7AB3 /* InfoPlist.strings */; };
 		052A004217BB2CD4006D7AB3 /* BlueCapUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 052A004117BB2CD4006D7AB3 /* BlueCapUITests.m */; };
 		05D6E51817BFD3BA0019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */; };
-		05D6E52017BFDEC70019B575 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6E51F17BFDEC70019B575 /* DeviceViewController.m */; };
+		05D6E52017BFDEC70019B575 /* PeriphreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6E51F17BFDEC70019B575 /* PeriphreaViewController.m */; };
 		05D6E52417C004690019B575 /* BlueCapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6E52317C004690019B575 /* BlueCapManager.m */; };
 /* End PBXBuildFile section */
 
@@ -77,8 +77,8 @@
 		052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bluecap.xcodeproj; path = ../../Bluecap.xcodeproj; sourceTree = "<group>"; };
 		05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		05D6E51917BFD92F0019B575 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		05D6E51E17BFDEC70019B575 /* DeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
-		05D6E51F17BFDEC70019B575 /* DeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
+		05D6E51E17BFDEC70019B575 /* PeriphrealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriphrealViewController.h; sourceTree = "<group>"; };
+		05D6E51F17BFDEC70019B575 /* PeriphreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriphreaViewController.m; sourceTree = "<group>"; };
 		05D6E52217C004690019B575 /* BlueCapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCapManager.h; sourceTree = "<group>"; };
 		05D6E52317C004690019B575 /* BlueCapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCapManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,8 +146,8 @@
 				05D6E52117C003B00019B575 /* BlueCap */,
 				052A002517BB2CD4006D7AB3 /* AppDelegate.h */,
 				052A002617BB2CD4006D7AB3 /* AppDelegate.m */,
-				05D6E51E17BFDEC70019B575 /* DeviceViewController.h */,
-				05D6E51F17BFDEC70019B575 /* DeviceViewController.m */,
+				05D6E51E17BFDEC70019B575 /* PeriphrealViewController.h */,
+				05D6E51F17BFDEC70019B575 /* PeriphreaViewController.m */,
 				052A002E17BB2CD4006D7AB3 /* Images.xcassets */,
 				052A002817BB2CD4006D7AB3 /* Main.storyboard */,
 				052A001D17BB2CD4006D7AB3 /* Supporting Files */,
@@ -325,7 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05D6E52017BFDEC70019B575 /* DeviceViewController.m in Sources */,
+				05D6E52017BFDEC70019B575 /* PeriphreaViewController.m in Sources */,
 				05D6E52417C004690019B575 /* BlueCapManager.m in Sources */,
 				052A002717BB2CD4006D7AB3 /* AppDelegate.m in Sources */,
 				052A002317BB2CD4006D7AB3 /* main.m in Sources */,
@@ -456,6 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: William Stribling (EP33FMNW27)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlueCapUI/BlueCapUI-Prefix.pch";
 				INFOPLIST_FILE = "BlueCapUI/BlueCapUI-Info.plist";
@@ -469,6 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: William Stribling (EP33FMNW27)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlueCapUI/BlueCapUI-Prefix.pch";
 				INFOPLIST_FILE = "BlueCapUI/BlueCapUI-Info.plist";

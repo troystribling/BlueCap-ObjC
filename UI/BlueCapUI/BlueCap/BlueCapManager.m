@@ -8,11 +8,11 @@
 
 #import "BlueCapManager.h"
 
-@interface BlueCapManager ()
-
-@property(nonatomic, retain) CBCentralManager*  centralManager;
-@property(nonatomic, retain) NSMutableArray*    foundDevices;
-@property(nonatomic, retain) NSMutableArray*    connectedDevices;
+@interface BlueCapManager () {
+    CBCentralManager*  centralManager;
+    NSMutableArray*    foundPeriphreals;
+    NSMutableArray*    connectedPeriphreals;
+}
 
 @end
 
@@ -35,11 +35,26 @@ static BlueCapManager* thisBlueCapManager = nil;
 - (id) init {
     self = [super init];
     if (self) {
-		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
-		self.foundDevices = [NSMutableArray array];
-		self.connectedDevices = [NSMutableArray array];
+		centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
+		foundPeriphreals = [NSMutableArray array];
+		connectedPeriphreals = [NSMutableArray array];
 	}
     return self;
+}
+
+- (void)startScanning {
+    NSLog(@"Start Scanning");
+    [centralManager scanForPeripheralsWithServices:nil options:nil];
+}
+
+- (void)startScanningForUUIDString:(NSString*)uuidString {
+	NSArray			*uuidArray	= [NSArray arrayWithObjects:[CBUUID UUIDWithString:uuidString], nil];
+	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
+	[centralManager scanForPeripheralsWithServices:uuidArray options:options];
+}
+
+- (void) stopScanning {
+	[centralManager stopScan];
 }
 
 #pragma mark -
@@ -82,6 +97,7 @@ static BlueCapManager* thisBlueCapManager = nil;
 }
 
 - (void)centralManager:(CBCentralManager*)central didDiscoverPeripheral:(CBPeripheral*)peripheral advertisementData:(NSDictionary*)advertisementData RSSI:(NSNumber*)RSSI {
+    NSLog(@"Discovered %@", peripheral.name);
 }
 
 - (void)centralManager:(CBCentralManager*)central didFailToConnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
@@ -94,6 +110,28 @@ static BlueCapManager* thisBlueCapManager = nil;
 }
 
 - (void)centralManagerDidUpdateState:(CBCentralManager*)central {
+	switch ([centralManager state]) {
+		case CBCentralManagerStatePoweredOff: {
+			break;
+		}
+		case CBCentralManagerStateUnauthorized: {
+			break;
+		}
+		case CBCentralManagerStateUnknown: {
+			break;
+		}
+		case CBCentralManagerStatePoweredOn: {
+            NSLog(@"Central manager Powered ON");
+            [self startScanning];
+			break;
+		}
+		case CBCentralManagerStateResetting: {
+			break;
+		}
+        case CBCentralManagerStateUnsupported: {
+            
+        }
+	}
 }
 
 - (void)peripheralDidUpdateRSSI:(CBPeripheral*)peripheral error:(NSError*)error {
