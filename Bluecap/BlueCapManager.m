@@ -7,6 +7,7 @@
 //
 
 #import "BlueCapManager.h"
+#import "DebugLog.h"
 
 @interface BlueCapManager () {
     CBCentralManager*  centralManager;
@@ -41,7 +42,7 @@ static BlueCapManager* thisBlueCapManager = nil;
 }
 
 - (void)startScanning {
-    NSLog(@"Start Scanning");
+    DLog(@"Start Scanning");
     [centralManager scanForPeripheralsWithServices:nil options:nil];
 }
 
@@ -94,7 +95,10 @@ static BlueCapManager* thisBlueCapManager = nil;
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
 }
 
-- (void)centralManager:(CBCentralManager*)central didDiscoverPeripheral:(CBPeripheral*)peripheral advertisementData:(NSDictionary*)advertisementData RSSI:(NSNumber*)RSSI {
+- (void)centralManager:(CBCentralManager*)central
+ didDiscoverPeripheral:(CBPeripheral*)peripheral
+     advertisementData:(NSDictionary*)advertisementData RSSI:(NSNumber*)RSSI {
+    DLog(@"Periphreal Discovered: %@", peripheral.name);
     [self.blueCapManagerDelegate didRefresh];
 }
 
@@ -120,6 +124,7 @@ static BlueCapManager* thisBlueCapManager = nil;
 			break;
 		}
 		case CBCentralManagerStatePoweredOn: {
+            DLog(@"CBCentralManager Powered ON");
             [self startScanning];
 			break;
 		}

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0565A0AC17C1EA7F00BFB1C0 /* BlueCap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */; };
+		0565A0AD17C1ED6100BFB1C0 /* BlueCap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E6897617C1E0890013246A /* BlueCap.h */; };
+		0565A0AE17C1ED6100BFB1C0 /* BlueCapManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E6897717C1E0890013246A /* BlueCapManager.h */; };
+		0565A0B017C1F30900BFB1C0 /* DebugLog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0565A0AF17C1F0D200BFB1C0 /* DebugLog.h */; };
 		059563EA17C1A57B00A5E84F /* libBluecap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669517B868F90019AC3C /* libBluecap.a */; };
 		05AA669917B868F90019AC3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669817B868F90019AC3C /* Foundation.framework */; };
 		05AA66A717B868F90019AC3C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA66A617B868F90019AC3C /* XCTest.framework */; };
@@ -35,12 +39,17 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				0565A0B017C1F30900BFB1C0 /* DebugLog.h in CopyFiles */,
+				0565A0AD17C1ED6100BFB1C0 /* BlueCap.h in CopyFiles */,
+				0565A0AE17C1ED6100BFB1C0 /* BlueCapManager.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCap.m; sourceTree = "<group>"; };
+		0565A0AF17C1F0D200BFB1C0 /* DebugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
 		05AA669517B868F90019AC3C /* libBluecap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBluecap.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA669817B868F90019AC3C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05AA66A517B868F90019AC3C /* BluecapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluecapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +144,8 @@
 				05E6897617C1E0890013246A /* BlueCap.h */,
 				05E6897717C1E0890013246A /* BlueCapManager.h */,
 				05E6897817C1E0890013246A /* BlueCapManager.m */,
+				0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */,
+				0565A0AF17C1F0D200BFB1C0 /* DebugLog.h */,
 			);
 			path = BlueCap;
 			sourceTree = "<group>";
@@ -220,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0565A0AC17C1EA7F00BFB1C0 /* BlueCap.m in Sources */,
 				05E6897917C1E09C0013246A /* BlueCapManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
