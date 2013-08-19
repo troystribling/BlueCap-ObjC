@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <BlueCap/BlueCap.h>
 
 @interface PeriphrealViewController : UITableViewController
 

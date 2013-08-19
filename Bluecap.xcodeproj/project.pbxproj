@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		059563E617C1A0D000A5E84F /* BlueCapManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059563E417C19EEC00A5E84F /* BlueCapManager.h */; };
+		059563EA17C1A57B00A5E84F /* libBluecap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669517B868F90019AC3C /* libBluecap.a */; };
+		059563EB17C1A72100A5E84F /* BlueCapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 059563E517C19EEC00A5E84F /* BlueCapManager.m */; };
 		05AA669917B868F90019AC3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669817B868F90019AC3C /* Foundation.framework */; };
 		05AA669E17B868F90019AC3C /* Bluecap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05AA669D17B868F90019AC3C /* Bluecap.h */; };
-		05AA66A017B868F90019AC3C /* Bluecap.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AA669F17B868F90019AC3C /* Bluecap.m */; };
 		05AA66A717B868F90019AC3C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA66A617B868F90019AC3C /* XCTest.framework */; };
 		05AA66A817B868F90019AC3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669817B868F90019AC3C /* Foundation.framework */; };
 		05AA66AA17B868F90019AC3C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA66A917B868F90019AC3C /* UIKit.framework */; };
-		05AA66AD17B868F90019AC3C /* libBluecap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669517B868F90019AC3C /* libBluecap.a */; };
 		05AA66B317B868F90019AC3C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05AA66B117B868F90019AC3C /* InfoPlist.strings */; };
 		05AA66B517B868F90019AC3C /* BluecapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AA66B417B868F90019AC3C /* BluecapTests.m */; };
 		05D6E51B17BFDB220019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51A17BFDB220019B575 /* CoreBluetooth.framework */; };
@@ -36,6 +37,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				059563E617C1A0D000A5E84F /* BlueCapManager.h in CopyFiles */,
 				05AA669E17B868F90019AC3C /* Bluecap.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,11 +45,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		059563E417C19EEC00A5E84F /* BlueCapManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueCapManager.h; sourceTree = "<group>"; };
+		059563E517C19EEC00A5E84F /* BlueCapManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueCapManager.m; sourceTree = "<group>"; };
 		05AA669517B868F90019AC3C /* libBluecap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBluecap.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA669817B868F90019AC3C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05AA669C17B868F90019AC3C /* Bluecap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bluecap-Prefix.pch"; sourceTree = "<group>"; };
 		05AA669D17B868F90019AC3C /* Bluecap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bluecap.h; sourceTree = "<group>"; };
-		05AA669F17B868F90019AC3C /* Bluecap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bluecap.m; sourceTree = "<group>"; };
 		05AA66A517B868F90019AC3C /* BluecapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluecapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA66A617B868F90019AC3C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		05AA66A917B868F90019AC3C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -73,7 +76,7 @@
 			files = (
 				05AA66A717B868F90019AC3C /* XCTest.framework in Frameworks */,
 				05AA66AA17B868F90019AC3C /* UIKit.framework in Frameworks */,
-				05AA66AD17B868F90019AC3C /* libBluecap.a in Frameworks */,
+				059563EA17C1A57B00A5E84F /* libBluecap.a in Frameworks */,
 				05AA66A817B868F90019AC3C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,8 +117,9 @@
 		05AA669A17B868F90019AC3C /* Bluecap */ = {
 			isa = PBXGroup;
 			children = (
+				059563E417C19EEC00A5E84F /* BlueCapManager.h */,
+				059563E517C19EEC00A5E84F /* BlueCapManager.m */,
 				05AA669D17B868F90019AC3C /* Bluecap.h */,
-				05AA669F17B868F90019AC3C /* Bluecap.m */,
 				05AA669B17B868F90019AC3C /* Supporting Files */,
 			);
 			path = Bluecap;
@@ -228,7 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05AA66A017B868F90019AC3C /* Bluecap.m in Sources */,
+				059563EB17C1A72100A5E84F /* BlueCapManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,13 +335,13 @@
 		05AA66B917B868F90019AC3C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: William Stribling (EP33FMNW27)";
+				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/Bluecap.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bluecap/Bluecap-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "46B00802-59D2-4B1D-9831-F0CF3FF91FD2";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -345,13 +349,13 @@
 		05AA66BA17B868F90019AC3C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: William Stribling (EP33FMNW27)";
+				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/Bluecap.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bluecap/Bluecap-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "46B00802-59D2-4B1D-9831-F0CF3FF91FD2";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

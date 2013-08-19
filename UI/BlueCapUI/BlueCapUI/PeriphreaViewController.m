@@ -7,7 +7,6 @@
 //
 
 #import "PeriphrealViewController.h"
-#import "BlueCapManager.h"
 
 @interface PeriphrealViewController ()
 

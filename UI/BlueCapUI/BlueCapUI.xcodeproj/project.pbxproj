@@ -20,9 +20,9 @@
 		052A003817BB2CD4006D7AB3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001A17BB2CD4006D7AB3 /* UIKit.framework */; };
 		052A004017BB2CD4006D7AB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 052A003E17BB2CD4006D7AB3 /* InfoPlist.strings */; };
 		052A004217BB2CD4006D7AB3 /* BlueCapUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 052A004117BB2CD4006D7AB3 /* BlueCapUITests.m */; };
+		059563E717C1A26C00A5E84F /* libBluecap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A005117BB2DD9006D7AB3 /* libBluecap.a */; };
 		05D6E51817BFD3BA0019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */; };
 		05D6E52017BFDEC70019B575 /* PeriphreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6E51F17BFDEC70019B575 /* PeriphreaViewController.m */; };
-		05D6E52417C004690019B575 /* BlueCapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6E52317C004690019B575 /* BlueCapManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +79,6 @@
 		05D6E51917BFD92F0019B575 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		05D6E51E17BFDEC70019B575 /* PeriphrealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriphrealViewController.h; sourceTree = "<group>"; };
 		05D6E51F17BFDEC70019B575 /* PeriphreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriphreaViewController.m; sourceTree = "<group>"; };
-		05D6E52217C004690019B575 /* BlueCapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCapManager.h; sourceTree = "<group>"; };
-		05D6E52317C004690019B575 /* BlueCapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCapManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				059563E717C1A26C00A5E84F /* libBluecap.a in Frameworks */,
 				05D6E51817BFD3BA0019B575 /* CoreBluetooth.framework in Frameworks */,
 				052A001917BB2CD4006D7AB3 /* CoreGraphics.framework in Frameworks */,
 				052A001B17BB2CD4006D7AB3 /* UIKit.framework in Frameworks */,
@@ -143,7 +142,6 @@
 		052A001C17BB2CD4006D7AB3 /* BlueCapUI */ = {
 			isa = PBXGroup;
 			children = (
-				05D6E52117C003B00019B575 /* BlueCap */,
 				052A002517BB2CD4006D7AB3 /* AppDelegate.h */,
 				052A002617BB2CD4006D7AB3 /* AppDelegate.m */,
 				05D6E51E17BFDEC70019B575 /* PeriphrealViewController.h */,
@@ -192,16 +190,6 @@
 				052A005317BB2DD9006D7AB3 /* BluecapTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		05D6E52117C003B00019B575 /* BlueCap */ = {
-			isa = PBXGroup;
-			children = (
-				05D6E52217C004690019B575 /* BlueCapManager.h */,
-				05D6E52317C004690019B575 /* BlueCapManager.m */,
-			);
-			name = BlueCap;
-			path = ../BlueCap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,7 +314,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				05D6E52017BFDEC70019B575 /* PeriphreaViewController.m in Sources */,
-				05D6E52417C004690019B575 /* BlueCapManager.m in Sources */,
 				052A002717BB2CD4006D7AB3 /* AppDelegate.m in Sources */,
 				052A002317BB2CD4006D7AB3 /* main.m in Sources */,
 			);
@@ -461,6 +448,7 @@
 				GCC_PREFIX_HEADER = "BlueCapUI/BlueCapUI-Prefix.pch";
 				INFOPLIST_FILE = "BlueCapUI/BlueCapUI-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "46B00802-59D2-4B1D-9831-F0CF3FF91FD2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -475,6 +463,7 @@
 				GCC_PREFIX_HEADER = "BlueCapUI/BlueCapUI-Prefix.pch";
 				INFOPLIST_FILE = "BlueCapUI/BlueCapUI-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "46B00802-59D2-4B1D-9831-F0CF3FF91FD2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

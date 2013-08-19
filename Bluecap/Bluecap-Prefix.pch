@@ -6,4 +6,5 @@
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
+    #import <CoreBluetooth/CoreBluetooth.h>
 #endif

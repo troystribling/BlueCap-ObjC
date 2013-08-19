@@ -7,7 +7,5 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface Bluecap : NSObject
-
-@end
+#import <CoreBluetooth/CoreBluetooth.h>
+#import "BlueCapManager.h"
