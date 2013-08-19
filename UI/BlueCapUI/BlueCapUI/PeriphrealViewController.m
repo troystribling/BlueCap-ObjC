@@ -22,7 +22,7 @@
 }
 
 - (void)viewDidLoad {
-    [BlueCapManager sharedInstance];
+    [BlueCapManager sharedInstance].blueCapManagerDelegate = self;
     [super viewDidLoad];
 }
 
@@ -44,6 +44,15 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     return cell;
+}
+
+#pragma mark -
+#pragma mark BlueCapManagerDelegate
+
+- (void) didRefresh {
+}
+
+- (void) didPoweredOff {
 }
 
 @end

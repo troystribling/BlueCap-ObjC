@@ -6,7 +6,19 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+@protocol BlueCapManagerDelegate <NSObject>
+
+- (void) didRefresh;
+- (void) didPoweredOff;
+
+@end
+
+
 @interface BlueCapManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+
+@property(nonatomic, retain) NSMutableArray*            foundPeriphreals;
+@property(nonatomic, retain) NSMutableArray*            connectedPeriphreals;
+@property(nonatomic, weak) id<BlueCapManagerDelegate>   blueCapManagerDelegate;
 
 + (BlueCapManager*)sharedInstance;
 - (void)startScanning;
