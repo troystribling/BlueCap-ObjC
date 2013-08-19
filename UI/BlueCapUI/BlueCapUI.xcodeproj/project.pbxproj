@@ -19,10 +19,10 @@
 		052A003817BB2CD4006D7AB3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001A17BB2CD4006D7AB3 /* UIKit.framework */; };
 		052A004017BB2CD4006D7AB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 052A003E17BB2CD4006D7AB3 /* InfoPlist.strings */; };
 		052A004217BB2CD4006D7AB3 /* BlueCapUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 052A004117BB2CD4006D7AB3 /* BlueCapUITests.m */; };
-		059563E717C1A26C00A5E84F /* libBluecap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A005117BB2DD9006D7AB3 /* libBluecap.a */; };
 		059563EC17C1AE6F00A5E84F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 052A002817BB2CD4006D7AB3 /* Main.storyboard */; };
 		05D6E51817BFD3BA0019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */; };
 		05D6E52017BFDEC70019B575 /* PeriphrealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6E51F17BFDEC70019B575 /* PeriphrealViewController.m */; };
+		05E6898517C1E1230013246A /* libBluecap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E6898017C1E1060013246A /* libBluecap.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,23 +33,23 @@
 			remoteGlobalIDString = 052A001217BB2CD4006D7AB3;
 			remoteInfo = BlueCapUI;
 		};
-		052A005017BB2DD9006D7AB3 /* PBXContainerItemProxy */ = {
+		05E6897F17C1E1060013246A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */;
+			containerPortal = 05E6897A17C1E1060013246A /* BlueCap.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 05AA669517B868F90019AC3C;
 			remoteInfo = Bluecap;
 		};
-		052A005217BB2DD9006D7AB3 /* PBXContainerItemProxy */ = {
+		05E6898117C1E1060013246A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */;
+			containerPortal = 05E6897A17C1E1060013246A /* BlueCap.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 05AA66A517B868F90019AC3C;
 			remoteInfo = BluecapTests;
 		};
-		05D6E51517BFD3AF0019B575 /* PBXContainerItemProxy */ = {
+		05E6898317C1E1160013246A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */;
+			containerPortal = 05E6897A17C1E1060013246A /* BlueCap.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 05AA669417B868F90019AC3C;
 			remoteInfo = Bluecap;
@@ -74,11 +74,11 @@
 		052A003D17BB2CD4006D7AB3 /* BlueCapUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlueCapUITests-Info.plist"; sourceTree = "<group>"; };
 		052A003F17BB2CD4006D7AB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		052A004117BB2CD4006D7AB3 /* BlueCapUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueCapUITests.m; sourceTree = "<group>"; };
-		052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bluecap.xcodeproj; path = ../../Bluecap.xcodeproj; sourceTree = "<group>"; };
 		05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		05D6E51917BFD92F0019B575 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		05D6E51E17BFDEC70019B575 /* PeriphrealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriphrealViewController.h; sourceTree = "<group>"; };
 		05D6E51F17BFDEC70019B575 /* PeriphrealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriphrealViewController.m; sourceTree = "<group>"; };
+		05E6897A17C1E1060013246A /* BlueCap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueCap.xcodeproj; path = ../../BlueCap.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				059563E717C1A26C00A5E84F /* libBluecap.a in Frameworks */,
+				05E6898517C1E1230013246A /* libBluecap.a in Frameworks */,
 				05D6E51817BFD3BA0019B575 /* CoreBluetooth.framework in Frameworks */,
 				052A001917BB2CD4006D7AB3 /* CoreGraphics.framework in Frameworks */,
 				052A001B17BB2CD4006D7AB3 /* UIKit.framework in Frameworks */,
@@ -110,7 +110,7 @@
 		052A000A17BB2CD4006D7AB3 = {
 			isa = PBXGroup;
 			children = (
-				052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */,
+				05E6897A17C1E1060013246A /* BlueCap.xcodeproj */,
 				052A001C17BB2CD4006D7AB3 /* BlueCapUI */,
 				052A003B17BB2CD4006D7AB3 /* BlueCapUITests */,
 				052A001517BB2CD4006D7AB3 /* Frameworks */,
@@ -183,11 +183,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		052A004C17BB2DD8006D7AB3 /* Products */ = {
+		05E6897B17C1E1060013246A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				052A005117BB2DD9006D7AB3 /* libBluecap.a */,
-				052A005317BB2DD9006D7AB3 /* BluecapTests.xctest */,
+				05E6898017C1E1060013246A /* libBluecap.a */,
+				05E6898217C1E1060013246A /* BluecapTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,7 +206,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				05D6E51617BFD3AF0019B575 /* PBXTargetDependency */,
+				05E6898417C1E1160013246A /* PBXTargetDependency */,
 			);
 			name = BlueCapUI;
 			productName = BlueCapUI;
@@ -258,8 +258,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 052A004C17BB2DD8006D7AB3 /* Products */;
-					ProjectRef = 052A004B17BB2DD8006D7AB3 /* Bluecap.xcodeproj */;
+					ProductGroup = 05E6897B17C1E1060013246A /* Products */;
+					ProjectRef = 05E6897A17C1E1060013246A /* BlueCap.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -271,18 +271,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		052A005117BB2DD9006D7AB3 /* libBluecap.a */ = {
+		05E6898017C1E1060013246A /* libBluecap.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libBluecap.a;
-			remoteRef = 052A005017BB2DD9006D7AB3 /* PBXContainerItemProxy */;
+			remoteRef = 05E6897F17C1E1060013246A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		052A005317BB2DD9006D7AB3 /* BluecapTests.xctest */ = {
+		05E6898217C1E1060013246A /* BluecapTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = BluecapTests.xctest;
-			remoteRef = 052A005217BB2DD9006D7AB3 /* PBXContainerItemProxy */;
+			remoteRef = 05E6898117C1E1060013246A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -335,10 +335,10 @@
 			target = 052A001217BB2CD4006D7AB3 /* BlueCapUI */;
 			targetProxy = 052A003917BB2CD4006D7AB3 /* PBXContainerItemProxy */;
 		};
-		05D6E51617BFD3AF0019B575 /* PBXTargetDependency */ = {
+		05E6898417C1E1160013246A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Bluecap;
-			targetProxy = 05D6E51517BFD3AF0019B575 /* PBXContainerItemProxy */;
+			targetProxy = 05E6898317C1E1160013246A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

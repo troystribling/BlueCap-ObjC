@@ -17,7 +17,7 @@
                BlueprintIdentifier = "05AA669417B868F90019AC3C"
                BuildableName = "libBluecap.a"
                BlueprintName = "Bluecap"
-               ReferencedContainer = "container:Bluecap.xcodeproj">
+               ReferencedContainer = "container:BlueCap.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "05AA66A417B868F90019AC3C"
                BuildableName = "BluecapTests.xctest"
                BlueprintName = "BluecapTests"
-               ReferencedContainer = "container:Bluecap.xcodeproj">
+               ReferencedContainer = "container:BlueCap.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

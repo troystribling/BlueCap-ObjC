@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Bluecap.xcodeproj">
+      location = "self:BlueCap.xcodeproj">
    </FileRef>
 </Workspace>
