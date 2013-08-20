@@ -8,7 +8,7 @@
 
 @protocol BlueCapManagerDelegate <NSObject>
 
-- (void) didRefresh;
+- (void) didRefreshPeriferals;
 - (void) didPoweredOff;
 
 @end

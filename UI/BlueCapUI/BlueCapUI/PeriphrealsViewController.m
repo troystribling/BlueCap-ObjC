@@ -1,18 +1,18 @@
 //
-//  PeriphrealViewController.m
+//  PeriphrealsViewController.m
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 8/17/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "PeriphrealViewController.h"
+#import "PeriphrealsViewController.h"
 
-@interface PeriphrealViewController ()
+@interface PeriphrealsViewController ()
 
 @end
 
-@implementation PeriphrealViewController
+@implementation PeriphrealsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -37,19 +37,26 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    BlueCapManager* blueCapManager = [BlueCapManager sharedInstance];
+    return [blueCapManager.foundPeriphreals count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString* cellIdentifier = @"PeripheralCell";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    CBPeripheral* periphreal = [[BlueCapManager sharedInstance].foundPeriphreals objectAtIndex:indexPath.row];
+    cell.textLabel.text = periphreal.name;
     return cell;
 }
 
 #pragma mark -
 #pragma mark BlueCapManagerDelegate
 
-- (void) didRefresh {
+- (void) didRefreshPeriferals {
+    [self.tableView reloadData];
 }
 
 - (void) didPoweredOff {

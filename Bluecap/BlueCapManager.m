@@ -7,7 +7,6 @@
 //
 
 #import "BlueCapManager.h"
-#import "DebugLog.h"
 
 @interface BlueCapManager () {
     CBCentralManager*  centralManager;
@@ -98,8 +97,11 @@ static BlueCapManager* thisBlueCapManager = nil;
 - (void)centralManager:(CBCentralManager*)central
  didDiscoverPeripheral:(CBPeripheral*)peripheral
      advertisementData:(NSDictionary*)advertisementData RSSI:(NSNumber*)RSSI {
-    DLog(@"Periphreal Discovered: %@", peripheral.name);
-    [self.blueCapManagerDelegate didRefresh];
+    if (![self.foundPeriphreals containsObject:peripheral]) {
+        DLog(@"Periphreal Discovered: %@", peripheral.name);
+        [self.foundPeriphreals addObject:peripheral];
+        [self.blueCapManagerDelegate didRefreshPeriferals];
+    }
 }
 
 - (void)centralManager:(CBCentralManager*)central didFailToConnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
