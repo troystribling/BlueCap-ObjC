@@ -30,6 +30,9 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="toggleConnection:" destination="XKG-l0-TPz" eventType="touchUpInside" id="cvN-B6-Rs3"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -94,7 +97,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="EBD-42-WgL" kind="push" trigger="accessoryAction" id="fQq-iI-5a1"/>
+                                            <segue destination="EBD-42-WgL" kind="push" identifier="PeriphrealServicesViewController" id="6SE-Uk-yuS"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -153,7 +156,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bf3-gg-MZN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2083" y="249"/>
+            <point key="canvasLocation" x="2095" y="249"/>
         </scene>
         <!--Periphreals View Controller - Periphreals-->
         <scene sceneID="fVi-u5-rlX">
@@ -181,7 +184,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="XKG-l0-TPz" kind="push" trigger="accessoryAction" id="nTE-se-jPT"/>
+                                    <segue destination="XKG-l0-TPz" kind="push" identifier="PeriphrealViewController" id="icq-c0-L9O"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

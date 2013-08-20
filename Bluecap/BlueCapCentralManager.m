@@ -34,8 +34,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     self = [super init];
     if (self) {
 		centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
-		self.foundPeriphreals = [NSMutableArray array];
-		self.connectedPeriphreals = [NSMutableArray array];
+		self.periphreals = [NSMutableArray array];
 	}
     return self;
 }
@@ -53,6 +52,13 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
 - (void) stopScanning {
 	[centralManager stopScan];
+}
+
++ (NSString*)periphrealStringValue:(CBPeripheral*)peripheral {
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, peripheral.UUID);
+    CFRelease(theUUID);
+    return (__bridge_transfer NSString *)string;
 }
 
 #pragma mark -
@@ -97,9 +103,9 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)centralManager:(CBCentralManager*)central
  didDiscoverPeripheral:(CBPeripheral*)peripheral
      advertisementData:(NSDictionary*)advertisementData RSSI:(NSNumber*)RSSI {
-    if (![self.foundPeriphreals containsObject:peripheral]) {
+    if (![self.periphreals containsObject:peripheral]) {
         DLog(@"Periphreal Discovered: %@", peripheral.name);
-        [self.foundPeriphreals addObject:peripheral];
+        [self.periphreals addObject:peripheral];
         [self.delegate didRefreshPeriferals];
     }
 }

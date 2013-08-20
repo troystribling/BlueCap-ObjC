@@ -16,8 +16,7 @@
 
 @interface BlueCapCentralManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
-@property(nonatomic, retain) NSMutableArray*                    foundPeriphreals;
-@property(nonatomic, retain) NSMutableArray*                    connectedPeriphreals;
+@property(nonatomic, retain) NSMutableArray*                    periphreals;
 @property(nonatomic, weak) id<BlueCapCentralManagerDelegate>    delegate;
 
 + (BlueCapCentralManager*)sharedInstance;

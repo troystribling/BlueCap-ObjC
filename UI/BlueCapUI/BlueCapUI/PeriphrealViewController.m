@@ -23,10 +23,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.nameNavigationItem.title = self.periphreal.name;
+    if (self.periphreal.RSSI) {
+        self.rssiTextField.text = [NSString stringWithFormat:@"%@dB", self.periphreal.RSSI];
+    } else {
+        self.rssiTextField.text = @"Unknown";
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (IBAction)toggleConnection:(id)sender {    
 }
 
 @end

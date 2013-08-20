@@ -10,9 +10,12 @@
 
 @interface PeriphrealViewController : UITableViewController
 
+@property(nonatomic, retain) CBPeripheral*                  periphreal;
 @property(nonatomic, retain) IBOutlet UINavigationItem*     nameNavigationItem;
 @property(nonatomic, retain) IBOutlet UIButton*             connectButton;
 @property(nonatomic, retain) IBOutlet UITextField*          uuidTextField;
 @property(nonatomic, retain) IBOutlet UITextField*          rssiTextField;
+
+- (IBAction)toggleConnection:(id)sender;
 
 @end

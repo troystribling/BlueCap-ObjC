@@ -150,12 +150,8 @@
 				052A002517BB2CD4006D7AB3 /* AppDelegate.h */,
 				052A002617BB2CD4006D7AB3 /* AppDelegate.m */,
 				052A002E17BB2CD4006D7AB3 /* Images.xcassets */,
-				05D645FE17C341F4008A251D /* PeriphrealServicesViewController.h */,
-				05D645FF17C341F4008A251D /* PeriphrealServicesViewController.m */,
-				05D6E51E17BFDEC70019B575 /* PeriphrealsViewController.h */,
-				05D6E51F17BFDEC70019B575 /* PeriphrealsViewController.m */,
-				0565A0B217C3321800BFB1C0 /* PeriphrealViewController.h */,
-				0565A0B317C3321800BFB1C0 /* PeriphrealViewController.m */,
+				05D6460217C3BCAF008A251D /* Controllers */,
+				052A002817BB2CD4006D7AB3 /* Main.storyboard */,
 				052A001D17BB2CD4006D7AB3 /* Supporting Files */,
 			);
 			path = BlueCapUI;
@@ -164,7 +160,6 @@
 		052A001D17BB2CD4006D7AB3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				052A002817BB2CD4006D7AB3 /* Main.storyboard */,
 				052A001E17BB2CD4006D7AB3 /* BlueCapUI-Info.plist */,
 				052A001F17BB2CD4006D7AB3 /* InfoPlist.strings */,
 				052A002217BB2CD4006D7AB3 /* main.m */,
@@ -189,6 +184,19 @@
 				052A003E17BB2CD4006D7AB3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05D6460217C3BCAF008A251D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				05D645FE17C341F4008A251D /* PeriphrealServicesViewController.h */,
+				05D645FF17C341F4008A251D /* PeriphrealServicesViewController.m */,
+				05D6E51E17BFDEC70019B575 /* PeriphrealsViewController.h */,
+				05D6E51F17BFDEC70019B575 /* PeriphrealsViewController.m */,
+				0565A0B217C3321800BFB1C0 /* PeriphrealViewController.h */,
+				0565A0B317C3321800BFB1C0 /* PeriphrealViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		05E6897B17C1E1060013246A /* Products */ = {

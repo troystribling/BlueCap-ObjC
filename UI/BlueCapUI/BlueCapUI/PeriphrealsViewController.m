@@ -7,6 +7,7 @@
 //
 
 #import "PeriphrealsViewController.h"
+#import "PeriphrealViewController.h"
 
 @interface PeriphrealsViewController ()
 
@@ -31,7 +32,11 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+    if ([[segue identifier] isEqualToString:@"PeriphrealViewController"]) {
+        NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
+        PeriphrealViewController *viewController = segue.destinationViewController;
+        viewController.periphreal = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:selectedRowIndex.row];
+    }
 }
 
 #pragma mark -
@@ -43,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     BlueCapCentralManager* blueCapManager = [BlueCapCentralManager sharedInstance];
-    return [blueCapManager.foundPeriphreals count];
+    return [blueCapManager.periphreals count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -52,7 +57,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    CBPeripheral* periphreal = [[BlueCapCentralManager sharedInstance].foundPeriphreals objectAtIndex:indexPath.row];
+    CBPeripheral* periphreal = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
     cell.textLabel.text = periphreal.name;
     return cell;
 }
