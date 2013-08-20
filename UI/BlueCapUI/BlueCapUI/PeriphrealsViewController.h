@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeriphrealsViewController : UITableViewController <BlueCapManagerDelegate>
+@interface PeriphrealsViewController : UITableViewController <BlueCapCentralManagerDelegate>
 
 @end

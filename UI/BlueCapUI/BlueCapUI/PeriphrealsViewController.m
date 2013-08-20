@@ -22,7 +22,7 @@
 }
 
 - (void)viewDidLoad {
-    [BlueCapManager sharedInstance].blueCapManagerDelegate = self;
+    [BlueCapCentralManager sharedInstance].delegate = self;
     [super viewDidLoad];
 }
 
@@ -30,14 +30,19 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Table view data source
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    BlueCapManager* blueCapManager = [BlueCapManager sharedInstance];
+    BlueCapCentralManager* blueCapManager = [BlueCapCentralManager sharedInstance];
     return [blueCapManager.foundPeriphreals count];
 }
 
@@ -47,13 +52,16 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    CBPeripheral* periphreal = [[BlueCapManager sharedInstance].foundPeriphreals objectAtIndex:indexPath.row];
+    CBPeripheral* periphreal = [[BlueCapCentralManager sharedInstance].foundPeriphreals objectAtIndex:indexPath.row];
     cell.textLabel.text = periphreal.name;
     return cell;
 }
 
 #pragma mark -
-#pragma mark BlueCapManagerDelegate
+#pragma mark UITableViewDataSource
+
+#pragma mark -
+#pragma mark BlueCapCentralManagerDelegate
 
 - (void) didRefreshPeriferals {
     [self.tableView reloadData];

@@ -8,5 +8,5 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "BlueCapManager.h"
+#import "BlueCapCentralManager.h"
 #import "DebugLog.h"

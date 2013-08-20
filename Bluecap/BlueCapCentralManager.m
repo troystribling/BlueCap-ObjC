@@ -1,33 +1,33 @@
 //
-//  BlueCapManager.m
+//  BlueCapCentralManager.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 8/17/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapManager.h"
+#import "BlueCapCentralManager.h"
 
-@interface BlueCapManager () {
+@interface BlueCapCentralManager () {
     CBCentralManager*  centralManager;
 }
 
 @end
 
-static BlueCapManager* thisBlueCapManager = nil;
+static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
-@implementation BlueCapManager
+@implementation BlueCapCentralManager
 
 #pragma mark -
-#pragma mark BlueCapManager
+#pragma mark BlueCapCentralManager
 
-+ (BlueCapManager*)sharedInstance {
++ (BlueCapCentralManager*)sharedInstance {
     @synchronized(self) {
-        if (thisBlueCapManager == nil) {
-            thisBlueCapManager = [[self alloc] init];
+        if (thisBlueCapCentralManager == nil) {
+            thisBlueCapCentralManager = [[self alloc] init];
         }
     }
-    return thisBlueCapManager;
+    return thisBlueCapCentralManager;
 }
 
 - (id) init {
@@ -100,7 +100,7 @@ static BlueCapManager* thisBlueCapManager = nil;
     if (![self.foundPeriphreals containsObject:peripheral]) {
         DLog(@"Periphreal Discovered: %@", peripheral.name);
         [self.foundPeriphreals addObject:peripheral];
-        [self.blueCapManagerDelegate didRefreshPeriferals];
+        [self.delegate didRefreshPeriferals];
     }
 }
 
@@ -116,7 +116,7 @@ static BlueCapManager* thisBlueCapManager = nil;
 - (void)centralManagerDidUpdateState:(CBCentralManager*)central {
 	switch ([centralManager state]) {
 		case CBCentralManagerStatePoweredOff: {
-            [self.blueCapManagerDelegate didPoweredOff];
+            [self.delegate didPoweredOff];
 			break;
 		}
 		case CBCentralManagerStateUnauthorized: {
