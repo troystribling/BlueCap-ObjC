@@ -112,8 +112,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Name" id="meN-Xl-hWE"/>
                     <connections>
-                        <outlet property="connectButton" destination="MDP-cv-J0Z" id="Bfs-XJ-5vw"/>
-                        <outlet property="nameNavigationItem" destination="meN-Xl-hWE" id="GT6-um-BoY"/>
+                        <outlet property="connectButton" destination="MDP-cv-J0Z" id="m9t-Yo-3W5"/>
                         <outlet property="rssiTextField" destination="Q9Z-NH-FVA" id="gao-9K-c9A"/>
                         <outlet property="uuidTextField" destination="w2R-gL-92I" id="nak-9P-QkS"/>
                     </connections>

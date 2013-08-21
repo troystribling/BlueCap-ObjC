@@ -104,6 +104,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
+    DLog(@"Peripheral Disconnected: %@", peripheral.name);
 }
 
 - (void)centralManager:(CBCentralManager*)central

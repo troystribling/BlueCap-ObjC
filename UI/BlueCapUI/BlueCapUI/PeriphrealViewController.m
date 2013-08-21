@@ -10,6 +10,7 @@
 
 @interface PeriphrealViewController ()
 
+
 @end
 
 @implementation PeriphrealViewController
@@ -23,12 +24,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = self.periphreal.name;
     if (self.periphreal.state == CBPeripheralStateDisconnected) {
-        self.connectButton.titleLabel.text = @"Connect";
+        [self.connectButton setTitle:@"Connect" forState:UIControlStateNormal];
     } else {
-        self.connectButton.titleLabel.text = @"Disconnect";
+        [self.connectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
     }
-    self.nameNavigationItem.title = self.periphreal.name;
     [self.periphreal readRSSI];
     if (self.periphreal.RSSI) {
         self.rssiTextField.text = [NSString stringWithFormat:@"%@dB", self.periphreal.RSSI];

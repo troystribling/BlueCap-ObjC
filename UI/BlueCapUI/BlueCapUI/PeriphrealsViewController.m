@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [BlueCapCentralManager sharedInstance].delegate = self;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     [super viewDidLoad];
 }
 
