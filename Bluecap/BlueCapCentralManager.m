@@ -54,11 +54,16 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 	[centralManager stopScan];
 }
 
-+ (NSString*)periphrealStringValue:(CBPeripheral*)peripheral {
-    CFUUIDRef theUUID = CFUUIDCreate(NULL);
-    CFStringRef string = CFUUIDCreateString(NULL, peripheral.UUID);
-    CFRelease(theUUID);
-    return (__bridge_transfer NSString *)string;
+- (void)connectPeripherial:(CBPeripheral*)peripheral {
+    if (peripheral.state == CBPeripheralStateDisconnected) {
+        [centralManager connectPeripheral:peripheral options:nil];
+    }
+}
+
+- (void)disconnectPeripheral:(CBPeripheral*)peripheral {
+    if (!peripheral.state == CBPeripheralStateDisconnected) {
+        [centralManager cancelPeripheralConnection:peripheral];
+    }
 }
 
 #pragma mark -
@@ -95,6 +100,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 #pragma mark CBCentralManagerDelegate
 
 - (void)centralManager:(CBCentralManager*)central didConnectPeripheral:(CBPeripheral*)peripheral {
+    DLog(@"Peripheral Connected: %@", peripheral.name);
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {

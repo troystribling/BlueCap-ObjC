@@ -24,4 +24,7 @@
 - (void)startScanningForUUIDString:(NSString*)uuidString;
 - (void) stopScanning;
 
+- (void)connectPeripherial:(CBPeripheral*)peripheral;
+- (void)disconnectPeripheral:(CBPeripheral*)peripheral;
+
 @end

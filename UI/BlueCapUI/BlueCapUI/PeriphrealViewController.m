@@ -23,20 +23,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.periphreal.state == CBPeripheralStateDisconnected) {
+        self.connectButton.titleLabel.text = @"Connect";
+    } else {
+        self.connectButton.titleLabel.text = @"Disconnect";
+    }
     self.nameNavigationItem.title = self.periphreal.name;
+    [self.periphreal readRSSI];
     if (self.periphreal.RSSI) {
         self.rssiTextField.text = [NSString stringWithFormat:@"%@dB", self.periphreal.RSSI];
     } else {
         self.rssiTextField.text = @"Unknown";
     }
-    
+    self.uuidTextField.text = self.periphreal.identifier.UUIDString;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)toggleConnection:(id)sender {    
+- (IBAction)toggleConnection:(id)sender {
+    if (self.periphreal.state == CBPeripheralStateDisconnected) {
+        [[BlueCapCentralManager sharedInstance] connectPeripherial:self.periphreal];
+    } else {
+        [[BlueCapCentralManager sharedInstance] disconnectPeripheral:self.periphreal];
+    }
 }
 
 @end
