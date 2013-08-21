@@ -43,12 +43,4 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)toggleConnection:(id)sender {
-    if (self.periphreal.state == CBPeripheralStateDisconnected) {
-        [[BlueCapCentralManager sharedInstance] connectPeripherial:self.periphreal];
-    } else {
-        [[BlueCapCentralManager sharedInstance] disconnectPeripheral:self.periphreal];
-    }
-}
-
 @end

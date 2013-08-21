@@ -11,6 +11,8 @@
 
 @interface PeriphrealsViewController ()
 
+- (void)toggleConnection:(CBPeripheral*)periphereal;
+
 @end
 
 @implementation PeriphrealsViewController
@@ -40,6 +42,14 @@
     }
 }
 
+- (void)toggleConnection:(CBPeripheral*)periphreal {
+    if (periphreal.state == CBPeripheralStateDisconnected) {
+        [[BlueCapCentralManager sharedInstance] connectPeripherial:periphreal];
+    } else {
+        [[BlueCapCentralManager sharedInstance] disconnectPeripheral:periphreal];
+    }
+}
+
 #pragma mark -
 #pragma mark UITableViewDataSource
 
@@ -64,7 +74,10 @@
 }
 
 #pragma mark -
-#pragma mark UITableViewDataSource
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView*)tableView didDeselectRowAtIndexPath:(NSIndexPath*)indexPath {
+}
 
 #pragma mark -
 #pragma mark BlueCapCentralManagerDelegate
