@@ -101,10 +101,12 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
 - (void)centralManager:(CBCentralManager*)central didConnectPeripheral:(CBPeripheral*)peripheral {
     DLog(@"Peripheral Connected: %@", peripheral.name);
+    [self.delegate didConnectPeripheral:peripheral];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
     DLog(@"Peripheral Disconnected: %@", peripheral.name);
+    [self.delegate didDisconnectPeripheral:peripheral];
 }
 
 - (void)centralManager:(CBCentralManager*)central

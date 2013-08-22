@@ -8,8 +8,10 @@
 
 @protocol BlueCapCentralManagerDelegate <NSObject>
 
-- (void) didRefreshPeriferals;
-- (void) didPoweredOff;
+- (void)didRefreshPeriferals;
+- (void)didPoweredOff;
+- (void)didConnectPeripheral:(CBPeripheral*)peripheral;
+- (void)didDisconnectPeripheral:(CBPeripheral*)peripheral;
 
 @end
 

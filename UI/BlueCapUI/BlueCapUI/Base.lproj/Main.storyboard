@@ -182,7 +182,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbx-ce-ZdZ">
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PeripheralConnected" translatesAutoresizingMaskIntoConstraints="NO" id="bbx-ce-ZdZ">
                                             <rect key="frame" x="233" y="0.0" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -200,8 +200,15 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Iax-qU-br4" id="Seh-p1-FcD"/>
+                            <outlet property="delegate" destination="Iax-qU-br4" id="1kw-Jv-geA"/>
+                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Peripherals" id="Coa-7w-9IN"/>
+                    <connections>
+                        <outlet property="view" destination="QuF-dc-4mj" id="QyH-z3-2vz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O2r-ub-03I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -223,6 +230,9 @@
             <point key="canvasLocation" x="742" y="249"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PeripheralConnected" width="40" height="40"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
