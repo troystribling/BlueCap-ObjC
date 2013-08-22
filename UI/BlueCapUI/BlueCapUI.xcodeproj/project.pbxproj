@@ -19,11 +19,12 @@
 		052A003817BB2CD4006D7AB3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001A17BB2CD4006D7AB3 /* UIKit.framework */; };
 		052A004017BB2CD4006D7AB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 052A003E17BB2CD4006D7AB3 /* InfoPlist.strings */; };
 		052A004217BB2CD4006D7AB3 /* BlueCapUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 052A004117BB2CD4006D7AB3 /* BlueCapUITests.m */; };
-		0565A0B417C3321800BFB1C0 /* PeriphrealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565A0B317C3321800BFB1C0 /* PeriphrealViewController.m */; };
+		0565A0B417C3321800BFB1C0 /* PeripheralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565A0B317C3321800BFB1C0 /* PeripheralViewController.m */; };
 		059563EC17C1AE6F00A5E84F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 052A002817BB2CD4006D7AB3 /* Main.storyboard */; };
-		05D6460017C341F4008A251D /* PeriphrealServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D645FF17C341F4008A251D /* PeriphrealServicesViewController.m */; };
+		05D6460017C341F4008A251D /* PeripheralServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D645FF17C341F4008A251D /* PeripheralServicesViewController.m */; };
+		05D6460517C5A73E008A251D /* PeripheraCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6460417C5A73E008A251D /* PeripheraCell.m */; };
 		05D6E51817BFD3BA0019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */; };
-		05D6E52017BFDEC70019B575 /* PeriphrealsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6E51F17BFDEC70019B575 /* PeriphrealsViewController.m */; };
+		05D6E52017BFDEC70019B575 /* PeripheralsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6E51F17BFDEC70019B575 /* PeripheralsViewController.m */; };
 		05E6898517C1E1230013246A /* libBluecap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E6898017C1E1060013246A /* libBluecap.a */; };
 /* End PBXBuildFile section */
 
@@ -76,13 +77,15 @@
 		052A003D17BB2CD4006D7AB3 /* BlueCapUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlueCapUITests-Info.plist"; sourceTree = "<group>"; };
 		052A003F17BB2CD4006D7AB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		052A004117BB2CD4006D7AB3 /* BlueCapUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueCapUITests.m; sourceTree = "<group>"; };
-		0565A0B217C3321800BFB1C0 /* PeriphrealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriphrealViewController.h; sourceTree = "<group>"; };
-		0565A0B317C3321800BFB1C0 /* PeriphrealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriphrealViewController.m; sourceTree = "<group>"; };
-		05D645FE17C341F4008A251D /* PeriphrealServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriphrealServicesViewController.h; sourceTree = "<group>"; };
-		05D645FF17C341F4008A251D /* PeriphrealServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriphrealServicesViewController.m; sourceTree = "<group>"; };
+		0565A0B217C3321800BFB1C0 /* PeripheralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralViewController.h; sourceTree = "<group>"; };
+		0565A0B317C3321800BFB1C0 /* PeripheralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralViewController.m; sourceTree = "<group>"; };
+		05D645FE17C341F4008A251D /* PeripheralServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralServicesViewController.h; sourceTree = "<group>"; };
+		05D645FF17C341F4008A251D /* PeripheralServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralServicesViewController.m; sourceTree = "<group>"; };
+		05D6460317C5A73E008A251D /* PeripheralCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralCell.h; sourceTree = "<group>"; };
+		05D6460417C5A73E008A251D /* PeripheraCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheraCell.m; sourceTree = "<group>"; };
 		05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		05D6E51E17BFDEC70019B575 /* PeriphrealsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriphrealsViewController.h; sourceTree = "<group>"; };
-		05D6E51F17BFDEC70019B575 /* PeriphrealsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriphrealsViewController.m; sourceTree = "<group>"; };
+		05D6E51E17BFDEC70019B575 /* PeripheralsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralsViewController.h; sourceTree = "<group>"; };
+		05D6E51F17BFDEC70019B575 /* PeripheralsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralsViewController.m; sourceTree = "<group>"; };
 		05E6897A17C1E1060013246A /* BlueCap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueCap.xcodeproj; path = ../../BlueCap.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,12 +192,14 @@
 		05D6460217C3BCAF008A251D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				05D645FE17C341F4008A251D /* PeriphrealServicesViewController.h */,
-				05D645FF17C341F4008A251D /* PeriphrealServicesViewController.m */,
-				05D6E51E17BFDEC70019B575 /* PeriphrealsViewController.h */,
-				05D6E51F17BFDEC70019B575 /* PeriphrealsViewController.m */,
-				0565A0B217C3321800BFB1C0 /* PeriphrealViewController.h */,
-				0565A0B317C3321800BFB1C0 /* PeriphrealViewController.m */,
+				05D6460317C5A73E008A251D /* PeripheralCell.h */,
+				05D6460417C5A73E008A251D /* PeripheraCell.m */,
+				05D645FE17C341F4008A251D /* PeripheralServicesViewController.h */,
+				05D645FF17C341F4008A251D /* PeripheralServicesViewController.m */,
+				05D6E51E17BFDEC70019B575 /* PeripheralsViewController.h */,
+				05D6E51F17BFDEC70019B575 /* PeripheralsViewController.m */,
+				0565A0B217C3321800BFB1C0 /* PeripheralViewController.h */,
+				0565A0B317C3321800BFB1C0 /* PeripheralViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -329,9 +334,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0565A0B417C3321800BFB1C0 /* PeriphrealViewController.m in Sources */,
-				05D6460017C341F4008A251D /* PeriphrealServicesViewController.m in Sources */,
-				05D6E52017BFDEC70019B575 /* PeriphrealsViewController.m in Sources */,
+				0565A0B417C3321800BFB1C0 /* PeripheralViewController.m in Sources */,
+				05D6460017C341F4008A251D /* PeripheralServicesViewController.m in Sources */,
+				05D6E52017BFDEC70019B575 /* PeripheralsViewController.m in Sources */,
+				05D6460517C5A73E008A251D /* PeripheraCell.m in Sources */,
 				052A002717BB2CD4006D7AB3 /* AppDelegate.m in Sources */,
 				052A002317BB2CD4006D7AB3 /* main.m in Sources */,
 			);

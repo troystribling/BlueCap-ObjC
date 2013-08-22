@@ -6,16 +6,17 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "PeriphrealsViewController.h"
-#import "PeriphrealViewController.h"
+#import "PeripheralsViewController.h"
+#import "PeripheralViewController.h"
+#import "PeripheralCell.h"
 
-@interface PeriphrealsViewController ()
+@interface PeripheralsViewController ()
 
 - (void)toggleConnection:(CBPeripheral*)periphereal;
 
 @end
 
-@implementation PeriphrealsViewController
+@implementation PeripheralsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -35,10 +36,10 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"PeriphrealViewController"]) {
+    if ([[segue identifier] isEqualToString:@"PeripheralViewController"]) {
         NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
-        PeriphrealViewController *viewController = segue.destinationViewController;
-        viewController.periphreal = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:selectedRowIndex.row];
+        PeripheralViewController *viewController = segue.destinationViewController;
+        viewController.peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:selectedRowIndex.row];
     }
 }
 
@@ -64,12 +65,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString* cellIdentifier = @"PeripheralCell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    PeripheralCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[PeripheralCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     CBPeripheral* periphreal = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
-    cell.textLabel.text = periphreal.name;
+    cell.nameLabel.text = periphreal.name;
     return cell;
 }
 

@@ -1,5 +1,5 @@
 //
-//  PeriphrealViewController.h
+//  PeripheralViewController.h
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 8/19/13.
@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeriphrealViewController : UITableViewController
+@interface PeripheralViewController : UITableViewController
 
-@property(nonatomic, retain) CBPeripheral*                  periphreal;
+@property(nonatomic, retain) CBPeripheral*                  peripheral;
 @property(nonatomic, retain) IBOutlet UIButton*             connectButton;
 @property(nonatomic, retain) IBOutlet UITextField*          uuidTextField;
 @property(nonatomic, retain) IBOutlet UITextField*          rssiTextField;

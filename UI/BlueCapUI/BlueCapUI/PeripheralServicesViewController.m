@@ -1,18 +1,18 @@
 //
-//  PeriphrealServicesViewController.m
+//  PeripheralServicesViewController.m
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 8/19/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "PeriphrealServicesViewController.h"
+#import "PeripheralServicesViewController.h"
 
-@interface PeriphrealServicesViewController ()
+@interface PeripheralServicesViewController ()
 
 @end
 
-@implementation PeriphrealServicesViewController
+@implementation PeripheralServicesViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];

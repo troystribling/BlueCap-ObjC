@@ -1,5 +1,5 @@
 //
-//  PeriphrealServicesViewController.h
+//  PeripheralServicesViewController.h
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 8/19/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeriphrealServicesViewController : UITableViewController
+@interface PeripheralServicesViewController : UITableViewController
 
 @end
