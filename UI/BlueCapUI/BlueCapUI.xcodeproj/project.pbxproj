@@ -7,152 +7,152 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		054380C117C72CCD0071AC73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054380C017C72CCD0071AC73 /* Foundation.framework */; };
-		054380C317C72CCD0071AC73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054380C217C72CCD0071AC73 /* CoreGraphics.framework */; };
-		054380C517C72CCD0071AC73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054380C417C72CCD0071AC73 /* UIKit.framework */; };
-		054380CB17C72CCD0071AC73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 054380C917C72CCD0071AC73 /* InfoPlist.strings */; };
-		054380CD17C72CCD0071AC73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 054380CC17C72CCD0071AC73 /* main.m */; };
-		054380D117C72CCD0071AC73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 054380D017C72CCD0071AC73 /* AppDelegate.m */; };
-		054380D417C72CCD0071AC73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054380D217C72CCD0071AC73 /* Main.storyboard */; };
-		054380D717C72CCD0071AC73 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054380D617C72CCD0071AC73 /* MasterViewController.m */; };
-		054380DA17C72CCD0071AC73 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054380D917C72CCD0071AC73 /* DetailViewController.m */; };
-		054380DC17C72CCD0071AC73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054380DB17C72CCD0071AC73 /* Images.xcassets */; };
-		054380E317C72CCD0071AC73 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054380E217C72CCD0071AC73 /* XCTest.framework */; };
-		054380E417C72CCD0071AC73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054380C017C72CCD0071AC73 /* Foundation.framework */; };
-		054380E517C72CCD0071AC73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054380C417C72CCD0071AC73 /* UIKit.framework */; };
-		054380ED17C72CCD0071AC73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 054380EB17C72CCD0071AC73 /* InfoPlist.strings */; };
-		054380EF17C72CCD0071AC73 /* BlueCapUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 054380EE17C72CCD0071AC73 /* BlueCapUITests.m */; };
+		0543810517C72FD40071AC73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0543810417C72FD40071AC73 /* Foundation.framework */; };
+		0543810717C72FD40071AC73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0543810617C72FD40071AC73 /* CoreGraphics.framework */; };
+		0543810917C72FD40071AC73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0543810817C72FD40071AC73 /* UIKit.framework */; };
+		0543810F17C72FD40071AC73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0543810D17C72FD40071AC73 /* InfoPlist.strings */; };
+		0543811117C72FD40071AC73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543811017C72FD40071AC73 /* main.m */; };
+		0543811517C72FD40071AC73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543811417C72FD40071AC73 /* AppDelegate.m */; };
+		0543811817C72FD40071AC73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0543811617C72FD40071AC73 /* Main.storyboard */; };
+		0543811B17C72FD40071AC73 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543811A17C72FD40071AC73 /* MasterViewController.m */; };
+		0543811E17C72FD40071AC73 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543811D17C72FD40071AC73 /* DetailViewController.m */; };
+		0543812017C72FD40071AC73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0543811F17C72FD40071AC73 /* Images.xcassets */; };
+		0543812717C72FD40071AC73 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0543812617C72FD40071AC73 /* XCTest.framework */; };
+		0543812817C72FD40071AC73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0543810417C72FD40071AC73 /* Foundation.framework */; };
+		0543812917C72FD40071AC73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0543810817C72FD40071AC73 /* UIKit.framework */; };
+		0543813117C72FD40071AC73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0543812F17C72FD40071AC73 /* InfoPlist.strings */; };
+		0543813317C72FD40071AC73 /* BlueCapUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543813217C72FD40071AC73 /* BlueCapUITests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		054380E617C72CCD0071AC73 /* PBXContainerItemProxy */ = {
+		0543812A17C72FD40071AC73 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 054380B517C72CCD0071AC73 /* Project object */;
+			containerPortal = 054380F917C72FD40071AC73 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 054380BC17C72CCD0071AC73;
+			remoteGlobalIDString = 0543810017C72FD40071AC73;
 			remoteInfo = BlueCapUI;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		054380BD17C72CCD0071AC73 /* BlueCapUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueCapUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		054380C017C72CCD0071AC73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		054380C217C72CCD0071AC73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		054380C417C72CCD0071AC73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		054380C817C72CCD0071AC73 /* BlueCapUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlueCapUI-Info.plist"; sourceTree = "<group>"; };
-		054380CA17C72CCD0071AC73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		054380CC17C72CCD0071AC73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		054380CE17C72CCD0071AC73 /* BlueCapUI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlueCapUI-Prefix.pch"; sourceTree = "<group>"; };
-		054380CF17C72CCD0071AC73 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		054380D017C72CCD0071AC73 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		054380D317C72CCD0071AC73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		054380D517C72CCD0071AC73 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		054380D617C72CCD0071AC73 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		054380D817C72CCD0071AC73 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		054380D917C72CCD0071AC73 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		054380DB17C72CCD0071AC73 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		054380E117C72CCD0071AC73 /* BlueCapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueCapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		054380E217C72CCD0071AC73 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		054380EA17C72CCD0071AC73 /* BlueCapUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlueCapUITests-Info.plist"; sourceTree = "<group>"; };
-		054380EC17C72CCD0071AC73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		054380EE17C72CCD0071AC73 /* BlueCapUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueCapUITests.m; sourceTree = "<group>"; };
+		0543810117C72FD40071AC73 /* BlueCapUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueCapUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0543810417C72FD40071AC73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0543810617C72FD40071AC73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0543810817C72FD40071AC73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0543810C17C72FD40071AC73 /* BlueCapUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlueCapUI-Info.plist"; sourceTree = "<group>"; };
+		0543810E17C72FD40071AC73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0543811017C72FD40071AC73 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0543811217C72FD40071AC73 /* BlueCapUI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlueCapUI-Prefix.pch"; sourceTree = "<group>"; };
+		0543811317C72FD40071AC73 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0543811417C72FD40071AC73 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0543811717C72FD40071AC73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0543811917C72FD40071AC73 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		0543811A17C72FD40071AC73 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		0543811C17C72FD40071AC73 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		0543811D17C72FD40071AC73 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		0543811F17C72FD40071AC73 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0543812517C72FD40071AC73 /* BlueCapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueCapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0543812617C72FD40071AC73 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		0543812E17C72FD40071AC73 /* BlueCapUITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlueCapUITests-Info.plist"; sourceTree = "<group>"; };
+		0543813017C72FD40071AC73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0543813217C72FD40071AC73 /* BlueCapUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueCapUITests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		054380BA17C72CCD0071AC73 /* Frameworks */ = {
+		054380FE17C72FD40071AC73 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				054380C317C72CCD0071AC73 /* CoreGraphics.framework in Frameworks */,
-				054380C517C72CCD0071AC73 /* UIKit.framework in Frameworks */,
-				054380C117C72CCD0071AC73 /* Foundation.framework in Frameworks */,
+				0543810717C72FD40071AC73 /* CoreGraphics.framework in Frameworks */,
+				0543810917C72FD40071AC73 /* UIKit.framework in Frameworks */,
+				0543810517C72FD40071AC73 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		054380DE17C72CCD0071AC73 /* Frameworks */ = {
+		0543812217C72FD40071AC73 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				054380E317C72CCD0071AC73 /* XCTest.framework in Frameworks */,
-				054380E517C72CCD0071AC73 /* UIKit.framework in Frameworks */,
-				054380E417C72CCD0071AC73 /* Foundation.framework in Frameworks */,
+				0543812717C72FD40071AC73 /* XCTest.framework in Frameworks */,
+				0543812917C72FD40071AC73 /* UIKit.framework in Frameworks */,
+				0543812817C72FD40071AC73 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		054380B417C72CCD0071AC73 = {
+		054380F817C72FD40071AC73 = {
 			isa = PBXGroup;
 			children = (
-				054380C617C72CCD0071AC73 /* BlueCapUI */,
-				054380E817C72CCD0071AC73 /* BlueCapUITests */,
-				054380BF17C72CCD0071AC73 /* Frameworks */,
-				054380BE17C72CCD0071AC73 /* Products */,
+				0543810A17C72FD40071AC73 /* BlueCapUI */,
+				0543812C17C72FD40071AC73 /* BlueCapUITests */,
+				0543810317C72FD40071AC73 /* Frameworks */,
+				0543810217C72FD40071AC73 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		054380BE17C72CCD0071AC73 /* Products */ = {
+		0543810217C72FD40071AC73 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				054380BD17C72CCD0071AC73 /* BlueCapUI.app */,
-				054380E117C72CCD0071AC73 /* BlueCapUITests.xctest */,
+				0543810117C72FD40071AC73 /* BlueCapUI.app */,
+				0543812517C72FD40071AC73 /* BlueCapUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		054380BF17C72CCD0071AC73 /* Frameworks */ = {
+		0543810317C72FD40071AC73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				054380C017C72CCD0071AC73 /* Foundation.framework */,
-				054380C217C72CCD0071AC73 /* CoreGraphics.framework */,
-				054380C417C72CCD0071AC73 /* UIKit.framework */,
-				054380E217C72CCD0071AC73 /* XCTest.framework */,
+				0543810417C72FD40071AC73 /* Foundation.framework */,
+				0543810617C72FD40071AC73 /* CoreGraphics.framework */,
+				0543810817C72FD40071AC73 /* UIKit.framework */,
+				0543812617C72FD40071AC73 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		054380C617C72CCD0071AC73 /* BlueCapUI */ = {
+		0543810A17C72FD40071AC73 /* BlueCapUI */ = {
 			isa = PBXGroup;
 			children = (
-				054380CF17C72CCD0071AC73 /* AppDelegate.h */,
-				054380D017C72CCD0071AC73 /* AppDelegate.m */,
-				054380D217C72CCD0071AC73 /* Main.storyboard */,
-				054380D517C72CCD0071AC73 /* MasterViewController.h */,
-				054380D617C72CCD0071AC73 /* MasterViewController.m */,
-				054380D817C72CCD0071AC73 /* DetailViewController.h */,
-				054380D917C72CCD0071AC73 /* DetailViewController.m */,
-				054380DB17C72CCD0071AC73 /* Images.xcassets */,
-				054380C717C72CCD0071AC73 /* Supporting Files */,
+				0543811317C72FD40071AC73 /* AppDelegate.h */,
+				0543811417C72FD40071AC73 /* AppDelegate.m */,
+				0543811617C72FD40071AC73 /* Main.storyboard */,
+				0543811917C72FD40071AC73 /* MasterViewController.h */,
+				0543811A17C72FD40071AC73 /* MasterViewController.m */,
+				0543811C17C72FD40071AC73 /* DetailViewController.h */,
+				0543811D17C72FD40071AC73 /* DetailViewController.m */,
+				0543811F17C72FD40071AC73 /* Images.xcassets */,
+				0543810B17C72FD40071AC73 /* Supporting Files */,
 			);
 			path = BlueCapUI;
 			sourceTree = "<group>";
 		};
-		054380C717C72CCD0071AC73 /* Supporting Files */ = {
+		0543810B17C72FD40071AC73 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				054380C817C72CCD0071AC73 /* BlueCapUI-Info.plist */,
-				054380C917C72CCD0071AC73 /* InfoPlist.strings */,
-				054380CC17C72CCD0071AC73 /* main.m */,
-				054380CE17C72CCD0071AC73 /* BlueCapUI-Prefix.pch */,
+				0543810C17C72FD40071AC73 /* BlueCapUI-Info.plist */,
+				0543810D17C72FD40071AC73 /* InfoPlist.strings */,
+				0543811017C72FD40071AC73 /* main.m */,
+				0543811217C72FD40071AC73 /* BlueCapUI-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		054380E817C72CCD0071AC73 /* BlueCapUITests */ = {
+		0543812C17C72FD40071AC73 /* BlueCapUITests */ = {
 			isa = PBXGroup;
 			children = (
-				054380EE17C72CCD0071AC73 /* BlueCapUITests.m */,
-				054380E917C72CCD0071AC73 /* Supporting Files */,
+				0543813217C72FD40071AC73 /* BlueCapUITests.m */,
+				0543812D17C72FD40071AC73 /* Supporting Files */,
 			);
 			path = BlueCapUITests;
 			sourceTree = "<group>";
 		};
-		054380E917C72CCD0071AC73 /* Supporting Files */ = {
+		0543812D17C72FD40071AC73 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				054380EA17C72CCD0071AC73 /* BlueCapUITests-Info.plist */,
-				054380EB17C72CCD0071AC73 /* InfoPlist.strings */,
+				0543812E17C72FD40071AC73 /* BlueCapUITests-Info.plist */,
+				0543812F17C72FD40071AC73 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -160,13 +160,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		054380BC17C72CCD0071AC73 /* BlueCapUI */ = {
+		0543810017C72FD40071AC73 /* BlueCapUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 054380F217C72CCD0071AC73 /* Build configuration list for PBXNativeTarget "BlueCapUI" */;
+			buildConfigurationList = 0543813617C72FD40071AC73 /* Build configuration list for PBXNativeTarget "BlueCapUI" */;
 			buildPhases = (
-				054380B917C72CCD0071AC73 /* Sources */,
-				054380BA17C72CCD0071AC73 /* Frameworks */,
-				054380BB17C72CCD0071AC73 /* Resources */,
+				054380FD17C72FD40071AC73 /* Sources */,
+				054380FE17C72FD40071AC73 /* Frameworks */,
+				054380FF17C72FD40071AC73 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -174,42 +174,42 @@
 			);
 			name = BlueCapUI;
 			productName = BlueCapUI;
-			productReference = 054380BD17C72CCD0071AC73 /* BlueCapUI.app */;
+			productReference = 0543810117C72FD40071AC73 /* BlueCapUI.app */;
 			productType = "com.apple.product-type.application";
 		};
-		054380E017C72CCD0071AC73 /* BlueCapUITests */ = {
+		0543812417C72FD40071AC73 /* BlueCapUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 054380F517C72CCD0071AC73 /* Build configuration list for PBXNativeTarget "BlueCapUITests" */;
+			buildConfigurationList = 0543813917C72FD40071AC73 /* Build configuration list for PBXNativeTarget "BlueCapUITests" */;
 			buildPhases = (
-				054380DD17C72CCD0071AC73 /* Sources */,
-				054380DE17C72CCD0071AC73 /* Frameworks */,
-				054380DF17C72CCD0071AC73 /* Resources */,
+				0543812117C72FD40071AC73 /* Sources */,
+				0543812217C72FD40071AC73 /* Frameworks */,
+				0543812317C72FD40071AC73 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				054380E717C72CCD0071AC73 /* PBXTargetDependency */,
+				0543812B17C72FD40071AC73 /* PBXTargetDependency */,
 			);
 			name = BlueCapUITests;
 			productName = BlueCapUITests;
-			productReference = 054380E117C72CCD0071AC73 /* BlueCapUITests.xctest */;
+			productReference = 0543812517C72FD40071AC73 /* BlueCapUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		054380B517C72CCD0071AC73 /* Project object */ = {
+		054380F917C72FD40071AC73 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = gnos.us;
 				TargetAttributes = {
-					054380E017C72CCD0071AC73 = {
-						TestTargetID = 054380BC17C72CCD0071AC73;
+					0543812417C72FD40071AC73 = {
+						TestTargetID = 0543810017C72FD40071AC73;
 					};
 				};
 			};
-			buildConfigurationList = 054380B817C72CCD0071AC73 /* Build configuration list for PBXProject "BlueCapUI" */;
+			buildConfigurationList = 054380FC17C72FD40071AC73 /* Build configuration list for PBXProject "BlueCapUI" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -217,89 +217,89 @@
 				en,
 				Base,
 			);
-			mainGroup = 054380B417C72CCD0071AC73;
-			productRefGroup = 054380BE17C72CCD0071AC73 /* Products */;
+			mainGroup = 054380F817C72FD40071AC73;
+			productRefGroup = 0543810217C72FD40071AC73 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				054380BC17C72CCD0071AC73 /* BlueCapUI */,
-				054380E017C72CCD0071AC73 /* BlueCapUITests */,
+				0543810017C72FD40071AC73 /* BlueCapUI */,
+				0543812417C72FD40071AC73 /* BlueCapUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		054380BB17C72CCD0071AC73 /* Resources */ = {
+		054380FF17C72FD40071AC73 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				054380DC17C72CCD0071AC73 /* Images.xcassets in Resources */,
-				054380CB17C72CCD0071AC73 /* InfoPlist.strings in Resources */,
-				054380D417C72CCD0071AC73 /* Main.storyboard in Resources */,
+				0543812017C72FD40071AC73 /* Images.xcassets in Resources */,
+				0543810F17C72FD40071AC73 /* InfoPlist.strings in Resources */,
+				0543811817C72FD40071AC73 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		054380DF17C72CCD0071AC73 /* Resources */ = {
+		0543812317C72FD40071AC73 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				054380ED17C72CCD0071AC73 /* InfoPlist.strings in Resources */,
+				0543813117C72FD40071AC73 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		054380B917C72CCD0071AC73 /* Sources */ = {
+		054380FD17C72FD40071AC73 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				054380D117C72CCD0071AC73 /* AppDelegate.m in Sources */,
-				054380D717C72CCD0071AC73 /* MasterViewController.m in Sources */,
-				054380CD17C72CCD0071AC73 /* main.m in Sources */,
-				054380DA17C72CCD0071AC73 /* DetailViewController.m in Sources */,
+				0543811517C72FD40071AC73 /* AppDelegate.m in Sources */,
+				0543811B17C72FD40071AC73 /* MasterViewController.m in Sources */,
+				0543811117C72FD40071AC73 /* main.m in Sources */,
+				0543811E17C72FD40071AC73 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		054380DD17C72CCD0071AC73 /* Sources */ = {
+		0543812117C72FD40071AC73 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				054380EF17C72CCD0071AC73 /* BlueCapUITests.m in Sources */,
+				0543813317C72FD40071AC73 /* BlueCapUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		054380E717C72CCD0071AC73 /* PBXTargetDependency */ = {
+		0543812B17C72FD40071AC73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 054380BC17C72CCD0071AC73 /* BlueCapUI */;
-			targetProxy = 054380E617C72CCD0071AC73 /* PBXContainerItemProxy */;
+			target = 0543810017C72FD40071AC73 /* BlueCapUI */;
+			targetProxy = 0543812A17C72FD40071AC73 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		054380C917C72CCD0071AC73 /* InfoPlist.strings */ = {
+		0543810D17C72FD40071AC73 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				054380CA17C72CCD0071AC73 /* en */,
+				0543810E17C72FD40071AC73 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		054380D217C72CCD0071AC73 /* Main.storyboard */ = {
+		0543811617C72FD40071AC73 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				054380D317C72CCD0071AC73 /* Base */,
+				0543811717C72FD40071AC73 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		054380EB17C72CCD0071AC73 /* InfoPlist.strings */ = {
+		0543812F17C72FD40071AC73 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				054380EC17C72CCD0071AC73 /* en */,
+				0543813017C72FD40071AC73 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -307,7 +307,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		054380F017C72CCD0071AC73 /* Debug */ = {
+		0543813417C72FD40071AC73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -344,7 +344,7 @@
 			};
 			name = Debug;
 		};
-		054380F117C72CCD0071AC73 /* Release */ = {
+		0543813517C72FD40071AC73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -375,7 +375,7 @@
 			};
 			name = Release;
 		};
-		054380F317C72CCD0071AC73 /* Debug */ = {
+		0543813717C72FD40071AC73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -388,7 +388,7 @@
 			};
 			name = Debug;
 		};
-		054380F417C72CCD0071AC73 /* Release */ = {
+		0543813817C72FD40071AC73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -401,7 +401,7 @@
 			};
 			name = Release;
 		};
-		054380F617C72CCD0071AC73 /* Debug */ = {
+		0543813A17C72FD40071AC73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BlueCapUI.app/BlueCapUI";
@@ -423,7 +423,7 @@
 			};
 			name = Debug;
 		};
-		054380F717C72CCD0071AC73 /* Release */ = {
+		0543813B17C72FD40071AC73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BlueCapUI.app/BlueCapUI";
@@ -444,32 +444,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		054380B817C72CCD0071AC73 /* Build configuration list for PBXProject "BlueCapUI" */ = {
+		054380FC17C72FD40071AC73 /* Build configuration list for PBXProject "BlueCapUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				054380F017C72CCD0071AC73 /* Debug */,
-				054380F117C72CCD0071AC73 /* Release */,
+				0543813417C72FD40071AC73 /* Debug */,
+				0543813517C72FD40071AC73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		054380F217C72CCD0071AC73 /* Build configuration list for PBXNativeTarget "BlueCapUI" */ = {
+		0543813617C72FD40071AC73 /* Build configuration list for PBXNativeTarget "BlueCapUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				054380F317C72CCD0071AC73 /* Debug */,
-				054380F417C72CCD0071AC73 /* Release */,
+				0543813717C72FD40071AC73 /* Debug */,
+				0543813817C72FD40071AC73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		054380F517C72CCD0071AC73 /* Build configuration list for PBXNativeTarget "BlueCapUITests" */ = {
+		0543813917C72FD40071AC73 /* Build configuration list for PBXNativeTarget "BlueCapUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				054380F617C72CCD0071AC73 /* Debug */,
-				054380F717C72CCD0071AC73 /* Release */,
+				0543813A17C72FD40071AC73 /* Debug */,
+				0543813B17C72FD40071AC73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 054380B517C72CCD0071AC73 /* Project object */;
+	rootObject = 054380F917C72FD40071AC73 /* Project object */;
 }

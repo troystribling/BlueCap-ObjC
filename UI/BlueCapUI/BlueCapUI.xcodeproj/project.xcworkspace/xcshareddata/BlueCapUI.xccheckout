@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>C1943056-8560-4979-B9E2-14A25030C704</string>
+	<string>2FE45F79-F568-4FF8-AA95-00E8E72BB4FE</string>
 	<key>IDESourceControlProjectName</key>
 	<string>BlueCapUI</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>1464091B-C06B-496E-8013-3941D7490CB3</string>
 			<key>IDESourceControlWCCName</key>
-			<string>BlueCap</string>
+			<string>BlueCapUI</string>
 		</dict>
 	</array>
 </dict>
