@@ -11,7 +11,6 @@
 @interface PeripheralViewController : UITableViewController
 
 @property(nonatomic, retain) CBPeripheral*          peripheral;
-@property(nonatomic, retain) IBOutlet UILabel*      connectedLabel;
 @property(nonatomic, retain) IBOutlet UILabel*      uuidLabel;
 @property(nonatomic, retain) IBOutlet UILabel*      rssiLabel;
 

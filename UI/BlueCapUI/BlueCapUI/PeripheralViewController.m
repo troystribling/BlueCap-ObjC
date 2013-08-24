@@ -24,11 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.peripheral.name;
-    if (self.peripheral.state == CBPeripheralStateDisconnected) {
-        self.connectedLabel.text = @"Yes";
-    } else {
-        self.connectedLabel.text = @"No";
-    }
     [self.peripheral readRSSI];
     if (self.peripheral.RSSI) {
         self.rssiLabel.text = [NSString stringWithFormat:@"%@dB", self.peripheral.RSSI];
