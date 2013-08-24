@@ -37,6 +37,11 @@
     [super didReceiveMemoryWarning];
 }
 
+- (IBAction)disconnect:(id)sender {
+    [[BlueCapCentralManager sharedInstance] disconnectPeripheral:self.peripheral];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark -
 #pragma mark Private
 

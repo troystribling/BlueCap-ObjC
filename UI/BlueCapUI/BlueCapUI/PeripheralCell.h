@@ -11,7 +11,6 @@
 @interface PeripheralCell : UITableViewCell
 
 @property(nonatomic, retain) IBOutlet UILabel*                  nameLabel;
-@property(nonatomic, retain) IBOutlet UIImageView*              connectionStatusImage;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView*  connectingActivityIndicator;
 
 @end

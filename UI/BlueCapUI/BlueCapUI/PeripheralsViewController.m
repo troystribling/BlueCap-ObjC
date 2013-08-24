@@ -11,12 +11,14 @@
 #import "PeripheralCell.h"
 
 @interface PeripheralsViewController () {
-    NSIndexPath* selectedIndexPath;
 }
 
 @end
 
 @implementation PeripheralsViewController
+
+#pragma mark -
+#pragma mark PeripheralsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -37,8 +39,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"PeripheralViewController"]) {
-        NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
+        NSIndexPath *selectedRowIndex = [self.tableView indexPathForCell:sender];
         PeripheralViewController *viewController = segue.destinationViewController;
+        NSLog(@"Selected-%d", selectedRowIndex.row);
         viewController.peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:selectedRowIndex.row];
     }
 }
@@ -64,9 +67,14 @@
     if (cell == nil) {
         cell = [[PeripheralCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    CBPeripheral* periphreal = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
-    cell.nameLabel.text = periphreal.name;
-    cell.connectionStatusImage.hidden = periphreal.state == CBPeripheralStateDisconnected;
+    CBPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
+    [cell.connectingActivityIndicator stopAnimating];
+    if (peripheral.state == CBPeripheralStateDisconnected) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    }
+    cell.nameLabel.text = peripheral.name;
     return cell;
 }
 
@@ -74,16 +82,17 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-    selectedIndexPath = indexPath;
     CBPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
     PeripheralCell* cell = (PeripheralCell*)[tableView cellForRowAtIndexPath:indexPath];
+    [cell.connectingActivityIndicator startAnimating];
     if (peripheral.state == CBPeripheralStateDisconnected) {
         [[BlueCapCentralManager sharedInstance] connectPeripherial:peripheral];
     } else {
         [[BlueCapCentralManager sharedInstance] disconnectPeripheral:peripheral];
-        cell.connectionStatusImage.hidden = YES;
     }
-    [cell.connectingActivityIndicator startAnimating];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*)indexPath {
 }
 
 #pragma mark -
@@ -94,17 +103,15 @@
 }
 
 - (void)didPoweredOff {
+    [self.tableView reloadData];
 }
 
 - (void)didConnectPeripheral:(CBPeripheral*)peripheral {
-    PeripheralCell* cell = (PeripheralCell*)[self.tableView cellForRowAtIndexPath:selectedIndexPath];
-    [cell.connectingActivityIndicator stopAnimating];
-    cell.connectionStatusImage.hidden = NO;
+    [self.tableView reloadData];
 }
 
 - (void)didDisconnectPeripheral:(CBPeripheral*)peripheral {
-    PeripheralCell* cell = (PeripheralCell*)[self.tableView cellForRowAtIndexPath:selectedIndexPath];
-    [cell.connectingActivityIndicator stopAnimating];
+    [self.tableView reloadData];
 }
 
 @end

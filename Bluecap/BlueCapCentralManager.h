@@ -8,6 +8,8 @@
 
 @protocol BlueCapCentralManagerDelegate <NSObject>
 
+@optional
+
 - (void)didRefreshPeriferals;
 - (void)didPoweredOff;
 - (void)didConnectPeripheral:(CBPeripheral*)peripheral;
