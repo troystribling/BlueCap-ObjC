@@ -41,7 +41,6 @@
     if ([[segue identifier] isEqualToString:@"PeripheralViewController"]) {
         NSIndexPath *selectedRowIndex = [self.tableView indexPathForCell:sender];
         PeripheralViewController *viewController = segue.destinationViewController;
-        NSLog(@"Selected-%d", selectedRowIndex.row);
         viewController.peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:selectedRowIndex.row];
     }
 }

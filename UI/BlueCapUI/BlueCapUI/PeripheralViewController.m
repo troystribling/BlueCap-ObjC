@@ -7,12 +7,16 @@
 //
 
 #import "PeripheralViewController.h"
+#import "PeripheralServicesViewController.h"
 
 @interface PeripheralViewController ()
 
 @end
 
 @implementation PeripheralViewController
+
+#pragma mark -
+#pragma mark PeripheralViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -42,7 +46,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PeripheralServices"]) {
+        PeripheralServicesViewController* viewController = segue.destinationViewController;
+        viewController.peripheral = self.peripheral;
+    }
+}
+
 #pragma mark -
-#pragma mark Private
+#pragma mark PeripheralViewController PrivateAPI
 
 @end
