@@ -10,7 +10,6 @@
 
 @interface PeripheralViewController ()
 
-
 @end
 
 @implementation PeripheralViewController
@@ -26,21 +25,24 @@
     [super viewDidLoad];
     self.navigationItem.title = self.peripheral.name;
     if (self.peripheral.state == CBPeripheralStateDisconnected) {
-        [self.connectButton setTitle:@"Connect" forState:UIControlStateNormal];
+        self.connectedLabel.text = @"Yes";
     } else {
-        [self.connectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
+        self.connectedLabel.text = @"No";
     }
     [self.peripheral readRSSI];
     if (self.peripheral.RSSI) {
-        self.rssiTextField.text = [NSString stringWithFormat:@"%@dB", self.peripheral.RSSI];
+        self.rssiLabel.text = [NSString stringWithFormat:@"%@dB", self.peripheral.RSSI];
     } else {
-        self.rssiTextField.text = @"Unknown";
+        self.rssiLabel.text = @"Unknown";
     }
-    self.uuidTextField.text = self.peripheral.identifier.UUIDString;
+    self.uuidLabel.text = self.peripheral.identifier.UUIDString;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark -
+#pragma mark Private
 
 @end

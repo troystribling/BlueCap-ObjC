@@ -10,9 +10,9 @@
 
 @interface PeripheralViewController : UITableViewController
 
-@property(nonatomic, retain) CBPeripheral*                  peripheral;
-@property(nonatomic, retain) IBOutlet UIButton*             connectButton;
-@property(nonatomic, retain) IBOutlet UITextField*          uuidTextField;
-@property(nonatomic, retain) IBOutlet UITextField*          rssiTextField;
+@property(nonatomic, retain) CBPeripheral*          peripheral;
+@property(nonatomic, retain) IBOutlet UILabel*      connectedLabel;
+@property(nonatomic, retain) IBOutlet UILabel*      uuidLabel;
+@property(nonatomic, retain) IBOutlet UILabel*      rssiLabel;
 
 @end

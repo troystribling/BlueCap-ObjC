@@ -10,7 +10,9 @@
 #import "PeripheralViewController.h"
 #import "PeripheralCell.h"
 
-@interface PeripheralsViewController ()
+@interface PeripheralsViewController () {
+    NSIndexPath* selectedIndexPath;
+}
 
 @end
 
@@ -57,28 +59,22 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    static NSString* cellIdentifier = @"PeripheralCell";
-//    PeripheralCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-//    if (cell == nil) {
-//        cell = [[PeripheralCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//    }
-//    CBPeripheral* periphreal = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
-//    cell.nameLabel.text = periphreal.name;
-//    cell.connectionStatusImage.hidden = periphreal.state == CBPeripheralStateDisconnected;
     static NSString* cellIdentifier = @"PeripheralCell";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    PeripheralCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[PeripheralCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     CBPeripheral* periphreal = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
-    cell.textLabel.text = periphreal.name;
+    cell.nameLabel.text = periphreal.name;
+    cell.connectionStatusImage.hidden = periphreal.state == CBPeripheralStateDisconnected;
     return cell;
 }
 
 #pragma mark -
 #pragma mark UITableViewDelegate
 
-- (void)tableView:(UITableView*)tableView didDeselectRowAtIndexPath:(NSIndexPath*)indexPath {
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+    selectedIndexPath = indexPath;
     CBPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
     PeripheralCell* cell = (PeripheralCell*)[tableView cellForRowAtIndexPath:indexPath];
     if (peripheral.state == CBPeripheralStateDisconnected) {
@@ -101,15 +97,13 @@
 }
 
 - (void)didConnectPeripheral:(CBPeripheral*)peripheral {
-    NSUInteger row = [[BlueCapCentralManager sharedInstance].periphreals indexOfObject:peripheral];
-    PeripheralCell* cell = (PeripheralCell*)[self.tableView cellForRowAtIndexPath:[[NSIndexPath alloc] initWithIndex:row]];
+    PeripheralCell* cell = (PeripheralCell*)[self.tableView cellForRowAtIndexPath:selectedIndexPath];
     [cell.connectingActivityIndicator stopAnimating];
     cell.connectionStatusImage.hidden = NO;
 }
 
 - (void)didDisconnectPeripheral:(CBPeripheral*)peripheral {
-    NSUInteger row = [[BlueCapCentralManager sharedInstance].periphreals indexOfObject:peripheral];
-    PeripheralCell* cell = (PeripheralCell*)[self.tableView cellForRowAtIndexPath:[[NSIndexPath alloc] initWithIndex:row]];
+    PeripheralCell* cell = (PeripheralCell*)[self.tableView cellForRowAtIndexPath:selectedIndexPath];
     [cell.connectingActivityIndicator stopAnimating];
 }
 

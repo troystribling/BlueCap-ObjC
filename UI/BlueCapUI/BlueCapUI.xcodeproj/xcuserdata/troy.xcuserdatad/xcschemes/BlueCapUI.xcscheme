@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0543810017C72FD40071AC73"
+               BlueprintIdentifier = "052A001217BB2CD4006D7AB3"
                BuildableName = "BlueCapUI.app"
                BlueprintName = "BlueCapUI"
                ReferencedContainer = "container:BlueCapUI.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0543812417C72FD40071AC73"
+               BlueprintIdentifier = "052A003317BB2CD4006D7AB3"
                BuildableName = "BlueCapUITests.xctest"
                BlueprintName = "BlueCapUITests"
                ReferencedContainer = "container:BlueCapUI.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0543810017C72FD40071AC73"
+            BlueprintIdentifier = "052A001217BB2CD4006D7AB3"
             BuildableName = "BlueCapUI.app"
             BlueprintName = "BlueCapUI"
             ReferencedContainer = "container:BlueCapUI.xcodeproj">
@@ -61,7 +61,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0543810017C72FD40071AC73"
+            BlueprintIdentifier = "052A001217BB2CD4006D7AB3"
             BuildableName = "BlueCapUI.app"
             BlueprintName = "BlueCapUI"
             ReferencedContainer = "container:BlueCapUI.xcodeproj">
@@ -79,7 +79,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0543810017C72FD40071AC73"
+            BlueprintIdentifier = "052A001217BB2CD4006D7AB3"
             BuildableName = "BlueCapUI.app"
             BlueprintName = "BlueCapUI"
             ReferencedContainer = "container:BlueCapUI.xcodeproj">
