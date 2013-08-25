@@ -28,7 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.peripheral.name;
-    [self.peripheral readRSSI];
     if (self.peripheral.RSSI) {
         self.rssiLabel.text = [NSString stringWithFormat:@"%@dB", self.peripheral.RSSI];
     } else {

@@ -14,7 +14,7 @@
     CBPeripheral* cbPeripheral;
 }
 
-- (void)loadServices:(NSArray*)__services;
+@property(nonatomic, retain) NSMutableArray* discoveredServices;
 
 @end
 
@@ -32,9 +32,13 @@
     if (self) {
         cbPeripheral = __cbPeripheral;
         cbPeripheral.delegate = self;
-        _services = [NSArray array];
+        self.discoveredServices = [NSMutableArray array];
     }
     return self;
+}
+
+- (NSArray*)services {
+    return [NSArray arrayWithArray:self.discoveredServices];
 }
 
 - (NSString*)name {
@@ -50,11 +54,8 @@
 }
 
 - (NSNumber*)RSSI {
-    return cbPeripheral.RSSI;
-}
-
-- (void)readRSSI {
     [cbPeripheral readRSSI];
+    return cbPeripheral.RSSI;
 }
 
 - (void)discoverAllServices {
@@ -81,11 +82,9 @@
 #pragma mark BlueCapPeripheral PrivateAPI
 
 - (void)loadServices:(NSArray*)__services {
-    NSMutableArray* bcservices = [NSMutableArray array];
     for (CBService* service in __services) {
-        [bcservices addObject:[BlueCapService withCBService:service]];
+        [self.discoveredServices addObject:[BlueCapService withCBService:service]];
     }
-    _services = [NSArray arrayWithArray:bcservices];
 }
 
 #pragma mark -
@@ -98,10 +97,8 @@
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverIncludedServicesForService:(CBService*)service error:(NSError*)error {
-    BlueCapService* bcService = [BlueCapService withCBService:service];
     DLog(@"Discovered %d Included Services", [service.includedServices count]);
     if ([self.delegate respondsToSelector:@selector(peripheral:didDiscoverIncludedServicesForService:error:)]) {
-        [self.delegate peripheral:self didDiscoverIncludedServicesForService:bcService error:error];
     }
 }
 
@@ -133,7 +130,7 @@
 
 - (void)peripheralDidUpdateRSSI:(CBPeripheral*)peripheral error:(NSError*)error {
     if (error) {
-        DLog(@"Erro '%@' updaing RSSI for peripherial: %@", [error localizedDescription], peripheral.name);
+        DLog(@"Error '%@' updating RSSI for peripherial: %@", [error localizedDescription], peripheral.name);
     } else {
         DLog(@"Updated RSSI for peripherial: %@", peripheral.name);
     }

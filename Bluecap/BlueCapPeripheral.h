@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+
 @class BlueCapService;
 @class BlueCapPeripheral;
 
@@ -29,7 +30,6 @@
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral;
 
-- (void)readRSSI;
 - (void)discoverAllServices;
 - (void)discoverServices:(NSArray*)__services;
 - (void)connect;

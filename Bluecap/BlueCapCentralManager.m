@@ -10,7 +10,10 @@
 #import "BlueCapPeripheral.h"
 
 @interface BlueCapCentralManager ()
+
+@property(nonatomic, retain) NSMutableDictionary* discoveredPeripherals;
 @property(nonatomic, retain) CBCentralManager* centralManager;
+
 @end
 
 static BlueCapCentralManager* thisBlueCapCentralManager = nil;
@@ -33,9 +36,13 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     self = [super init];
     if (self) {
 		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
-		self.periphreals = [NSMutableArray array];
+        self.discoveredPeripherals = [NSMutableDictionary dictionary];
 	}
     return self;
+}
+
+- (NSArray*)periphreals {
+    return [self.discoveredPeripherals allValues];
 }
 
 - (void)startScanning {
@@ -69,18 +76,26 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 #pragma mark CBCentralManagerDelegate
 
 - (void)centralManager:(CBCentralManager*)central didConnectPeripheral:(CBPeripheral*)peripheral {
-    BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
-    DLog(@"Peripheral Connected: %@", bcperipheral.name);
-    if ([self.delegate respondsToSelector:@selector(didConnectPeripheral:)]) {
-        [self.delegate didConnectPeripheral:bcperipheral];
+    BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
+    if (bcPeripheral != nil) {
+        DLog(@"Peripheral Connected: %@", peripheral.name);
+        if ([self.delegate respondsToSelector:@selector(didConnectPeripheral:)]) {
+            [self.delegate didConnectPeripheral:bcPeripheral];
+        }
+    } else {
+        DLog(@"Peripheral '%@' not found", peripheral.name);
     }
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
-    BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
-    DLog(@"Peripheral Disconnected: %@", bcperipheral.name);
-    if ([self.delegate respondsToSelector:@selector(didDisconnectPeripheral:)]) {
-        [self.delegate didDisconnectPeripheral:bcperipheral];
+    BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
+    if (bcPeripheral != nil) {
+        DLog(@"Peripheral Disconnected: %@", peripheral.name);
+        if ([self.delegate respondsToSelector:@selector(didDisconnectPeripheral:)]) {
+            [self.delegate didDisconnectPeripheral:bcPeripheral];
+        }
+    } else {
+        DLog(@"Peripheral '%@' not found", peripheral.name);
     }
 }
 
@@ -88,10 +103,10 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
  didDiscoverPeripheral:(CBPeripheral*)peripheral
      advertisementData:(NSDictionary*)advertisementData
                   RSSI:(NSNumber*)RSSI {
-    BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
-    if (![self.periphreals containsObject:bcperipheral]) {
+    if ([self.discoveredPeripherals objectForKey:peripheral] == nil) {
+        BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
         DLog(@"Periphreal Discovered: %@", bcperipheral.name);
-        [self.periphreals addObject:bcperipheral];
+        [self.discoveredPeripherals setObject:bcperipheral forKey:peripheral];
         if ([self.delegate respondsToSelector:@selector(didDiscoverPeripheral:)]) {
             [self.delegate didDiscoverPeripheral:bcperipheral];
         }
@@ -107,8 +122,8 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)centralManager:(CBCentralManager*)central didRetrievePeripherals:(NSArray*)peripherals {
 }
 
-- (void)centralManagerDidUpdateState:(CBCentralManager*)__centralManager {
-	switch ([__centralManager state]) {
+- (void)centralManagerDidUpdateState:(CBCentralManager*)central {
+	switch ([central state]) {
 		case CBCentralManagerStatePoweredOff: {
             [self.delegate didPoweredOff];
 			break;
