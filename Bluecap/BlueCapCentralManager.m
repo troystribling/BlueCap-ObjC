@@ -7,6 +7,7 @@
 //
 
 #import "BlueCapCentralManager.h"
+#import "BlueCapPeripheral.h"
 
 @interface BlueCapCentralManager () {
     CBCentralManager*  centralManager;
@@ -70,22 +71,26 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 #pragma mark CBCentralManagerDelegate
 
 - (void)centralManager:(CBCentralManager*)central didConnectPeripheral:(CBPeripheral*)peripheral {
-    DLog(@"Peripheral Connected: %@", peripheral.name);
-    [self.delegate didConnectPeripheral:peripheral];
+    BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
+    DLog(@"Peripheral Connected: %@", bcperipheral.name);
+    [self.delegate didConnectPeripheral:bcperipheral];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
-    DLog(@"Peripheral Disconnected: %@", peripheral.name);
-    [self.delegate didDisconnectPeripheral:peripheral];
+    BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
+    DLog(@"Peripheral Disconnected: %@", bcperipheral.name);
+    [self.delegate didDisconnectPeripheral:bcperipheral];
 }
 
 - (void)centralManager:(CBCentralManager*)central
  didDiscoverPeripheral:(CBPeripheral*)peripheral
-     advertisementData:(NSDictionary*)advertisementData RSSI:(NSNumber*)RSSI {
-    if (![self.periphreals containsObject:peripheral]) {
-        DLog(@"Periphreal Discovered: %@", peripheral.name);
-        [self.periphreals addObject:peripheral];
-        [self.delegate didRefreshPeriferals];
+     advertisementData:(NSDictionary*)advertisementData
+                  RSSI:(NSNumber*)RSSI {
+    BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
+    if (![self.periphreals containsObject:bcperipheral]) {
+        DLog(@"Periphreal Discovered: %@", bcperipheral.name);
+        [self.periphreals addObject:bcperipheral];
+        [self.delegate didDicoverPeripheral:bcperipheral];
     }
 }
 

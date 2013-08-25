@@ -6,14 +6,16 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+@class BlueCapPeripheral;
+
 @protocol BlueCapCentralManagerDelegate <NSObject>
 
 @optional
 
-- (void)didRefreshPeriferals;
 - (void)didPoweredOff;
-- (void)didConnectPeripheral:(CBPeripheral*)peripheral;
-- (void)didDisconnectPeripheral:(CBPeripheral*)peripheral;
+- (void)didDicoverPeripheral:(BlueCapPeripheral*)peripheral;
+- (void)didConnectPeripheral:(BlueCapPeripheral*)peripheral;
+- (void)didDisconnectPeripheral:(BlueCapPeripheral*)peripheral;
 
 @end
 

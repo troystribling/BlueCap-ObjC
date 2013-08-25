@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0543814F17C9772E0071AC73 /* BlueCapPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543814E17C9772E0071AC73 /* BlueCapPeripheral.m */; };
+		0543815217C9775D0071AC73 /* BlueCapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543815117C9775D0071AC73 /* BlueCapService.m */; };
+		0543815317C989B10071AC73 /* BlueCapPeripheral.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0543814D17C9772E0071AC73 /* BlueCapPeripheral.h */; };
+		0543815417C989B10071AC73 /* BlueCapService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0543815017C9775D0071AC73 /* BlueCapService.h */; };
 		0565A0AC17C1EA7F00BFB1C0 /* BlueCap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */; };
 		0565A0AD17C1ED6100BFB1C0 /* BlueCap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E6897617C1E0890013246A /* BlueCap.h */; };
 		0565A0AE17C1ED6100BFB1C0 /* BlueCapCentralManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E6897717C1E0890013246A /* BlueCapCentralManager.h */; };
@@ -39,6 +43,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				0543815317C989B10071AC73 /* BlueCapPeripheral.h in CopyFiles */,
+				0543815417C989B10071AC73 /* BlueCapService.h in CopyFiles */,
 				0565A0B017C1F30900BFB1C0 /* DebugLog.h in CopyFiles */,
 				0565A0AD17C1ED6100BFB1C0 /* BlueCap.h in CopyFiles */,
 				0565A0AE17C1ED6100BFB1C0 /* BlueCapCentralManager.h in CopyFiles */,
@@ -48,6 +54,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0543814D17C9772E0071AC73 /* BlueCapPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCapPeripheral.h; sourceTree = "<group>"; };
+		0543814E17C9772E0071AC73 /* BlueCapPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCapPeripheral.m; sourceTree = "<group>"; };
+		0543815017C9775D0071AC73 /* BlueCapService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCapService.h; sourceTree = "<group>"; };
+		0543815117C9775D0071AC73 /* BlueCapService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCapService.m; sourceTree = "<group>"; };
 		0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCap.m; sourceTree = "<group>"; };
 		0565A0AF17C1F0D200BFB1C0 /* DebugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
 		05AA669517B868F90019AC3C /* libBluecap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBluecap.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,9 +152,13 @@
 			children = (
 				05E6897517C1E0890013246A /* BlueCap-Prefix.pch */,
 				05E6897617C1E0890013246A /* BlueCap.h */,
+				0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */,
 				05E6897717C1E0890013246A /* BlueCapCentralManager.h */,
 				05E6897817C1E0890013246A /* BlueCapCentralManager.m */,
-				0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */,
+				0543814D17C9772E0071AC73 /* BlueCapPeripheral.h */,
+				0543814E17C9772E0071AC73 /* BlueCapPeripheral.m */,
+				0543815017C9775D0071AC73 /* BlueCapService.h */,
+				0543815117C9775D0071AC73 /* BlueCapService.m */,
 				0565A0AF17C1F0D200BFB1C0 /* DebugLog.h */,
 			);
 			path = BlueCap;
@@ -231,6 +245,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0543815217C9775D0071AC73 /* BlueCapService.m in Sources */,
+				0543814F17C9772E0071AC73 /* BlueCapPeripheral.m in Sources */,
 				0565A0AC17C1EA7F00BFB1C0 /* BlueCap.m in Sources */,
 				05E6897917C1E09C0013246A /* BlueCapCentralManager.m in Sources */,
 			);

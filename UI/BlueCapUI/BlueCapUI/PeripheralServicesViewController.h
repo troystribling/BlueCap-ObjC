@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeripheralServicesViewController : UITableViewController <CBPeripheralDelegate>
+@interface PeripheralServicesViewController : UITableViewController <BlueCaperipheralDelegate>
 
 @property(nonatomic, retain) CBPeripheral*  peripheral;
 
