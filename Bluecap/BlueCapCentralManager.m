@@ -9,10 +9,8 @@
 #import "BlueCapCentralManager.h"
 #import "BlueCapPeripheral.h"
 
-@interface BlueCapCentralManager () {
-    CBCentralManager*  centralManager;
-}
-
+@interface BlueCapCentralManager ()
+@property(nonatomic, retain) CBCentralManager* centralManager;
 @end
 
 static BlueCapCentralManager* thisBlueCapCentralManager = nil;
@@ -34,7 +32,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (id) init {
     self = [super init];
     if (self) {
-		centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
+		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
 		self.periphreals = [NSMutableArray array];
 	}
     return self;
@@ -42,28 +40,28 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
 - (void)startScanning {
     DLog(@"Start Scanning");
-    [centralManager scanForPeripheralsWithServices:nil options:nil];
+    [self.centralManager scanForPeripheralsWithServices:nil options:nil];
 }
 
 - (void)startScanningForUUIDString:(NSString*)uuidString {
 	NSArray			*uuidArray	= [NSArray arrayWithObjects:[CBUUID UUIDWithString:uuidString], nil];
 	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
-	[centralManager scanForPeripheralsWithServices:uuidArray options:options];
+	[self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
 }
 
 - (void) stopScanning {
-	[centralManager stopScan];
+	[self.centralManager stopScan];
 }
 
-- (void)connectPeripherial:(CBPeripheral*)peripheral {
+- (void)connectPeripherial:(BlueCapPeripheral*)peripheral {
     if (peripheral.state == CBPeripheralStateDisconnected) {
-        [centralManager connectPeripheral:peripheral options:nil];
+        [peripheral connect];
     }
 }
 
-- (void)disconnectPeripheral:(CBPeripheral*)peripheral {
+- (void)disconnectPeripheral:(BlueCapPeripheral*)peripheral {
     if (!peripheral.state == CBPeripheralStateDisconnected) {
-        [centralManager cancelPeripheralConnection:peripheral];
+        [peripheral disconnect];
     }
 }
 
@@ -73,13 +71,17 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)centralManager:(CBCentralManager*)central didConnectPeripheral:(CBPeripheral*)peripheral {
     BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
     DLog(@"Peripheral Connected: %@", bcperipheral.name);
-    [self.delegate didConnectPeripheral:bcperipheral];
+    if ([self.delegate respondsToSelector:@selector(didConnectPeripheral:)]) {
+        [self.delegate didConnectPeripheral:bcperipheral];
+    }
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
     BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
     DLog(@"Peripheral Disconnected: %@", bcperipheral.name);
-    [self.delegate didDisconnectPeripheral:bcperipheral];
+    if ([self.delegate respondsToSelector:@selector(didDisconnectPeripheral:)]) {
+        [self.delegate didDisconnectPeripheral:bcperipheral];
+    }
 }
 
 - (void)centralManager:(CBCentralManager*)central
@@ -90,7 +92,9 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     if (![self.periphreals containsObject:bcperipheral]) {
         DLog(@"Periphreal Discovered: %@", bcperipheral.name);
         [self.periphreals addObject:bcperipheral];
-        [self.delegate didDicoverPeripheral:bcperipheral];
+        if ([self.delegate respondsToSelector:@selector(didDiscoverPeripheral:)]) {
+            [self.delegate didDiscoverPeripheral:bcperipheral];
+        }
     }
 }
 
@@ -103,8 +107,8 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)centralManager:(CBCentralManager*)central didRetrievePeripherals:(NSArray*)peripherals {
 }
 
-- (void)centralManagerDidUpdateState:(CBCentralManager*)central {
-	switch ([centralManager state]) {
+- (void)centralManagerDidUpdateState:(CBCentralManager*)__centralManager {
+	switch ([__centralManager state]) {
 		case CBCentralManagerStatePoweredOff: {
             [self.delegate didPoweredOff];
 			break;

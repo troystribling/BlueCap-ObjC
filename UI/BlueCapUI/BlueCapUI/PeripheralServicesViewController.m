@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     self.peripheral.delegate = self;
-    [self.peripheral discoverServices:nil];
+    [self.peripheral discoverAllServices];
     [super viewDidLoad];
 }
 
@@ -50,5 +50,16 @@
 
 #pragma mark -
 #pragma mark UITableViewDelegate
+
+#pragma mark -
+#pragma mark BlueCapPeripheralDelegate
+
+- (void)peripheral:(BlueCapPeripheral*)peripheral didDiscoverServices:(NSError*)error {
+    [self.tableView reloadData];
+}
+
+- (void)peripheral:(BlueCapPeripheral*)peripheral didDiscoverIncludedServicesForService:(BlueCapService*)service error:(NSError*)error {
+    [self.tableView reloadData];
+}
 
 @end

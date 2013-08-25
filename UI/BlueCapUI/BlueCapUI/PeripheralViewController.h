@@ -10,7 +10,7 @@
 
 @interface PeripheralViewController : UITableViewController
 
-@property(nonatomic, retain) CBPeripheral*          peripheral;
+@property(nonatomic, retain) BlueCapPeripheral*     peripheral;
 @property(nonatomic, retain) IBOutlet UIButton*     disconnectButton;
 @property(nonatomic, retain) IBOutlet UILabel*      uuidLabel;
 @property(nonatomic, retain) IBOutlet UILabel*      rssiLabel;

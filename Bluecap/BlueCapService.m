@@ -19,6 +19,10 @@
 #pragma mark -
 #pragma mark BlueCapService
 
++ (BlueCapService*)withCBService:(CBService*)__cbservice {
+    return [[BlueCapService alloc] initWithCBService:__cbservice];
+}
+
 - (id)initWithCBService:(CBService*)__cbservice {
     self = [super init];
     if (self) {

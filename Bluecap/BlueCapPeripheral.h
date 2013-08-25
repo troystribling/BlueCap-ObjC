@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <CoreBluetooth/CoreBluetooth.h>
-
 @class BlueCapService;
 @class BlueCapPeripheral;
 
@@ -30,5 +28,11 @@
 @property(nonatomic, readonly) NSNumber* RSSI;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral;
+
+- (void)readRSSI;
+- (void)discoverAllServices;
+- (void)discoverServices:(NSArray*)__services;
+- (void)connect;
+- (void)disconnect;
 
 @end

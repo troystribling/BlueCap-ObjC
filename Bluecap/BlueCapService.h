@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <CoreBluetooth/CoreBluetooth.h>
-
 @interface BlueCapService : NSObject
+
++ (BlueCapService*)withCBService:(CBService*)__cbservice;
 
 @end

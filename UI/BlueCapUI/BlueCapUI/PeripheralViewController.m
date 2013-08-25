@@ -42,7 +42,7 @@
 }
 
 - (IBAction)disconnect:(id)sender {
-    [[BlueCapCentralManager sharedInstance] disconnectPeripheral:self.peripheral];
+    [self.peripheral disconnect];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

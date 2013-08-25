@@ -81,13 +81,13 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-    CBPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
+    BlueCapPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
     PeripheralCell* cell = (PeripheralCell*)[tableView cellForRowAtIndexPath:indexPath];
     [cell.connectingActivityIndicator startAnimating];
     if (peripheral.state == CBPeripheralStateDisconnected) {
-        [[BlueCapCentralManager sharedInstance] connectPeripherial:peripheral];
+        [peripheral connect];
     } else {
-        [[BlueCapCentralManager sharedInstance] disconnectPeripheral:peripheral];
+        [peripheral disconnect];
     }
 }
 
@@ -97,11 +97,12 @@
 #pragma mark -
 #pragma mark BlueCapCentralManagerDelegate
 
-- (void)didRefreshPeriferals {
+
+- (void)didPoweredOff {
     [self.tableView reloadData];
 }
 
-- (void)didPoweredOff {
+- (void)didDiscoverPeripheral:(BlueCapPeripheral *)peripheral {
     [self.tableView reloadData];
 }
 
