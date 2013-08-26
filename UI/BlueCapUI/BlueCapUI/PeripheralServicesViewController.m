@@ -7,7 +7,6 @@
 //
 
 #import "PeripheralServicesViewController.h"
-#import "CBUUID+StringValue.h"
 
 @interface PeripheralServicesViewController ()
 
