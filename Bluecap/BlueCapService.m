@@ -49,6 +49,10 @@
     return _peripheral;
 }
 
+- (BOOL)isPrimary {
+    return cbService.isPrimary;
+}
+
 #pragma mark -
 #pragma mark BlueCapService PrivateAPI
 

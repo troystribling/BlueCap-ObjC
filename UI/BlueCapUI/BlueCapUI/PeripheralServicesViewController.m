@@ -7,6 +7,7 @@
 //
 
 #import "PeripheralServicesViewController.h"
+#import "PeripheralServiceCell.h"
 
 @interface PeripheralServicesViewController ()
 
@@ -43,9 +44,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PeripheralServiceCell" forIndexPath:indexPath];
+    PeripheralServiceCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PeripheralServiceCell" forIndexPath:indexPath];
     BlueCapService* service = [self.peripheral.services objectAtIndex:indexPath.row];
-    cell.textLabel.text = service.UUID.stringValue;
+    cell.uuidLabel.text = service.UUID.stringValue;
+    if (service.isPrimary) {
+        cell.serviceTypeLabel.text = @"Primary";
+    } else {
+        cell.serviceTypeLabel.text = @"Secondary";
+    }
     return cell;
 }
 
