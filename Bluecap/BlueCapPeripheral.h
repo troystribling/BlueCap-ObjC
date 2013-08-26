@@ -22,7 +22,7 @@
 @interface BlueCapPeripheral : NSObject <CBPeripheralDelegate>
 
 @property(nonatomic, weak) id<BlueCapPeripheralDelegate> delegate;
-@property(nonatomic, readonly, retain) NSArray* services;
+@property(nonatomic, readonly) NSArray* services;
 @property(nonatomic, readonly) NSString* name;
 @property(nonatomic, readonly) NSUUID* identifier;
 @property(nonatomic, readonly) CBPeripheralState state;

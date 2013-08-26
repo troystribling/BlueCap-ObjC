@@ -7,6 +7,7 @@
 //
 
 #import "PeripheralServicesViewController.h"
+#import "CBUUID+StringValue.h"
 
 @interface PeripheralServicesViewController ()
 
@@ -44,7 +45,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PeripheralServiceCell" forIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"Service-%d", indexPath.row];
+    BlueCapService* service = [self.peripheral.services objectAtIndex:indexPath.row];
+    cell.textLabel.text = service.UUID.stringValue;
     return cell;
 }
 

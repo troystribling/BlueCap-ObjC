@@ -6,8 +6,15 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+@class BlueCapPeripheral;
+
 @interface BlueCapService : NSObject
 
-+ (BlueCapService*)withCBService:(CBService*)__cbservice;
+@property(nonatomic, readonly) CBUUID* UUID;
+@property(nonatomic, readonly) NSArray* characteristics;
+@property(nonatomic, readonly) NSArray* includedServices;
+@property(nonatomic, readonly) BlueCapPeripheral* peripheral;
+
++ (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__periphepral;
 
 @end

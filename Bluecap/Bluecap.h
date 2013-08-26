@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "DebugLog.h"
+#import "CBUUID+StringValue.h"
 #import "BlueCapCentralManager.h"
 #import "BlueCapPeripheral.h"
 #import "BlueCapService.h"
-#import "DebugLog.h"

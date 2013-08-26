@@ -83,7 +83,7 @@
 
 - (void)loadServices:(NSArray*)__services {
     for (CBService* service in __services) {
-        [self.discoveredServices addObject:[BlueCapService withCBService:service]];
+        [self.discoveredServices addObject:[BlueCapService withCBService:service andPeripheral:self]];
     }
 }
 
