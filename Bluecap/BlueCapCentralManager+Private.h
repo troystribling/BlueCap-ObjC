@@ -9,5 +9,7 @@
 #import "BlueCapCentralManager.h"
 
 @interface BlueCapCentralManager ()
+
 @property(nonatomic, retain) CBCentralManager* centralManager;
+
 @end

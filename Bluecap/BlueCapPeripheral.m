@@ -8,13 +8,19 @@
 
 #import "BlueCapPeripheral.h"
 #import "BlueCapService.h"
+#import "BlueCapCharacteristic.h"
+#import "BlueCapDescriptor.h"
 #import "BlueCapCentralManager+Private.h"
+#import "BlueCapService+Private.h"
+#import "BlueCapCharacteristic+Private.h"
 
 @interface BlueCapPeripheral () {
     CBPeripheral* cbPeripheral;
 }
 
 @property(nonatomic, retain) NSMutableArray* discoveredServices;
+
+- (void)loadServices:(NSArray*)__services;
 
 @end
 
