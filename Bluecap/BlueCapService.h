@@ -13,9 +13,11 @@
 @property(nonatomic, readonly) CBUUID* UUID;
 @property(nonatomic, readonly) NSArray* characteristics;
 @property(nonatomic, readonly) NSArray* includedServices;
-@property(nonatomic, readonly) BlueCapPeripheral* peripheral;
 @property(nonatomic, readonly) BOOL isPrimary;
 
-+ (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__periphepral;
++ (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__peripheral;
+
+- (void)discoverAllCharacteritics;
+- (void)discoverCharacteristics:(NSArray*)__characteristics;
 
 @end

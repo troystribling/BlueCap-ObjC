@@ -10,10 +10,12 @@
 
 @interface BlueCapCharacteristic : NSObject
 
-@property(nonatomic, readonly) NSArray*     descriptors;
-@property(nonatomic, readonly) BOOL         isBroadcasted;
-@property(nonatomic, readonly) BOOL         isNotifying;
-@property(nonatomic, readonly) NSArray*     properties;
-@property(nonatomic, readonly) NSData*      value;
+@property(nonatomic, readonly) NSArray*             descriptors;
+@property(nonatomic, readonly) BOOL                 isBroadcasted;
+@property(nonatomic, readonly) BOOL                 isNotifying;
+@property(nonatomic, readonly) NSArray*             properties;
+@property(nonatomic, readonly) NSData*              value;
+
+- (void)discoverDescriptors;
 
 @end

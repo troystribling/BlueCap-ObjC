@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.peripheral.name;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     if (self.peripheral.RSSI) {
         self.rssiLabel.text = [NSString stringWithFormat:@"%@dB", self.peripheral.RSSI];
     } else {

@@ -6,11 +6,14 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+
+#import "BlueCapPeripheral.h"
+#import "BlueCapPeripheral+Private.h"
 #import "BlueCapService.h"
 
 @interface BlueCapService () {
     CBService* cbService;
-    BlueCapPeripheral* _peripheral;
+    BlueCapPeripheral* peripheral;
 }
 
 @property(nonatomic, retain) NSMutableDictionary* discoveredCharcteristics;
@@ -23,15 +26,15 @@
 #pragma mark -
 #pragma mark BlueCapService
 
-+ (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__periphepral {
-    return [[BlueCapService alloc] initWithCBService:__cbservice andPeripheral:__periphepral];
++ (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__peripheral {
+    return [[BlueCapService alloc] initWithCBService:__cbservice andPeripheral:__peripheral];
 }
 
 - (id)initWithCBService:(CBService*)__cbservice  andPeripheral:(BlueCapPeripheral*)__periphepral{
     self = [super init];
     if (self) {
         cbService = __cbservice;
-        _peripheral = __periphepral;
+        peripheral = __periphepral;
     }
     return self;
 }
@@ -49,11 +52,19 @@
 }
 
 - (BlueCapPeripheral*)peripheral {
-    return _peripheral;
+    return peripheral;
 }
 
 - (BOOL)isPrimary {
     return cbService.isPrimary;
+}
+
+- (void)discoverAllCharacteritics {
+    [peripheral.cbPeripheral discoverCharacteristics:nil forService:cbService];
+}
+
+- (void)discoverCharacteristics:(NSArray*)__characteristics {
+    [peripheral.cbPeripheral discoverCharacteristics:__characteristics forService:cbService];
 }
 
 #pragma mark -

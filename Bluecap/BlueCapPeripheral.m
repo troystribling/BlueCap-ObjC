@@ -18,9 +18,7 @@
     CBPeripheral* cbPeripheral;
 }
 
-@property(nonatomic, retain) NSMutableArray* discoveredServices;
-
-- (void)loadServices:(NSArray*)__services;
+@property(nonatomic, retain) NSMutableDictionary* discoveredServices;
 
 @end
 
@@ -44,7 +42,7 @@
 }
 
 - (NSArray*)services {
-    return [NSArray arrayWithArray:self.discoveredServices];
+    return [self.discoveredServices allValues];
 }
 
 - (NSString*)name {
@@ -87,19 +85,17 @@
 #pragma mark -
 #pragma mark BlueCapPeripheral PrivateAPI
 
-- (void)loadServices:(NSArray*)__services {
-    for (CBService* service in __services) {
-        [self.discoveredServices addObject:[BlueCapService withCBService:service andPeripheral:self]];
-    }
-}
-
 #pragma mark -
 #pragma mark CBPeripheralDelegate
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverCharacteristicsForService:(CBService*)service error:(NSError*)error {
+    DLog(@"Discovered %d Service Characteristics", [service.characteristics count]);
+    for (CBCharacteristic* charteristic in service.characteristics) {
+    }
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
+    DLog(@"Discovered %d Characteristic Discriptors", [characteristic.descriptors count]);
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverIncludedServicesForService:(CBService*)service error:(NSError*)error {
@@ -110,9 +106,12 @@
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverServices:(NSError*)error {
     DLog(@"Discovered %d Services", [peripheral.services count]);
-    [self loadServices:peripheral.services];
+    for (CBService* service in peripheral.services) {
+        [self.discoveredServices setObject:[BlueCapService withCBService:service andPeripheral:self] forKey:service];
+    }
     if ([self.delegate respondsToSelector:@selector(peripheral:didDiscoverServices:)]) {
         [self.delegate peripheral:self didDiscoverServices:error];
+        
     }
 }
 

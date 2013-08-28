@@ -6,10 +6,13 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import "BlueCapPeripheral.h"
+#import "BlueCapPeripheral+Private.h"
 #import "BlueCapCharacteristic.h"
 
 @interface BlueCapCharacteristic () {
-    CBCharacteristic* cbCharacteristic;
+    CBCharacteristic*   cbCharacteristic;
+    BlueCapPeripheral*  peripheral;
 }
 
 @property(nonatomic, retain) NSMutableDictionary* discoveredDiscriptors;
@@ -20,6 +23,18 @@
 
 #pragma mark -
 #pragma mark BlueCapCharacteristic
+
++ (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics andPeripheral:(BlueCapPeripheral*)__peripheral {
+    return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andPeripheral:__peripheral];
+}
+
+- (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristics andPeripheral:(BlueCapPeripheral*)__peripheral {
+    self = [super init];
+    if (self) {
+        peripheral = __peripheral;
+    }
+    return self;
+}
 
 - (NSArray*)descriptors {
     return [self.discoveredDiscriptors allValues];
@@ -39,6 +54,10 @@
 
 -(NSData*)value {
     return cbCharacteristic.value;
+}
+
+- (void)discoverDescriptors {
+    [peripheral.cbPeripheral discoverDescriptorsForCharacteristic:cbCharacteristic];
 }
 
 #pragma mark -
