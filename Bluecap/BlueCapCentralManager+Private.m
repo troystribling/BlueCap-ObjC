@@ -10,4 +10,6 @@
 
 @implementation BlueCapCentralManager (Private)
 
+@dynamic centralManager;
+
 @end

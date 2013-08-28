@@ -10,4 +10,6 @@
 
 @implementation BlueCapCharacteristic (Private)
 
+@dynamic discoveredDiscriptors;
+
 @end
