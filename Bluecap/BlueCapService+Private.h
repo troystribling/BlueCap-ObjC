@@ -10,7 +10,7 @@
 
 @interface BlueCapService (Private)
 
-@property(nonatomic, retain) NSMutableDictionary* discoveredCharcteristics;
+@property(nonatomic, retain) NSMutableDictionary* discoveredCharacteristics;
 @property(nonatomic, retain) NSMutableDictionary* discoveredIncludedServices;
 
 @end

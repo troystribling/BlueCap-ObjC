@@ -16,6 +16,8 @@
 @property(nonatomic, readonly) NSArray*             properties;
 @property(nonatomic, readonly) NSData*              value;
 
++ (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics andPeripheral:(BlueCapPeripheral*)__peripheral;
+
 - (void)discoverDescriptors;
 
 @end

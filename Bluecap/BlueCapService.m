@@ -16,7 +16,7 @@
     BlueCapPeripheral* peripheral;
 }
 
-@property(nonatomic, retain) NSMutableDictionary* discoveredCharcteristics;
+@property(nonatomic, retain) NSMutableDictionary* discoveredCharacteristics;
 @property(nonatomic, retain) NSMutableDictionary* discoveredIncludedServices;
 
 @end
@@ -44,7 +44,7 @@
 }
 
 - (NSArray*)characteristics {
-    return [self.discoveredCharcteristics allValues];
+    return [self.discoveredCharacteristics allValues];
 }
 
 - (NSArray*)includedServices {

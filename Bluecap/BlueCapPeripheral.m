@@ -36,7 +36,7 @@
     if (self) {
         cbPeripheral = __cbPeripheral;
         cbPeripheral.delegate = self;
-        self.discoveredServices = [NSMutableArray array];
+        self.discoveredServices = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -90,7 +90,10 @@
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverCharacteristicsForService:(CBService*)service error:(NSError*)error {
     DLog(@"Discovered %d Service Characteristics", [service.characteristics count]);
-    for (CBCharacteristic* charteristic in service.characteristics) {
+    BlueCapService* bcService = [self.discoveredServices objectForKey:service.UUID];
+    for (CBCharacteristic* charateristic in service.characteristics) {
+        BlueCapCharacteristic* bcCharacteristic = [BlueCapCharacteristic withCBCharacteristic:charateristic andPeripheral:self];
+        [bcService.discoveredCharacteristics setObject:bcCharacteristic forKey:charateristic.UUID];
     }
 }
 
@@ -107,7 +110,7 @@
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverServices:(NSError*)error {
     DLog(@"Discovered %d Services", [peripheral.services count]);
     for (CBService* service in peripheral.services) {
-        [self.discoveredServices setObject:[BlueCapService withCBService:service andPeripheral:self] forKey:service];
+        [self.discoveredServices setObject:[BlueCapService withCBService:service andPeripheral:self] forKey:service.UUID];
     }
     if ([self.delegate respondsToSelector:@selector(peripheral:didDiscoverServices:)]) {
         [self.delegate peripheral:self didDiscoverServices:error];
