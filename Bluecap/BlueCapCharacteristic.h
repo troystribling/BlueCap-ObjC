@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class BlueCapPeripheral;
+
 @interface BlueCapCharacteristic : NSObject
 
 @property(nonatomic, readonly) NSArray*             descriptors;

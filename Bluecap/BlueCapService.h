@@ -10,10 +10,10 @@
 
 @interface BlueCapService : NSObject
 
-@property(nonatomic, readonly) CBUUID* UUID;
+@property(nonatomic, readonly) CBUUID*  UUID;
 @property(nonatomic, readonly) NSArray* characteristics;
 @property(nonatomic, readonly) NSArray* includedServices;
-@property(nonatomic, readonly) BOOL isPrimary;
+@property(nonatomic, readonly) BOOL     isPrimary;
 
 + (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__peripheral;
 

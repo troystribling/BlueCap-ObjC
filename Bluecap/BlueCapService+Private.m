@@ -10,7 +10,7 @@
 
 @implementation BlueCapService (Private)
 
-@dynamic discoveredCharcteristics;
+@dynamic discoveredCharacteristics;
 @dynamic discoveredIncludedServices;
 
 @end

@@ -13,4 +13,6 @@
 @property(nonatomic, readonly) id       value;
 @property(nonatomic, readonly) CBUUID   *UUID;
 
++ (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor;
+
 @end

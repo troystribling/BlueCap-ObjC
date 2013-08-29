@@ -18,6 +18,18 @@
 #pragma mark -
 #pragma mark BlueCapCharacteristic
 
++ (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor {
+    return [[BlueCapDescriptor alloc] initWithCBDiscriptor:__descriptor];
+}
+
+- (id)initWithCBDiscriptor:(CBDescriptor*)__descriptor {
+    self = [super init];
+    if (self) {
+        cbDescriptor = __descriptor;
+    }
+    return self;
+}
+
 -(id)value {
     return cbDescriptor.value;
 }
