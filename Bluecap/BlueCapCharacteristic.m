@@ -10,11 +10,10 @@
 #import "BlueCapPeripheral+Private.h"
 #import "BlueCapCharacteristic.h"
 
-@interface BlueCapCharacteristic () {
-    CBCharacteristic*   cbCharacteristic;
-    BlueCapPeripheral*  peripheral;
-}
+@interface BlueCapCharacteristic ()
 
+@property(nonatomic, retain) CBCharacteristic*   cbCharacteristic;
+@property(nonatomic, retain) BlueCapPeripheral*  peripheral;
 @property(nonatomic, retain) NSMutableDictionary* discoveredDiscriptors;
 
 @end
@@ -31,7 +30,7 @@
 - (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristics andPeripheral:(BlueCapPeripheral*)__peripheral {
     self = [super init];
     if (self) {
-        peripheral = __peripheral;
+        self.peripheral = __peripheral;
     }
     return self;
 }
@@ -41,11 +40,11 @@
 }
 
 - (BOOL)isBroadcasted {
-    return cbCharacteristic.isBroadcasted;
+    return self.cbCharacteristic.isBroadcasted;
 }
 
 -(BOOL)isNotifying {
-    return cbCharacteristic.isNotifying;
+    return self.cbCharacteristic.isNotifying;
 }
 
 -(NSArray*)properties {
@@ -53,11 +52,11 @@
 }
 
 -(NSData*)value {
-    return cbCharacteristic.value;
+    return self.cbCharacteristic.value;
 }
 
 - (void)discoverDescriptors {
-    [peripheral.cbPeripheral discoverDescriptorsForCharacteristic:cbCharacteristic];
+    [self.peripheral.cbPeripheral discoverDescriptorsForCharacteristic:self.cbCharacteristic];
 }
 
 #pragma mark -

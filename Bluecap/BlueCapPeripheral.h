@@ -21,8 +21,6 @@
 
 @interface BlueCapPeripheral : NSObject <CBPeripheralDelegate>
 
-@property(nonatomic, retain) CBPeripheral* cbPeripheral;
-
 @property(nonatomic, weak)      id<BlueCapPeripheralDelegate> delegate;
 @property(nonatomic, readonly)  NSArray* services;
 @property(nonatomic, readonly)  NSString* name;

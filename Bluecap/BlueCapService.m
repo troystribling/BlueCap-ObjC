@@ -8,7 +8,7 @@
 
 
 #import "BlueCapPeripheral.h"
-//#import "BlueCapPeripheral+Private.h"
+#import "BlueCapPeripheral+Private.h"
 #import "BlueCapService.h"
 
 @interface BlueCapService () {
@@ -30,10 +30,10 @@
     return [[BlueCapService alloc] initWithCBService:__cbservice andPeripheral:__peripheral];
 }
 
-- (id)initWithCBService:(CBService*)__cbservice  andPeripheral:(BlueCapPeripheral*)__periphepral{
+- (id)initWithCBService:(CBService*)__cbService  andPeripheral:(BlueCapPeripheral*)__periphepral{
     self = [super init];
     if (self) {
-        cbService = __cbservice;
+        cbService = __cbService;
         peripheral = __periphepral;
     }
     return self;

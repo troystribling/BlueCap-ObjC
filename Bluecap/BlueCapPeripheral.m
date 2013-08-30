@@ -14,11 +14,10 @@
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic+Private.h"
 
-@interface BlueCapPeripheral () {
-    CBPeripheral* cbPeripheral;
-}
+@interface BlueCapPeripheral ()
 
-@property(nonatomic, retain) NSMutableDictionary* discoveredServices;
+@property(nonatomic, retain) CBPeripheral*          cbPeripheral;
+@property(nonatomic, retain) NSMutableDictionary*   discoveredServices;
 
 - (BlueCapCharacteristic*)findCharacteristicForCBChracteristic:(CBCharacteristic*)__cbChracteristic;
 
@@ -36,8 +35,8 @@
 - (id)initWithCBPeripheral:(CBPeripheral*)__cbPeripheral {
     self = [super init];
     if (self) {
-        cbPeripheral = __cbPeripheral;
-        cbPeripheral.delegate = self;
+        self.cbPeripheral = __cbPeripheral;
+        self.cbPeripheral.delegate = self;
         self.discoveredServices = [NSMutableDictionary dictionary];
     }
     return self;
@@ -48,39 +47,39 @@
 }
 
 - (NSString*)name {
-    return cbPeripheral.name;
+    return self.cbPeripheral.name;
 }
 
 - (NSUUID*)identifier {
-    return cbPeripheral.identifier;
+    return self.cbPeripheral.identifier;
 }
 
 - (CBPeripheralState)state {
-    return cbPeripheral.state;
+    return self.cbPeripheral.state;
 }
 
 - (NSNumber*)RSSI {
-    [cbPeripheral readRSSI];
-    return cbPeripheral.RSSI;
+    [self.cbPeripheral readRSSI];
+    return self.cbPeripheral.RSSI;
 }
 
 - (void)discoverAllServices {
-    [cbPeripheral discoverServices:nil];
+    [self.cbPeripheral discoverServices:nil];
 }
 
 - (void)discoverServices:(NSArray*)__services {
-    [cbPeripheral discoverServices:__services];
+    [self.cbPeripheral discoverServices:__services];
 }
 
 - (void)connect {
-    if (cbPeripheral.state == CBPeripheralStateDisconnected) {
-        [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:cbPeripheral options:nil];
+    if (self.cbPeripheral.state == CBPeripheralStateDisconnected) {
+        [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:self.cbPeripheral options:nil];
     }
 }
 
 - (void)disconnect {
-    if (cbPeripheral.state == CBPeripheralStateConnected) {
-        [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:cbPeripheral];
+    if (self.cbPeripheral.state == CBPeripheralStateConnected) {
+        [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
     }
 }
 

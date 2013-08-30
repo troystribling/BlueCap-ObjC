@@ -8,9 +8,10 @@
 
 #import "BlueCapDescriptor.h"
 
-@interface BlueCapDescriptor () {
-    CBDescriptor*   cbDescriptor;
-}
+@interface BlueCapDescriptor ()
+
+@property(nonatomic, retain) CBDescriptor*   cbDescriptor;
+
 @end
 
 @implementation BlueCapDescriptor
@@ -25,17 +26,17 @@
 - (id)initWithCBDiscriptor:(CBDescriptor*)__descriptor {
     self = [super init];
     if (self) {
-        cbDescriptor = __descriptor;
+        self.cbDescriptor = __descriptor;
     }
     return self;
 }
 
 -(id)value {
-    return cbDescriptor.value;
+    return self.cbDescriptor.value;
 }
 
 -(CBUUID*)UUID {
-    return cbDescriptor.UUID;
+    return self.cbDescriptor.UUID;
 }
 
 #pragma mark -
