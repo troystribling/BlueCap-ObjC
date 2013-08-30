@@ -38,7 +38,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"PeripheralViewController"]) {
+    if ([[segue identifier] isEqualToString:@"Peripheral"]) {
         NSIndexPath *selectedRowIndex = [self.tableView indexPathForCell:sender];
         PeripheralViewController *viewController = segue.destinationViewController;
         viewController.peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:selectedRowIndex.row];

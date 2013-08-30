@@ -10,4 +10,6 @@
 
 @interface ServiceDetailViewController : UITableViewController
 
+@property(nonatomic, retain) BlueCapService* service;
+
 @end

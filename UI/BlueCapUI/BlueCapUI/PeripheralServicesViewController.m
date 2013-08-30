@@ -8,6 +8,7 @@
 
 #import "PeripheralServicesViewController.h"
 #import "PeripheralServiceCell.h"
+#import "ServiceDetailViewController.h"
 
 @interface PeripheralServicesViewController ()
 
@@ -30,6 +31,14 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"ServiceDetail"]) {
+        NSIndexPath* serviceIndex = [self.tableView indexPathForCell:sender];
+        ServiceDetailViewController* viewController = segue.destinationViewController;
+        viewController.service = [self.peripheral.services objectAtIndex:serviceIndex.row];
+    }
 }
 
 #pragma mark -

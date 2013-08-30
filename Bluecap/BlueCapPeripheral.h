@@ -21,12 +21,14 @@
 
 @interface BlueCapPeripheral : NSObject <CBPeripheralDelegate>
 
-@property(nonatomic, weak) id<BlueCapPeripheralDelegate> delegate;
-@property(nonatomic, readonly) NSArray* services;
-@property(nonatomic, readonly) NSString* name;
-@property(nonatomic, readonly) NSUUID* identifier;
-@property(nonatomic, readonly) CBPeripheralState state;
-@property(nonatomic, readonly) NSNumber* RSSI;
+@property(nonatomic, retain) CBPeripheral* cbPeripheral;
+
+@property(nonatomic, weak)      id<BlueCapPeripheralDelegate> delegate;
+@property(nonatomic, readonly)  NSArray* services;
+@property(nonatomic, readonly)  NSString* name;
+@property(nonatomic, readonly)  NSUUID* identifier;
+@property(nonatomic, readonly)  CBPeripheralState state;
+@property(nonatomic, readonly)  NSNumber* RSSI;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral;
 

@@ -23,26 +23,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.service discoverAllCharacteritics];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+#pragma mark -
+#pragma mark UITableDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
+    return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.service.characteristics count];
+}
+
+- (UITableViewCell *)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
+    static NSString *CellIdentifier = @"ServiceDetailCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.textLabel.text = [NSString stringWithFormat:@"characteristic-%d", indexPath.row];
     return cell;
 }
+
+#pragma mark -
+#pragma mark UITableViewDelegate
 
 @end

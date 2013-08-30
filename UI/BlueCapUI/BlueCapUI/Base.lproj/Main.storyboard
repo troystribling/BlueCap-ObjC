@@ -139,7 +139,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oZ-lh-Mdk">
-                                            <rect key="frame" x="20" y="6" width="280" height="16"/>
+                                            <rect key="frame" x="20" y="6" width="250" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -157,7 +157,7 @@
                                 <connections>
                                     <outlet property="serviceTypeLabel" destination="jOq-rh-ub5" id="3Le-iL-pNV"/>
                                     <outlet property="uuidLabel" destination="2oZ-lh-Mdk" id="OHk-IW-GJN"/>
-                                    <segue destination="flO-6L-RZ3" kind="push" trigger="accessoryAction" id="z72-Mc-QAG"/>
+                                    <segue destination="flO-6L-RZ3" kind="push" identifier="ServiceDetail" trigger="accessoryAction" id="z72-Mc-QAG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -181,7 +181,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="gray" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="pRD-WT-8e0" style="IBUITableViewCellStyleDefault" id="cn0-Ns-fTV">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="gray" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ServiceDetailCell" textLabel="pRD-WT-8e0" style="IBUITableViewCellStyleDefault" id="cn0-Ns-fTV">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="cn0-Ns-fTV" id="5s7-wR-64c">
@@ -242,7 +242,7 @@
                                 <connections>
                                     <outlet property="connectingActivityIndicator" destination="gqE-d5-je8" id="aCL-6k-C0o"/>
                                     <outlet property="nameLabel" destination="BsC-C9-NZC" id="ZMK-nz-Q53"/>
-                                    <segue destination="XKG-l0-TPz" kind="push" identifier="PeripheralViewController" trigger="accessoryAction" id="tZw-mu-C7H"/>
+                                    <segue destination="XKG-l0-TPz" kind="push" identifier="Peripheral" trigger="accessoryAction" id="tZw-mu-C7H"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
