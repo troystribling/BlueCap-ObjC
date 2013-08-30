@@ -54,4 +54,13 @@
 #pragma mark -
 #pragma mark UITableViewDelegate
 
+#pragma mark -
+#pragma mark BlueCapSErviceDelegate
+
+- (void)didDiscoverCharacteristicsForService:(BlueCapService*)service error:(NSError*)error {
+}
+
+- (void)didDiscoverDescriptorsForCharacteristic:(BlueCapCharacteristic*)characteristic error:(NSError*)error {
+}
+
 @end
