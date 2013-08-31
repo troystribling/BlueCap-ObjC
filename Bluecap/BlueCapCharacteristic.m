@@ -7,14 +7,16 @@
 //
 
 #import "BlueCapPeripheral.h"
+#import "BlueCapService.h"
 #import "BlueCapPeripheral+Private.h"
+#import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic.h"
 
-@interface BlueCapCharacteristic ()
+@interface BlueCapCharacteristic () {
+}
 
-@property(nonatomic, retain) CBCharacteristic*   cbCharacteristic;
-@property(nonatomic, retain) BlueCapPeripheral*  peripheral;
-@property(nonatomic, retain) NSMutableDictionary* discoveredDiscriptors;
+@property(nonatomic, retain) CBCharacteristic*      cbCharacteristic;
+@property(nonatomic, retain) NSMutableDictionary*   discoveredDiscriptors;
 
 @end
 
@@ -23,14 +25,16 @@
 #pragma mark -
 #pragma mark BlueCapCharacteristic
 
-+ (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics andPeripheral:(BlueCapPeripheral*)__peripheral {
-    return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andPeripheral:__peripheral];
++ (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
+    return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andService:__service];
 }
 
-- (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristics andPeripheral:(BlueCapPeripheral*)__peripheral {
+- (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service {
     self = [super init];
     if (self) {
-        self.peripheral = __peripheral;
+        self.cbCharacteristic = __cbCharacteristic;
+        _service = __service;
+        self.discoveredDiscriptors = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -56,7 +60,7 @@
 }
 
 - (void)discoverDescriptors {
-    [self.peripheral.cbPeripheral discoverDescriptorsForCharacteristic:self.cbCharacteristic];
+    [_service.peripheral.cbPeripheral discoverDescriptorsForCharacteristic:self.cbCharacteristic];
 }
 
 #pragma mark -

@@ -12,8 +12,11 @@
 
 @protocol BlueCapServiceDelegate <NSObject>
 
+@optional
+
 - (void)didDiscoverCharacteristicsForService:(BlueCapService*)service error:(NSError*)error;
 - (void)didDiscoverDescriptorsForCharacteristic:(BlueCapCharacteristic*)characteristic error:(NSError*)error;
+- (void)didDiscoverIncludedServicesForService:(BlueCapService*)service error:(NSError*)error;
 
 @end
 
@@ -24,6 +27,7 @@
 @property(nonatomic, readonly) NSArray*                     characteristics;
 @property(nonatomic, readonly) NSArray*                     includedServices;
 @property(nonatomic, readonly) BOOL                         isPrimary;
+@property(nonatomic, readonly) BlueCapPeripheral*           peripheral;
 
 + (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__peripheral;
 

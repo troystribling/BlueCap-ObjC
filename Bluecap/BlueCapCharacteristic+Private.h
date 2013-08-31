@@ -10,6 +10,7 @@
 
 @interface BlueCapCharacteristic (Private)
 
+@property(nonatomic, retain) CBCharacteristic*   cbCharacteristic;
 @property(nonatomic, retain) NSMutableDictionary* discoveredDiscriptors;
 
 @end

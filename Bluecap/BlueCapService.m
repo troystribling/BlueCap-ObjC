@@ -13,7 +13,6 @@
 
 @interface BlueCapService () {
     CBService* cbService;
-    BlueCapPeripheral* peripheral;
 }
 
 @property(nonatomic, retain) NSMutableDictionary* discoveredCharacteristics;
@@ -34,7 +33,9 @@
     self = [super init];
     if (self) {
         cbService = __cbService;
-        peripheral = __periphepral;
+        _peripheral = __periphepral;
+        self.discoveredCharacteristics = [NSMutableDictionary dictionary];
+        self.discoveredIncludedServices = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -51,20 +52,16 @@
     return [self.discoveredIncludedServices allValues];
 }
 
-- (BlueCapPeripheral*)peripheral {
-    return peripheral;
-}
-
 - (BOOL)isPrimary {
     return cbService.isPrimary;
 }
 
 - (void)discoverAllCharacteritics {
-    [peripheral.cbPeripheral discoverCharacteristics:nil forService:cbService];
+    [_peripheral.cbPeripheral discoverCharacteristics:nil forService:cbService];
 }
 
 - (void)discoverCharacteristics:(NSArray*)__characteristics {
-    [peripheral.cbPeripheral discoverCharacteristics:__characteristics forService:cbService];
+    [_peripheral.cbPeripheral discoverCharacteristics:__characteristics forService:cbService];
 }
 
 #pragma mark -

@@ -74,8 +74,4 @@
     [self.tableView reloadData];
 }
 
-- (void)peripheral:(BlueCapPeripheral*)peripheral didDiscoverIncludedServicesForService:(BlueCapService*)service error:(NSError*)error {
-    [self.tableView reloadData];
-}
-
 @end

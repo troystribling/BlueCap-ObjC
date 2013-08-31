@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class BlueCapCharacteristic;
+
 @interface BlueCapDescriptor : NSObject
 
-@property(nonatomic, readonly) id       value;
-@property(nonatomic, readonly) CBUUID   *UUID;
+@property(nonatomic, readonly) id                       value;
+@property(nonatomic, readonly) CBUUID*                  UUID;
+@property(nonatomic, readonly) BlueCapCharacteristic*   characteristic;
 
-+ (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor;
++ (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;
 
 @end

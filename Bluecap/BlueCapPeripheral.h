@@ -15,7 +15,6 @@
 @optional
 
 - (void)peripheral:(BlueCapPeripheral*)peripheral didDiscoverServices:(NSError*)error;
-- (void)peripheral:(BlueCapPeripheral*)peripheral didDiscoverIncludedServicesForService:(BlueCapService*)service error:(NSError*)error;
 
 @end
 

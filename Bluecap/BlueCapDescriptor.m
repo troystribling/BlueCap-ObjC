@@ -7,10 +7,13 @@
 //
 
 #import "BlueCapDescriptor.h"
+#import "BlueCapCharacteristic.h"
 
-@interface BlueCapDescriptor ()
+@interface BlueCapDescriptor () {
+    CBDescriptor*   cbDescriptor;
+}
 
-@property(nonatomic, retain) CBDescriptor*   cbDescriptor;
+- (id)initWithCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;
 
 @end
 
@@ -19,24 +22,25 @@
 #pragma mark -
 #pragma mark BlueCapCharacteristic
 
-+ (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor {
-    return [[BlueCapDescriptor alloc] initWithCBDiscriptor:__descriptor];
++ (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic {
+    return [[BlueCapDescriptor alloc] initWithCBDiscriptor:__descriptor andChracteristic:__chracteristic];
 }
 
-- (id)initWithCBDiscriptor:(CBDescriptor*)__descriptor {
+- (id)initWithCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic {
     self = [super init];
     if (self) {
-        self.cbDescriptor = __descriptor;
+        _characteristic = __chracteristic;
+        cbDescriptor = __descriptor;
     }
     return self;
 }
 
 -(id)value {
-    return self.cbDescriptor.value;
+    return cbDescriptor.value;
 }
 
 -(CBUUID*)UUID {
-    return self.cbDescriptor.UUID;
+    return cbDescriptor.UUID;
 }
 
 #pragma mark -

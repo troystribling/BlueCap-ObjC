@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class BlueCapPeripheral;
+@class BlueCapService;
 
 @interface BlueCapCharacteristic : NSObject
 
@@ -17,8 +17,10 @@
 @property(nonatomic, readonly) BOOL                 isNotifying;
 @property(nonatomic, readonly) NSArray*             properties;
 @property(nonatomic, readonly) NSData*              value;
+@property(nonatomic, readonly) BlueCapService*      service;
 
-+ (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics andPeripheral:(BlueCapPeripheral*)__peripheral;
+
++ (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service;
 
 - (void)discoverDescriptors;
 

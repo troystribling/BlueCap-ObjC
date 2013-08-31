@@ -26,6 +26,7 @@
 		059769DE17CC4A0C00BDE5B5 /* BlueCapCharacteristic.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059769D517CC479700BDE5B5 /* BlueCapCharacteristic.h */; };
 		059769DF17CC4A0C00BDE5B5 /* BlueCapDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059769DB17CC490400BDE5B5 /* BlueCapDescriptor.h */; };
 		059769E217CDA13000BDE5B5 /* BlueCapPeripheral+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769E117CDA13000BDE5B5 /* BlueCapPeripheral+Private.m */; };
+		059769E817D271ED00BDE5B5 /* BlueCapDescriptor+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769E717D271ED00BDE5B5 /* BlueCapDescriptor+Private.m */; };
 		05AA669917B868F90019AC3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669817B868F90019AC3C /* Foundation.framework */; };
 		05AA66A717B868F90019AC3C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA66A617B868F90019AC3C /* XCTest.framework */; };
 		05AA66A817B868F90019AC3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669817B868F90019AC3C /* Foundation.framework */; };
@@ -87,6 +88,8 @@
 		059769DC17CC490400BDE5B5 /* BlueCapDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCapDescriptor.m; sourceTree = "<group>"; };
 		059769E017CDA13000BDE5B5 /* BlueCapPeripheral+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlueCapPeripheral+Private.h"; sourceTree = "<group>"; };
 		059769E117CDA13000BDE5B5 /* BlueCapPeripheral+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapPeripheral+Private.m"; sourceTree = "<group>"; };
+		059769E617D271ED00BDE5B5 /* BlueCapDescriptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlueCapDescriptor+Private.h"; sourceTree = "<group>"; };
+		059769E717D271ED00BDE5B5 /* BlueCapDescriptor+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapDescriptor+Private.m"; sourceTree = "<group>"; };
 		05AA669517B868F90019AC3C /* libBluecap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBluecap.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA669817B868F90019AC3C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05AA66A517B868F90019AC3C /* BluecapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluecapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +191,8 @@
 				059769D917CC47C000BDE5B5 /* BlueCapCharacteristic+Private.m */,
 				059769D517CC479700BDE5B5 /* BlueCapCharacteristic.h */,
 				059769D617CC479700BDE5B5 /* BlueCapCharacteristic.m */,
+				059769E617D271ED00BDE5B5 /* BlueCapDescriptor+Private.h */,
+				059769E717D271ED00BDE5B5 /* BlueCapDescriptor+Private.m */,
 				059769DB17CC490400BDE5B5 /* BlueCapDescriptor.h */,
 				059769DC17CC490400BDE5B5 /* BlueCapDescriptor.m */,
 				059769E017CDA13000BDE5B5 /* BlueCapPeripheral+Private.h */,
@@ -289,6 +294,7 @@
 				0543815217C9775D0071AC73 /* BlueCapService.m in Sources */,
 				0543814F17C9772E0071AC73 /* BlueCapPeripheral.m in Sources */,
 				0565A0AC17C1EA7F00BFB1C0 /* BlueCap.m in Sources */,
+				059769E817D271ED00BDE5B5 /* BlueCapDescriptor+Private.m in Sources */,
 				059769DA17CC47C000BDE5B5 /* BlueCapCharacteristic+Private.m in Sources */,
 				0543815F17CA89F00071AC73 /* BlueCapCentralManager+Private.m in Sources */,
 				059769DD17CC490400BDE5B5 /* BlueCapDescriptor.m in Sources */,

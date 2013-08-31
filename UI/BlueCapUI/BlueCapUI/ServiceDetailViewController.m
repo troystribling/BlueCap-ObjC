@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.service.delegate = self;
     [self.service discoverAllCharacteritics];
 }
 
@@ -58,9 +59,13 @@
 #pragma mark BlueCapSErviceDelegate
 
 - (void)didDiscoverCharacteristicsForService:(BlueCapService*)service error:(NSError*)error {
+    [self.tableView reloadData];
 }
 
 - (void)didDiscoverDescriptorsForCharacteristic:(BlueCapCharacteristic*)characteristic error:(NSError*)error {
+}
+
+- (void)didDiscoverIncludedServicesForService:(BlueCapService*)service error:(NSError*)error {
 }
 
 @end
