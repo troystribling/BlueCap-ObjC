@@ -14,8 +14,7 @@
 
 @property(nonatomic, readonly) id                       value;
 @property(nonatomic, readonly) CBUUID*                  UUID;
-@property(nonatomic, readonly) BlueCapCharacteristic*   characteristic;
 
-+ (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;
+- (BlueCapCharacteristic*)characteristic;
 
 @end

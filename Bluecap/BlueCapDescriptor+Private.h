@@ -10,6 +10,10 @@
 
 @interface BlueCapDescriptor (Private)
 
-@property(nonatomic, retain) CBDescriptor*  cbDescriptor;
+@property(nonatomic, retain) CBDescriptor*              cbDescriptor;
+@property(nonatomic, retain) BlueCapCharacteristic*   characteristic;
+
++ (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;
+- (id)initWithCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;
 
 @end

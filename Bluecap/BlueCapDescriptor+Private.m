@@ -11,5 +11,18 @@
 @implementation BlueCapDescriptor (Private)
 
 @dynamic cbDescriptor;
+@dynamic characteristic;
 
++ (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic {
+    return [[BlueCapDescriptor alloc] initWithCBDiscriptor:__descriptor andChracteristic:__chracteristic];
+}
+
+- (id)initWithCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic {
+    self = [super init];
+    if (self) {
+        self.cbDescriptor = __descriptor;
+        self.characteristic = __chracteristic;
+    }
+    return self;
+}
 @end

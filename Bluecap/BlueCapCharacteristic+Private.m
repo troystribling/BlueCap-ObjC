@@ -12,5 +12,20 @@
 
 @dynamic cbCharacteristic;
 @dynamic discoveredDiscriptors;
+@dynamic service;
+
++ (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
+    return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andService:__service];
+}
+
+- (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service {
+    self = [super init];
+    if (self) {
+        self.cbCharacteristic = __cbCharacteristic;
+        self.service = __service;
+        self.discoveredDiscriptors = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
 
 @end

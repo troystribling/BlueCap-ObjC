@@ -10,7 +10,11 @@
 
 @interface BlueCapCharacteristic (Private)
 
-@property(nonatomic, retain) CBCharacteristic*   cbCharacteristic;
-@property(nonatomic, retain) NSMutableDictionary* discoveredDiscriptors;
+@property(nonatomic, retain) CBCharacteristic*      cbCharacteristic;
+@property(nonatomic, retain) NSMutableDictionary*   discoveredDiscriptors;
+@property(nonatomic, retain) BlueCapService*        service;
+
++ (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service;
+- (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service;
 
 @end

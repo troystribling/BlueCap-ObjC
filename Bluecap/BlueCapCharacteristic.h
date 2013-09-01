@@ -17,11 +17,9 @@
 @property(nonatomic, readonly) BOOL                 isNotifying;
 @property(nonatomic, readonly) NSArray*             properties;
 @property(nonatomic, readonly) NSData*              value;
-@property(nonatomic, readonly) BlueCapService*      service;
 
-
-+ (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service;
 
 - (void)discoverDescriptors;
+- (BlueCapService*)service;
 
 @end

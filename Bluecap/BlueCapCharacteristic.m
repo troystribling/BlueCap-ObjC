@@ -17,6 +17,7 @@
 
 @property(nonatomic, retain) CBCharacteristic*      cbCharacteristic;
 @property(nonatomic, retain) NSMutableDictionary*   discoveredDiscriptors;
+@property(nonatomic, retain) BlueCapService*        service;
 
 @end
 
@@ -24,20 +25,6 @@
 
 #pragma mark -
 #pragma mark BlueCapCharacteristic
-
-+ (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
-    return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andService:__service];
-}
-
-- (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service {
-    self = [super init];
-    if (self) {
-        self.cbCharacteristic = __cbCharacteristic;
-        _service = __service;
-        self.discoveredDiscriptors = [NSMutableDictionary dictionary];
-    }
-    return self;
-}
 
 - (NSArray*)descriptors {
     return [self.discoveredDiscriptors allValues];
@@ -61,6 +48,10 @@
 
 - (void)discoverDescriptors {
     [_service.peripheral.cbPeripheral discoverDescriptorsForCharacteristic:self.cbCharacteristic];
+}
+
+- (BlueCapService*)service {
+    return _service;
 }
 
 #pragma mark -

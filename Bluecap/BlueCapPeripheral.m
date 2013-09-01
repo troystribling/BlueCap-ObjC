@@ -13,6 +13,7 @@
 #import "BlueCapCentralManager+Private.h"
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic+Private.h"
+#import "BlueCapDescriptor+Private.h"
 
 @interface BlueCapPeripheral ()
 
@@ -27,20 +28,6 @@
 
 #pragma mark -
 #pragma mark BlueCapPeripheral
-
-+ (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral {
-    return [[BlueCapPeripheral alloc] initWithCBPeripheral:__cbPeripheral];
-}
-
-- (id)initWithCBPeripheral:(CBPeripheral*)__cbPeripheral {
-    self = [super init];
-    if (self) {
-        self.cbPeripheral = __cbPeripheral;
-        self.cbPeripheral.delegate = self;
-        self.discoveredServices = [NSMutableDictionary dictionary];
-    }
-    return self;
-}
 
 - (NSArray*)services {
     return [self.discoveredServices allValues];

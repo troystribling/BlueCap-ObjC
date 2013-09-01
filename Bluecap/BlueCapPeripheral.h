@@ -27,8 +27,6 @@
 @property(nonatomic, readonly)  CBPeripheralState state;
 @property(nonatomic, readonly)  NSNumber* RSSI;
 
-+ (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral;
-
 - (void)discoverAllServices;
 - (void)discoverServices:(NSArray*)__services;
 - (void)connect;
