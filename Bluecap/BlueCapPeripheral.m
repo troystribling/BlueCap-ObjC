@@ -21,6 +21,8 @@
 @property(nonatomic, retain) NSMutableDictionary*   discoveredServices;
 
 - (BlueCapService*)findServiceForCBChracteristic:(CBCharacteristic*)__cbChracteristic;
+- (BlueCapCharacteristic*)findCharacteristicForCBCharacteristic:(CBCharacteristic*)__cbCharacteristic;
+- (BlueCapDescriptor*)findDecsriptorForCBDescriptor:(CBDescriptor*)__cbDescriptor;
 
 @end
 
@@ -84,6 +86,23 @@
     return selectedService;
 }
 
+- (BlueCapCharacteristic*)findCharacteristicForCBCharacteristic:(CBCharacteristic*)__cbCharacteristic {
+    return [[self findServiceForCBChracteristic:__cbCharacteristic].discoveredCharacteristics objectForKey:__cbCharacteristic.UUID];
+}
+
+- (BlueCapDescriptor*)findDecsriptorForCBDescriptor:(CBDescriptor*)__cbDescriptor {
+    BlueCapDescriptor* selectedDescriptor = nil;
+    for (BlueCapService* service in  [self.discoveredServices allValues]) {
+        for (BlueCapCharacteristic* characteristic in [service.discoveredCharacteristics allValues]) {
+            if ([[characteristic.discoveredDiscriptors allKeys] containsObject:__cbDescriptor.UUID]) {
+                selectedDescriptor = [characteristic.discoveredDiscriptors objectForKey:__cbDescriptor.UUID];
+                break;
+            }
+        }
+    }
+    return selectedDescriptor;
+}
+
 #pragma mark -
 #pragma mark CBPeripheralDelegate
 
@@ -131,18 +150,28 @@
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
+    BlueCapCharacteristic* bcCharateristic = [self findCharacteristicForCBCharacteristic:characteristic];
+    [bcCharateristic didUpdateNotificationState:error];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateValueForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
+    BlueCapCharacteristic* bcCharateristic = [self findCharacteristicForCBCharacteristic:characteristic];
+    [bcCharateristic didWriteValue:error];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateValueForDescriptor:(CBDescriptor*)descriptor error:(NSError*)error {
+    BlueCapDescriptor* bcDescriptor = [self findDecsriptorForCBDescriptor:descriptor];
+    [bcDescriptor didUpdateValue:error];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didWriteValueForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
+    BlueCapCharacteristic* bcCharateristic = [self findCharacteristicForCBCharacteristic:characteristic];
+    [bcCharateristic didWriteValue:error];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didWriteValueForDescriptor:(CBDescriptor*)descriptor error:(NSError*)error {
+    BlueCapDescriptor* bcDescriptor = [self findDecsriptorForCBDescriptor:descriptor];
+    [bcDescriptor didUpdateValue:error];
 }
 
 - (void)peripheralDidUpdateName:(CBPeripheral*)peripheral {

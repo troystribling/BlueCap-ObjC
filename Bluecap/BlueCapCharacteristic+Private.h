@@ -13,8 +13,14 @@
 @property(nonatomic, retain) CBCharacteristic*      cbCharacteristic;
 @property(nonatomic, retain) NSMutableDictionary*   discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*        service;
+@property(nonatomic, copy) BlueCapCallback          onRead;
+@property(nonatomic, copy) BlueCapCallback          onWrite;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service;
 - (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service;
+
+- (void)didUpdateValue:(NSError*)error;
+- (void)didUpdateNotificationState:(NSError*)error;
+- (void)didWriteValue:(NSError*)error;
 
 @end

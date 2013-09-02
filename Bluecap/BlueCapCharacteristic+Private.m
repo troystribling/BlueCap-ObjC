@@ -13,6 +13,8 @@
 @dynamic cbCharacteristic;
 @dynamic discoveredDiscriptors;
 @dynamic service;
+@dynamic onWrite;
+@dynamic onRead;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
     return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andService:__service];
@@ -26,6 +28,15 @@
         self.discoveredDiscriptors = [NSMutableDictionary dictionary];
     }
     return self;
+}
+
+- (void)didUpdateValue:(NSError*)error {
+}
+
+- (void)didUpdateNotificationState:(NSError*)error {
+}
+
+- (void)didWriteValue:(NSError*)error{
 }
 
 @end

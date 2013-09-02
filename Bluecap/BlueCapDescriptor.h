@@ -6,15 +6,18 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BlueCapCommon.h"
 
 @class BlueCapCharacteristic;
 
 @interface BlueCapDescriptor : NSObject
 
-@property(nonatomic, readonly) id                       value;
-@property(nonatomic, readonly) CBUUID*                  UUID;
+@property(nonatomic, readonly) id               value;
+@property(nonatomic, readonly) CBUUID*          UUID;
 
 - (BlueCapCharacteristic*)characteristic;
+
+- (void)read:(BlueCapCallback)__onRead;
+- (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite;
 
 @end

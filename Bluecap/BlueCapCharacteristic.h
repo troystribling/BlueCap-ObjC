@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BlueCapCommon.h"
 
 @class BlueCapService;
 
@@ -21,5 +21,10 @@
 
 - (void)discoverDescriptors;
 - (BlueCapService*)service;
+
+- (void)startNotifications;
+- (void)stopNotifications;
+- (void)read:(BlueCapCallback)__onRead;
+- (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite;
 
 @end

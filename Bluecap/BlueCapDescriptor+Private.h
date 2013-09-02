@@ -11,9 +11,14 @@
 @interface BlueCapDescriptor (Private)
 
 @property(nonatomic, retain) CBDescriptor*              cbDescriptor;
-@property(nonatomic, retain) BlueCapCharacteristic*   characteristic;
+@property(nonatomic, retain) BlueCapCharacteristic*     characteristic;
+@property(nonatomic, copy) BlueCapCallback              onRead;
+@property(nonatomic, copy) BlueCapCallback              onWrite;
 
 + (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;
 - (id)initWithCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;
+
+- (void)didUpdateValue:(NSError*)error;
+- (void)didWriteValue:(NSError*)error;
 
 @end

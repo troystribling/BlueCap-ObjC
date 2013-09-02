@@ -18,6 +18,8 @@
 @property(nonatomic, retain) CBCharacteristic*      cbCharacteristic;
 @property(nonatomic, retain) NSMutableDictionary*   discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*        service;
+@property(nonatomic, copy) BlueCapCallback          onRead;
+@property(nonatomic, copy) BlueCapCallback          onWrite;
 
 @end
 
@@ -52,6 +54,24 @@
 
 - (BlueCapService*)service {
     return _service;
+}
+
+- (void)startNotifications {
+    [self.service.peripheral.cbPeripheral setNotifyValue:YES forCharacteristic:self.cbCharacteristic];
+}
+
+- (void)stopNotifications {
+    [self.service.peripheral.cbPeripheral setNotifyValue:NO forCharacteristic:self.cbCharacteristic];
+}
+
+- (void)read:(BlueCapCallback)__onRead {
+    self.onRead = __onRead;
+    [self.service.peripheral.cbPeripheral readValueForCharacteristic:self.cbCharacteristic];
+}
+
+- (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite {
+    self.onWrite = __onWrite;
+    [self.service.peripheral.cbPeripheral writeValue:data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
 }
 
 #pragma mark -

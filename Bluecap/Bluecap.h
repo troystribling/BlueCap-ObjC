@@ -13,3 +13,5 @@
 #import "BlueCapCentralManager.h"
 #import "BlueCapPeripheral.h"
 #import "BlueCapService.h"
+#import "BlueCapCharacteristic.h"
+#import "BlueCapDescriptor.h"

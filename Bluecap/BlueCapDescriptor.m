@@ -7,12 +7,19 @@
 //
 
 #import "BlueCapDescriptor.h"
+#import "BlueCapPeripheral.h"
+#import "BlueCapService.h"
 #import "BlueCapCharacteristic.h"
+#import "BlueCapPeripheral+Private.h"
+#import "BlueCapService+Private.h"
+#import "BlueCapCharacteristic+Private.h"
 
 @interface BlueCapDescriptor ()
 
 @property(nonatomic, retain) CBDescriptor*          cbDescriptor;
 @property(nonatomic, retain) BlueCapCharacteristic* characteristic;
+@property(nonatomic, copy) BlueCapCallback      onRead;
+@property(nonatomic, copy) BlueCapCallback      onWrite;
 
 @end
 
@@ -31,6 +38,16 @@
 
 - (BlueCapCharacteristic*)characteristic {
     return _characteristic;
+}
+
+- (void)read:(BlueCapCallback)__onRead {
+    self.onRead = __onRead;
+    [self.characteristic.service.peripheral.cbPeripheral readValueForDescriptor:self.cbDescriptor];
+}
+
+- (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite {
+    self.onWrite = __onWrite;
+    [self.characteristic.service.peripheral.cbPeripheral writeValue:data forDescriptor:self.cbDescriptor];
 }
 
 #pragma mark -
