@@ -16,6 +16,18 @@
 @property(nonatomic, retain) IBOutlet UILabel*      uuidLabel;
 @property(nonatomic, retain) IBOutlet UILabel*      broadcastingLabel;
 @property(nonatomic, retain) IBOutlet UILabel*      notifyingLabel;
-@property(nonatomic, retain) IBOutlet UILabel*      valueLabel;
+@property(nonatomic, retain) IBOutlet UITextField*  valueTextField;
+@property(nonatomic, retain) IBOutlet UIButton*     notifiyButton;
+
+@property(nonatomic, retain) IBOutlet UILabel*      propertyBroadcast;
+@property(nonatomic, retain) IBOutlet UILabel*      propertyRead;
+@property(nonatomic, retain) IBOutlet UILabel*      propertyWriteWithoutResponse;
+@property(nonatomic, retain) IBOutlet UILabel*      propertyWrite;
+@property(nonatomic, retain) IBOutlet UILabel*      propertyNotify;
+@property(nonatomic, retain) IBOutlet UILabel*      propertyIndicate;
+@property(nonatomic, retain) IBOutlet UILabel*      propertyAuthenticatedSignedWrites;
+@property(nonatomic, retain) IBOutlet UILabel*      propertyExtendedProperties;
+@property(nonatomic, retain) IBOutlet UILabel*      propertyNotifyEncryptionRequired;
+@property(nonatomic, retain) IBOutlet UILabel*      propertyEncryptionRequired;
 
 @end
