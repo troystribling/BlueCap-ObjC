@@ -1,5 +1,5 @@
 //
-//  PeripheralViewController.h
+//  PeripheralDetailViewController.h
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 8/19/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeripheralViewController : UITableViewController
+@interface PeripheralDetailViewController : UITableViewController
 
 @property(nonatomic, retain) BlueCapPeripheral*     peripheral;
 @property(nonatomic, retain) IBOutlet UIButton*     disconnectButton;

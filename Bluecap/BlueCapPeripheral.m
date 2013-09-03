@@ -14,6 +14,7 @@
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic+Private.h"
 #import "BlueCapDescriptor+Private.h"
+#import "CBUUID+StringValue.h"
 
 @interface BlueCapPeripheral ()
 
@@ -150,26 +151,31 @@
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
+    DLog(@"Updated notification state for characteristic: %@", characteristic.UUID.stringValue);
     BlueCapCharacteristic* bcCharateristic = [self findCharacteristicForCBCharacteristic:characteristic];
     [bcCharateristic didUpdateNotificationState:error];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateValueForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
+    DLog(@"Updated value for characteristic: %@", characteristic.UUID.stringValue);
     BlueCapCharacteristic* bcCharateristic = [self findCharacteristicForCBCharacteristic:characteristic];
     [bcCharateristic didWriteValue:error];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateValueForDescriptor:(CBDescriptor*)descriptor error:(NSError*)error {
+    DLog(@"Updated value for discriptor: %@", descriptor.UUID.stringValue);
     BlueCapDescriptor* bcDescriptor = [self findDecsriptorForCBDescriptor:descriptor];
     [bcDescriptor didUpdateValue:error];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didWriteValueForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
+    DLog(@"Wrote value for characteristic: %@", characteristic.UUID.stringValue);
     BlueCapCharacteristic* bcCharateristic = [self findCharacteristicForCBCharacteristic:characteristic];
     [bcCharateristic didWriteValue:error];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didWriteValueForDescriptor:(CBDescriptor*)descriptor error:(NSError*)error {
+    DLog(@"Wrote value for discriptor: %@", descriptor.UUID.stringValue);
     BlueCapDescriptor* bcDescriptor = [self findDecsriptorForCBDescriptor:descriptor];
     [bcDescriptor didUpdateValue:error];
 }

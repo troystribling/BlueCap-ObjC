@@ -29,9 +29,15 @@
 }
 
 - (void)didUpdateValue:(NSError*)error {
+    if (self.onRead != nil) {
+        self.onRead(error);
+    }
 }
 
 - (void)didWriteValue:(NSError*)error{
+    if (self.onWrite != nil) {
+        self.onWrite(error);
+    }
 }
 
 @end

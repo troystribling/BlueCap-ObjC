@@ -17,12 +17,12 @@
 @property(nonatomic, readonly) BOOL                 isNotifying;
 @property(nonatomic, readonly) NSArray*             properties;
 @property(nonatomic, readonly) NSData*              value;
-
+@property(nonatomic, readonly) CBUUID*              UUID;
 
 - (void)discoverDescriptors;
 - (BlueCapService*)service;
 
-- (void)startNotifications;
+- (void)startNotifications:(BlueCapCallback)__onRead;
 - (void)stopNotifications;
 - (void)read:(BlueCapCallback)__onRead;
 - (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite;

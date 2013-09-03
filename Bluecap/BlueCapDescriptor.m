@@ -18,8 +18,8 @@
 
 @property(nonatomic, retain) CBDescriptor*          cbDescriptor;
 @property(nonatomic, retain) BlueCapCharacteristic* characteristic;
-@property(nonatomic, copy) BlueCapCallback      onRead;
-@property(nonatomic, copy) BlueCapCallback      onWrite;
+@property(nonatomic, copy) BlueCapCallback          onRead;
+@property(nonatomic, copy) BlueCapCallback          onWrite;
 
 @end
 

@@ -1,19 +1,19 @@
 //
-//  PeripheralViewController.m
+//  PeripheralDetailViewController.m
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 8/19/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "PeripheralViewController.h"
+#import "PeripheralDetailViewController.h"
 #import "PeripheralServicesViewController.h"
 
-@interface PeripheralViewController ()
+@interface PeripheralDetailViewController ()
 
 @end
 
-@implementation PeripheralViewController
+@implementation PeripheralDetailViewController
 
 #pragma mark -
 #pragma mark PeripheralViewController

@@ -56,7 +56,12 @@
     return _service;
 }
 
-- (void)startNotifications {
+- (CBUUID*)UUID {
+    return self.cbCharacteristic.UUID;
+}
+
+- (void)startNotifications:(BlueCapCallback)__onRead {
+    self.onRead = __onRead;
     [self.service.peripheral.cbPeripheral setNotifyValue:YES forCharacteristic:self.cbCharacteristic];
 }
 

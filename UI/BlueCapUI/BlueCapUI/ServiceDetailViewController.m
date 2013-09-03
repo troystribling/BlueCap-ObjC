@@ -7,6 +7,7 @@
 //
 
 #import "ServiceDetailViewController.h"
+#import "CharacteristicDetailViewController.h"
 
 @interface ServiceDetailViewController ()
 
@@ -32,6 +33,12 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"CharacteristicDetail"]) {
+        NSIndexPath* selectedIndexPath = [self.tableView indexPathForCell:sender];
+        CharacteristicDetailViewController* viewController = segue.destinationViewController;
+        BlueCapCharacteristic* characteristic = [self.service.characteristics objectAtIndex:selectedIndexPath.row];
+        viewController.characteristic = characteristic;
+    }
 }
 
 #pragma mark -
@@ -48,7 +55,8 @@
 - (UITableViewCell *)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     static NSString *CellIdentifier = @"ServiceDetailCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"characteristic-%d", indexPath.row];
+    BlueCapCharacteristic* characteristic = [self.service.characteristics objectAtIndex:indexPath.row];
+    cell.textLabel.text = characteristic.UUID.stringValue;
     return cell;
 }
 
@@ -56,7 +64,7 @@
 #pragma mark UITableViewDelegate
 
 #pragma mark -
-#pragma mark BlueCapSErviceDelegate
+#pragma mark BlueCapServiceDelegate
 
 - (void)didDiscoverCharacteristicsForService:(BlueCapService*)service error:(NSError*)error {
     [self.tableView reloadData];

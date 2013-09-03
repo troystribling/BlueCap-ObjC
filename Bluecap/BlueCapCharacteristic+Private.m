@@ -31,12 +31,21 @@
 }
 
 - (void)didUpdateValue:(NSError*)error {
+    if (self.onWrite != nil) {
+        self.onWrite(error);
+    }
 }
 
 - (void)didUpdateNotificationState:(NSError*)error {
+    if (self.onWrite != nil) {
+        self.onWrite(error);
+    }
 }
 
 - (void)didWriteValue:(NSError*)error{
+    if (self.onRead != nil) {
+        self.onRead(error);
+    }
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "PeripheralsViewController.h"
-#import "PeripheralViewController.h"
+#import "PeripheralDetailViewController.h"
 #import "PeripheralCell.h"
 
 @interface PeripheralsViewController () {
@@ -38,9 +38,9 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"Peripheral"]) {
+    if ([[segue identifier] isEqualToString:@"PeripheralDetail"]) {
         NSIndexPath *selectedRowIndex = [self.tableView indexPathForCell:sender];
-        PeripheralViewController *viewController = segue.destinationViewController;
+        PeripheralDetailViewController *viewController = segue.destinationViewController;
         viewController.peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:selectedRowIndex.row];
     }
 }
