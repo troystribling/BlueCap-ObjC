@@ -7,6 +7,7 @@
 //
 
 #import "CharacteristicDescriptorsViewController.h"
+#import "DescriptorDetailViewController.h"
 
 @interface CharacteristicDescriptorsViewController ()
 
@@ -27,6 +28,15 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"DescriptorDetail"]) {
+        NSIndexPath* selectedIndex = [self.tableView indexPathForCell:sender];
+        BlueCapDescriptor* descriptor = [self.characteristic.descriptors objectAtIndex:selectedIndex.row];
+        DescriptorDetailViewController* viewController = segue.destinationViewController;
+        viewController.descriptor = descriptor;
+    }
 }
 
 #pragma mark -

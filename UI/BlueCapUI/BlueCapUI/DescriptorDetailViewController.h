@@ -10,4 +10,8 @@
 
 @interface DescriptorDetailViewController : UITableViewController
 
+@property(nonatomic, retain) BlueCapDescriptor* descriptor;
+@property(nonatomic, retain) IBOutlet UILabel*  uuidLabel;
+@property(nonatomic, retain) IBOutlet UILabel*  valueLabel;
+
 @end

@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.uuidLabel.text = self.descriptor.UUID.stringValue;
 }
 
 - (void)didReceiveMemoryWarning {

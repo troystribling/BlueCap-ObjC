@@ -16,5 +16,6 @@
 @property(nonatomic, retain) IBOutlet UILabel*      uuidLabel;
 @property(nonatomic, retain) IBOutlet UILabel*      broadcastingLabel;
 @property(nonatomic, retain) IBOutlet UILabel*      notifyingLabel;
+@property(nonatomic, retain) IBOutlet UILabel*      valueLabel;
 
 @end
