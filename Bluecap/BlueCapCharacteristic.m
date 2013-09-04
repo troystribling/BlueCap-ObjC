@@ -40,8 +40,8 @@
     return self.cbCharacteristic.isNotifying;
 }
 
--(NSArray*)properties {
-    return [NSArray array];
+- (CBCharacteristicProperties)properties {
+    return self.cbCharacteristic.properties;
 }
 
 -(NSData*)value {
@@ -77,6 +77,10 @@
 - (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite {
     self.onWrite = __onWrite;
     [self.service.peripheral.cbPeripheral writeValue:data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
+}
+
+- (BOOL)propertyEnabled:(CBCharacteristicProperties)__property {
+    return self.properties & __property;
 }
 
 #pragma mark -

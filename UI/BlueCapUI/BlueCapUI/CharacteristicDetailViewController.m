@@ -11,9 +11,15 @@
 
 @interface CharacteristicDetailViewController ()
 
+- (NSString*)booleanStringValue:(BOOL)__boolValue;
+- (NSString*)propertyEnabledStringValue:(CBCharacteristicProperties)__property;
+
 @end
 
 @implementation CharacteristicDetailViewController
+
+#pragma mark -
+#pragma mark ChracteristicDetailViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -25,8 +31,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.uuidLabel.text = self.characteristic.UUID.stringValue;
-    self.broadcastingLabel.text = self.characteristic.isBroadcasted ? @"YES" : @"NO";
-    self.notifyingLabel.text = self.characteristic.isNotifying ? @"YES" : @"NO";
+    self.broadcastingLabel.text = [self booleanStringValue:self.characteristic.isBroadcasted];
+    self.notifyingLabel.text = [self booleanStringValue:self.characteristic.isNotifying];
+    self.propertyBroadcast.text = [self propertyEnabledStringValue:CBCharacteristicPropertyBroadcast];
+    self.propertyRead.text = [self propertyEnabledStringValue:CBCharacteristicPropertyRead];
+    self.propertyWriteWithoutResponse.text = [self propertyEnabledStringValue:CBCharacteristicPropertyWriteWithoutResponse];
+    self.propertyWrite.text = [self propertyEnabledStringValue:CBCharacteristicPropertyWrite];
+    self.propertyNotify.text = [self propertyEnabledStringValue:CBCharacteristicPropertyNotify];
+    self.propertyIndicate.text = [self propertyEnabledStringValue:CBCharacteristicPropertyIndicate];
+    self.propertyAuthenticatedSignedWrites.text = [self propertyEnabledStringValue:CBCharacteristicPropertyAuthenticatedSignedWrites];
+    self.propertyExtendedProperties.text = [self propertyEnabledStringValue:CBCharacteristicPropertyExtendedProperties];
+    self.propertyNotifyEncryptionRequired.text = [self propertyEnabledStringValue:CBCharacteristicPropertyNotifyEncryptionRequired];
+    self.propertyIndicateEncryptionRequired.text = [self propertyEnabledStringValue:CBCharacteristicPropertyIndicateEncryptionRequired];
+    if (self.characteristic.isNotifying) {
+        [self.notifiyButton setTitle:@"Stop Notifications" forState:UIControlStateNormal];
+        [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+    } else {
+        [self.notifiyButton setTitle:@"Start Notifications" forState:UIControlStateNormal];
+        [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.1 green:0.7 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,6 +61,17 @@
         CharacteristicDescriptorsViewController* viewController = segue.destinationViewController;
         viewController.characteristic = self.characteristic;
     }
+}
+
+#pragma mark -
+#pragma mark ChracteristicDetailViewController Private API
+
+- (NSString*)booleanStringValue:(BOOL)__boolValue {
+    return __boolValue ?  @"YES" : @"NO";
+}
+
+- (NSString*)propertyEnabledStringValue:(CBCharacteristicProperties)__property {
+    return [self booleanStringValue:[self.characteristic propertyEnabled:__property]];
 }
 
 @end

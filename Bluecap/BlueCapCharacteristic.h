@@ -12,12 +12,12 @@
 
 @interface BlueCapCharacteristic : NSObject
 
-@property(nonatomic, readonly) NSArray*             descriptors;
-@property(nonatomic, readonly) BOOL                 isBroadcasted;
-@property(nonatomic, readonly) BOOL                 isNotifying;
-@property(nonatomic, readonly) NSArray*             properties;
-@property(nonatomic, readonly) NSData*              value;
-@property(nonatomic, readonly) CBUUID*              UUID;
+@property(nonatomic, readonly) NSArray*                     descriptors;
+@property(nonatomic, readonly) BOOL                         isBroadcasted;
+@property(nonatomic, readonly) BOOL                         isNotifying;
+@property(nonatomic, readonly) CBCharacteristicProperties   properties;
+@property(nonatomic, readonly) NSData*                      value;
+@property(nonatomic, readonly) CBUUID*                      UUID;
 
 - (void)discoverDescriptors;
 - (BlueCapService*)service;
@@ -26,5 +26,6 @@
 - (void)stopNotifications;
 - (void)read:(BlueCapCallback)__onRead;
 - (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite;
+- (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 
 @end

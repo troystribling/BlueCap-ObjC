@@ -289,7 +289,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="org-I3-xEa">
-                                                    <rect key="frame" x="150" y="11" width="150" height="21"/>
+                                                    <rect key="frame" x="100" y="11" width="200" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -640,9 +640,9 @@
                         <outlet property="notifyingLabel" destination="zYq-Y7-zJY" id="YbB-tH-Iqh"/>
                         <outlet property="propertyAuthenticatedSignedWrites" destination="Vj1-bV-RyJ" id="h0r-tb-Uph"/>
                         <outlet property="propertyBroadcast" destination="46t-ye-Fke" id="3QE-5F-Igt"/>
-                        <outlet property="propertyEncryptionRequired" destination="QA0-lp-qSE" id="EDP-kN-Vxg"/>
                         <outlet property="propertyExtendedProperties" destination="ryv-Cg-UZr" id="qtF-nz-9M0"/>
                         <outlet property="propertyIndicate" destination="DaH-6d-aKM" id="M4z-pA-2LA"/>
+                        <outlet property="propertyIndicateEncryptionRequired" destination="QA0-lp-qSE" id="z4R-iS-daw"/>
                         <outlet property="propertyNotify" destination="j0P-ee-fIx" id="rsD-lX-kxf"/>
                         <outlet property="propertyNotifyEncryptionRequired" destination="FVx-gh-hi1" id="iED-US-Mog"/>
                         <outlet property="propertyRead" destination="ehn-mg-Eag" id="YsR-5C-hIP"/>

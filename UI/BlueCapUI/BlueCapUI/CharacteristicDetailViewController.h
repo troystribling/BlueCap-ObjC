@@ -28,6 +28,6 @@
 @property(nonatomic, retain) IBOutlet UILabel*      propertyAuthenticatedSignedWrites;
 @property(nonatomic, retain) IBOutlet UILabel*      propertyExtendedProperties;
 @property(nonatomic, retain) IBOutlet UILabel*      propertyNotifyEncryptionRequired;
-@property(nonatomic, retain) IBOutlet UILabel*      propertyEncryptionRequired;
+@property(nonatomic, retain) IBOutlet UILabel*      propertyIndicateEncryptionRequired;
 
 @end
