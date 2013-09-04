@@ -13,6 +13,7 @@
 #import "BlueCapPeripheral+Private.h"
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic+Private.h"
+#import "CBUUID+StringValue.h"
 
 @interface BlueCapDescriptor ()
 
@@ -48,6 +49,29 @@
 - (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite {
     self.onWrite = __onWrite;
     [self.characteristic.service.peripheral.cbPeripheral writeValue:data forDescriptor:self.cbDescriptor];
+}
+
+- (NSString*)typeStringValue {
+    NSString* uuidString = self.UUID.stringValue;
+    NSString* result = @"Unkown";
+    if([uuidString isEqualToString:CBUUIDCharacteristicExtendedPropertiesString]) {
+        result = @"Extended Property";
+    } else if ([uuidString isEqualToString:CBUUIDCharacteristicUserDescriptionString]) {
+        result = @"User Description";
+    } else if ([uuidString isEqualToString:CBUUIDClientCharacteristicConfigurationString]) {
+        result = @"Client Configuration";
+    } else if ([uuidString isEqualToString:CBUUIDServerCharacteristicConfigurationString]) {
+        result = @"Server Configuration";
+    } else if ([uuidString isEqualToString:CBUUIDCharacteristicFormatString]) {
+        result = @"Format";
+    } else if ([uuidString isEqualToString:CBUUIDCharacteristicAggregateFormatString]) {
+        result = @"Aggregate Format";
+    }
+    return result;
+}
+
+- (NSString*)stringValue {
+    return nil;
 }
 
 #pragma mark -

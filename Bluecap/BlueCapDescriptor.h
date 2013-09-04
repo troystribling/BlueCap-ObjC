@@ -12,12 +12,14 @@
 
 @interface BlueCapDescriptor : NSObject
 
-@property(nonatomic, readonly) id               value;
-@property(nonatomic, readonly) CBUUID*          UUID;
+@property(nonatomic, readonly) id           value;
+@property(nonatomic, readonly) CBUUID*      UUID;
 
 - (BlueCapCharacteristic*)characteristic;
 
 - (void)read:(BlueCapCallback)__onRead;
 - (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite;
+- (NSString*)typeStringValue;
+- (NSString*)stringValue;
 
 @end

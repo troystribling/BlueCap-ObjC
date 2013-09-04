@@ -12,6 +12,7 @@
 
 @property(nonatomic, retain) BlueCapDescriptor*     descriptor;
 @property(nonatomic, retain) IBOutlet UILabel*      uuidLabel;
+@property(nonatomic, retain) IBOutlet UILabel*      typeLabel;
 @property(nonatomic, retain) IBOutlet UITextField*  valueTextField;
 
 @end
