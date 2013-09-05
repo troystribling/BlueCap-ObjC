@@ -29,6 +29,7 @@
     self.uuidLabel.text = self.descriptor.UUID.stringValue;
     self.typeLabel.text = [self.descriptor typeStringValue];
     [self.descriptor read:^(NSError* error) {
+        DLog(@"VALUE: %@", self.descriptor.value);
     }];
 }
 

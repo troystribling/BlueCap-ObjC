@@ -71,7 +71,19 @@
 }
 
 - (NSString*)stringValue {
-    return nil;
+    NSString* uuidString = self.UUID.stringValue;
+    NSString* result = @"Unkown";
+    if([uuidString isEqualToString:CBUUIDCharacteristicExtendedPropertiesString]  ||
+       [uuidString isEqualToString:CBUUIDClientCharacteristicConfigurationString] ||
+       [uuidString isEqualToString:CBUUIDServerCharacteristicConfigurationString]) {
+        result = [self.cbDescriptor.value stringValue];
+    } else if ([uuidString isEqualToString:CBUUIDCharacteristicUserDescriptionString]) {
+        result = self.cbDescriptor.value;
+    } else if ([uuidString isEqualToString:CBUUIDCharacteristicFormatString] ||
+               [uuidString isEqualToString:CBUUIDCharacteristicAggregateFormatString]) {
+        result = [[NSString alloc] initWithData:self.cbDescriptor.value encoding:NSUTF8StringEncoding];
+    }
+    return result;
 }
 
 #pragma mark -

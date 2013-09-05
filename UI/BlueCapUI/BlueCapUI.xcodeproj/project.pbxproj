@@ -22,6 +22,7 @@
 		0536D3DC17D52DB200BA1165 /* CharacteristicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536D3DB17D52DB200BA1165 /* CharacteristicDetailViewController.m */; };
 		0536D3E617D560FE00BA1165 /* DescriptorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536D3E517D560FE00BA1165 /* DescriptorDetailViewController.m */; };
 		0536D3E917D5615700BA1165 /* CharacteristicDescriptorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536D3E817D5615700BA1165 /* CharacteristicDescriptorsViewController.m */; };
+		0536D3EC17D8528C00BA1165 /* DescriptorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536D3EB17D8528C00BA1165 /* DescriptorDetailCell.m */; };
 		0565A0B417C3321800BFB1C0 /* PeripheralDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565A0B317C3321800BFB1C0 /* PeripheralDetailViewController.m */; };
 		059563EC17C1AE6F00A5E84F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 052A002817BB2CD4006D7AB3 /* Main.storyboard */; };
 		059769D117CB121600BDE5B5 /* PeripheralServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769D017CB121600BDE5B5 /* PeripheralServiceCell.m */; };
@@ -88,6 +89,8 @@
 		0536D3E517D560FE00BA1165 /* DescriptorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorDetailViewController.m; sourceTree = "<group>"; };
 		0536D3E717D5615700BA1165 /* CharacteristicDescriptorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicDescriptorsViewController.h; sourceTree = "<group>"; };
 		0536D3E817D5615700BA1165 /* CharacteristicDescriptorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicDescriptorsViewController.m; sourceTree = "<group>"; };
+		0536D3EA17D8528C00BA1165 /* DescriptorDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorDetailCell.h; sourceTree = "<group>"; };
+		0536D3EB17D8528C00BA1165 /* DescriptorDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorDetailCell.m; sourceTree = "<group>"; };
 		0565A0B217C3321800BFB1C0 /* PeripheralDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralDetailViewController.h; sourceTree = "<group>"; };
 		0565A0B317C3321800BFB1C0 /* PeripheralDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralDetailViewController.m; sourceTree = "<group>"; };
 		059769CF17CB121600BDE5B5 /* PeripheralServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralServiceCell.h; sourceTree = "<group>"; };
@@ -211,18 +214,20 @@
 				0536D3E817D5615700BA1165 /* CharacteristicDescriptorsViewController.m */,
 				0536D3DA17D52DB200BA1165 /* CharacteristicDetailViewController.h */,
 				0536D3DB17D52DB200BA1165 /* CharacteristicDetailViewController.m */,
+				0536D3EA17D8528C00BA1165 /* DescriptorDetailCell.h */,
+				0536D3EB17D8528C00BA1165 /* DescriptorDetailCell.m */,
 				0536D3E417D560FE00BA1165 /* DescriptorDetailViewController.h */,
 				0536D3E517D560FE00BA1165 /* DescriptorDetailViewController.m */,
 				05D6460417C5A73E008A251D /* PeripheraCell.m */,
 				05D6460317C5A73E008A251D /* PeripheralCell.h */,
+				0565A0B217C3321800BFB1C0 /* PeripheralDetailViewController.h */,
+				0565A0B317C3321800BFB1C0 /* PeripheralDetailViewController.m */,
 				059769CF17CB121600BDE5B5 /* PeripheralServiceCell.h */,
 				059769D017CB121600BDE5B5 /* PeripheralServiceCell.m */,
 				05D645FE17C341F4008A251D /* PeripheralServicesViewController.h */,
 				05D645FF17C341F4008A251D /* PeripheralServicesViewController.m */,
 				05D6E51E17BFDEC70019B575 /* PeripheralsViewController.h */,
 				05D6E51F17BFDEC70019B575 /* PeripheralsViewController.m */,
-				0565A0B217C3321800BFB1C0 /* PeripheralDetailViewController.h */,
-				0565A0B317C3321800BFB1C0 /* PeripheralDetailViewController.m */,
 				059769E317CF1CED00BDE5B5 /* ServiceDetailViewController.h */,
 				059769E417CF1CED00BDE5B5 /* ServiceDetailViewController.m */,
 			);
@@ -361,6 +366,7 @@
 			files = (
 				059769D117CB121600BDE5B5 /* PeripheralServiceCell.m in Sources */,
 				0565A0B417C3321800BFB1C0 /* PeripheralDetailViewController.m in Sources */,
+				0536D3EC17D8528C00BA1165 /* DescriptorDetailCell.m in Sources */,
 				05D6460017C341F4008A251D /* PeripheralServicesViewController.m in Sources */,
 				0536D3DC17D52DB200BA1165 /* CharacteristicDetailViewController.m in Sources */,
 				059769E517CF1CED00BDE5B5 /* ServiceDetailViewController.m in Sources */,
