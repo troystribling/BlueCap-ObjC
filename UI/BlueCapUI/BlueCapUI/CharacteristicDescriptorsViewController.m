@@ -7,7 +7,7 @@
 //
 
 #import "CharacteristicDescriptorsViewController.h"
-#import "DescriptorDetailViewController.h"
+#import "DescriptorDetailCell.h"
 
 @interface CharacteristicDescriptorsViewController ()
 
@@ -30,15 +30,6 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"DescriptorDetail"]) {
-        NSIndexPath* selectedIndex = [self.tableView indexPathForCell:sender];
-        BlueCapDescriptor* descriptor = [self.characteristic.descriptors objectAtIndex:selectedIndex.row];
-        DescriptorDetailViewController* viewController = segue.destinationViewController;
-        viewController.descriptor = descriptor;
-    }
-}
-
 #pragma mark -
 #pragma mark UITableViewDataSource
 
@@ -51,10 +42,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"CharacteristicDescriptorCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"DescriptorDetailCell";
+    DescriptorDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     BlueCapDescriptor* descriptor = [self.characteristic.descriptors objectAtIndex:indexPath.row];
-    cell.textLabel.text = descriptor.UUID.stringValue;
+    cell.typeLabel.text = [descriptor typeStringValue];
+    [descriptor read:^(NSError* error) {
+        cell.valuelabel.text = [descriptor stringValue];
+    }];
     return cell;
 }
 

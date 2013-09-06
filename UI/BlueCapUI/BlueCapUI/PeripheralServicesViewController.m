@@ -24,6 +24,7 @@
 }
 
 - (void)viewDidLoad {
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.peripheral.delegate = self;
     [self.peripheral discoverAllServices];
     [super viewDidLoad];

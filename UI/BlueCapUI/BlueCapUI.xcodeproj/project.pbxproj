@@ -20,7 +20,6 @@
 		052A004017BB2CD4006D7AB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 052A003E17BB2CD4006D7AB3 /* InfoPlist.strings */; };
 		052A004217BB2CD4006D7AB3 /* BlueCapUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 052A004117BB2CD4006D7AB3 /* BlueCapUITests.m */; };
 		0536D3DC17D52DB200BA1165 /* CharacteristicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536D3DB17D52DB200BA1165 /* CharacteristicDetailViewController.m */; };
-		0536D3E617D560FE00BA1165 /* DescriptorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536D3E517D560FE00BA1165 /* DescriptorDetailViewController.m */; };
 		0536D3E917D5615700BA1165 /* CharacteristicDescriptorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536D3E817D5615700BA1165 /* CharacteristicDescriptorsViewController.m */; };
 		0536D3EC17D8528C00BA1165 /* DescriptorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0536D3EB17D8528C00BA1165 /* DescriptorDetailCell.m */; };
 		0565A0B417C3321800BFB1C0 /* PeripheralDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565A0B317C3321800BFB1C0 /* PeripheralDetailViewController.m */; };
@@ -85,8 +84,6 @@
 		052A004117BB2CD4006D7AB3 /* BlueCapUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueCapUITests.m; sourceTree = "<group>"; };
 		0536D3DA17D52DB200BA1165 /* CharacteristicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicDetailViewController.h; sourceTree = "<group>"; };
 		0536D3DB17D52DB200BA1165 /* CharacteristicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicDetailViewController.m; sourceTree = "<group>"; };
-		0536D3E417D560FE00BA1165 /* DescriptorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorDetailViewController.h; sourceTree = "<group>"; };
-		0536D3E517D560FE00BA1165 /* DescriptorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorDetailViewController.m; sourceTree = "<group>"; };
 		0536D3E717D5615700BA1165 /* CharacteristicDescriptorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicDescriptorsViewController.h; sourceTree = "<group>"; };
 		0536D3E817D5615700BA1165 /* CharacteristicDescriptorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicDescriptorsViewController.m; sourceTree = "<group>"; };
 		0536D3EA17D8528C00BA1165 /* DescriptorDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorDetailCell.h; sourceTree = "<group>"; };
@@ -216,8 +213,6 @@
 				0536D3DB17D52DB200BA1165 /* CharacteristicDetailViewController.m */,
 				0536D3EA17D8528C00BA1165 /* DescriptorDetailCell.h */,
 				0536D3EB17D8528C00BA1165 /* DescriptorDetailCell.m */,
-				0536D3E417D560FE00BA1165 /* DescriptorDetailViewController.h */,
-				0536D3E517D560FE00BA1165 /* DescriptorDetailViewController.m */,
 				05D6460417C5A73E008A251D /* PeripheraCell.m */,
 				05D6460317C5A73E008A251D /* PeripheralCell.h */,
 				0565A0B217C3321800BFB1C0 /* PeripheralDetailViewController.h */,
@@ -371,7 +366,6 @@
 				0536D3DC17D52DB200BA1165 /* CharacteristicDetailViewController.m in Sources */,
 				059769E517CF1CED00BDE5B5 /* ServiceDetailViewController.m in Sources */,
 				05D6E52017BFDEC70019B575 /* PeripheralsViewController.m in Sources */,
-				0536D3E617D560FE00BA1165 /* DescriptorDetailViewController.m in Sources */,
 				05D6460517C5A73E008A251D /* PeripheraCell.m in Sources */,
 				0536D3E917D5615700BA1165 /* CharacteristicDescriptorsViewController.m in Sources */,
 				052A002717BB2CD4006D7AB3 /* AppDelegate.m in Sources */,
