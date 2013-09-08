@@ -43,11 +43,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"DescriptorDetailCell";
-    DescriptorDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    __block DescriptorDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     BlueCapDescriptor* descriptor = [self.characteristic.descriptors objectAtIndex:indexPath.row];
     cell.typeLabel.text = [descriptor typeStringValue];
     [descriptor read:^(NSError* error) {
-        cell.valuelabel.text = [descriptor stringValue];
+        cell = (DescriptorDetailCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        if (cell) {
+            cell.valuelabel.text = [descriptor stringValue];
+            [cell setNeedsLayout];
+        }
     }];
     return cell;
 }

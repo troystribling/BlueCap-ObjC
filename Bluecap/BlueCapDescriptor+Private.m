@@ -30,13 +30,17 @@
 
 - (void)didUpdateValue:(NSError*)error {
     if (self.onRead != nil) {
-        self.onRead(error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.onRead(error);
+        });
     }
 }
 
 - (void)didWriteValue:(NSError*)error{
     if (self.onWrite != nil) {
-        self.onWrite(error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.onWrite(error);
+        });
     }
 }
 

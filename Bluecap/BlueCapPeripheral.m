@@ -116,7 +116,9 @@
         [bcCharacteristic discoverDescriptors];
     }
     if ([bcService.delegate respondsToSelector:@selector(didDiscoverCharacteristicsForService:error:)]) {
-        [bcService.delegate didDiscoverCharacteristicsForService:bcService error:error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [bcService.delegate didDiscoverCharacteristicsForService:bcService error:error];
+        });
     }
 }
 
@@ -129,13 +131,17 @@
         [bcCharateristic.discoveredDiscriptors setObject:bcDescriptor forKey:descriptor.UUID];
     }
     if ([bcService.delegate respondsToSelector:@selector(didDiscoverDescriptorsForCharacteristic:error:)]) {
-        [bcService.delegate didDiscoverDescriptorsForCharacteristic:bcCharateristic error:error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [bcService.delegate didDiscoverDescriptorsForCharacteristic:bcCharateristic error:error];
+        });
     }
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverIncludedServicesForService:(CBService*)service error:(NSError*)error {
     DLog(@"Discovered %d Included Services", [service.includedServices count]);
     if ([self.delegate respondsToSelector:@selector(peripheral:didDiscoverIncludedServicesForService:error:)]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+        });
     }
 }
 
@@ -145,7 +151,9 @@
         [self.discoveredServices setObject:[BlueCapService withCBService:service andPeripheral:self] forKey:service.UUID];
     }
     if ([self.delegate respondsToSelector:@selector(peripheral:didDiscoverServices:)]) {
-        [self.delegate peripheral:self didDiscoverServices:error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate peripheral:self didDiscoverServices:error];
+        });
         
     }
 }
