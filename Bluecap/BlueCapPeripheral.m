@@ -91,9 +91,11 @@
 - (BlueCapService*)findServiceForCBChracteristic:(CBCharacteristic*)__cbChracteristic {
     BlueCapService* selectedService = nil;
     for (BlueCapService* service in  self.discoveredServices) {
-        if ([service.discoveredCharacteristics containsObject:__cbChracteristic]) {
-            selectedService = service;
-            break;
+        for (BlueCapCharacteristic* chracteristic in service.characteristics) {
+            if ([chracteristic.cbCharacteristic isEqual:__cbChracteristic]) {
+                selectedService = service;
+                break;
+            }
         }
     }
     return selectedService;
@@ -107,9 +109,11 @@
     BlueCapDescriptor* selectedDescriptor = nil;
     for (BlueCapService* service in  self.discoveredServices) {
         for (BlueCapCharacteristic* characteristic in service.discoveredCharacteristics) {
-            if ([characteristic.discoveredDiscriptors containsObject:__cbDescriptor]) {
-                selectedDescriptor = [characteristic  descriptorFor:__cbDescriptor];
-                break;
+            for (BlueCapDescriptor* descriptor in characteristic.descriptors) {
+                if ([descriptor.cbDescriptor isEqual:__cbDescriptor]) {
+                    selectedDescriptor = descriptor;
+                    break;
+                }
             }
         }
     }
