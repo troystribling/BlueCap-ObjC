@@ -8,9 +8,14 @@
 
 #import "BlueCapService.h"
 
+@class BlueCapCharacteristic;
+
 @interface BlueCapService (Private)
 
-@property(nonatomic, retain) NSMutableDictionary* discoveredCharacteristics;
-@property(nonatomic, retain) NSMutableDictionary* discoveredIncludedServices;
+@property(nonatomic, retain) CBService* cbService;
+@property(nonatomic, retain) NSMutableArray* discoveredCharacteristics;
+@property(nonatomic, retain) NSMutableArray* discoveredIncludedServices;
+
+- (BlueCapCharacteristic*)chracteristicFor:(CBCharacteristic*)__cbCharacteristic;
 
 @end

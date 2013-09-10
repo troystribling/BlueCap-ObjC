@@ -12,8 +12,8 @@
 
 @property(nonatomic, retain) CBDescriptor*              cbDescriptor;
 @property(nonatomic, retain) BlueCapCharacteristic*     characteristic;
-@property(nonatomic, copy) BlueCapCallback              onRead;
-@property(nonatomic, copy) BlueCapCallback              onWrite;
+@property(nonatomic, copy) BlueCapDescriptorCallback    onRead;
+@property(nonatomic, copy) BlueCapDescriptorCallback    onWrite;
 
 + (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;
 - (id)initWithCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;

@@ -8,10 +8,12 @@
 
 #import "BlueCapCharacteristic.h"
 
+@class BlueCapDescriptor;
+
 @interface BlueCapCharacteristic (Private)
 
 @property(nonatomic, retain) CBCharacteristic*      cbCharacteristic;
-@property(nonatomic, retain) NSMutableDictionary*   discoveredDiscriptors;
+@property(nonatomic, retain) NSMutableArray*        discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*        service;
 @property(nonatomic, copy) BlueCapCallback          onRead;
 @property(nonatomic, copy) BlueCapCallback          onWrite;
@@ -22,5 +24,7 @@
 - (void)didUpdateValue:(NSError*)error;
 - (void)didUpdateNotificationState:(NSError*)error;
 - (void)didWriteValue:(NSError*)error;
+
+- (BlueCapDescriptor*)descriptorFor:(CBDescriptor*)__cbDescriptor;
 
 @end

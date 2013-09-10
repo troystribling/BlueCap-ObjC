@@ -11,7 +11,7 @@
 @interface BlueCapPeripheral (Private)
 
 @property(nonatomic, retain) CBPeripheral*          cbPeripheral;
-@property(nonatomic, retain) NSMutableDictionary*   discoveredServices;
+@property(nonatomic, retain) NSMutableArray*        discoveredServices;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral;
 - (id)initWithCBPeripheral:(CBPeripheral*)__cbPeripheral;

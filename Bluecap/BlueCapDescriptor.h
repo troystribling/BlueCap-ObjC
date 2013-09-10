@@ -8,7 +8,10 @@
 
 #import "BlueCapCommon.h"
 
+
 @class BlueCapCharacteristic;
+@class BlueCapDescriptor;
+typedef void(^BlueCapDescriptorCallback)(BlueCapDescriptor* __descriptor, NSError* __error);
 
 @interface BlueCapDescriptor : NSObject
 
@@ -17,8 +20,8 @@
 
 - (BlueCapCharacteristic*)characteristic;
 
-- (void)read:(BlueCapCallback)__onRead;
-- (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite;
+- (void)read:(BlueCapDescriptorCallback)__onRead;
+- (void)write:(NSData*)data onWrite:(BlueCapDescriptorCallback)__onWrite;
 - (NSString*)typeStringValue;
 - (NSString*)stringValue;
 

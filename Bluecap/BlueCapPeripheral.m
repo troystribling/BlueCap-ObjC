@@ -18,9 +18,10 @@
 
 @interface BlueCapPeripheral ()
 
-@property(nonatomic, retain) CBPeripheral*          cbPeripheral;
-@property(nonatomic, retain) NSMutableDictionary*   discoveredServices;
+@property(nonatomic, retain) CBPeripheral*      cbPeripheral;
+@property(nonatomic, retain) NSMutableArray*    discoveredServices;
 
+- (BlueCapService*)findServiceForCBService:(CBService*)__cbService;
 - (BlueCapService*)findServiceForCBChracteristic:(CBCharacteristic*)__cbChracteristic;
 - (BlueCapCharacteristic*)findCharacteristicForCBCharacteristic:(CBCharacteristic*)__cbCharacteristic;
 - (BlueCapDescriptor*)findDecsriptorForCBDescriptor:(CBDescriptor*)__cbDescriptor;
@@ -33,7 +34,7 @@
 #pragma mark BlueCapPeripheral
 
 - (NSArray*)services {
-    return [self.discoveredServices allValues];
+    return [NSArray arrayWithArray:self.discoveredServices];
 }
 
 - (NSString*)name {
@@ -76,10 +77,21 @@
 #pragma mark -
 #pragma mark BlueCapPeripheral PrivateAPI
 
+- (BlueCapService*)findServiceForCBService:(CBService*)__cbService {
+    BlueCapService* selectedService = nil;
+    for (BlueCapService* service in self.discoveredServices) {
+        if ([service.cbService isEqual:__cbService]) {
+            selectedService = service;
+            break;
+        }
+    }
+    return selectedService;
+}
+
 - (BlueCapService*)findServiceForCBChracteristic:(CBCharacteristic*)__cbChracteristic {
     BlueCapService* selectedService = nil;
-    for (BlueCapService* service in  [self.discoveredServices allValues]) {
-        if ([[service.discoveredCharacteristics allKeys] containsObject:__cbChracteristic.UUID]) {
+    for (BlueCapService* service in  self.discoveredServices) {
+        if ([service.discoveredCharacteristics containsObject:__cbChracteristic]) {
             selectedService = service;
             break;
         }
@@ -88,15 +100,15 @@
 }
 
 - (BlueCapCharacteristic*)findCharacteristicForCBCharacteristic:(CBCharacteristic*)__cbCharacteristic {
-    return [[self findServiceForCBChracteristic:__cbCharacteristic].discoveredCharacteristics objectForKey:__cbCharacteristic.UUID];
+    return [[self findServiceForCBChracteristic:__cbCharacteristic] chracteristicFor:__cbCharacteristic];
 }
 
 - (BlueCapDescriptor*)findDecsriptorForCBDescriptor:(CBDescriptor*)__cbDescriptor {
     BlueCapDescriptor* selectedDescriptor = nil;
-    for (BlueCapService* service in  [self.discoveredServices allValues]) {
-        for (BlueCapCharacteristic* characteristic in [service.discoveredCharacteristics allValues]) {
-            if ([[characteristic.discoveredDiscriptors allKeys] containsObject:__cbDescriptor.UUID]) {
-                selectedDescriptor = [characteristic.discoveredDiscriptors objectForKey:__cbDescriptor.UUID];
+    for (BlueCapService* service in  self.discoveredServices) {
+        for (BlueCapCharacteristic* characteristic in service.discoveredCharacteristics) {
+            if ([characteristic.discoveredDiscriptors containsObject:__cbDescriptor]) {
+                selectedDescriptor = [characteristic  descriptorFor:__cbDescriptor];
                 break;
             }
         }
@@ -109,10 +121,10 @@
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverCharacteristicsForService:(CBService*)service error:(NSError*)error {
     DLog(@"Discovered %d Service Characteristics", [service.characteristics count]);
-    BlueCapService* bcService = [self.discoveredServices objectForKey:service.UUID];
+    BlueCapService* bcService = [self findServiceForCBService:service];
     for (CBCharacteristic* charateristic in service.characteristics) {
         BlueCapCharacteristic* bcCharacteristic = [BlueCapCharacteristic withCBCharacteristic:charateristic andService:bcService];
-        [bcService.discoveredCharacteristics setObject:bcCharacteristic forKey:charateristic.UUID];
+        [bcService.discoveredCharacteristics addObject:bcCharacteristic];
         [bcCharacteristic discoverDescriptors];
     }
     if ([bcService.delegate respondsToSelector:@selector(didDiscoverCharacteristicsForService:error:)]) {
@@ -125,10 +137,10 @@
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
     DLog(@"Discovered %d Characteristic Discriptors", [characteristic.descriptors count]);
     BlueCapService* bcService = [self findServiceForCBChracteristic:characteristic];
-    BlueCapCharacteristic* bcCharateristic = [bcService.discoveredCharacteristics objectForKey:characteristic.UUID];
+    BlueCapCharacteristic* bcCharateristic = [bcService chracteristicFor:characteristic];
     for (CBDescriptor* descriptor in characteristic.descriptors) {
         BlueCapDescriptor* bcDescriptor = [BlueCapDescriptor withCBDiscriptor:descriptor andChracteristic:bcCharateristic];
-        [bcCharateristic.discoveredDiscriptors setObject:bcDescriptor forKey:descriptor.UUID];
+        [bcCharateristic.discoveredDiscriptors addObject:bcDescriptor];
     }
     if ([bcService.delegate respondsToSelector:@selector(didDiscoverDescriptorsForCharacteristic:error:)]) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -148,7 +160,7 @@
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverServices:(NSError*)error {
     DLog(@"Discovered %d Services", [peripheral.services count]);
     for (CBService* service in peripheral.services) {
-        [self.discoveredServices setObject:[BlueCapService withCBService:service andPeripheral:self] forKey:service.UUID];
+        [self.discoveredServices addObject:[BlueCapService withCBService:service andPeripheral:self]];
     }
     if ([self.delegate respondsToSelector:@selector(peripheral:didDiscoverServices:)]) {
         dispatch_async(dispatch_get_main_queue(), ^{

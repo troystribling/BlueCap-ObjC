@@ -16,7 +16,7 @@
 }
 
 @property(nonatomic, retain) CBCharacteristic*      cbCharacteristic;
-@property(nonatomic, retain) NSMutableDictionary*   discoveredDiscriptors;
+@property(nonatomic, retain) NSMutableArray*        discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*        service;
 @property(nonatomic, copy) BlueCapCallback          onRead;
 @property(nonatomic, copy) BlueCapCallback          onWrite;
@@ -29,7 +29,7 @@
 #pragma mark BlueCapCharacteristic
 
 - (NSArray*)descriptors {
-    return [self.discoveredDiscriptors allValues];
+    return [NSArray arrayWithArray:self.discoveredDiscriptors];
 }
 
 - (BOOL)isBroadcasted {

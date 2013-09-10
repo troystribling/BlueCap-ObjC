@@ -31,7 +31,7 @@
 - (void)didUpdateValue:(NSError*)error {
     if (self.onRead != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.onRead(error);
+            self.onRead(self, error);
         });
     }
 }
@@ -39,7 +39,7 @@
 - (void)didWriteValue:(NSError*)error{
     if (self.onWrite != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.onWrite(error);
+            self.onWrite(self, error);
         });
     }
 }

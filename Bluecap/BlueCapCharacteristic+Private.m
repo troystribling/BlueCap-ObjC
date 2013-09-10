@@ -7,6 +7,7 @@
 //
 
 #import "BlueCapCharacteristic+Private.h"
+#import "BlueCapDescriptor+Private.h"
 
 @implementation BlueCapCharacteristic (Private)
 
@@ -25,7 +26,7 @@
     if (self) {
         self.cbCharacteristic = __cbCharacteristic;
         self.service = __service;
-        self.discoveredDiscriptors = [NSMutableDictionary dictionary];
+        self.discoveredDiscriptors = [NSMutableArray array];
     }
     return self;
 }
@@ -52,6 +53,17 @@
             self.onRead(error);
         });
     }
+}
+
+- (BlueCapDescriptor*)descriptorFor:(CBDescriptor*)__cbDescriptor {
+    BlueCapDescriptor* selectedDescriptor = nil;
+    for (BlueCapDescriptor* descriptor in self.discoveredDiscriptors) {
+        if ([descriptor.cbDescriptor isEqual:__cbDescriptor]) {
+            selectedDescriptor = descriptor;
+            break;
+        }
+    }
+    return selectedDescriptor;
 }
 
 @end

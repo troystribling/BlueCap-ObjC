@@ -22,7 +22,7 @@
     if (self) {
         self.cbPeripheral = __cbPeripheral;
         self.cbPeripheral.delegate = self;
-        self.discoveredServices = [NSMutableDictionary dictionary];
+        self.discoveredServices = [NSMutableArray array];
     }
     return self;
 }
