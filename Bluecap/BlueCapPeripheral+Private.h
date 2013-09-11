@@ -12,6 +12,7 @@
 
 @property(nonatomic, retain) CBPeripheral*          cbPeripheral;
 @property(nonatomic, retain) NSMutableArray*        discoveredServices;
+@property(nonatomic, retain) NSMapTable*            discoveredObjects;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral;
 - (id)initWithCBPeripheral:(CBPeripheral*)__cbPeripheral;

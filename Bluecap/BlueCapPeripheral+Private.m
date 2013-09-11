@@ -12,6 +12,7 @@
 
 @dynamic cbPeripheral;
 @dynamic discoveredServices;
+@dynamic discoveredObjects;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral {
     return [[BlueCapPeripheral alloc] initWithCBPeripheral:__cbPeripheral];
@@ -23,6 +24,7 @@
         self.cbPeripheral = __cbPeripheral;
         self.cbPeripheral.delegate = self;
         self.discoveredServices = [NSMutableArray array];
+        self.discoveredObjects = [NSMapTable weakToStrongObjectsMapTable];
     }
     return self;
 }
