@@ -10,6 +10,7 @@
 
 @interface BlueCapCentralManager (Private)
 
-@property(nonatomic, retain) CBCentralManager* centralManager;
+@property(nonatomic, retain) CBCentralManager*  centralManager;
+@property(nonatomic, retain) dispatch_queue_t   centralManagerQueue;
 
 @end

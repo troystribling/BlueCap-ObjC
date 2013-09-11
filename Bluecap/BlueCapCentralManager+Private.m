@@ -11,5 +11,6 @@
 @implementation BlueCapCentralManager (Private)
 
 @dynamic centralManager;
+@dynamic centralManagerQueue;
 
 @end

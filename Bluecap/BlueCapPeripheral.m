@@ -30,7 +30,11 @@
 #pragma mark BlueCapPeripheral
 
 - (NSArray*)services {
-    return [NSArray arrayWithArray:self.discoveredServices];
+    __block NSArray* __services = nil;
+    dispatch_sync([BlueCapCentralManager sharedInstance].centralManagerQueue, ^{
+        __services = [NSArray arrayWithArray:self.discoveredServices];
+    });
+    return __services;
 }
 
 - (NSString*)name {
@@ -76,6 +80,25 @@
 #pragma mark -
 #pragma mark CBPeripheralDelegate
 
+- (void)peripheral:(CBPeripheral*)peripheral didDiscoverServices:(NSError*)error {
+    DLog(@"Discovered %d Services", [peripheral.services count]);
+    for (CBService* service in peripheral.services) {
+        BlueCapService* bcService = [BlueCapService withCBService:service andPeripheral:self];
+        [self.discoveredObjects setObject:bcService forKey:service];
+        [self.discoveredServices addObject:bcService];
+    }
+    if ([self.delegate respondsToSelector:@selector(peripheral:didDiscoverServices:)]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate peripheral:self didDiscoverServices:error];
+        });
+        
+    }
+}
+
+- (void)peripheral:(CBPeripheral*)peripheral didDiscoverIncludedServicesForService:(CBService*)service error:(NSError*)error {
+    DLog(@"Discovered %d Included Services", [service.includedServices count]);
+}
+
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverCharacteristicsForService:(CBService*)service error:(NSError*)error {
     DLog(@"Discovered %d Service Characteristics", [service.characteristics count]);
     BlueCapService* bcService = [self.discoveredObjects objectForKey:service];
@@ -104,25 +127,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [bcCharateristic.service.delegate didDiscoverDescriptorsForCharacteristic:bcCharateristic error:error];
         });
-    }
-}
-
-- (void)peripheral:(CBPeripheral*)peripheral didDiscoverIncludedServicesForService:(CBService*)service error:(NSError*)error {
-    DLog(@"Discovered %d Included Services", [service.includedServices count]);
-}
-
-- (void)peripheral:(CBPeripheral*)peripheral didDiscoverServices:(NSError*)error {
-    DLog(@"Discovered %d Services", [peripheral.services count]);
-    for (CBService* service in peripheral.services) {
-        BlueCapService* bcService = [BlueCapService withCBService:service andPeripheral:self];
-        [self.discoveredObjects setObject:bcService forKey:service];
-        [self.discoveredServices addObject:bcService];
-    }
-    if ([self.delegate respondsToSelector:@selector(peripheral:didDiscoverServices:)]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate peripheral:self didDiscoverServices:error];
-        });
-        
     }
 }
 
