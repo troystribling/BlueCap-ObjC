@@ -24,7 +24,7 @@
         self.cbPeripheral = __cbPeripheral;
         self.cbPeripheral.delegate = self;
         self.discoveredServices = [NSMutableArray array];
-        self.discoveredObjects = [NSMapTable weakToStrongObjectsMapTable];
+        self.discoveredObjects = [NSMapTable weakToWeakObjectsMapTable];
     }
     return self;
 }

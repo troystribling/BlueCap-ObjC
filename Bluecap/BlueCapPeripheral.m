@@ -22,11 +22,6 @@
 @property(nonatomic, retain) NSMutableArray*    discoveredServices;
 @property(nonatomic, retain) NSMapTable*        discoveredObjects;
 
-- (BlueCapService*)findServiceForCBService:(CBService*)__cbService;
-- (BlueCapService*)findServiceForCBChracteristic:(CBCharacteristic*)__cbChracteristic;
-- (BlueCapCharacteristic*)findCharacteristicForCBCharacteristic:(CBCharacteristic*)__cbCharacteristic;
-- (BlueCapDescriptor*)findDecsriptorForCBDescriptor:(CBDescriptor*)__cbDescriptor;
-
 @end
 
 @implementation BlueCapPeripheral
@@ -77,49 +72,6 @@
 
 #pragma mark -
 #pragma mark BlueCapPeripheral PrivateAPI
-
-- (BlueCapService*)findServiceForCBService:(CBService*)__cbService {
-    BlueCapService* selectedService = nil;
-    for (BlueCapService* service in self.discoveredServices) {
-        if ([service.cbService isEqual:__cbService]) {
-            selectedService = service;
-            break;
-        }
-    }
-    return selectedService;
-}
-
-- (BlueCapService*)findServiceForCBChracteristic:(CBCharacteristic*)__cbChracteristic {
-    BlueCapService* selectedService = nil;
-    for (BlueCapService* service in  self.discoveredServices) {
-        for (BlueCapCharacteristic* chracteristic in service.characteristics) {
-            if ([chracteristic.cbCharacteristic isEqual:__cbChracteristic]) {
-                selectedService = service;
-                break;
-            }
-        }
-    }
-    return selectedService;
-}
-
-- (BlueCapCharacteristic*)findCharacteristicForCBCharacteristic:(CBCharacteristic*)__cbCharacteristic {
-    return [[self findServiceForCBChracteristic:__cbCharacteristic] chracteristicFor:__cbCharacteristic];
-}
-
-- (BlueCapDescriptor*)findDecsriptorForCBDescriptor:(CBDescriptor*)__cbDescriptor {
-    BlueCapDescriptor* selectedDescriptor = nil;
-    for (BlueCapService* service in  self.discoveredServices) {
-        for (BlueCapCharacteristic* characteristic in service.discoveredCharacteristics) {
-            for (BlueCapDescriptor* descriptor in characteristic.descriptors) {
-                if ([descriptor.cbDescriptor isEqual:__cbDescriptor]) {
-                    selectedDescriptor = descriptor;
-                    break;
-                }
-            }
-        }
-    }
-    return selectedDescriptor;
-}
 
 #pragma mark -
 #pragma mark CBPeripheralDelegate
@@ -194,7 +146,7 @@
 
 - (void)peripheral:(CBPeripheral*)peripheral didWriteValueForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
     DLog(@"Wrote value for characteristic: %@", characteristic.UUID.stringValue);
-    BlueCapCharacteristic* bcCharateristic = [self findCharacteristicForCBCharacteristic:characteristic];
+    BlueCapCharacteristic* bcCharateristic = [self.discoveredObjects objectForKey:characteristic];
     [bcCharateristic didWriteValue:error];
 }
 

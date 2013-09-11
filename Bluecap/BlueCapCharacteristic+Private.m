@@ -55,15 +55,4 @@
     }
 }
 
-- (BlueCapDescriptor*)descriptorFor:(CBDescriptor*)__cbDescriptor {
-    BlueCapDescriptor* selectedDescriptor = nil;
-    for (BlueCapDescriptor* descriptor in self.discoveredDiscriptors) {
-        if ([descriptor.cbDescriptor isEqual:__cbDescriptor]) {
-            selectedDescriptor = descriptor;
-            break;
-        }
-    }
-    return selectedDescriptor;
-}
-
 @end

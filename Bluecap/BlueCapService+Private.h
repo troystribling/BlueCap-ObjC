@@ -16,6 +16,4 @@
 @property(nonatomic, retain) NSMutableArray* discoveredCharacteristics;
 @property(nonatomic, retain) NSMutableArray* discoveredIncludedServices;
 
-- (BlueCapCharacteristic*)chracteristicFor:(CBCharacteristic*)__cbCharacteristic;
-
 @end

@@ -15,15 +15,4 @@
 @dynamic discoveredCharacteristics;
 @dynamic discoveredIncludedServices;
 
-- (BlueCapCharacteristic*)chracteristicFor:(CBCharacteristic*)__cbCharacteristic {
-    BlueCapCharacteristic* selectedCharacteristic = nil;
-    for (BlueCapCharacteristic* characteristic in self.discoveredCharacteristics) {
-        if ([characteristic.cbCharacteristic isEqual:__cbCharacteristic]) {
-            selectedCharacteristic = characteristic;
-            break;
-        }
-    }
-    return selectedCharacteristic;
-}
-
 @end

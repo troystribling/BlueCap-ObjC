@@ -25,6 +25,4 @@
 - (void)didUpdateNotificationState:(NSError*)error;
 - (void)didWriteValue:(NSError*)error;
 
-- (BlueCapDescriptor*)descriptorFor:(CBDescriptor*)__cbDescriptor;
-
 @end
