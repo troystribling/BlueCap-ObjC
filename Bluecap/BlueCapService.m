@@ -7,7 +7,6 @@
 //
 
 
-#import "BlueCapPeripheral.h"
 #import "BlueCapPeripheral+Private.h"
 #import "BlueCapService.h"
 

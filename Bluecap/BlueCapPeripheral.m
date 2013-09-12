@@ -6,11 +6,8 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapPeripheral.h"
-#import "BlueCapService.h"
-#import "BlueCapCharacteristic.h"
-#import "BlueCapDescriptor.h"
 #import "BlueCapCentralManager+Private.h"
+#import "BlueCapPeripheral+Private.h"
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic+Private.h"
 #import "BlueCapDescriptor+Private.h"
@@ -30,10 +27,10 @@
 #pragma mark BlueCapPeripheral
 
 - (NSArray*)services {
-    __block NSArray* __services = nil;
-    dispatch_sync([BlueCapCentralManager sharedInstance].centralManagerQueue, ^{
+    __block NSArray* __services = [NSArray array];
+    [[BlueCapCentralManager sharedInstance] sync:^{
         __services = [NSArray arrayWithArray:self.discoveredServices];
-    });
+    }];
     return __services;
 }
 
@@ -46,7 +43,11 @@
 }
 
 - (CBPeripheralState)state {
-    return self.cbPeripheral.state;
+    __block CBPeripheralState __state = CBPeripheralStateDisconnected;
+    [[BlueCapCentralManager sharedInstance] sync:^{
+        __state = self.cbPeripheral.state;
+    }];
+    return __state;
 }
 
 - (NSNumber*)RSSI {

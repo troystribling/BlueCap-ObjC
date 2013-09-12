@@ -13,4 +13,7 @@
 @property(nonatomic, retain) CBCentralManager*  centralManager;
 @property(nonatomic, retain) dispatch_queue_t   centralManagerQueue;
 
+- (void)sync:(dispatch_block_t)__syncBlock;
+- (void)async:(dispatch_block_t)__asyncBlock;
+
 @end

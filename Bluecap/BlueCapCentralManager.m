@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCentralManager.h"
-#import "BlueCapPeripheral.h"
+#import "BlueCapCentralManager+Private.h"
 #import "BlueCapPeripheral+Private.h"
+
 
 @interface BlueCapCentralManager ()
 
@@ -45,7 +45,11 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 }
 
 - (NSArray*)periphreals {
-    return [self.discoveredPeripherals allValues];
+    __block NSArray* __periperals = [NSArray array];
+    [[BlueCapCentralManager sharedInstance] sync:^{
+        __periperals = [self.discoveredPeripherals allValues];
+    }];
+    return __periperals;
 }
 
 - (void)startScanning {

@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapPeripheral.h"
-#import "BlueCapService.h"
+#import "BlueCapCentralManager+Private.h"
 #import "BlueCapPeripheral+Private.h"
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic.h"
@@ -29,7 +28,11 @@
 #pragma mark BlueCapCharacteristic
 
 - (NSArray*)descriptors {
-    return [NSArray arrayWithArray:self.discoveredDiscriptors];
+    __block NSArray* __descriptors = [NSArray array];
+    [[BlueCapCentralManager sharedInstance] sync:^{
+        __descriptors = [NSArray arrayWithArray:self.discoveredDiscriptors];
+    }];
+    return __descriptors;
 }
 
 - (BOOL)isBroadcasted {
@@ -37,7 +40,11 @@
 }
 
 -(BOOL)isNotifying {
-    return self.cbCharacteristic.isNotifying;
+    __block BOOL __isNotifying = NO;
+    [[BlueCapCentralManager sharedInstance] sync:^{
+        __isNotifying = self.cbCharacteristic.isNotifying;
+    }];
+    return __isNotifying;
 }
 
 - (CBCharacteristicProperties)properties {
@@ -45,7 +52,11 @@
 }
 
 -(NSData*)value {
-    return self.cbCharacteristic.value;
+    __block NSData* __value = [NSData data];
+    [[BlueCapCentralManager sharedInstance] sync:^{
+        __value = self.cbCharacteristic.value;
+    }];
+    return __value;
 }
 
 - (void)discoverDescriptors {
