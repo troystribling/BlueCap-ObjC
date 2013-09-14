@@ -6,8 +6,11 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@class BlueCapDescriptor;
 
 @interface BlueCapDescriptorValue : NSObject
+
+- (NSString*)stringValue;
+- (BlueCapDescriptor*)descriptor;
 
 @end

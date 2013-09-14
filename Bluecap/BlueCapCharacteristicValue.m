@@ -6,8 +6,22 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCharacteristicValue.h"
+#import "BlueCapCentralManager+Private.h"
+#import "BlueCapCharacteristic+Private.h"
+#import "BlueCapCharacteristicValue+Private.h"
 
 @implementation BlueCapCharacteristicValue
+
+- (BlueCapCharacteristic*)characteristic {
+    return self.bcCharacteristic;
+}
+
+-(NSData*)value {
+    __block NSData* __value = [NSData data];
+    [[BlueCapCentralManager sharedInstance] sync:^{
+        __value = self.bcCharacteristic.cbCharacteristic.value;
+    }];
+    return __value;
+}
 
 @end

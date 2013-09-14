@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@class BlueCapCharacteristic;
 
 @interface BlueCapCharacteristicValue : NSObject
+
+- (BlueCapCharacteristic*)characteristic;
 
 @end

@@ -10,4 +10,18 @@
 
 @implementation BlueCapCharacteristicValue (Private)
 
+@dynamic bcCharacteristic;
+
++ (BlueCapCharacteristicValue*)withCharacteristic:(BlueCapCharacteristic*)__bcCharacteristic {
+    return [[BlueCapCharacteristicValue alloc] initWithCharacteristic:__bcCharacteristic];
+}
+
+- (id)initWithCharacteristic:(BlueCapCharacteristic*)__bcCharacteristic {
+    self = [super init];
+    if (self) {
+        self.bcCharacteristic = __bcCharacteristic;
+    }
+    return self;
+}
+
 @end

@@ -51,14 +51,6 @@
     return self.cbCharacteristic.properties;
 }
 
--(NSData*)value {
-    __block NSData* __value = [NSData data];
-    [[BlueCapCentralManager sharedInstance] sync:^{
-        __value = self.cbCharacteristic.value;
-    }];
-    return __value;
-}
-
 - (void)discoverDescriptors {
     [_service.peripheral.cbPeripheral discoverDescriptorsForCharacteristic:self.cbCharacteristic];
 }

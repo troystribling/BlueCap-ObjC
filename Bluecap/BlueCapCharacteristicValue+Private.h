@@ -8,6 +8,13 @@
 
 #import "BlueCapCharacteristicValue.h"
 
+@class BlueCapCharacteristic;
+
 @interface BlueCapCharacteristicValue (Private)
+
+@property(nonatomic, retain) BlueCapCharacteristic*   bcCharacteristic;
+
++ (BlueCapCharacteristicValue*)withCharacteristic:(BlueCapCharacteristic*)__bcCharacteristic;
+- (id)initWithCharacteristic:(BlueCapCharacteristic*)__bcCharacteristic;
 
 @end

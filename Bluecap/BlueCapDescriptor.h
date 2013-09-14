@@ -10,8 +10,8 @@
 
 
 @class BlueCapCharacteristic;
-@class BlueCapDescriptor;
-typedef void(^BlueCapDescriptorCallback)(BlueCapDescriptor* __descriptor, NSError* __error);
+@class BlueCapDescriptorValue;
+typedef void(^BlueCapDescriptorCallback)(BlueCapDescriptorValue* __descriptor, NSError* __error);
 
 @interface BlueCapDescriptor : NSObject
 
@@ -23,6 +23,5 @@ typedef void(^BlueCapDescriptorCallback)(BlueCapDescriptor* __descriptor, NSErro
 - (void)read:(BlueCapDescriptorCallback)__onRead;
 - (void)write:(NSData*)data onWrite:(BlueCapDescriptorCallback)__onWrite;
 - (NSString*)typeStringValue;
-- (NSString*)stringValue;
 
 @end
