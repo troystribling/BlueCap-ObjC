@@ -1,5 +1,5 @@
 //
-//  BlueCapCharacteristicValue.m
+//  BlueCapCharacteristicData.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/11/13.
@@ -8,9 +8,9 @@
 
 #import "BlueCapCentralManager+Private.h"
 #import "BlueCapCharacteristic+Private.h"
-#import "BlueCapCharacteristicValue+Private.h"
+#import "BlueCapCharacteristicData+Private.h"
 
-@implementation BlueCapCharacteristicValue
+@implementation BlueCapCharacteristicData
 
 - (BlueCapCharacteristic*)characteristic {
     return self.bcCharacteristic;

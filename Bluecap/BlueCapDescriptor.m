@@ -29,11 +29,7 @@
 #pragma mark -
 #pragma mark BlueCapCharacteristic
 
--(id)value {
-    return _cbDescriptor.value;
-}
-
--(CBUUID*)UUID {
+- (CBUUID*)UUID {
     return _cbDescriptor.UUID;
 }
 

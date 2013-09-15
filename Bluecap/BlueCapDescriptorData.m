@@ -7,16 +7,16 @@
 //
 
 #import "BlueCapDescriptor+Private.h"
-#import "BlueCapDescriptorValue.h"
+#import "BlueCapDescriptorData.h"
 #import "CBUUID+StringValue.h"
 
-@interface BlueCapDescriptorValue ()
+@interface BlueCapDescriptorData ()
 
     @property(nonatomic, retain) BlueCapDescriptor* bcDescriptor;
 
 @end
 
-@implementation BlueCapDescriptorValue
+@implementation BlueCapDescriptorData
 
 - (NSString*)stringValue {
     NSString* uuidString = self.descriptor.UUID.stringValue;
@@ -36,6 +36,14 @@
 
 - (BlueCapDescriptor*)descriptor {
     return self.bcDescriptor;
+}
+
+- (NSNumber*)numberValue {
+    return nil;
+}
+
+- (NSData*)dataValue {
+    return nil;
 }
 
 @end

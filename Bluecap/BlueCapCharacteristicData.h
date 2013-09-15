@@ -8,7 +8,7 @@
 
 @class BlueCapCharacteristic;
 
-@interface BlueCapCharacteristicValue : NSObject
+@interface BlueCapCharacteristicData : NSObject
 
 - (BlueCapCharacteristic*)characteristic;
 

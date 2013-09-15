@@ -1,20 +1,20 @@
 //
-//  BlueCapDescriptorValue+Private.h
+//  BlueCapDescriptorData+Private.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/12/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapDescriptorValue.h"
+#import "BlueCapDescriptorData.h"
 
 @class BlueCapDescriptor;
 
-@interface BlueCapDescriptorValue (Private)
+@interface BlueCapDescriptorData (Private)
 
 @property(nonatomic, retain) BlueCapDescriptor* bcDescriptor;
 
-+ (BlueCapDescriptorValue*)withDescriptor:(BlueCapDescriptor*)__bcDescriptor;
++ (BlueCapDescriptorData*)withDescriptor:(BlueCapDescriptor*)__bcDescriptor;
 - (id)initWithDescriptor:(BlueCapDescriptor*)__bcDescriptor;
 
 @end

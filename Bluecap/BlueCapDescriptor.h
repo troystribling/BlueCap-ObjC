@@ -10,12 +10,11 @@
 
 
 @class BlueCapCharacteristic;
-@class BlueCapDescriptorValue;
-typedef void(^BlueCapDescriptorCallback)(BlueCapDescriptorValue* __descriptor, NSError* __error);
+@class BlueCapDescriptorData;
+typedef void(^BlueCapDescriptorCallback)(BlueCapDescriptorData* __descriptor, NSError* __error);
 
 @interface BlueCapDescriptor : NSObject
 
-@property(nonatomic, readonly) id           value;
 @property(nonatomic, readonly) CBUUID*      UUID;
 
 - (BlueCapCharacteristic*)characteristic;

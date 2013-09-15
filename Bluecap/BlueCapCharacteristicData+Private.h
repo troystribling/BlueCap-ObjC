@@ -1,20 +1,20 @@
 //
-//  BlueCapCharacteristicValue+Private.h
+//  BlueCapCharacteristicData+Private.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/12/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCharacteristicValue.h"
+#import "BlueCapCharacteristicData.h"
 
 @class BlueCapCharacteristic;
 
-@interface BlueCapCharacteristicValue (Private)
+@interface BlueCapCharacteristicData (Private)
 
 @property(nonatomic, retain) BlueCapCharacteristic*   bcCharacteristic;
 
-+ (BlueCapCharacteristicValue*)withCharacteristic:(BlueCapCharacteristic*)__bcCharacteristic;
++ (BlueCapCharacteristicData*)withCharacteristic:(BlueCapCharacteristic*)__bcCharacteristic;
 - (id)initWithCharacteristic:(BlueCapCharacteristic*)__bcCharacteristic;
 
 @end

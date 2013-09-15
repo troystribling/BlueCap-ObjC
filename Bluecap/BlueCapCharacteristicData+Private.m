@@ -1,19 +1,19 @@
 //
-//  BlueCapCharacteristicValue+Private.m
+//  BlueCapCharacteristicData+Private.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/12/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCharacteristicValue+Private.h"
+#import "BlueCapCharacteristicData+Private.h"
 
-@implementation BlueCapCharacteristicValue (Private)
+@implementation BlueCapCharacteristicData (Private)
 
 @dynamic bcCharacteristic;
 
-+ (BlueCapCharacteristicValue*)withCharacteristic:(BlueCapCharacteristic*)__bcCharacteristic {
-    return [[BlueCapCharacteristicValue alloc] initWithCharacteristic:__bcCharacteristic];
++ (BlueCapCharacteristicData*)withCharacteristic:(BlueCapCharacteristic*)__bcCharacteristic {
+    return [[BlueCapCharacteristicData alloc] initWithCharacteristic:__bcCharacteristic];
 }
 
 - (id)initWithCharacteristic:(BlueCapCharacteristic*)__bcCharacteristic {
