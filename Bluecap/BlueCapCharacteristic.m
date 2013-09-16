@@ -14,11 +14,11 @@
 @interface BlueCapCharacteristic () {
 }
 
-@property(nonatomic, retain) CBCharacteristic*      cbCharacteristic;
-@property(nonatomic, retain) NSMutableArray*        discoveredDiscriptors;
-@property(nonatomic, retain) BlueCapService*        service;
-@property(nonatomic, copy) BlueCapCallback          onRead;
-@property(nonatomic, copy) BlueCapCallback          onWrite;
+@property(nonatomic, retain) CBCharacteristic*              cbCharacteristic;
+@property(nonatomic, retain) NSMutableArray*                discoveredDiscriptors;
+@property(nonatomic, retain) BlueCapService*                service;
+@property(nonatomic, copy) BlueCapCharacteristicCallback    onRead;
+@property(nonatomic, copy) BlueCapCharacteristicCallback    onWrite;
 
 @end
 
@@ -63,7 +63,7 @@
     return self.cbCharacteristic.UUID;
 }
 
-- (void)startNotifications:(BlueCapCallback)__onRead {
+- (void)startNotifications:(BlueCapCharacteristicCallback)__onRead {
     self.onRead = __onRead;
     [self.service.peripheral.cbPeripheral setNotifyValue:YES forCharacteristic:self.cbCharacteristic];
 }
@@ -72,12 +72,12 @@
     [self.service.peripheral.cbPeripheral setNotifyValue:NO forCharacteristic:self.cbCharacteristic];
 }
 
-- (void)read:(BlueCapCallback)__onRead {
+- (void)read:(BlueCapCharacteristicCallback)__onRead {
     self.onRead = __onRead;
     [self.service.peripheral.cbPeripheral readValueForCharacteristic:self.cbCharacteristic];
 }
 
-- (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite {
+- (void)write:(NSData*)data onWrite:(BlueCapCharacteristicCallback)__onWrite {
     self.onWrite = __onWrite;
     [self.service.peripheral.cbPeripheral writeValue:data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
 }

@@ -140,7 +140,7 @@
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateValueForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
     DLog(@"Updated value for characteristic: %@", characteristic.UUID.stringValue);
     BlueCapCharacteristic* bcCharateristic = [self.discoveredObjects objectForKey:characteristic];
-    [bcCharateristic didWriteValue:error];
+    [bcCharateristic didUpdateValue:error];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateValueForDescriptor:(CBDescriptor*)descriptor error:(NSError*)error {
@@ -158,7 +158,7 @@
 - (void)peripheral:(CBPeripheral*)peripheral didWriteValueForDescriptor:(CBDescriptor*)descriptor error:(NSError*)error {
     DLog(@"Wrote value for discriptor: %@", descriptor.UUID.stringValue);
     BlueCapDescriptor* bcDescriptor = [self.discoveredObjects objectForKey:descriptor];
-    [bcDescriptor didUpdateValue:error];
+    [bcDescriptor didWriteValue:error];
 }
 
 - (void)peripheralDidUpdateName:(CBPeripheral*)peripheral {

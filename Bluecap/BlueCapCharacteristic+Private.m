@@ -7,6 +7,7 @@
 //
 
 #import "BlueCapCharacteristic+Private.h"
+#import "BlueCapCharacteristicData+Private.h"
 #import "BlueCapDescriptor+Private.h"
 
 @implementation BlueCapCharacteristic (Private)
@@ -32,9 +33,9 @@
 }
 
 - (void)didUpdateValue:(NSError*)error {
-    if (self.onWrite != nil) {
+    if (self.onRead != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.onWrite(error);
+            self.onRead([BlueCapCharacteristicData withCharacteristic:self], error);
         });
     }
 }
@@ -42,15 +43,14 @@
 - (void)didUpdateNotificationState:(NSError*)error {
     if (self.onWrite != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.onWrite(error);
         });
     }
 }
 
 - (void)didWriteValue:(NSError*)error{
-    if (self.onRead != nil) {
+    if (self.onWrite != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.onRead(error);
+            self.onWrite([BlueCapCharacteristicData withCharacteristic:self], error);
         });
     }
 }

@@ -9,6 +9,9 @@
 #import "BlueCapCommon.h"
 
 @class BlueCapService;
+@class BlueCapCharacteristicData;
+
+typedef void(^BlueCapCharacteristicCallback)(BlueCapCharacteristicData* __descriptor, NSError* __error);
 
 @interface BlueCapCharacteristic : NSObject
 
@@ -22,10 +25,10 @@
 - (void)discoverDescriptors;
 - (BlueCapService*)service;
 
-- (void)startNotifications:(BlueCapCallback)__onRead;
+- (void)startNotifications:(BlueCapCharacteristicCallback)__onRead;
 - (void)stopNotifications;
-- (void)read:(BlueCapCallback)__onRead;
-- (void)write:(NSData*)data onWrite:(BlueCapCallback)__onWrite;
+- (void)read:(BlueCapCharacteristicCallback)__onRead;
+- (void)write:(NSData*)data onWrite:(BlueCapCharacteristicCallback)__onWrite;
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 
 @end
