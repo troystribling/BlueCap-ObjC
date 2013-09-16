@@ -10,6 +10,6 @@
 
 @interface BlueCapCharacteristicData : NSObject
 
-- (BlueCapCharacteristic*)characteristic;
+@property(nonatomic, readonly) BlueCapCharacteristic* characteristic;
 
 @end

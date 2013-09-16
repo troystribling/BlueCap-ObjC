@@ -10,9 +10,15 @@
 #import "BlueCapCharacteristic+Private.h"
 #import "BlueCapCharacteristicData+Private.h"
 
+@interface BlueCapCharacteristic ()
+
+@property(nonatomic, retain) BlueCapCharacteristic* bcCharacteristic;
+
+@end
+
 @implementation BlueCapCharacteristicData
 
-- (BlueCapCharacteristic*)characteristic {
+- (BlueCapCharacteristic*) characteristic {
     return self.bcCharacteristic;
 }
 
