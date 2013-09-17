@@ -15,8 +15,8 @@
 @property(nonatomic, retain) CBCharacteristic*              cbCharacteristic;
 @property(nonatomic, retain) NSMutableArray*                discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*                service;
-@property(nonatomic, copy) BlueCapCharacteristicCallback    onRead;
-@property(nonatomic, copy) BlueCapCharacteristicCallback    onWrite;
+@property(nonatomic, copy) BlueCapCharacteristicCallback    onReadCallback;
+@property(nonatomic, copy) BlueCapCharacteristicCallback    onWriteCallback;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service;
 - (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service;

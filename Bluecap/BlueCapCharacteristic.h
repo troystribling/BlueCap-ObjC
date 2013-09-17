@@ -27,8 +27,8 @@ typedef void(^BlueCapCharacteristicCallback)(BlueCapCharacteristicData* __descri
 
 - (void)startNotifications:(BlueCapCharacteristicCallback)__onRead;
 - (void)stopNotifications;
-- (void)read:(BlueCapCharacteristicCallback)__onRead;
-- (void)write:(NSData*)data onWrite:(BlueCapCharacteristicCallback)__onWrite;
+- (void)read:(BlueCapCharacteristicCallback)__onReadCallback;
+- (void)write:(NSData*)data onWrite:(BlueCapCharacteristicCallback)__onWriteCallback;
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 
 @end

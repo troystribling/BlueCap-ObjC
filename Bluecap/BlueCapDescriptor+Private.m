@@ -13,8 +13,8 @@
 
 @dynamic cbDescriptor;
 @dynamic characteristic;
-@dynamic onWrite;
-@dynamic onRead;
+@dynamic onWriteCallback;
+@dynamic onReadCallback;
 
 + (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic {
     return [[BlueCapDescriptor alloc] initWithCBDiscriptor:__descriptor andChracteristic:__chracteristic];
@@ -30,17 +30,17 @@
 }
 
 - (void)didUpdateValue:(NSError*)error {
-    if (self.onRead != nil) {
+    if (self.onReadCallback != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.onRead([BlueCapDescriptorData withDescriptor:self], error);
+            self.onReadCallback([BlueCapDescriptorData withDescriptor:self], error);
         });
     }
 }
 
 - (void)didWriteValue:(NSError*)error{
-    if (self.onWrite != nil) {
+    if (self.onWriteCallback != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.onWrite([BlueCapDescriptorData withDescriptor:self], error);
+            self.onWriteCallback([BlueCapDescriptorData withDescriptor:self], error);
         });
     }
 }

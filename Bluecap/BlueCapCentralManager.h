@@ -10,6 +10,8 @@
 
 @protocol BlueCapCentralManagerDelegate <NSObject>
 
+typedef void(^BlueCapCentralManagerCallback)(void);
+
 @optional
 
 - (void)didPoweredOff;
@@ -28,6 +30,8 @@
 + (BlueCapCentralManager*)sharedInstance;
 - (void)startScanning;
 - (void)startScanningForUUIDString:(NSString*)uuidString;
-- (void) stopScanning;
+- (void)stopScanning;
+
+- (void)onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback;
 
 @end

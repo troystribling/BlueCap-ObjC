@@ -19,8 +19,8 @@ typedef void(^BlueCapDescriptorCallback)(BlueCapDescriptorData* __descriptor, NS
 
 - (BlueCapCharacteristic*)characteristic;
 
-- (void)read:(BlueCapDescriptorCallback)__onRead;
-- (void)write:(NSData*)data onWrite:(BlueCapDescriptorCallback)__onWrite;
+- (void)read:(BlueCapDescriptorCallback)__onReadCallback;
+- (void)write:(NSData*)data onWrite:(BlueCapDescriptorCallback)__onWriteCallback;
 - (NSString*)typeStringValue;
 
 @end

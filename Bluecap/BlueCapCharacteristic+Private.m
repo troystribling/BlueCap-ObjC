@@ -15,8 +15,8 @@
 @dynamic cbCharacteristic;
 @dynamic discoveredDiscriptors;
 @dynamic service;
-@dynamic onWrite;
-@dynamic onRead;
+@dynamic onWriteCallback;
+@dynamic onReadCallback;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
     return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andService:__service];
@@ -33,24 +33,20 @@
 }
 
 - (void)didUpdateValue:(NSError*)error {
-    if (self.onRead != nil) {
+    if (self.onReadCallback != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.onRead([BlueCapCharacteristicData withCharacteristic:self], error);
+            self.onReadCallback([BlueCapCharacteristicData withCharacteristic:self], error);
         });
     }
 }
 
 - (void)didUpdateNotificationState:(NSError*)error {
-    if (self.onWrite != nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-        });
-    }
 }
 
 - (void)didWriteValue:(NSError*)error{
-    if (self.onWrite != nil) {
+    if (self.onWriteCallback != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.onWrite([BlueCapCharacteristicData withCharacteristic:self], error);
+            self.onWriteCallback([BlueCapCharacteristicData withCharacteristic:self], error);
         });
     }
 }

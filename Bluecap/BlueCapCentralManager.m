@@ -12,9 +12,10 @@
 
 @interface BlueCapCentralManager ()
 
-@property(nonatomic, retain) NSMutableDictionary*   discoveredPeripherals;
-@property(nonatomic, retain) CBCentralManager*      centralManager;
-@property(nonatomic, retain) dispatch_queue_t       centralManagerQueue;
+@property(nonatomic, retain) NSMutableDictionary*           discoveredPeripherals;
+@property(nonatomic, retain) CBCentralManager*              centralManager;
+@property(nonatomic, retain) dispatch_queue_t               centralManagerQueue;
+@property(nonatomic, copy) BlueCapCentralManagerCallback    onPowerOffCallback;
 
 @end
 
@@ -79,6 +80,10 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     }
 }
 
+- (void)onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback {
+    self.onPowerOffCallback = __onPowerOffCallback;
+}
+
 #pragma mark -
 #pragma mark CBCentralManagerDelegate
 
@@ -138,9 +143,9 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)centralManagerDidUpdateState:(CBCentralManager*)central {
 	switch ([central state]) {
 		case CBCentralManagerStatePoweredOff: {
-            if ([self.delegate respondsToSelector:@selector(didPoweredOff)]) {
+            if (self.onPowerOffCallback != nil) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate didPoweredOff];
+                    self.onPowerOffCallback();
                 });
             }
 			break;

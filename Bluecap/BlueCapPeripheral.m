@@ -15,9 +15,14 @@
 
 @interface BlueCapPeripheral ()
 
-@property(nonatomic, retain) CBPeripheral*      cbPeripheral;
-@property(nonatomic, retain) NSMutableArray*    discoveredServices;
-@property(nonatomic, retain) NSMapTable*        discoveredObjects;
+@property(nonatomic, retain) CBPeripheral*                  cbPeripheral;
+@property(nonatomic, retain) NSMutableArray*                discoveredServices;
+@property(nonatomic, retain) NSMapTable*                    discoveredObjects;
+
+@property(nonatomic, copy) BlueCapPeripheralCallback        onPeriperialDisconnect;
+@property(nonatomic, copy) BlueCapPeripheralCallback        onPeripheralConnect;
+@property(nonatomic, copy) BlueCapPeripheralCallback        onPeripheralDiscovered;
+@property(nonatomic, copy) BlueCapPeripheralRSSICallback    onRSSIUpdate;
 
 @end
 

@@ -14,6 +14,10 @@
 @dynamic discoveredServices;
 @dynamic discoveredObjects;
 
+@dynamic onPeriperialDisconnect;
+@dynamic onPeripheralConnect;
+@dynamic onPeripheralDiscovered;
+
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral {
     return [[BlueCapPeripheral alloc] initWithCBPeripheral:__cbPeripheral];
 }
