@@ -33,6 +33,7 @@
     if (self.onReadCallback != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.onReadCallback([BlueCapDescriptorData withDescriptor:self], error);
+            self.onReadCallback = nil;
         });
     }
 }
@@ -41,6 +42,7 @@
     if (self.onWriteCallback != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.onWriteCallback([BlueCapDescriptorData withDescriptor:self], error);
+            self.onWriteCallback = nil;
         });
     }
 }

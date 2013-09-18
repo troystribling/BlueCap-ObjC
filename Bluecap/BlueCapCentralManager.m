@@ -16,6 +16,7 @@
 @property(nonatomic, retain) CBCentralManager*              centralManager;
 @property(nonatomic, retain) dispatch_queue_t               centralManagerQueue;
 @property(nonatomic, copy) BlueCapCentralManagerCallback    onPowerOffCallback;
+@property(nonatomic, copy) BlueCapPeripheralCallback        onPeripheralDiscoveredCallback;
 
 @end
 
@@ -82,6 +83,10 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
 - (void)onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback {
     self.onPowerOffCallback = __onPowerOffCallback;
+}
+
+- (void)onPeripheralDiscovered:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback {
+    self.onPeripheralDiscoveredCallback = __onPeripheralDiscoveredCallback;
 }
 
 #pragma mark -

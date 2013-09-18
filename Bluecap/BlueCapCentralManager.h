@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import "BlueCapCommon.h"
+
 @class BlueCapPeripheral;
 
 @protocol BlueCapCentralManagerDelegate <NSObject>
-
-typedef void(^BlueCapCentralManagerCallback)(void);
 
 @optional
 
@@ -33,5 +33,6 @@ typedef void(^BlueCapCentralManagerCallback)(void);
 - (void)stopScanning;
 
 - (void)onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback;
+- (void)onPeripheralDiscovered:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback;
 
 @end
