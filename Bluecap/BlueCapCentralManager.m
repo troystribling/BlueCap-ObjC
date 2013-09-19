@@ -67,6 +67,9 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
 - (void) stopScanning {
 	[self.centralManager stopScan];
+    [self sync:^{
+        self.onPeripheralDiscoveredCallback = nil;
+    }];
 }
 
 - (void)connectPeripherial:(BlueCapPeripheral*)peripheral {
@@ -128,6 +131,11 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
         DLog(@"Periphreal Discovered: %@", bcperipheral.name);
         [self.discoveredPeripherals setObject:bcperipheral forKey:peripheral];
+        if (self.onPeripheralDiscoveredCallback != nil) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                self.onPeripheralDiscoveredCallback(bcperipheral);
+            });
+        }
         if ([self.delegate respondsToSelector:@selector(didDiscoverPeripheral:)]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.delegate didDiscoverPeripheral:bcperipheral];
