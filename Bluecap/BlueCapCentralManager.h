@@ -28,11 +28,11 @@
 @property(nonatomic, weak) id<BlueCapCentralManagerDelegate>    delegate;
 
 + (BlueCapCentralManager*)sharedInstance;
-- (void)startScanning;
-- (void)startScanningForUUIDString:(NSString*)uuidString;
+- (void)startScanning:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback;
+- (void)startScanningForUUIDString:(NSString*)uuidString onDiscovery:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback;
 - (void)stopScanning;
 
-- (void)onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback;
-- (void)onPeripheralDiscovered:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback;
+- (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback;
+- (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback;
 
 @end

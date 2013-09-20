@@ -16,7 +16,9 @@
 @property(nonatomic, retain) CBCentralManager*              centralManager;
 @property(nonatomic, retain) dispatch_queue_t               centralManagerQueue;
 @property(nonatomic, copy) BlueCapCentralManagerCallback    onPowerOffCallback;
+@property(nonatomic, copy) BlueCapCentralManagerCallback    onPowerOnCallback;
 @property(nonatomic, copy) BlueCapPeripheralCallback        onPeripheralDiscoveredCallback;
+@property(nonatomic, assign) BOOL                           poweredOn;
 
 @end
 
@@ -42,6 +44,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         self.centralManagerQueue = dispatch_queue_create("com.gnos.us.centralManager", DISPATCH_QUEUE_SERIAL);
 		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.centralManagerQueue];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
+        self.poweredOn = YES;
 	}
     return self;
 }
@@ -54,14 +57,16 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     return __periperals;
 }
 
-- (void)startScanning {
+- (void)startScanning:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback {
     DLog(@"Start Scanning");
+    self.onPeripheralDiscoveredCallback = __onPeripheralDiscoveredCallback;
     [self.centralManager scanForPeripheralsWithServices:nil options:nil];
 }
 
-- (void)startScanningForUUIDString:(NSString*)uuidString {
+- (void)startScanningForUUIDString:(NSString*)uuidString onDiscovery:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback {
 	NSArray			*uuidArray	= [NSArray arrayWithObjects:[CBUUID UUIDWithString:uuidString], nil];
 	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
+    self.onPeripheralDiscoveredCallback = __onPeripheralDiscoveredCallback;
 	[self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
 }
 
@@ -84,12 +89,18 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     }
 }
 
-- (void)onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback {
-    self.onPowerOffCallback = __onPowerOffCallback;
+- (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback {
+    self.onPowerOnCallback = __onPowerOnCallback;
+    [self sync:^{
+        if (!self.poweredOn) {
+            self.onPowerOnCallback();
+        }
+    }];
 }
 
-- (void)onPeripheralDiscovered:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback {
-    self.onPeripheralDiscoveredCallback = __onPeripheralDiscoveredCallback;
+- (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback {
+    self.onPowerOffCallback = __onPowerOffCallback;
+    [self powerOn:__onPowerOnCallback];
 }
 
 #pragma mark -
@@ -157,6 +168,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 	switch ([central state]) {
 		case CBCentralManagerStatePoweredOff: {
             if (self.onPowerOffCallback != nil) {
+                self.poweredOn = NO;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.onPowerOffCallback();
                 });
@@ -171,7 +183,10 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 		}
 		case CBCentralManagerStatePoweredOn: {
             DLog(@"CBCentralManager Powered ON");
-            [self startScanning];
+            self.poweredOn = YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.onPowerOnCallback();
+            });
 			break;
 		}
 		case CBCentralManagerStateResetting: {
