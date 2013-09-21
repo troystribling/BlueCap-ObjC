@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeripheralServicesViewController : UITableViewController <BlueCapPeripheralDelegate>
+@interface PeripheralServicesViewController : UITableViewController
 
 @property(nonatomic, retain) BlueCapPeripheral*  peripheral;
 

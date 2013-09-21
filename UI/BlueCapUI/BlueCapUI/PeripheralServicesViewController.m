@@ -25,8 +25,11 @@
 
 - (void)viewDidLoad {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    self.peripheral.delegate = self;
-    [self.peripheral discoverAllServices];
+    [self.peripheral discoverAllServices:^(NSArray* __services) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
     [super viewDidLoad];
 }
 
@@ -67,12 +70,5 @@
 
 #pragma mark -
 #pragma mark UITableViewDelegate
-
-#pragma mark -
-#pragma mark BlueCapPeripheralDelegate
-
-- (void)peripheral:(BlueCapPeripheral*)peripheral didDiscoverServices:(NSError*)error {
-    [self.tableView reloadData];
-}
 
 @end

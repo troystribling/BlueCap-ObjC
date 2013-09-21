@@ -21,6 +21,7 @@
 
 @property(nonatomic, copy) BlueCapPeripheralCallback        onPeriperialDisconnect;
 @property(nonatomic, copy) BlueCapPeripheralCallback        onPeripheralConnect;
+@property(nonatomic, copy) BlueCapServicesCallback          onServicesDiscovered;
 @property(nonatomic, copy) BlueCapPeripheralRSSICallback    onRSSIUpdate;
 
 @end
@@ -59,11 +60,13 @@
     return self.cbPeripheral.RSSI;
 }
 
-- (void)discoverAllServices {
+- (void)discoverAllServices:(BlueCapServicesCallback)__onServicesDiscovered {
+    self.onServicesDiscovered = __onServicesDiscovered;
     [self.cbPeripheral discoverServices:nil];
 }
 
-- (void)discoverServices:(NSArray*)__services {
+- (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesCallback)__onServicesDiscovered {
+    self.onServicesDiscovered = __onServicesDiscovered;
     [self.cbPeripheral discoverServices:__services];
 }
 
@@ -102,11 +105,10 @@
         [self.discoveredObjects setObject:bcService forKey:service];
         [self.discoveredServices addObject:bcService];
     }
-    if ([self.delegate respondsToSelector:@selector(peripheral:didDiscoverServices:)]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate peripheral:self didDiscoverServices:error];
-        });
-        
+    if (self.onServicesDiscovered) {
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+            self.onServicesDiscovered(self.discoveredServices);
+        }];
     }
 }
 

@@ -163,11 +163,11 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 		case CBCentralManagerStatePoweredOn: {
             DLog(@"CBCentralManager Powered ON");
             self.poweredOn = YES;
-            [self asyncCallback:^{
-                if (self.onPowerOnCallback) {
+            if (self.onPowerOnCallback) {
+                [self asyncCallback:^{
                     self.onPowerOnCallback();
-                }
-            }];
+                }];
+            }
 			break;
 		}
 		case CBCentralManagerStateResetting: {
