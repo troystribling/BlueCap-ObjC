@@ -10,22 +10,9 @@
 
 @class BlueCapPeripheral;
 
-@protocol BlueCapCentralManagerDelegate <NSObject>
-
-@optional
-
-- (void)didPoweredOff;
-- (void)didDiscoverPeripheral:(BlueCapPeripheral*)peripheral;
-- (void)didConnectPeripheral:(BlueCapPeripheral*)peripheral;
-- (void)didDisconnectPeripheral:(BlueCapPeripheral*)peripheral;
-
-@end
-
-
 @interface BlueCapCentralManager : NSObject <CBCentralManagerDelegate>
 
 @property(nonatomic, readonly, retain) NSArray*                 periphreals;
-@property(nonatomic, weak) id<BlueCapCentralManagerDelegate>    delegate;
 
 + (BlueCapCentralManager*)sharedInstance;
 - (void)startScanning:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback;

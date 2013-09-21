@@ -29,7 +29,7 @@
 
 - (NSArray*)descriptors {
     __block NSArray* __descriptors = [NSArray array];
-    [[BlueCapCentralManager sharedInstance] sync:^{
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
         __descriptors = [NSArray arrayWithArray:self.discoveredDiscriptors];
     }];
     return __descriptors;
@@ -41,7 +41,7 @@
 
 -(BOOL)isNotifying {
     __block BOOL __isNotifying = NO;
-    [[BlueCapCentralManager sharedInstance] sync:^{
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
         __isNotifying = self.cbCharacteristic.isNotifying;
     }];
     return __isNotifying;

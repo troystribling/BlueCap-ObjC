@@ -7,6 +7,7 @@
 //
 
 #import "BlueCapPeripheral+Private.h"
+#import "BlueCapCentralManager+Private.h"
 
 @implementation BlueCapPeripheral (Private)
 
@@ -35,28 +36,28 @@
 
 - (void)didDisconnectPeripheral:(BlueCapPeripheral*)__peripheral {
     if (self.onPeriperialDisconnect != nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onPeriperialDisconnect(__peripheral);
             self.onPeriperialDisconnect = nil;
-        });
+        }];
     }
 }
 
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral {
     if (self.onPeripheralConnect != nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onPeripheralConnect(__peripheral);
             self.onPeripheralConnect = nil;
-        });
+        }];
     }
 }
 
 - (void)didUpdateRSSI:(BlueCapPeripheral*)__peripheral error:(NSError*)__error {
     if (self.onRSSIUpdate != nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onRSSIUpdate(__peripheral.RSSI, __error);
             self.onRSSIUpdate = nil;
-        });
+        }];
     }
 }
 

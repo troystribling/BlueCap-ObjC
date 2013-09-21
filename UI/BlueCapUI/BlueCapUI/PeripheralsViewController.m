@@ -13,6 +13,8 @@
 @interface PeripheralsViewController () {
 }
 
+- (void)reloadTableData;
+
 @end
 
 @implementation PeripheralsViewController
@@ -28,8 +30,15 @@
 }
 
 - (void)viewDidLoad {
-    [BlueCapCentralManager sharedInstance].delegate = self;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    BlueCapCentralManager* blueCapCentralManager = [BlueCapCentralManager sharedInstance];
+    [blueCapCentralManager powerOn:^{
+        [blueCapCentralManager startScanning:^(BlueCapPeripheral* __peripheral) {
+            [self reloadTableData];
+        }];
+    } onPowerOff:^{
+        [self reloadTableData];
+    }];
     [super viewDidLoad];
 }
 
@@ -47,6 +56,12 @@
 
 #pragma mark -
 #pragma mark PeripheralsViewController PrivateAPI
+
+- (void)reloadTableData {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -82,33 +97,17 @@
     PeripheralCell* cell = (PeripheralCell*)[tableView cellForRowAtIndexPath:indexPath];
     [cell.connectingActivityIndicator startAnimating];
     if (peripheral.state == CBPeripheralStateDisconnected) {
-        [peripheral connect];
+        [peripheral connect:^(BlueCapPeripheral* __peripheral) {
+            [self reloadTableData];
+        }];
     } else {
-        [peripheral disconnect];
+        [peripheral disconnect:^(BlueCapPeripheral* __peripheral){
+            [self reloadTableData];
+        }];
     }
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*)indexPath {
-}
-
-#pragma mark -
-#pragma mark BlueCapCentralManagerDelegate
-
-
-- (void)didPoweredOff {
-    [self.tableView reloadData];
-}
-
-- (void)didDiscoverPeripheral:(BlueCapPeripheral *)peripheral {
-    [self.tableView reloadData];
-}
-
-- (void)didConnectPeripheral:(CBPeripheral*)peripheral {
-    [self.tableView reloadData];
-}
-
-- (void)didDisconnectPeripheral:(CBPeripheral*)peripheral {
-    [self.tableView reloadData];
 }
 
 @end

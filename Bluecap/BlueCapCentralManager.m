@@ -14,7 +14,8 @@
 
 @property(nonatomic, retain) NSMutableDictionary*           discoveredPeripherals;
 @property(nonatomic, retain) CBCentralManager*              centralManager;
-@property(nonatomic, retain) dispatch_queue_t               centralManagerQueue;
+@property(nonatomic, retain) dispatch_queue_t               mainQueue;
+@property(nonatomic, retain) dispatch_queue_t               callbackQueue;
 @property(nonatomic, copy) BlueCapCentralManagerCallback    onPowerOffCallback;
 @property(nonatomic, copy) BlueCapCentralManagerCallback    onPowerOnCallback;
 @property(nonatomic, copy) BlueCapPeripheralCallback        onPeripheralDiscoveredCallback;
@@ -41,8 +42,9 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (id) init {
     self = [super init];
     if (self) {
-        self.centralManagerQueue = dispatch_queue_create("com.gnos.us.centralManager", DISPATCH_QUEUE_SERIAL);
-		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.centralManagerQueue];
+        self.mainQueue = dispatch_queue_create("com.gnos.us.main", DISPATCH_QUEUE_SERIAL);
+        self.callbackQueue = dispatch_queue_create("com.gnos.us.callback", DISPATCH_QUEUE_SERIAL);
+		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
         self.poweredOn = YES;
 	}
@@ -51,7 +53,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
 - (NSArray*)periphreals {
     __block NSArray* __periperals = [NSArray array];
-    [[BlueCapCentralManager sharedInstance] sync:^{
+    [self syncMain:^{
         __periperals = [self.discoveredPeripherals allValues];
     }];
     return __periperals;
@@ -70,30 +72,20 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 	[self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
 }
 
-- (void) stopScanning {
+- (void)stopScanning {
 	[self.centralManager stopScan];
-    [self sync:^{
+    [self syncMain:^{
         self.onPeripheralDiscoveredCallback = nil;
     }];
 }
 
-- (void)connectPeripherial:(BlueCapPeripheral*)peripheral {
-    if (peripheral.state == CBPeripheralStateDisconnected) {
-        [peripheral connect];
-    }
-}
-
-- (void)disconnectPeripheral:(BlueCapPeripheral*)peripheral {
-    if (!peripheral.state == CBPeripheralStateDisconnected) {
-        [peripheral disconnect];
-    }
-}
-
 - (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback {
     self.onPowerOnCallback = __onPowerOnCallback;
-    [self sync:^{
+    [self syncMain:^{
         if (!self.poweredOn) {
-            self.onPowerOnCallback();
+            [self asyncCallback:^{
+                self.onPowerOnCallback();
+            }];
         }
     }];
 }
@@ -110,11 +102,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
     if (bcPeripheral != nil) {
         DLog(@"Peripheral Connected: %@", peripheral.name);
-        if ([self.delegate respondsToSelector:@selector(didConnectPeripheral:)]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate didConnectPeripheral:bcPeripheral];
-            });
-        }
+        [bcPeripheral didConnectPeripheral:bcPeripheral];
     } else {
         DLog(@"Peripheral '%@' not found", peripheral.name);
     }
@@ -124,11 +112,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
     if (bcPeripheral != nil) {
         DLog(@"Peripheral Disconnected: %@", peripheral.name);
-        if ([self.delegate respondsToSelector:@selector(didDisconnectPeripheral:)]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate didDisconnectPeripheral:bcPeripheral];
-            });
-        }
+        [bcPeripheral didDisconnectPeripheral:bcPeripheral];
     } else {
         DLog(@"Peripheral '%@' not found", peripheral.name);
     }
@@ -143,14 +127,9 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         DLog(@"Periphreal Discovered: %@", bcperipheral.name);
         [self.discoveredPeripherals setObject:bcperipheral forKey:peripheral];
         if (self.onPeripheralDiscoveredCallback != nil) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            [self asyncCallback:^{
                 self.onPeripheralDiscoveredCallback(bcperipheral);
-            });
-        }
-        if ([self.delegate respondsToSelector:@selector(didDiscoverPeripheral:)]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate didDiscoverPeripheral:bcperipheral];
-            });
+            }];
         }
     }
 }
@@ -169,9 +148,9 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 		case CBCentralManagerStatePoweredOff: {
             if (self.onPowerOffCallback != nil) {
                 self.poweredOn = NO;
-                dispatch_async(dispatch_get_main_queue(), ^{
+                [self asyncCallback:^{
                     self.onPowerOffCallback();
-                });
+                }];
             }
 			break;
 		}
@@ -184,9 +163,11 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 		case CBCentralManagerStatePoweredOn: {
             DLog(@"CBCentralManager Powered ON");
             self.poweredOn = YES;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.onPowerOnCallback();
-            });
+            [self asyncCallback:^{
+                if (self.onPowerOnCallback) {
+                    self.onPowerOnCallback();
+                }
+            }];
 			break;
 		}
 		case CBCentralManagerStateResetting: {
@@ -198,7 +179,14 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 	}
 }
 
-- (void)peripheralDidUpdateRSSI:(CBPeripheral*)peripheral error:(NSError*)error {
+- (void)peripheralDidUpdateRSSI:(CBPeripheral*)peripheral error:(NSError*)__error {
+    BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
+    if (bcPeripheral != nil) {
+        DLog(@"Peripheral RSSI Updated: %@", peripheral.name);
+        [bcPeripheral didUpdateRSSI:bcPeripheral error:__error];
+    } else {
+        DLog(@"Peripheral '%@' not found", peripheral.name);
+    }
 }
 
 @end

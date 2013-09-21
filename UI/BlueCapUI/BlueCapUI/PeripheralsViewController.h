@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeripheralsViewController : UITableViewController <BlueCapCentralManagerDelegate>
+@interface PeripheralsViewController : UITableViewController
 
 @end

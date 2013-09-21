@@ -20,7 +20,7 @@
 - (NSString*)stringValue {
     NSString* uuidString = self.descriptor.UUID.stringValue;
     __block NSString* result = @"Unkown";
-    [[BlueCapCentralManager sharedInstance] sync:^{
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
         // value is NSNumber
         if([uuidString isEqualToString:CBUUIDCharacteristicExtendedPropertiesString]  ||
            [uuidString isEqualToString:CBUUIDClientCharacteristicConfigurationString] ||
@@ -45,7 +45,7 @@
 - (NSNumber*)numberValue {
     NSString* uuidString = self.descriptor.UUID.stringValue;
     __block NSNumber* result = [NSNumber numberWithInt:-1];
-    [[BlueCapCentralManager sharedInstance] sync:^{
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
         // value is NSNumber
         if([uuidString isEqualToString:CBUUIDCharacteristicExtendedPropertiesString]  ||
            [uuidString isEqualToString:CBUUIDClientCharacteristicConfigurationString] ||
@@ -66,7 +66,7 @@
 - (NSData*)dataValue {
     NSString* uuidString = self.descriptor.UUID.stringValue;
     __block NSData* result = [NSData data];
-    [[BlueCapCentralManager sharedInstance] sync:^{
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
         // value is NSNumber
         if([uuidString isEqualToString:CBUUIDCharacteristicExtendedPropertiesString]  ||
            [uuidString isEqualToString:CBUUIDClientCharacteristicConfigurationString] ||

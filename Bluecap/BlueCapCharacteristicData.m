@@ -24,7 +24,7 @@
 
 -(NSData*)value {
     __block NSData* __value = [NSData data];
-    [[BlueCapCentralManager sharedInstance] sync:^{
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
         __value = self.bcCharacteristic.cbCharacteristic.value;
     }];
     return __value;

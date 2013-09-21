@@ -30,6 +30,8 @@
 
 - (void)discoverAllServices;
 - (void)discoverServices:(NSArray*)__services;
+- (void)connect:(BlueCapPeripheralCallback)__onPeripheralConnect;
+- (void)disconnect:(BlueCapPeripheralCallback)__onPeripheralDisconnect;
 - (void)connect;
 - (void)disconnect;
 

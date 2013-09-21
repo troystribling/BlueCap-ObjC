@@ -7,18 +7,28 @@
 //
 
 #import "BlueCapCentralManager+Private.h"
+#import "BlueCapPeripheral+Private.h"
 
 @implementation BlueCapCentralManager (Private)
 
 @dynamic centralManager;
-@dynamic centralManagerQueue;
+@dynamic mainQueue;
+@dynamic callbackQueue;
 
-- (void)sync:(dispatch_block_t)__syncBlock {
-    dispatch_sync([BlueCapCentralManager sharedInstance].centralManagerQueue, __syncBlock);
+- (void)syncMain:(dispatch_block_t)__syncBlock {
+    dispatch_sync([BlueCapCentralManager sharedInstance].mainQueue, __syncBlock);
 }
 
-- (void)async:(dispatch_block_t)__asyncBlock {
-    dispatch_async([BlueCapCentralManager sharedInstance].centralManagerQueue, __asyncBlock);
+- (void)asyncMain:(dispatch_block_t)__asyncBlock {
+    dispatch_async([BlueCapCentralManager sharedInstance].mainQueue, __asyncBlock);
+}
+
+- (void)syncCallback:(dispatch_block_t)__syncBlock {
+    dispatch_sync([BlueCapCentralManager sharedInstance].callbackQueue, __syncBlock);
+}
+
+- (void)asyncCallback:(dispatch_block_t)__asyncBlock {
+    dispatch_async([BlueCapCentralManager sharedInstance].callbackQueue, __asyncBlock);
 }
 
 @end

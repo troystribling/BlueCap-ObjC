@@ -32,7 +32,7 @@
 
 - (NSArray*)services {
     __block NSArray* __services = [NSArray array];
-    [[BlueCapCentralManager sharedInstance] sync:^{
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
         __services = [NSArray arrayWithArray:self.discoveredServices];
     }];
     return __services;
@@ -48,7 +48,7 @@
 
 - (CBPeripheralState)state {
     __block CBPeripheralState __state = CBPeripheralStateDisconnected;
-    [[BlueCapCentralManager sharedInstance] sync:^{
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
         __state = self.cbPeripheral.state;
     }];
     return __state;
@@ -67,16 +67,26 @@
     [self.cbPeripheral discoverServices:__services];
 }
 
-- (void)connect {
+- (void)connect:(BlueCapPeripheralCallback)__onPeripheralConnect {
     if (self.cbPeripheral.state == CBPeripheralStateDisconnected) {
+        self.onPeripheralConnect = __onPeripheralConnect;
         [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:self.cbPeripheral options:nil];
     }
 }
 
-- (void)disconnect {
+- (void)disconnect:(BlueCapPeripheralCallback)__onPeripheralDisconnect {
     if (self.cbPeripheral.state == CBPeripheralStateConnected) {
+        self.onPeriperialDisconnect = __onPeripheralDisconnect;
         [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
     }
+}
+
+- (void)connect {
+    [self connect:nil];
+}
+
+- (void)disconnect {
+    [self disconnect:nil];
 }
 
 #pragma mark -

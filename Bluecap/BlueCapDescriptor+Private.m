@@ -7,6 +7,7 @@
 //
 
 #import "BlueCapDescriptor+Private.h"
+#import "BlueCapCentralManager+Private.h"
 #import "BlueCapDescriptorData+Private.h"
 
 @implementation BlueCapDescriptor (Private)
@@ -31,19 +32,19 @@
 
 - (void)didUpdateValue:(NSError*)error {
     if (self.onReadCallback != nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onReadCallback([BlueCapDescriptorData withDescriptor:self], error);
             self.onReadCallback = nil;
-        });
+        }];
     }
 }
 
 - (void)didWriteValue:(NSError*)error{
     if (self.onWriteCallback != nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onWriteCallback([BlueCapDescriptorData withDescriptor:self], error);
             self.onWriteCallback = nil;
-        });
+        }];
     }
 }
 
