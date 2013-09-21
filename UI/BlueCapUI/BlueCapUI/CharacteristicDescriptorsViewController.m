@@ -47,11 +47,13 @@
     BlueCapDescriptor* descriptor = [self.characteristic.descriptors objectAtIndex:indexPath.row];
     cell.typeLabel.text = [descriptor typeStringValue];
     [descriptor read:^(BlueCapDescriptorData* __value, NSError* __error) {
-        DescriptorDetailCell* cell = (DescriptorDetailCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-        if (cell) {
-            cell.valuelabel.text = [__value stringValue];
-            [cell setNeedsLayout];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            DescriptorDetailCell* cell = (DescriptorDetailCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+            if (cell) {
+                cell.valuelabel.text = [__value stringValue];
+                [cell setNeedsLayout];
+            }
+        });
     }];
     return cell;
 }
