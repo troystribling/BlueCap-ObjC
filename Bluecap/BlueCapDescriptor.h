@@ -9,6 +9,9 @@
 #import "BlueCapCommon.h"
 
 @class BlueCapCharacteristic;
+@class BlueCapDescriptorData;
+
+typedef void(^BlueCapDescriptorCallback)(BlueCapDescriptorData* __descriptor, NSError* __error);
 
 @interface BlueCapDescriptor : NSObject
 

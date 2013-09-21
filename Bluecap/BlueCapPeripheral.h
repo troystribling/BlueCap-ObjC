@@ -11,6 +11,9 @@
 @class BlueCapService;
 @class BlueCapPeripheral;
 
+typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
+typedef void(^BlueCapPeripheralRSSICallback)(NSNumber* __rssi, NSError* __error);
+
 @protocol BlueCapPeripheralDelegate <NSObject>
 
 @optional

@@ -10,6 +10,9 @@
 
 @class BlueCapPeripheral;
 
+typedef void(^BlueCapCentralManagerCallback)(void);
+typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
+
 @interface BlueCapCentralManager : NSObject <CBCentralManagerDelegate>
 
 @property(nonatomic, readonly, retain) NSArray*                 periphreals;

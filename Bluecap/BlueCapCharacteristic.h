@@ -9,6 +9,9 @@
 #import "BlueCapCommon.h"
 
 @class BlueCapService;
+@class BlueCapCharacteristicData;
+
+typedef void(^BlueCapCharacteristicCallback)(BlueCapCharacteristicData* __descriptor, NSError* __error);
 
 @interface BlueCapCharacteristic : NSObject
 
