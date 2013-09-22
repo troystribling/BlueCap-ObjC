@@ -12,8 +12,11 @@
 
 @interface BlueCapService (Private)
 
-@property(nonatomic, retain) CBService* cbService;
-@property(nonatomic, retain) NSMutableArray* discoveredCharacteristics;
-@property(nonatomic, retain) NSMutableArray* discoveredIncludedServices;
+@property(nonatomic, retain) CBService*                                 cbService;
+@property(nonatomic, retain) NSMutableArray*                            discoveredCharacteristics;
+@property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
+@property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     onChracteristicsDiscovered;
+
+- (void)didDiscoverCharacterics:(NSArray*)__discoveredCharacteristics;
 
 @end

@@ -8,11 +8,22 @@
 
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic+Private.h"
+#import "BlueCapCentralManager+Private.h"
 
 @implementation BlueCapService (Private)
 
 @dynamic cbService;
 @dynamic discoveredCharacteristics;
 @dynamic discoveredIncludedServices;
+@dynamic onChracteristicsDiscovered;
+
+- (void)didDiscoverCharacterics:(NSArray*)__discoveredCharacteristics {
+    if (self.onChracteristicsDiscovered) {
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+            self.onChracteristicsDiscovered(__discoveredCharacteristics);
+            self.onChracteristicsDiscovered = nil;
+        }];
+    }
+}
 
 @end

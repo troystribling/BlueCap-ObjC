@@ -12,9 +12,10 @@
 
 @interface BlueCapService ()
 
-@property(nonatomic, retain) CBService* cbService;
-@property(nonatomic, retain) NSMutableArray* discoveredCharacteristics;
-@property(nonatomic, retain) NSMutableArray* discoveredIncludedServices;
+@property(nonatomic, retain) CBService*                                 cbService;
+@property(nonatomic, retain) NSMutableArray*                            discoveredCharacteristics;
+@property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
+@property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     onChracteristicsDiscovered;
 
 @end
 
@@ -54,11 +55,13 @@
     return self.cbService.isPrimary;
 }
 
-- (void)discoverAllCharacteritics {
+- (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicDiscovery {
+    self.onChracteristicsDiscovered = __onChracteristicDiscovery;
     [_peripheral.cbPeripheral discoverCharacteristics:nil forService:self.cbService];
 }
 
-- (void)discoverCharacteristics:(NSArray*)__characteristics {
+- (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicDiscovery {
+    self.onChracteristicsDiscovered = __onChracteristicDiscovery;
     [_peripheral.cbPeripheral discoverCharacteristics:__characteristics forService:self.cbService];
 }
 

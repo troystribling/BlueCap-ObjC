@@ -14,11 +14,11 @@
 @interface BlueCapCharacteristic () {
 }
 
-@property(nonatomic, retain) CBCharacteristic*              cbCharacteristic;
-@property(nonatomic, retain) NSMutableArray*                discoveredDiscriptors;
-@property(nonatomic, retain) BlueCapService*                service;
-@property(nonatomic, copy) BlueCapCharacteristicCallback    onReadCallback;
-@property(nonatomic, copy) BlueCapCharacteristicCallback    onWriteCallback;
+@property(nonatomic, retain) CBCharacteristic*                  cbCharacteristic;
+@property(nonatomic, retain) NSMutableArray*                    discoveredDiscriptors;
+@property(nonatomic, retain) BlueCapService*                    service;
+@property(nonatomic, copy) BlueCapCharacteristicCallback        onReadCallback;
+@property(nonatomic, copy) BlueCapCharacteristicCallback        onWriteCallback;
 
 @end
 
@@ -49,10 +49,6 @@
 
 - (CBCharacteristicProperties)properties {
     return self.cbCharacteristic.properties;
-}
-
-- (void)discoverDescriptors {
-    [_service.peripheral.cbPeripheral discoverDescriptorsForCharacteristic:self.cbCharacteristic];
 }
 
 - (BlueCapService*)service {

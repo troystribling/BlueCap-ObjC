@@ -13,7 +13,7 @@
 
 typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
 typedef void(^BlueCapPeripheralRSSICallback)(NSNumber* __rssi, NSError* __error);
-typedef void(^BlueCapServicesCallback)(NSArray* _services);
+typedef void(^BlueCapServicesDiscoveredCallback)(NSArray* _services);
 
 @interface BlueCapPeripheral : NSObject <CBPeripheralDelegate>
 
@@ -23,8 +23,8 @@ typedef void(^BlueCapServicesCallback)(NSArray* _services);
 @property(nonatomic, readonly)  CBPeripheralState state;
 @property(nonatomic, readonly)  NSNumber* RSSI;
 
-- (void)discoverAllServices:(BlueCapServicesCallback)__onServicesDiscovered;
-- (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesCallback)__onServicesDiscovered;
+- (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;
+- (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;
 - (void)connect:(BlueCapPeripheralCallback)__onPeripheralConnect;
 - (void)disconnect:(BlueCapPeripheralCallback)__onPeripheralDisconnect;
 - (void)connect;

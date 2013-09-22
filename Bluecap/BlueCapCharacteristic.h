@@ -12,6 +12,7 @@
 @class BlueCapCharacteristicData;
 
 typedef void(^BlueCapCharacteristicCallback)(BlueCapCharacteristicData* __descriptor, NSError* __error);
+typedef void(^BlueCapDescriptorsDicoveredCallback)(NSArray* __descriptors);
 
 @interface BlueCapCharacteristic : NSObject
 
@@ -22,7 +23,6 @@ typedef void(^BlueCapCharacteristicCallback)(BlueCapCharacteristicData* __descri
 @property(nonatomic, readonly) NSData*                      value;
 @property(nonatomic, readonly) CBUUID*                      UUID;
 
-- (void)discoverDescriptors;
 - (BlueCapService*)service;
 
 - (void)startNotifications:(BlueCapCharacteristicCallback)__onRead;

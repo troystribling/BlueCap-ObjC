@@ -10,19 +10,10 @@
 @class BlueCapService;
 @class BlueCapCharacteristic;
 
-@protocol BlueCapServiceDelegate <NSObject>
-
-@optional
-
-- (void)didDiscoverCharacteristicsForService:(BlueCapService*)service error:(NSError*)error;
-- (void)didDiscoverDescriptorsForCharacteristic:(BlueCapCharacteristic*)characteristic error:(NSError*)error;
-- (void)didDiscoverIncludedServicesForService:(BlueCapService*)service error:(NSError*)error;
-
-@end
+typedef void(^BlueCapCharacteristicsDiscoveredCallback)(NSArray* _services);
 
 @interface BlueCapService : NSObject
 
-@property(nonatomic, weak)     id<BlueCapServiceDelegate>   delegate;
 @property(nonatomic, readonly) CBUUID*                      UUID;
 @property(nonatomic, readonly) NSArray*                     characteristics;
 @property(nonatomic, readonly) NSArray*                     includedServices;
@@ -31,7 +22,7 @@
 
 + (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__peripheral;
 
-- (void)discoverAllCharacteritics;
-- (void)discoverCharacteristics:(NSArray*)__characteristics;
+- (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicDiscovery;
+- (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicDiscovery;
 
 @end

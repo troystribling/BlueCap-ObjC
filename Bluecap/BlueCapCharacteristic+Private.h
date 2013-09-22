@@ -12,11 +12,12 @@
 
 @interface BlueCapCharacteristic (Private)
 
-@property(nonatomic, retain) CBCharacteristic*              cbCharacteristic;
-@property(nonatomic, retain) NSMutableArray*                discoveredDiscriptors;
-@property(nonatomic, retain) BlueCapService*                service;
-@property(nonatomic, copy) BlueCapCharacteristicCallback    onReadCallback;
-@property(nonatomic, copy) BlueCapCharacteristicCallback    onWriteCallback;
+@property(nonatomic, retain) CBCharacteristic*                  cbCharacteristic;
+@property(nonatomic, retain) NSMutableArray*                    discoveredDiscriptors;
+@property(nonatomic, retain) BlueCapService*                    service;
+@property(nonatomic, copy) BlueCapCharacteristicCallback        onReadCallback;
+@property(nonatomic, copy) BlueCapCharacteristicCallback        onWriteCallback;
+@property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  onDiscriptorDiscoveredCallback;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service;
 - (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service;
@@ -24,5 +25,6 @@
 - (void)didUpdateValue:(NSError*)error;
 - (void)didUpdateNotificationState:(NSError*)error;
 - (void)didWriteValue:(NSError*)error;
+- (void)didDiscoverDescriptors:(NSArray*)__descriptors;
 
 @end

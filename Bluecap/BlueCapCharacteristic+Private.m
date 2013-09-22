@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import "BlueCapCentralManager+Private.h"
 #import "BlueCapCharacteristic+Private.h"
 #import "BlueCapCharacteristicData+Private.h"
 #import "BlueCapDescriptor+Private.h"
@@ -17,6 +18,7 @@
 @dynamic service;
 @dynamic onWriteCallback;
 @dynamic onReadCallback;
+@dynamic onDiscriptorDiscoveredCallback;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
     return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andService:__service];
@@ -34,10 +36,10 @@
 
 - (void)didUpdateValue:(NSError*)error {
     if (self.onReadCallback != nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onReadCallback([BlueCapCharacteristicData withCharacteristic:self], error);
             self.onReadCallback = nil;
-        });
+        }];
     }
 }
 
@@ -46,10 +48,19 @@
 
 - (void)didWriteValue:(NSError*)error{
     if (self.onWriteCallback != nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onWriteCallback([BlueCapCharacteristicData withCharacteristic:self], error);
             self.onWriteCallback = nil;
-        });
+        }];
+    }
+}
+
+- (void)didDiscoverDescriptors:(NSArray*)__descriptors {
+    if (self.onDiscriptorDiscoveredCallback) {
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+            self.onDiscriptorDiscoveredCallback(__descriptors);
+            self.onDiscriptorDiscoveredCallback = nil;
+        }];
     }
 }
 

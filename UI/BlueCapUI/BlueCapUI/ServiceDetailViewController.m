@@ -71,10 +71,4 @@
     [self.tableView reloadData];
 }
 
-- (void)didDiscoverDescriptorsForCharacteristic:(BlueCapCharacteristic*)characteristic error:(NSError*)error {
-}
-
-- (void)didDiscoverIncludedServicesForService:(BlueCapService*)service error:(NSError*)error {
-}
-
 @end

@@ -19,10 +19,10 @@
 @property(nonatomic, retain) NSMutableArray*                discoveredServices;
 @property(nonatomic, retain) NSMapTable*                    discoveredObjects;
 
-@property(nonatomic, copy) BlueCapPeripheralCallback        onPeriperialDisconnect;
-@property(nonatomic, copy) BlueCapPeripheralCallback        onPeripheralConnect;
-@property(nonatomic, copy) BlueCapServicesCallback          onServicesDiscovered;
-@property(nonatomic, copy) BlueCapPeripheralRSSICallback    onRSSIUpdate;
+@property(nonatomic, copy) BlueCapPeripheralCallback            onPeriperialDisconnectCallback;
+@property(nonatomic, copy) BlueCapPeripheralCallback            onPeripheralConnectCallback;
+@property(nonatomic, copy) BlueCapServicesDiscoveredCallback    onServicesDiscoveredCallback;
+@property(nonatomic, copy) BlueCapPeripheralRSSICallback        onRSSIUpdate;
 
 @end
 
@@ -60,26 +60,26 @@
     return self.cbPeripheral.RSSI;
 }
 
-- (void)discoverAllServices:(BlueCapServicesCallback)__onServicesDiscovered {
-    self.onServicesDiscovered = __onServicesDiscovered;
+- (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__onServicesDiscoveredCallback {
+    self.onServicesDiscoveredCallback = __onServicesDiscoveredCallback;
     [self.cbPeripheral discoverServices:nil];
 }
 
-- (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesCallback)__onServicesDiscovered {
-    self.onServicesDiscovered = __onServicesDiscovered;
+- (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__onServicesDiscoveredCallback {
+    self.onServicesDiscoveredCallback = __onServicesDiscoveredCallback;
     [self.cbPeripheral discoverServices:__services];
 }
 
 - (void)connect:(BlueCapPeripheralCallback)__onPeripheralConnect {
     if (self.cbPeripheral.state == CBPeripheralStateDisconnected) {
-        self.onPeripheralConnect = __onPeripheralConnect;
+        self.onPeripheralConnectCallback = __onPeripheralConnect;
         [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:self.cbPeripheral options:nil];
     }
 }
 
 - (void)disconnect:(BlueCapPeripheralCallback)__onPeripheralDisconnect {
     if (self.cbPeripheral.state == CBPeripheralStateConnected) {
-        self.onPeriperialDisconnect = __onPeripheralDisconnect;
+        self.onPeriperialDisconnectCallback = __onPeripheralDisconnect;
         [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
     }
 }
@@ -105,9 +105,9 @@
         [self.discoveredObjects setObject:bcService forKey:service];
         [self.discoveredServices addObject:bcService];
     }
-    if (self.onServicesDiscovered) {
+    if (self.onServicesDiscoveredCallback) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onServicesDiscovered(self.discoveredServices);
+            self.onServicesDiscoveredCallback(self.discoveredServices);
         }];
     }
 }
@@ -123,12 +123,7 @@
         BlueCapCharacteristic* bcCharacteristic = [BlueCapCharacteristic withCBCharacteristic:charateristic andService:bcService];
         [self.discoveredObjects setObject:bcCharacteristic forKey:charateristic];
         [bcService.discoveredCharacteristics addObject:bcCharacteristic];
-        [bcCharacteristic discoverDescriptors];
-    }
-    if ([bcService.delegate respondsToSelector:@selector(didDiscoverCharacteristicsForService:error:)]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [bcService.delegate didDiscoverCharacteristicsForService:bcService error:error];
-        });
+        [peripheral discoverDescriptorsForCharacteristic:charateristic];
     }
 }
 
@@ -140,11 +135,7 @@
         [self.discoveredObjects setObject:bcDescriptor forKey:descriptor];
         [bcCharateristic.discoveredDiscriptors addObject:bcDescriptor];
     }
-    if ([bcCharateristic.service.delegate respondsToSelector:@selector(didDiscoverDescriptorsForCharacteristic:error:)]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [bcCharateristic.service.delegate didDiscoverDescriptorsForCharacteristic:bcCharateristic error:error];
-        });
-    }
+    [bcCharateristic didDiscoverCharacterics:bcService.discoveredCharacteristics];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
