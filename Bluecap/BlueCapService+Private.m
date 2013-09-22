@@ -15,13 +15,12 @@
 @dynamic cbService;
 @dynamic discoveredCharacteristics;
 @dynamic discoveredIncludedServices;
-@dynamic onChracteristicsDiscovered;
+@dynamic onChracteristicsDiscoveredCallback;
 
 - (void)didDiscoverCharacterics:(NSArray*)__discoveredCharacteristics {
-    if (self.onChracteristicsDiscovered) {
+    if (self.onChracteristicsDiscoveredCallback) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onChracteristicsDiscovered(__discoveredCharacteristics);
-            self.onChracteristicsDiscovered = nil;
+            self.onChracteristicsDiscoveredCallback(__discoveredCharacteristics);
         }];
     }
 }

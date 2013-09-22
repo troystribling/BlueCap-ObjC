@@ -24,11 +24,14 @@ typedef void(^BlueCapDescriptorsDicoveredCallback)(NSArray* __descriptors);
 @property(nonatomic, readonly) CBUUID*                      UUID;
 
 - (BlueCapService*)service;
+- (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 
 - (void)startNotifications:(BlueCapCharacteristicCallback)__onRead;
 - (void)stopNotifications;
+
 - (void)read:(BlueCapCharacteristicCallback)__onReadCallback;
 - (void)write:(NSData*)data onWrite:(BlueCapCharacteristicCallback)__onWriteCallback;
-- (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
+
+- (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__onDiscriptorsDicoveredCallback;
 
 @end

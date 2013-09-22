@@ -34,7 +34,6 @@
     if (self.onReadCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onReadCallback([BlueCapDescriptorData withDescriptor:self], error);
-            self.onReadCallback = nil;
         }];
     }
 }
@@ -43,7 +42,6 @@
     if (self.onWriteCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onWriteCallback([BlueCapDescriptorData withDescriptor:self], error);
-            self.onWriteCallback = nil;
         }];
     }
 }

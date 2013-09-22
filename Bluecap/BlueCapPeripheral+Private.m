@@ -38,7 +38,6 @@
     if (self.onPeriperialDisconnectCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onPeriperialDisconnectCallback(__peripheral);
-            self.onPeriperialDisconnectCallback = nil;
         }];
     }
 }
@@ -47,7 +46,6 @@
     if (self.onPeripheralConnectCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onPeripheralConnectCallback(__peripheral);
-            self.onPeripheralConnectCallback = nil;
         }];
     }
 }
@@ -56,7 +54,6 @@
     if (self.onRSSIUpdateCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onRSSIUpdateCallback(__peripheral.RSSI, __error);
-            self.onRSSIUpdateCallback = nil;
         }];
     }
 }

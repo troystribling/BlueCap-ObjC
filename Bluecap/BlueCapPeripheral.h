@@ -25,6 +25,7 @@ typedef void(^BlueCapServicesDiscoveredCallback)(NSArray* _services);
 
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;
 - (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;
+
 - (void)connect:(BlueCapPeripheralCallback)__onPeripheralConnect;
 - (void)disconnect:(BlueCapPeripheralCallback)__onPeripheralDisconnect;
 - (void)connect;

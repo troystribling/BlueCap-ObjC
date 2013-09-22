@@ -25,8 +25,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    self.service.delegate = self;
-    [self.service discoverAllCharacteritics];
+    [self.service discoverAllCharacteritics:^(NSArray* __discoveredCharacteristics) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,12 +66,5 @@
 
 #pragma mark -
 #pragma mark UITableViewDelegate
-
-#pragma mark -
-#pragma mark BlueCapServiceDelegate
-
-- (void)didDiscoverCharacteristicsForService:(BlueCapService*)service error:(NSError*)error {
-    [self.tableView reloadData];
-}
 
 @end

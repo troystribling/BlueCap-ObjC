@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ServiceDetailViewController : UITableViewController <BlueCapServiceDelegate>
+@interface ServiceDetailViewController : UITableViewController
 
 @property(nonatomic, retain) BlueCapService* service;
 

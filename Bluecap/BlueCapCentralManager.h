@@ -18,6 +18,7 @@ typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
 @property(nonatomic, readonly, retain) NSArray*                 periphreals;
 
 + (BlueCapCentralManager*)sharedInstance;
+
 - (void)startScanning:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback;
 - (void)startScanningForUUIDString:(NSString*)uuidString onDiscovery:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback;
 - (void)stopScanning;

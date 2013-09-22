@@ -59,6 +59,9 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     return __periperals;
 }
 
+#pragma mark -
+#pragma mark Scan for Periherals
+
 - (void)startScanning:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback {
     DLog(@"Start Scanning");
     self.onPeripheralDiscoveredCallback = __onPeripheralDiscoveredCallback;
@@ -74,10 +77,10 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
 - (void)stopScanning {
 	[self.centralManager stopScan];
-    [self syncMain:^{
-        self.onPeripheralDiscoveredCallback = nil;
-    }];
 }
+
+#pragma mark -
+#pragma mark Power On
 
 - (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback {
     self.onPowerOnCallback = __onPowerOnCallback;

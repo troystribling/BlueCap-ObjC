@@ -19,6 +19,7 @@
 @property(nonatomic, retain) BlueCapService*                    service;
 @property(nonatomic, copy) BlueCapCharacteristicCallback        onReadCallback;
 @property(nonatomic, copy) BlueCapCharacteristicCallback        onWriteCallback;
+@property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  onDescriptorsDiscoveredCallback;
 
 @end
 
@@ -59,6 +60,13 @@
     return self.cbCharacteristic.UUID;
 }
 
+- (BOOL)propertyEnabled:(CBCharacteristicProperties)__property {
+    return self.properties & __property;
+}
+
+#pragma mark -
+#pragma mark Manage Notifications
+
 - (void)startNotifications:(BlueCapCharacteristicCallback)__onReadCallback {
     self.onReadCallback = __onReadCallback;
     [self.service.peripheral.cbPeripheral setNotifyValue:YES forCharacteristic:self.cbCharacteristic];
@@ -67,6 +75,9 @@
 - (void)stopNotifications {
     [self.service.peripheral.cbPeripheral setNotifyValue:NO forCharacteristic:self.cbCharacteristic];
 }
+
+#pragma mark - 
+#pragma I/O
 
 - (void)read:(BlueCapCharacteristicCallback)__onReadCallback {
     self.onReadCallback = __onReadCallback;
@@ -78,8 +89,12 @@
     [self.service.peripheral.cbPeripheral writeValue:data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
 }
 
-- (BOOL)propertyEnabled:(CBCharacteristicProperties)__property {
-    return self.properties & __property;
+#pragma mark -
+#pragma mark Discover Descriptors
+
+- (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__onDiscriptorsDicoveredCallback {
+    self.onDescriptorsDiscoveredCallback = __onDiscriptorsDicoveredCallback;
+    [self.service.peripheral.cbPeripheral discoverDescriptorsForCharacteristic:self.cbCharacteristic];
 }
 
 #pragma mark -

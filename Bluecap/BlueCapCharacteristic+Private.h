@@ -17,7 +17,7 @@
 @property(nonatomic, retain) BlueCapService*                    service;
 @property(nonatomic, copy) BlueCapCharacteristicCallback        onReadCallback;
 @property(nonatomic, copy) BlueCapCharacteristicCallback        onWriteCallback;
-@property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  onDiscriptorDiscoveredCallback;
+@property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  onDescriptorsDiscoveredCallback;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service;
 - (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service;

@@ -15,7 +15,7 @@
 @property(nonatomic, retain) CBService*                                 cbService;
 @property(nonatomic, retain) NSMutableArray*                            discoveredCharacteristics;
 @property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
-@property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     onChracteristicsDiscovered;
+@property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     onChracteristicsDiscoveredCallback;
 
 @end
 
@@ -55,13 +55,16 @@
     return self.cbService.isPrimary;
 }
 
-- (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicDiscovery {
-    self.onChracteristicsDiscovered = __onChracteristicDiscovery;
+#pragma mark -
+#pragma mark Discover Characteritics
+
+- (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback {
+    self.onChracteristicsDiscoveredCallback = __onChracteristicsDiscoveredCallback;
     [_peripheral.cbPeripheral discoverCharacteristics:nil forService:self.cbService];
 }
 
-- (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicDiscovery {
-    self.onChracteristicsDiscovered = __onChracteristicDiscovery;
+- (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback {
+    self.onChracteristicsDiscoveredCallback = __onChracteristicsDiscoveredCallback;
     [_peripheral.cbPeripheral discoverCharacteristics:__characteristics forService:self.cbService];
 }
 

@@ -15,7 +15,7 @@
 @property(nonatomic, retain) CBService*                                 cbService;
 @property(nonatomic, retain) NSMutableArray*                            discoveredCharacteristics;
 @property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
-@property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     onChracteristicsDiscovered;
+@property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     onChracteristicsDiscoveredCallback;
 
 - (void)didDiscoverCharacterics:(NSArray*)__discoveredCharacteristics;
 

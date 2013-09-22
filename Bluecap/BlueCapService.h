@@ -10,7 +10,7 @@
 @class BlueCapService;
 @class BlueCapCharacteristic;
 
-typedef void(^BlueCapCharacteristicsDiscoveredCallback)(NSArray* _services);
+typedef void(^BlueCapCharacteristicsDiscoveredCallback)(NSArray* __discoveredCharacteristics);
 
 @interface BlueCapService : NSObject
 
@@ -22,7 +22,7 @@ typedef void(^BlueCapCharacteristicsDiscoveredCallback)(NSArray* _services);
 
 + (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__peripheral;
 
-- (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicDiscovery;
-- (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicDiscovery;
+- (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;
+- (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;
 
 @end

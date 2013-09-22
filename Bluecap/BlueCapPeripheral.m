@@ -60,6 +60,9 @@
     return self.cbPeripheral.RSSI;
 }
 
+#pragma mark -
+#pragma mark Discver Services
+
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__onServicesDiscoveredCallback {
     self.onServicesDiscoveredCallback = __onServicesDiscoveredCallback;
     [self.cbPeripheral discoverServices:nil];
@@ -69,6 +72,9 @@
     self.onServicesDiscoveredCallback = __onServicesDiscoveredCallback;
     [self.cbPeripheral discoverServices:__services];
 }
+
+#pragma mark -
+#pragma mark Connect/Disconnect Peripheral
 
 - (void)connect:(BlueCapPeripheralCallback)__onPeripheralConnect {
     if (self.cbPeripheral.state == CBPeripheralStateDisconnected) {
@@ -123,8 +129,8 @@
         BlueCapCharacteristic* bcCharacteristic = [BlueCapCharacteristic withCBCharacteristic:charateristic andService:bcService];
         [self.discoveredObjects setObject:bcCharacteristic forKey:charateristic];
         [bcService.discoveredCharacteristics addObject:bcCharacteristic];
-        [peripheral discoverDescriptorsForCharacteristic:charateristic];
     }
+    [bcService didDiscoverCharacterics:bcService.discoveredCharacteristics];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
@@ -135,7 +141,7 @@
         [self.discoveredObjects setObject:bcDescriptor forKey:descriptor];
         [bcCharateristic.discoveredDiscriptors addObject:bcDescriptor];
     }
-    [bcCharateristic didDiscoverCharacterics:bcService.discoveredCharacteristics];
+    [bcCharateristic didDiscoverDescriptors:bcCharateristic.discoveredDiscriptors];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {

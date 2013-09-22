@@ -37,16 +37,6 @@
     return _characteristic;
 }
 
-- (void)read:(BlueCapDescriptorCallback)__onReadCallback {
-    self.onReadCallback = __onReadCallback;
-    [self.characteristic.service.peripheral.cbPeripheral readValueForDescriptor:self.cbDescriptor];
-}
-
-- (void)write:(NSData*)data onWrite:(BlueCapDescriptorCallback)__onWriteCallback {
-    self.onWriteCallback = __onWriteCallback;
-    [self.characteristic.service.peripheral.cbPeripheral writeValue:data forDescriptor:self.cbDescriptor];
-}
-
 - (NSString*)typeStringValue {
     NSString* uuidString = self.UUID.stringValue;
     NSString* result = @"Unkown";
@@ -64,6 +54,19 @@
         result = @"Aggregate Format";
     }
     return result;
+}
+
+#pragma mark -
+#pragma mark I/O
+
+- (void)read:(BlueCapDescriptorCallback)__onReadCallback {
+    self.onReadCallback = __onReadCallback;
+    [self.characteristic.service.peripheral.cbPeripheral readValueForDescriptor:self.cbDescriptor];
+}
+
+- (void)write:(NSData*)data onWrite:(BlueCapDescriptorCallback)__onWriteCallback {
+    self.onWriteCallback = __onWriteCallback;
+    [self.characteristic.service.peripheral.cbPeripheral writeValue:data forDescriptor:self.cbDescriptor];
 }
 
 #pragma mark -
