@@ -11,5 +11,8 @@
 @interface BlueCapCharacteristicData : NSObject
 
 @property(nonatomic, readonly) BlueCapCharacteristic* characteristic;
+@property(nonatomic, readonly) NSData* value;
+
+- (NSString*)stringValue;
 
 @end

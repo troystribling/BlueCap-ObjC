@@ -11,7 +11,7 @@
 @class BlueCapService;
 @class BlueCapCharacteristicData;
 
-typedef void(^BlueCapCharacteristicCallback)(BlueCapCharacteristicData* __descriptor, NSError* __error);
+typedef void(^BlueCapCharacteristicCallback)(BlueCapCharacteristicData* __data, NSError* __error);
 typedef void(^BlueCapDescriptorsDicoveredCallback)(NSArray* __descriptors);
 
 @interface BlueCapCharacteristic : NSObject
