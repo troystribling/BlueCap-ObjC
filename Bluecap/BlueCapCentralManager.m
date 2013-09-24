@@ -8,18 +8,20 @@
 
 #import "BlueCapCentralManager+Private.h"
 #import "BlueCapPeripheral+Private.h"
-
+#import "BlueCapPeripheralDefinition.h"
 
 @interface BlueCapCentralManager ()
 
 @property(nonatomic, retain) NSMutableDictionary*           discoveredPeripherals;
+@property(nonatomic, retain) NSMutableDictionary*           configuredPeriherals;
 @property(nonatomic, retain) CBCentralManager*              centralManager;
 @property(nonatomic, retain) dispatch_queue_t               mainQueue;
 @property(nonatomic, retain) dispatch_queue_t               callbackQueue;
+@property(nonatomic, assign) BOOL                           poweredOn;
+
 @property(nonatomic, copy) BlueCapCentralManagerCallback    onPowerOffCallback;
 @property(nonatomic, copy) BlueCapCentralManagerCallback    onPowerOnCallback;
 @property(nonatomic, copy) BlueCapPeripheralCallback        onPeripheralDiscoveredCallback;
-@property(nonatomic, assign) BOOL                           poweredOn;
 
 @end
 
@@ -46,6 +48,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         self.callbackQueue = dispatch_queue_create("com.gnos.us.callback", DISPATCH_QUEUE_SERIAL);
 		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
+        self.configuredPeriherals = [NSMutableDictionary dictionary];
         self.poweredOn = YES;
 	}
     return self;
@@ -57,6 +60,15 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         __periperals = [self.discoveredPeripherals allValues];
     }];
     return __periperals;
+}
+
+#pragma mark -
+#pragma mark Peripheral Definition
+
+- (void)createPeripheralDefinitionWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
+}
+
+- (void)createPeripheralDefinitionWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
 }
 
 #pragma mark -
@@ -96,6 +108,10 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback {
     self.onPowerOffCallback = __onPowerOffCallback;
     [self powerOn:__onPowerOnCallback];
+}
+
+
+- (void)createPeripheralWithUUID:(NSString*)__uuidString andConfiguration:(BlueCapPeripheralCallback)__configurationBlock {
 }
 
 #pragma mark -

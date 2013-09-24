@@ -179,9 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				052A001E17BB2CD4006D7AB3 /* BlueCapUI-Info.plist */,
+				052A002417BB2CD4006D7AB3 /* BlueCapUI-Prefix.pch */,
 				052A001F17BB2CD4006D7AB3 /* InfoPlist.strings */,
 				052A002217BB2CD4006D7AB3 /* main.m */,
-				052A002417BB2CD4006D7AB3 /* BlueCapUI-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

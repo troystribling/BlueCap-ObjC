@@ -17,3 +17,7 @@
 #import "BlueCapDescriptor.h"
 #import "BlueCapCharacteristicData.h"
 #import "BlueCapDescriptorData.h"
+#import "BlueCapPeripheralDefinition.h"
+#import "BlueCapServiceDefinition.h"
+#import "BlueCapChracteristicDefinition.h"
+#import "TISensorTagPeripheralDefinition.h"

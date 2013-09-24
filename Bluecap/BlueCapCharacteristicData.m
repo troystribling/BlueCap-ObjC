@@ -18,7 +18,7 @@
 
 @implementation BlueCapCharacteristicData
 
-- (BlueCapCharacteristic*) characteristic {
+- (BlueCapCharacteristic*)characteristic {
     return self.bcCharacteristic;
 }
 

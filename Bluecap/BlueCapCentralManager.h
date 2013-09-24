@@ -9,9 +9,12 @@
 #import "BlueCapCommon.h"
 
 @class BlueCapPeripheral;
+@class BlueCapPeripheralDefinition;
 
 typedef void(^BlueCapCentralManagerCallback)(void);
 typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
+typedef void(^BlueCapPeripheralDefinitionBlock)(BlueCapPeripheralDefinition* __peripheralDefinition);
+
 
 @interface BlueCapCentralManager : NSObject <CBCentralManagerDelegate>
 
@@ -25,5 +28,8 @@ typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
 
 - (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback;
 - (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback;
+
+- (void)createPeripheralDefinitionWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
+- (void)createPeripheralDefinitionWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
 
 @end
