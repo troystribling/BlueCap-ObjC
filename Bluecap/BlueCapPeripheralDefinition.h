@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "BlueCapCentralManager+Private.h"
+#import "BlueCapCommon.h"
 
 @interface BlueCapPeripheralDefinition : NSObject
 

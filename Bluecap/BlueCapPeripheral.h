@@ -15,8 +15,6 @@
 typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
 typedef void(^BlueCapPeripheralRSSICallback)(NSNumber* __rssi, NSError* __error);
 typedef void(^BlueCapServicesDiscoveredCallback)(NSArray* _services);
-typedef void(^BlueCapServiceDefinitionBlock)(BlueCapServiceDefinition* __peripheralDefinition);
-
 
 @interface BlueCapPeripheral : NSObject <CBPeripheralDelegate>
 
@@ -34,7 +32,10 @@ typedef void(^BlueCapServiceDefinitionBlock)(BlueCapServiceDefinition* __periphe
 - (void)connect;
 - (void)disconnect;
 
-- (void)createServiceDefinitionWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
-- (void)createServiceDefinitionWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
+- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString;
+- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString image:(UIImage*)__image;
+- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
+- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
+
 
 @end

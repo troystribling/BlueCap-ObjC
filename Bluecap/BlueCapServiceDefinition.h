@@ -6,11 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@class BlueCapServiceDefinition;
-
-typedef void(^BlueCapServiceDefinitionBlock)(BlueCapServiceDefinition* __serviceDefinition);
+#import "BlueCapCommon.h"
 
 @interface BlueCapServiceDefinition : NSObject
 

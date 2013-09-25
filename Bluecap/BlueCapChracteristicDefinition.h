@@ -6,11 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@class BlueCapChracteristicDefinition;
-
-typedef void(^BlueCapCharacteristicDefinitionBlock)(BlueCapChracteristicDefinition* __characteristicDefinition);
+#import "BlueCapCommon.h"
 
 @interface BlueCapChracteristicDefinition : NSObject
 

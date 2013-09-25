@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import "BlueCapCommon.h"
+
 @class BlueCapPeripheral;
 @class BlueCapService;
 @class BlueCapCharacteristic;
