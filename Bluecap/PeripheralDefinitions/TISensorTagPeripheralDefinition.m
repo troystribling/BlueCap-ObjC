@@ -12,8 +12,7 @@
 @implementation TISensorTagPeripheralDefinition
 
 + (void)define {
-    [[BlueCapCentralManager sharedInstance] createPeripheralDefinitionWithUUID:@"" andDefinition:^(BlueCapPeripheralDefinition* __peripeheralDefinition) {
-        
+    [[BlueCapCentralManager sharedInstance] createPeripheralDefinitionWithUUID:@"9C4EEB7D-BE3A-E942-1539-CB7AD105CE5D" andDefinition:^(BlueCapPeripheralDefinition* __peripeheralDefinition) {
     }];
 }
 

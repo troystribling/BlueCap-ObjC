@@ -61,7 +61,7 @@
 }
 
 #pragma mark -
-#pragma mark Discver Services
+#pragma mark Discover Services
 
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__onServicesDiscoveredCallback {
     self.onServicesDiscoveredCallback = __onServicesDiscoveredCallback;
@@ -96,6 +96,15 @@
 
 - (void)disconnect {
     [self disconnect:nil];
+}
+
+#pragma mark -
+#pragma mark Service Definition
+
+- (void)createServiceDefinitionWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
+}
+
+- (void)createServiceDefinitionWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
 }
 
 #pragma mark -

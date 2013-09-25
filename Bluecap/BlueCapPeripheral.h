@@ -10,10 +10,13 @@
 
 @class BlueCapService;
 @class BlueCapPeripheral;
+@class BlueCapServiceDefinition;
 
 typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
 typedef void(^BlueCapPeripheralRSSICallback)(NSNumber* __rssi, NSError* __error);
 typedef void(^BlueCapServicesDiscoveredCallback)(NSArray* _services);
+typedef void(^BlueCapServiceDefinitionBlock)(BlueCapServiceDefinition* __peripheralDefinition);
+
 
 @interface BlueCapPeripheral : NSObject <CBPeripheralDelegate>
 
@@ -30,5 +33,8 @@ typedef void(^BlueCapServicesDiscoveredCallback)(NSArray* _services);
 - (void)disconnect:(BlueCapPeripheralCallback)__onPeripheralDisconnect;
 - (void)connect;
 - (void)disconnect;
+
+- (void)createServiceDefinitionWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
+- (void)createServiceDefinitionWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
 
 @end

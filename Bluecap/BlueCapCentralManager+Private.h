@@ -11,6 +11,7 @@
 @interface BlueCapCentralManager (Private)
 
 @property(nonatomic, retain) CBCentralManager*              centralManager;
+@property(nonatomic, retain) NSMutableDictionary*           configuredObjects;
 @property(nonatomic, retain) dispatch_queue_t               mainQueue;
 @property(nonatomic, retain) dispatch_queue_t               callbackQueue;
 

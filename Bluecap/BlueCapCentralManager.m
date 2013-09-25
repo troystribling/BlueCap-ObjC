@@ -13,7 +13,7 @@
 @interface BlueCapCentralManager ()
 
 @property(nonatomic, retain) NSMutableDictionary*           discoveredPeripherals;
-@property(nonatomic, retain) NSMutableDictionary*           configuredPeriherals;
+@property(nonatomic, retain) NSMutableDictionary*           configuredObjects;
 @property(nonatomic, retain) CBCentralManager*              centralManager;
 @property(nonatomic, retain) dispatch_queue_t               mainQueue;
 @property(nonatomic, retain) dispatch_queue_t               callbackQueue;
@@ -48,7 +48,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         self.callbackQueue = dispatch_queue_create("com.gnos.us.callback", DISPATCH_QUEUE_SERIAL);
 		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
-        self.configuredPeriherals = [NSMutableDictionary dictionary];
+        self.configuredObjects = [NSMutableDictionary dictionary];
         self.poweredOn = YES;
 	}
     return self;

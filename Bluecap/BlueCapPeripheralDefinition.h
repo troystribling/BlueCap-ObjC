@@ -14,7 +14,10 @@
 @property(nonatomic, readonly) NSUUID*  identifier;
 @property(nonatomic, retain) UIImage*   image;
 
-+ (void)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
-+ (void)createWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
++ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString;
++ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString image:(UIImage*)__image;
+
++ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
++ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
 
 @end

@@ -10,19 +10,33 @@
 
 @interface BlueCapPeripheralDefinition ()
 
--(id)initWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
+-(id)initWithUUID:(NSString*)__uuidString image:(UIImage*)__image;
 
 @end
 
 @implementation BlueCapPeripheralDefinition
 
-+ (void)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
++ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString {
+    return [self createWithUUID:__uuidString image:nil andDefinition:nil];
 }
 
-+ (void)createWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
++ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString image:(UIImage*)__image {
+    return [self createWithUUID:__uuidString image:__image andDefinition:nil];
 }
 
--(id)initWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
++ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
+    return [self createWithUUID:__uuidString image:nil andDefinition:__definitionBlock];
+}
+
++ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
+    BlueCapPeripheralDefinition* peripheralDefinition = [[self alloc] initWithUUID:__uuidString image:__image];
+    if (__definitionBlock) {
+        __definitionBlock(peripheralDefinition);
+    }
+    return peripheralDefinition;
+}
+
+-(id)initWithUUID:(NSString*)__uuidString image:(UIImage*)__image {
     self = [super init];
     if (self) {
     }
