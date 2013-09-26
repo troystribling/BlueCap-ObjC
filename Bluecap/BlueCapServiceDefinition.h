@@ -6,17 +6,13 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCommon.h"
+#import "BlueCapBlocks.h"
 
 @interface BlueCapServiceDefinition : NSObject
 
 @property(nonatomic, readonly) NSUUID*  identifier;
-@property(nonatomic, retain) UIImage*   image;
 
 + (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString;
-+ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString image:(UIImage*)__image;
-
 + (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
-+ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
 
 @end

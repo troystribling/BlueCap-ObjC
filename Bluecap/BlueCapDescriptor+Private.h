@@ -10,10 +10,10 @@
 
 @interface BlueCapDescriptor (Private)
 
-@property(nonatomic, retain) CBDescriptor*              cbDescriptor;
-@property(nonatomic, retain) BlueCapCharacteristic*     characteristic;
-@property(nonatomic, copy) BlueCapDescriptorCallback    onReadCallback;
-@property(nonatomic, copy) BlueCapDescriptorCallback    onWriteCallback;
+@property(nonatomic, retain) CBDescriptor*                  cbDescriptor;
+@property(nonatomic, retain) BlueCapCharacteristic*         characteristic;
+@property(nonatomic, copy) BlueCapDescriptorDataCallback    onReadCallback;
+@property(nonatomic, copy) BlueCapDescriptorDataCallback    onWriteCallback;
 
 + (BlueCapDescriptor*)withCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;
 - (id)initWithCBDiscriptor:(CBDescriptor*)__descriptor andChracteristic:(BlueCapCharacteristic*)__chracteristic;

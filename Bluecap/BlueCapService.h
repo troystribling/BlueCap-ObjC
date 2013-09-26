@@ -6,13 +6,10 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCommon.h"
+#import "BlueCapBlocks.h"
 
 @class BlueCapPeripheral;
 @class BlueCapService;
-@class BlueCapCharacteristic;
-
-typedef void(^BlueCapCharacteristicsDiscoveredCallback)(NSArray* __discoveredCharacteristics);
 
 @interface BlueCapService : NSObject
 

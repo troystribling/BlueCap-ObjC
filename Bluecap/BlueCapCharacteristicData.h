@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import "BlueCapBlocks.h"
+
 @class BlueCapCharacteristic;
 
 @interface BlueCapCharacteristicData : NSObject

@@ -10,6 +10,7 @@
 #import "BlueCapCharacteristic+Private.h"
 #import "BlueCapCharacteristicData+Private.h"
 #import "BlueCapDescriptor+Private.h"
+#import "BlueCapService+Private.h"
 
 @implementation BlueCapCharacteristic (Private)
 

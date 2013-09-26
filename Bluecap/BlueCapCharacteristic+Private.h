@@ -8,15 +8,15 @@
 
 #import "BlueCapCharacteristic.h"
 
-@class BlueCapDescriptor;
+@class BlueCapService;
 
 @interface BlueCapCharacteristic (Private)
 
 @property(nonatomic, retain) CBCharacteristic*                  cbCharacteristic;
 @property(nonatomic, retain) NSMutableArray*                    discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*                    service;
-@property(nonatomic, copy) BlueCapCharacteristicCallback        onReadCallback;
-@property(nonatomic, copy) BlueCapCharacteristicCallback        onWriteCallback;
+@property(nonatomic, copy) BlueCapCharacteristicDataCallback    onReadCallback;
+@property(nonatomic, copy) BlueCapCharacteristicDataCallback    onWriteCallback;
 @property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  onDescriptorsDiscoveredCallback;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service;

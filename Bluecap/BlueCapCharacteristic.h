@@ -6,13 +6,9 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCommon.h"
+#import "BlueCapBlocks.h"
 
 @class BlueCapService;
-@class BlueCapCharacteristicData;
-
-typedef void(^BlueCapCharacteristicCallback)(BlueCapCharacteristicData* __data, NSError* __error);
-typedef void(^BlueCapDescriptorsDicoveredCallback)(NSArray* __descriptors);
 
 @interface BlueCapCharacteristic : NSObject
 
@@ -26,11 +22,11 @@ typedef void(^BlueCapDescriptorsDicoveredCallback)(NSArray* __descriptors);
 - (BlueCapService*)service;
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 
-- (void)startNotifications:(BlueCapCharacteristicCallback)__onRead;
+- (void)startNotifications:(BlueCapCharacteristicDataCallback)__onReadCallback;
 - (void)stopNotifications;
 
-- (void)read:(BlueCapCharacteristicCallback)__onReadCallback;
-- (void)write:(NSData*)data onWrite:(BlueCapCharacteristicCallback)__onWriteCallback;
+- (void)read:(BlueCapCharacteristicDataCallback)__onReadCallback;
+- (void)write:(NSData*)data onWrite:(BlueCapCharacteristicDataCallback)__onWriteCallback;
 
 - (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__onDiscriptorsDicoveredCallback;
 

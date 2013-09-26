@@ -10,14 +10,18 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "DebugLog.h"
 #import "CBUUID+StringValue.h"
+
 #import "BlueCapCentralManager.h"
 #import "BlueCapPeripheral.h"
 #import "BlueCapService.h"
 #import "BlueCapCharacteristic.h"
 #import "BlueCapDescriptor.h"
+
 #import "BlueCapCharacteristicData.h"
 #import "BlueCapDescriptorData.h"
+
 #import "BlueCapPeripheralDefinition.h"
 #import "BlueCapServiceDefinition.h"
 #import "BlueCapChracteristicDefinition.h"
+
 #import "TISensorTagPeripheralDefinition.h"

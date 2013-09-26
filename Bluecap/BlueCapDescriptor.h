@@ -6,12 +6,9 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCommon.h"
+#import "BlueCapBlocks.h"
 
 @class BlueCapCharacteristic;
-@class BlueCapDescriptorData;
-
-typedef void(^BlueCapDescriptorCallback)(BlueCapDescriptorData* __descriptor, NSError* __error);
 
 @interface BlueCapDescriptor : NSObject
 
@@ -19,8 +16,8 @@ typedef void(^BlueCapDescriptorCallback)(BlueCapDescriptorData* __descriptor, NS
 
 - (BlueCapCharacteristic*)characteristic;
 
-- (void)read:(BlueCapDescriptorCallback)__onReadCallback;
-- (void)write:(NSData*)data onWrite:(BlueCapDescriptorCallback)__onWriteCallback;
+- (void)read:(BlueCapDescriptorDataCallback)__onReadCallback;
+- (void)write:(NSData*)data onWrite:(BlueCapDescriptorDataCallback)__onWriteCallback;
 - (NSString*)typeStringValue;
 
 @end

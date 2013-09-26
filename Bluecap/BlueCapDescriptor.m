@@ -17,10 +17,10 @@
 
 @interface BlueCapDescriptor ()
 
-@property(nonatomic, retain) CBDescriptor*              cbDescriptor;
-@property(nonatomic, retain) BlueCapCharacteristic*     characteristic;
-@property(nonatomic, copy) BlueCapDescriptorCallback    onReadCallback;
-@property(nonatomic, copy) BlueCapDescriptorCallback    onWriteCallback;
+@property(nonatomic, retain) CBDescriptor*                  cbDescriptor;
+@property(nonatomic, retain) BlueCapCharacteristic*         characteristic;
+@property(nonatomic, copy) BlueCapDescriptorDataCallback    onReadCallback;
+@property(nonatomic, copy) BlueCapDescriptorDataCallback    onWriteCallback;
 
 @end
 
@@ -59,12 +59,12 @@
 #pragma mark -
 #pragma mark I/O
 
-- (void)read:(BlueCapDescriptorCallback)__onReadCallback {
+- (void)read:(BlueCapDescriptorDataCallback)__onReadCallback {
     self.onReadCallback = __onReadCallback;
     [self.characteristic.service.peripheral.cbPeripheral readValueForDescriptor:self.cbDescriptor];
 }
 
-- (void)write:(NSData*)data onWrite:(BlueCapDescriptorCallback)__onWriteCallback {
+- (void)write:(NSData*)data onWrite:(BlueCapDescriptorDataCallback)__onWriteCallback {
     self.onWriteCallback = __onWriteCallback;
     [self.characteristic.service.peripheral.cbPeripheral writeValue:data forDescriptor:self.cbDescriptor];
 }

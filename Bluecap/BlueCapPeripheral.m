@@ -101,10 +101,12 @@
 #pragma mark -
 #pragma mark Service Definition
 
-- (void)createServiceDefinitionWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
+- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString {
+    return [self createServiceWithUUID:__uuidString andDefinition:nil];
 }
 
-- (void)createServiceDefinitionWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
+- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
+    return nil;
 }
 
 #pragma mark -

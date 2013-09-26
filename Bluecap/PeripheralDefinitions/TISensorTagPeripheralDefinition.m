@@ -11,4 +11,7 @@
 
 @implementation TISensorTagPeripheralDefinition
 
++ (void)define {
+}
+
 @end

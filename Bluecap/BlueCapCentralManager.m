@@ -65,10 +65,12 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 #pragma mark -
 #pragma mark Peripheral Definition
 
-- (void)createPeripheralDefinitionWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
+- (BlueCapPeripheralDefinition*)createPeripheralWithUUID:(NSString*)__uuidString {
+    return [self createPeripheralWithUUID:__uuidString andDefinition:nil];
 }
 
-- (void)createPeripheralDefinitionWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
+- (BlueCapPeripheralDefinition*)createPeripheralWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
+    return nil;
 }
 
 #pragma mark -

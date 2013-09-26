@@ -6,15 +6,10 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCommon.h"
+#import "BlueCapBlocks.h"
 
 @class BlueCapService;
 @class BlueCapPeripheral;
-@class BlueCapServiceDefinition;
-
-typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
-typedef void(^BlueCapPeripheralRSSICallback)(NSNumber* __rssi, NSError* __error);
-typedef void(^BlueCapServicesDiscoveredCallback)(NSArray* _services);
 
 @interface BlueCapPeripheral : NSObject <CBPeripheralDelegate>
 
@@ -33,9 +28,7 @@ typedef void(^BlueCapServicesDiscoveredCallback)(NSArray* _services);
 - (void)disconnect;
 
 - (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString;
-- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString image:(UIImage*)__image;
 - (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
-- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString image:(UIImage*)__image andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
 
 
 @end
