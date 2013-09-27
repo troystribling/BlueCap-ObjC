@@ -22,6 +22,6 @@
 
 #import "BlueCapPeripheralDefinition.h"
 #import "BlueCapServiceDefinition.h"
-#import "BlueCapChracteristicDefinition.h"
+#import "BlueCapCharacteristicDefinition.h"
 
 #import "TISensorTagPeripheralDefinition.h"

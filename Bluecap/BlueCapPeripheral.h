@@ -27,8 +27,8 @@
 - (void)connect;
 - (void)disconnect;
 
-- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString;
-- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
+- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
+- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
 
 
 @end

@@ -10,9 +10,10 @@
 
 @interface BlueCapServiceDefinition : NSObject
 
-@property(nonatomic, readonly) NSUUID*  identifier;
+@property(nonatomic, readonly) CBUUID*      UUID;
+@property(nonatomic, retain) NSString*      name;
 
-+ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString;
-+ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
++ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
++ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
 
 @end

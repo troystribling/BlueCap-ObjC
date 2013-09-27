@@ -11,6 +11,7 @@
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic+Private.h"
 #import "BlueCapDescriptor+Private.h"
+#import "BlueCapServiceDefinition.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapPeripheral ()
@@ -101,11 +102,11 @@
 #pragma mark -
 #pragma mark Service Definition
 
-- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString {
-    return [self createServiceWithUUID:__uuidString andDefinition:nil];
+- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
+    return [self createServiceWithUUID:__uuidString name:__name andDefinition:nil];
 }
 
-- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
+- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
     return nil;
 }
 

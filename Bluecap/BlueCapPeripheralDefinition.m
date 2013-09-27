@@ -31,6 +31,7 @@
 -(id)initWithUUID:(NSString*)__uuidString {
     self = [super init];
     if (self) {
+        _identifier = [[NSUUID alloc] initWithUUIDString:__uuidString];
     }
     return self;
 }

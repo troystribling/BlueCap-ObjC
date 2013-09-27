@@ -15,7 +15,7 @@
 @class BlueCapCharacteristicData;
 @class BlueCapDescriptorData;
 
-@class BlueCapChracteristicDefinition;
+@class BlueCapCharacteristicDefinition;
 @class BlueCapPeripheralDefinition;
 @class BlueCapServiceDefinition;
 
@@ -32,6 +32,6 @@ typedef void(^BlueCapDescriptorsDicoveredCallback)(NSArray* __descriptors);
 
 typedef void(^BlueCapPeripheralDefinitionBlock)(BlueCapPeripheralDefinition* __peripheralDefinition);
 typedef void(^BlueCapServiceDefinitionBlock)(BlueCapServiceDefinition* __serviceDefinition);
-typedef void(^BlueCapCharacteristicDefinitionBlock)(BlueCapChracteristicDefinition* __characteristicDefinition);
+typedef void(^BlueCapCharacteristicDefinitionBlock)(BlueCapCharacteristicDefinition* __characteristicDefinition);
 
 #endif

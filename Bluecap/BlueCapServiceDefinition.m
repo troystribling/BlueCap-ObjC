@@ -10,27 +10,29 @@
 
 @interface BlueCapServiceDefinition ()
 
-- (id)initWithUUID:(NSString*)__uuidString;
+- (id)initWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
 
 @end
 
 @implementation BlueCapServiceDefinition
 
-+ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString {
-    return [self createWithUUID:__uuidString andDefinition:nil];
++ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
+    return [self createWithUUID:__uuidString name:__name andDefinition:nil];
 }
 
-+ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
-    BlueCapServiceDefinition* serviceDefinition = [[self alloc] initWithUUID:__uuidString];
++ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
+    BlueCapServiceDefinition* serviceDefinition = [[self alloc] initWithUUID:__uuidString andName:__name];
     if (__definitionBlock) {
         __definitionBlock(serviceDefinition);
     }
     return serviceDefinition;
 }
 
--(id)initWithUUID:(NSString*)__uuidString {
+-(id)initWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
     self = [super init];
     if (self) {
+        self.name = __name;
+        _UUID = [CBUUID UUIDWithString:__uuidString];
     }
     return self;
 }

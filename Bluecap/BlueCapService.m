@@ -9,6 +9,7 @@
 
 #import "BlueCapPeripheral+Private.h"
 #import "BlueCapService.h"
+#import "BlueCapCharacteristicDefinition.h"
 
 @interface BlueCapService ()
 
@@ -70,5 +71,16 @@
 
 #pragma mark -
 #pragma mark BlueCapService PrivateAPI
+
+#pragma mark -
+#pragma mark Characteristic Definition
+
+- (BlueCapCahracteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
+    return [self createCharacteristicWithUUID:__uuidString name:__name andDefinition:nil];
+}
+
+- (BlueCapCahracteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapCharacteristicDefinitionBlock)__definitionBlock {
+    return nil;
+}
 
 @end
