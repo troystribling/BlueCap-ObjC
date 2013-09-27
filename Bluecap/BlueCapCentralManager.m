@@ -8,7 +8,7 @@
 
 #import "BlueCapCentralManager+Private.h"
 #import "BlueCapPeripheral+Private.h"
-#import "BlueCapPeripheralDefinition.h"
+#import "BlueCapPeripheralDefinition+Private.h"
 
 @interface BlueCapCentralManager ()
 

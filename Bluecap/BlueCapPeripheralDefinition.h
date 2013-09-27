@@ -10,9 +10,6 @@
 
 @interface BlueCapPeripheralDefinition : NSObject
 
-@property(nonatomic, readonly) NSUUID*  identifier;
-
-+ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString;
-+ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
+@property(nonatomic, retain) NSUUID*  identifier;
 
 @end

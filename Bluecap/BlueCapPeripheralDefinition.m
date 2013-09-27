@@ -10,30 +10,8 @@
 
 @interface BlueCapPeripheralDefinition ()
 
--(id)initWithUUID:(NSString*)__uuidString;
-
 @end
 
 @implementation BlueCapPeripheralDefinition
-
-+ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString {
-    return [self createWithUUID:__uuidString andDefinition:nil];
-}
-
-+ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
-    BlueCapPeripheralDefinition* peripheralDefinition = [[self alloc] initWithUUID:__uuidString];
-    if (__definitionBlock) {
-        __definitionBlock(peripheralDefinition);
-    }
-    return peripheralDefinition;
-}
-
--(id)initWithUUID:(NSString*)__uuidString {
-    self = [super init];
-    if (self) {
-        _identifier = [[NSUUID alloc] initWithUUIDString:__uuidString];
-    }
-    return self;
-}
 
 @end
