@@ -22,6 +22,7 @@
 
 - (BlueCapService*)service;
 - (BlueCapCharacteristicDefinition*)definition;
+- (BOOL)hasDefinition;
 
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 

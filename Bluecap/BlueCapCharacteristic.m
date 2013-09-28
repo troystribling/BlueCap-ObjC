@@ -70,6 +70,10 @@
     return self.properties & __property;
 }
 
+- (BOOL)hasDefinition {
+    return self.definition != nil;
+}
+
 #pragma mark -
 #pragma mark Manage Notifications
 

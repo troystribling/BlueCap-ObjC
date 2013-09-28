@@ -21,6 +21,7 @@
 
 - (BlueCapPeripheral*)peripheral;
 - (BlueCapServiceDefinition*)definition;
+- (BOOL)hasDefinition;
 
 - (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;
 - (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;

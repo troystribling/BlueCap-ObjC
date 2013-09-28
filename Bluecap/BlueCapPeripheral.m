@@ -66,6 +66,10 @@
     return _definition;
 }
 
+- (BOOL)hasDefinition {
+    return self.definition != nil;
+}
+
 #pragma mark -
 #pragma mark Discover Services
 

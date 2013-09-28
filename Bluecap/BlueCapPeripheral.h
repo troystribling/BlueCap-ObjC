@@ -21,6 +21,7 @@
 @property(nonatomic, readonly)  NSNumber* RSSI;
 
 - (BlueCapPeripheralDefinition*)definition;
+- (BOOL)hasDefinition;
    
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;
 - (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;
