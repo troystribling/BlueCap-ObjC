@@ -67,13 +67,14 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 #pragma mark -
 #pragma mark Peripheral Definition
 
-- (BlueCapPeripheralDefinition*)createPeripheralWithUUID:(NSString*)__uuidString {
-    return [self createPeripheralWithUUID:__uuidString andDefinition:nil];
+- (BlueCapPeripheralDefinition*)createPeripheralWithName:(NSString*)__name {
+    return [self createPeripheralWithName:(NSString*)__name andDefinition:nil];
 }
 
-- (BlueCapPeripheralDefinition*)createPeripheralWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
-    BlueCapPeripheralDefinition* peripheralDefinition = [BlueCapPeripheralDefinition createWithUUID:__uuidString andDefinition:__definitionBlock];
-    [self.discoveredPeripherals setObject:peripheralDefinition forKey:peripheralDefinition.identifier];
+- (BlueCapPeripheralDefinition*)createPeripheralWithName:(NSString*)__name andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
+    BlueCapPeripheralDefinition* peripheralDefinition = [BlueCapPeripheralDefinition createWithName:__name andDefinition:__definitionBlock];
+    [self.definedPeripherals setObject:peripheralDefinition forKey:peripheralDefinition.name];
+    DLog(@"Peripheral Defined: %@", peripheralDefinition.name);
     return peripheralDefinition;
 }
 
@@ -103,7 +104,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback {
     self.onPowerOnCallback = __onPowerOnCallback;
     [self syncMain:^{
-        if (!self.poweredOn) {
+        if (self.poweredOn) {
             [self asyncCallback:^{
                 self.onPowerOnCallback();
             }];
@@ -143,14 +144,16 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     }
 }
 
-- (void)centralManager:(CBCentralManager*)central
- didDiscoverPeripheral:(CBPeripheral*)peripheral
-     advertisementData:(NSDictionary*)advertisementData
-                  RSSI:(NSNumber*)RSSI {
+- (void)centralManager:(CBCentralManager*)central didDiscoverPeripheral:(CBPeripheral*)peripheral advertisementData:(NSDictionary*)advertisementData RSSI:(NSNumber*)RSSI {
     if ([self.discoveredPeripherals objectForKey:peripheral] == nil) {
         BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
-        DLog(@"Periphreal Discovered: %@", bcperipheral.name);
+        DLog(@"Periphreal Discovered: %@-%@", bcperipheral.name, [peripheral.identifier UUIDString]);
         [self.discoveredPeripherals setObject:bcperipheral forKey:peripheral];
+        BlueCapPeripheralDefinition* peripheralDefinition = [self.definedPeripherals objectForKey:peripheral.name];
+        if (peripheralDefinition) {
+            DLog(@"Peripheral Definition Found: %@", peripheralDefinition.name);
+            bcperipheral.definition = peripheralDefinition;
+        }
         if (self.onPeripheralDiscoveredCallback != nil) {
             [self asyncCallback:^{
                 self.onPeripheralDiscoveredCallback(bcperipheral);
@@ -171,6 +174,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)centralManagerDidUpdateState:(CBCentralManager*)central {
 	switch ([central state]) {
 		case CBCentralManagerStatePoweredOff: {
+            DLog(@"CBCentralManager Powered OFF");
             if (self.onPowerOffCallback != nil) {
                 self.poweredOn = NO;
                 [self asyncCallback:^{

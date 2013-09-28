@@ -16,6 +16,8 @@
 @dynamic discoveredCharacteristics;
 @dynamic discoveredIncludedServices;
 @dynamic peripheral;
+@dynamic definition;
+
 @dynamic onChracteristicsDiscoveredCallback;
 
 + (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__peripheral {

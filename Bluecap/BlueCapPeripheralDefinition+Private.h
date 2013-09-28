@@ -10,10 +10,10 @@
 
 @interface BlueCapPeripheralDefinition (Private)
 
-@property(nonatomic, retain) NSUUID*  identifier;
+@property(nonatomic, retain) NSString*              name;
+@property(nonatomic, retain) NSMutableDictionary*   definedServices;
 
-+ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
-
--(id)initWithUUID:(NSString*)__uuidString;
++ (BlueCapPeripheralDefinition*)createWithName:(NSString*)__name andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
+-(id)initWithName:(NSString*)__name;
 
 @end

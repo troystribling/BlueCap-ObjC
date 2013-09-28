@@ -10,6 +10,6 @@
 
 @interface TISensorTagPeripheralDefinition : NSObject
 
-+ (void)define;
++ (void)create;
 
 @end

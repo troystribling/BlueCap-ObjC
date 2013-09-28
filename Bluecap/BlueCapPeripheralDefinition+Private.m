@@ -10,20 +10,21 @@
 
 @implementation BlueCapPeripheralDefinition (Private)
 
-@dynamic identifier;
+@dynamic name;
+@dynamic definedServices;
 
-+ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
-    BlueCapPeripheralDefinition* peripheralDefinition = [[self alloc] initWithUUID:__uuidString];
++ (BlueCapPeripheralDefinition*)createWithName:(NSString*)__name andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
+    BlueCapPeripheralDefinition* peripheralDefinition = [[self alloc] initWithName:__name];
     if (__definitionBlock) {
         __definitionBlock(peripheralDefinition);
     }
     return peripheralDefinition;
 }
 
--(id)initWithUUID:(NSString*)__uuidString {
+-(id)initWithName:(NSString*)__name {
     self = [super init];
     if (self) {
-        self.identifier = [[NSUUID alloc] initWithUUIDString:__uuidString];
+        self.name = __name;
     }
     return self;
 }

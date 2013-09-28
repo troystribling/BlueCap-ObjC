@@ -11,7 +11,15 @@
 
 @implementation TISensorTagPeripheralDefinition
 
-+ (void)define {
++ (void)create {
+    [[BlueCapCentralManager sharedInstance] createPeripheralWithName:@"TI BLE Sensor Tag" andDefinition:^(BlueCapPeripheralDefinition* peripheralDefinition) {
+        
+        [peripheralDefinition createServiceWithUUID:@"F000AA00-0451-4000-B000-000000000000"
+                                               name:@"IR Temperature Sensor"
+                                      andDefinition:^(BlueCapServiceDefinition* serviceDefinition) {
+        }];
+        
+    }];
 }
 
 @end

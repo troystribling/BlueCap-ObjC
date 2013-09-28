@@ -10,7 +10,7 @@
 
 @interface BlueCapPeripheralDefinition : NSObject
 
-- (NSUUID*)identifier;
+- (NSString*)name;
 
 - (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
 - (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;

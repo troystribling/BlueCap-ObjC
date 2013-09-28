@@ -13,7 +13,6 @@
 @property(nonatomic, retain) CBUUID*                        UUID;
 @property(nonatomic, retain) NSString*                      name;
 @property(nonatomic, retain) NSMutableDictionary*           definedCharacteristics;
-@property(nonatomic, retain) BlueCapServiceDefinition*      definition;
 
 
 + (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
