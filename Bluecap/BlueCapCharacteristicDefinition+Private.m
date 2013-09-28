@@ -13,9 +13,6 @@
 @dynamic UUID;
 @dynamic name;
 
-+ (BlueCapCharacteristicDefinition*)createWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
-    return [self createWithUUID:__uuidString name:__name andDefinition:nil];
-}
 
 + (BlueCapCharacteristicDefinition*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapCharacteristicDefinitionBlock)__definitionBlock {
     BlueCapCharacteristicDefinition* characteristicDefinition = [[self alloc] initWithUUID:__uuidString andName:__name];

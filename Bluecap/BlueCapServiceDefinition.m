@@ -6,12 +6,36 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapServiceDefinition.h"
+#import "BlueCapServiceDefinition+Private.h"
+#import "BlueCapCharacteristicDefinition+Private.h"
 
 @interface BlueCapServiceDefinition ()
+
+@property(nonatomic, retain) CBUUID*                UUID;
+@property(nonatomic, retain) NSString*              name;
+@property(nonatomic, retain) NSMutableDictionary*   definedCharacteristics;
 
 @end
 
 @implementation BlueCapServiceDefinition
+
+- (CBUUID*)UUID {
+    return _UUID;
+}
+
+- (NSString*)name {
+    return _name;
+}
+
+#pragma mark -
+#pragma mark Characteristic Definition
+
+- (BlueCapCharacteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
+    return [self createCharacteristicWithUUID:__uuidString name:__name andDefinition:nil];
+}
+
+- (BlueCapCharacteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapCharacteristicDefinitionBlock)__definitionBlock {
+    return nil;
+}
 
 @end

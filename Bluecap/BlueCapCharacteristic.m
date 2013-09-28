@@ -17,6 +17,8 @@
 @property(nonatomic, retain) CBCharacteristic*                  cbCharacteristic;
 @property(nonatomic, retain) NSMutableArray*                    discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*                    service;
+@property(nonatomic, retain) BlueCapCharacteristicDefinition*   definition;
+
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback    onReadCallback;
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback    onWriteCallback;
 @property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  onDescriptorsDiscoveredCallback;
@@ -52,12 +54,16 @@
     return self.cbCharacteristic.properties;
 }
 
+- (CBUUID*)UUID {
+    return self.cbCharacteristic.UUID;
+}
+
 - (BlueCapService*)service {
     return _service;
 }
 
-- (CBUUID*)UUID {
-    return self.cbCharacteristic.UUID;
+- (BlueCapCharacteristicDefinition*)definition {
+    return _definition;
 }
 
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property {

@@ -10,19 +10,19 @@
 
 @class BlueCapPeripheral;
 @class BlueCapService;
-@class BlueCapCahracteristicDefinition;
+@class BlueCapServiceDefinition;
 
 @interface BlueCapService : NSObject
 
-@property(nonatomic, readonly) CBUUID*                      UUID;
-@property(nonatomic, readonly) NSArray*                     characteristics;
-@property(nonatomic, readonly) NSArray*                     includedServices;
-@property(nonatomic, readonly) BOOL                         isPrimary;
+@property(nonatomic, readonly) CBUUID*      UUID;
+@property(nonatomic, readonly) NSArray*     characteristics;
+@property(nonatomic, readonly) NSArray*     includedServices;
+@property(nonatomic, readonly) BOOL         isPrimary;
+
+- (BlueCapPeripheral*)peripheral;
+- (BlueCapServiceDefinition*)definition;
 
 - (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;
 - (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;
-
-- (BlueCapCahracteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
-- (BlueCapCahracteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapCharacteristicDefinitionBlock)__definitionBlock;
 
 @end

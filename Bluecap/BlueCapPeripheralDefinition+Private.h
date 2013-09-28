@@ -12,7 +12,6 @@
 
 @property(nonatomic, retain) NSUUID*  identifier;
 
-+ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString;
 + (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock;
 
 -(id)initWithUUID:(NSString*)__uuidString;

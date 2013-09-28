@@ -8,12 +8,14 @@
 
 #import "BlueCapPeripheral.h"
 
+@class BlueCapPeripheralDefinition;
+
 @interface BlueCapPeripheral (Private)
 
-@property(nonatomic, retain) CBPeripheral*          cbPeripheral;
-@property(nonatomic, retain) NSMutableArray*        discoveredServices;
-@property(nonatomic, retain) NSMutableDictionaty*   definedServices;
-@property(nonatomic, retain) NSMapTable*            discoveredObjects;
+@property(nonatomic, retain) CBPeripheral*                  cbPeripheral;
+@property(nonatomic, retain) NSMutableArray*                discoveredServices;
+@property(nonatomic, retain) NSMapTable*                    discoveredObjects;
+@property(nonatomic, retain) BlueCapPeripheralDefinition*   definition;
 
 @property(nonatomic, copy) BlueCapPeripheralCallback        onPeriperialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralCallback        onPeripheralConnectCallback;

@@ -10,7 +10,7 @@
 
 @interface BlueCapCharacteristicDefinition : NSObject
 
-@property(nonatomic, readonly) CBUUID*      UUID;
-@property(nonatomic, retain) NSString*      name;
+- (CBUUID*)UUID;
+- (NSString*)name;
 
 @end

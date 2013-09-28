@@ -12,10 +12,8 @@
 
 @dynamic UUID;
 @dynamic name;
-
-+ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
-    return [self createWithUUID:__uuidString name:__name andDefinition:nil];
-}
+@dynamic definedCharacteristics;
+@dynamic definition;
 
 + (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
     BlueCapServiceDefinition* serviceDefinition = [[self alloc] initWithUUID:__uuidString andName:__name];

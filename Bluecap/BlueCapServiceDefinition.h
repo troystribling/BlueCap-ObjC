@@ -8,9 +8,14 @@
 
 #import "BlueCapBlocks.h"
 
+@class BlueCapCharacteristicDefinition;
+
 @interface BlueCapServiceDefinition : NSObject
 
-@property(nonatomic, retain) CBUUID*    UUID;
-@property(nonatomic, retain) NSString*  name;
+- (CBUUID*)UUID;
+- (NSString*)name;
+
+- (BlueCapCharacteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
+- (BlueCapCharacteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapCharacteristicDefinitionBlock)__definitionBlock;
 
 @end

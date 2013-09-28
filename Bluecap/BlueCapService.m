@@ -9,7 +9,7 @@
 
 #import "BlueCapPeripheral+Private.h"
 #import "BlueCapService.h"
-#import "BlueCapCharacteristicDefinition.h"
+#import "BlueCapCharacteristicDefinition+Private.h"
 
 @interface BlueCapService ()
 
@@ -18,6 +18,7 @@
 @property(nonatomic, retain) NSMutableDictionary*                       definedCharacteristics;
 @property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
 @property(nonatomic, retain) BlueCapPeripheral*                         peripheral;
+@property(nonatomic, retain) BlueCapServiceDefinition*                  definition;
 @property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     onChracteristicsDiscoveredCallback;
 
 @end
@@ -43,31 +44,28 @@
     return self.cbService.isPrimary;
 }
 
+- (BlueCapPeripheral*)peripheral {
+    return _peripheral;
+}
+
+- (BlueCapServiceDefinition*)definition {
+    return _definition;
+}
+
 #pragma mark -
 #pragma mark Discover Characteritics
 
 - (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback {
     self.onChracteristicsDiscoveredCallback = __onChracteristicsDiscoveredCallback;
-    [_peripheral.cbPeripheral discoverCharacteristics:nil forService:self.cbService];
+    [self.peripheral.cbPeripheral discoverCharacteristics:nil forService:self.cbService];
 }
 
 - (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback {
     self.onChracteristicsDiscoveredCallback = __onChracteristicsDiscoveredCallback;
-    [_peripheral.cbPeripheral discoverCharacteristics:__characteristics forService:self.cbService];
+    [self.peripheral.cbPeripheral discoverCharacteristics:__characteristics forService:self.cbService];
 }
 
 #pragma mark -
 #pragma mark BlueCapService PrivateAPI
-
-#pragma mark -
-#pragma mark Characteristic Definition
-
-- (BlueCapCahracteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
-    return [self createCharacteristicWithUUID:__uuidString name:__name andDefinition:nil];
-}
-
-- (BlueCapCahracteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapCharacteristicDefinitionBlock)__definitionBlock {
-    return nil;
-}
 
 @end

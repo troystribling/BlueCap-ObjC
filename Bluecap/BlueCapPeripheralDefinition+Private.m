@@ -12,10 +12,6 @@
 
 @dynamic identifier;
 
-+ (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString {
-    return [self createWithUUID:__uuidString andDefinition:nil];
-}
-
 + (BlueCapPeripheralDefinition*)createWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
     BlueCapPeripheralDefinition* peripheralDefinition = [[self alloc] initWithUUID:__uuidString];
     if (__definitionBlock) {

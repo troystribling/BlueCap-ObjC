@@ -10,8 +10,19 @@
 
 @interface BlueCapCharacteristicDefinition ()
 
+@property(nonatomic, retain) CBUUID*      UUID;
+@property(nonatomic, retain) NSString*      name;
+
 @end
 
 @implementation BlueCapCharacteristicDefinition
+
+- (CBUUID*)UUID {
+    return _UUID;
+}
+
+- (NSString*)name {
+    return _name;
+}
 
 @end

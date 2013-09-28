@@ -73,7 +73,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
 - (BlueCapPeripheralDefinition*)createPeripheralWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
     BlueCapPeripheralDefinition* peripheralDefinition = [BlueCapPeripheralDefinition createWithUUID:__uuidString andDefinition:__definitionBlock];
-    [self.discoveredPeripherals setObject:peripheralDefinition forKey:__uuidString];
+    [self.discoveredPeripherals setObject:peripheralDefinition forKey:peripheralDefinition.identifier];
     return peripheralDefinition;
 }
 

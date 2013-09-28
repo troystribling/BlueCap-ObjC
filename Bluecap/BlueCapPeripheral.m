@@ -11,15 +11,15 @@
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic+Private.h"
 #import "BlueCapDescriptor+Private.h"
-#import "BlueCapServiceDefinition+Private.h"
+#import "BlueCapPeripheralDefinition+Private.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapPeripheral ()
 
 @property(nonatomic, retain) CBPeripheral*                  cbPeripheral;
 @property(nonatomic, retain) NSMutableArray*                discoveredServices;
-@property(nonatomic, retain) NSMutableDictionary*           definedServices;
 @property(nonatomic, retain) NSMapTable*                    discoveredObjects;
+@property(nonatomic, retain) BlueCapPeripheralDefinition*   definition;
 
 @property(nonatomic, copy) BlueCapPeripheralCallback            onPeriperialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralCallback            onPeripheralConnectCallback;
@@ -62,6 +62,10 @@
     return self.cbPeripheral.RSSI;
 }
 
+- (BlueCapPeripheralDefinition*)definition {
+    return _definition;
+}
+
 #pragma mark -
 #pragma mark Discover Services
 
@@ -98,17 +102,6 @@
 
 - (void)disconnect {
     [self disconnect:nil];
-}
-
-#pragma mark -
-#pragma mark Service Definition
-
-- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
-    return [self createServiceWithUUID:__uuidString name:__name andDefinition:nil];
-}
-
-- (BlueCapServiceDefinition*)createServiceWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock {
-    return nil;
 }
 
 #pragma mark -

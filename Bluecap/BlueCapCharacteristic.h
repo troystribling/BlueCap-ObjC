@@ -9,6 +9,7 @@
 #import "BlueCapBlocks.h"
 
 @class BlueCapService;
+@class BlueCapCharacteristicDefinition;
 
 @interface BlueCapCharacteristic : NSObject
 
@@ -20,6 +21,8 @@
 @property(nonatomic, readonly) CBUUID*                      UUID;
 
 - (BlueCapService*)service;
+- (BlueCapCharacteristicDefinition*)definition;
+
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 
 - (void)startNotifications:(BlueCapCharacteristicDataCallback)__onReadCallback;
