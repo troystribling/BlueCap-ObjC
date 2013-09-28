@@ -18,9 +18,6 @@
 @property(nonatomic, readonly) NSArray*                     characteristics;
 @property(nonatomic, readonly) NSArray*                     includedServices;
 @property(nonatomic, readonly) BOOL                         isPrimary;
-@property(nonatomic, readonly) BlueCapPeripheral*           peripheral;
-
-+ (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__peripheral;
 
 - (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;
 - (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;

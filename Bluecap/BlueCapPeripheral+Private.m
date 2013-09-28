@@ -13,6 +13,7 @@
 
 @dynamic cbPeripheral;
 @dynamic discoveredServices;
+@dynamic definedServices;
 @dynamic discoveredObjects;
 
 @dynamic onPeriperialDisconnectCallback;
@@ -30,6 +31,7 @@
         self.cbPeripheral.delegate = self;
         self.discoveredServices = [NSMutableArray array];
         self.discoveredObjects = [NSMapTable weakToWeakObjectsMapTable];
+        self.definedServices = [NSMutableDictionary dictionary];
     }
     return self;
 }

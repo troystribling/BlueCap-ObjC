@@ -13,7 +13,4 @@
 @property(nonatomic, readonly) CBUUID*      UUID;
 @property(nonatomic, retain) NSString*      name;
 
-+ (BlueCapCharacteristicDefinition*)createWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
-+ (BlueCapCharacteristicDefinition*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapCharacteristicDefinitionBlock)__definitionBlock;
-
 @end

@@ -13,6 +13,7 @@
 @interface BlueCapCentralManager ()
 
 @property(nonatomic, retain) NSMutableDictionary*           discoveredPeripherals;
+@property(nonatomic, retain) NSMutableDictionary*           definedPeripherals;
 @property(nonatomic, retain) NSMutableDictionary*           configuredObjects;
 @property(nonatomic, retain) CBCentralManager*              centralManager;
 @property(nonatomic, retain) dispatch_queue_t               mainQueue;
@@ -48,6 +49,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         self.callbackQueue = dispatch_queue_create("com.gnos.us.callback", DISPATCH_QUEUE_SERIAL);
 		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
+        self.definedPeripherals = [NSMutableDictionary dictionary];
         self.configuredObjects = [NSMutableDictionary dictionary];
         self.poweredOn = YES;
 	}
@@ -70,7 +72,9 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 }
 
 - (BlueCapPeripheralDefinition*)createPeripheralWithUUID:(NSString*)__uuidString andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
-    return nil;
+    BlueCapPeripheralDefinition* peripheralDefinition = [BlueCapPeripheralDefinition createWithUUID:__uuidString andDefinition:__definitionBlock];
+    [self.discoveredPeripherals setObject:peripheralDefinition forKey:__uuidString];
+    return peripheralDefinition;
 }
 
 #pragma mark -

@@ -11,13 +11,14 @@
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic+Private.h"
 #import "BlueCapDescriptor+Private.h"
-#import "BlueCapServiceDefinition.h"
+#import "BlueCapServiceDefinition+Private.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapPeripheral ()
 
 @property(nonatomic, retain) CBPeripheral*                  cbPeripheral;
 @property(nonatomic, retain) NSMutableArray*                discoveredServices;
+@property(nonatomic, retain) NSMutableDictionary*           definedServices;
 @property(nonatomic, retain) NSMapTable*                    discoveredObjects;
 
 @property(nonatomic, copy) BlueCapPeripheralCallback            onPeriperialDisconnectCallback;
