@@ -32,6 +32,17 @@
         [peripheralDefinition createServiceWithUUID:@"F000AA00-0451-4000-B000-000000000000"
                                                name:@"IR Temperature Sensor"
                                       andDefinition:^(BlueCapServiceDefinition* serviceDefinition) {
+
+                                          [serviceDefinition createCharacteristicWithUUID:@"f000aa01-0451-4000-b000-000000000000"
+                                                                                     name:@"Temperature"
+                                                                            andDefinition:^(BlueCapCharacteristicDefinition* chracteristicDefinition) {
+                                                                            }];
+                                          
+                                          [serviceDefinition createCharacteristicWithUUID:@"f000aa02-0451-4000-b000-000000000000"
+                                                                                     name:@"Temperature Configure"
+                                                                            andDefinition:^(BlueCapCharacteristicDefinition* chracteristicDefinition) {
+                                                                            }];
+                                          
                                       }];
         
         [peripheralDefinition createServiceWithUUID:@"F000AA40-0451-4000-B000-000000000000"

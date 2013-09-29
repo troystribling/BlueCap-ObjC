@@ -8,6 +8,7 @@
 
 #import "BlueCapServiceDefinition+Private.h"
 #import "BlueCapCharacteristicDefinition+Private.h"
+#import "CBUUID+StringValue.h"
 
 @interface BlueCapServiceDefinition ()
 
@@ -35,7 +36,10 @@
 }
 
 - (BlueCapCharacteristicDefinition*)createCharacteristicWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapCharacteristicDefinitionBlock)__definitionBlock {
-    return nil;
+    BlueCapCharacteristicDefinition* chracteristicDefinition = [BlueCapCharacteristicDefinition createWithUUID:__uuidString name:__name andDefinition:__definitionBlock];
+    [self.definedCharacteristics setObject:chracteristicDefinition forKey:chracteristicDefinition.UUID];
+    DLog(@"Characteristic Defined: %@-%@", chracteristicDefinition.name, [chracteristicDefinition.UUID stringValue]);
+    return chracteristicDefinition;
 }
 
 @end

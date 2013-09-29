@@ -20,6 +20,7 @@
 @dynamic onWriteCallback;
 @dynamic onReadCallback;
 @dynamic onDescriptorsDiscoveredCallback;
+@dynamic definition;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
     return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andService:__service];

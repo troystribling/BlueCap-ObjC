@@ -9,6 +9,7 @@
 #import "BlueCapCharacteristic.h"
 
 @class BlueCapService;
+@class BlueCapCharacteristicDefinition;
 
 @interface BlueCapCharacteristic (Private)
 
@@ -18,6 +19,7 @@
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback    onReadCallback;
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback    onWriteCallback;
 @property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  onDescriptorsDiscoveredCallback;
+@property(nonatomic, retain) BlueCapCharacteristicDefinition*   definition;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service;
 - (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service;

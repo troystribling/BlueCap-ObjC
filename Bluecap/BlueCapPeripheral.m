@@ -13,6 +13,7 @@
 #import "BlueCapDescriptor+Private.h"
 #import "BlueCapPeripheralDefinition+Private.h"
 #import "BlueCapServiceDefinition+Private.h"
+#import "BlueCapCharacteristicDefinition+Private.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapPeripheral ()
@@ -146,8 +147,16 @@
     BlueCapService* bcService = [self.discoveredObjects objectForKey:service];
     for (CBCharacteristic* charateristic in service.characteristics) {
         BlueCapCharacteristic* bcCharacteristic = [BlueCapCharacteristic withCBCharacteristic:charateristic andService:bcService];
+        DLog(@"Discovered Characteristic: %@", [bcCharacteristic.UUID stringValue]);
         [self.discoveredObjects setObject:bcCharacteristic forKey:charateristic];
         [bcService.discoveredCharacteristics addObject:bcCharacteristic];
+        if ([bcService hasDefinition]) {
+            BlueCapCharacteristicDefinition* characteristicDefinition = [bcService.definition.definedCharacteristics objectForKey:bcCharacteristic.UUID];
+            if (characteristicDefinition) {
+                DLog(@"Characteristic Definition Found: %@", characteristicDefinition.name);
+                bcCharacteristic.definition = characteristicDefinition;
+            }
+        }
     }
     [bcService didDiscoverCharacterics:bcService.discoveredCharacteristics];
 }
