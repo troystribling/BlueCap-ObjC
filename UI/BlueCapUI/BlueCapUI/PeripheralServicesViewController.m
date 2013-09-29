@@ -59,7 +59,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PeripheralServiceCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PeripheralServiceCell" forIndexPath:indexPath];
     BlueCapService* service = [self.peripheral.services objectAtIndex:indexPath.row];
-    cell.uuidLabel.text = service.UUID.stringValue;
+    if ([service hasDefinition]) {
+        cell.nameLabel.text = service.definition.name;
+    } else {
+        cell.nameLabel.text = service.UUID.stringValue;
+    }
     if (service.isPrimary) {
         cell.serviceTypeLabel.text = @"Primary";
     } else {

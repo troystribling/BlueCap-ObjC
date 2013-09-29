@@ -25,6 +25,7 @@
     self = [super init];
     if (self) {
         self.name = __name;
+        self.definedServices = [NSMutableDictionary dictionary];
     }
     return self;
 }

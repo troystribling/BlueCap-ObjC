@@ -27,6 +27,7 @@
     if (self) {
         self.name = __name;
         self.UUID = [CBUUID UUIDWithString:__uuidString];
+        self.definedCharacteristics = [NSMutableDictionary dictionary];
     }
     return self;
 }
