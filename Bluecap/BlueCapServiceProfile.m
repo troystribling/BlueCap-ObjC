@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapServiceProfile+Private.h"
-#import "BlueCapCharacteristicProfile+Private.h"
+#import "BlueCapServiceProfile+Friend.h"
+#import "BlueCapCharacteristicProfile+Friend.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapServiceProfile ()

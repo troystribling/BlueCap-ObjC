@@ -10,9 +10,9 @@
 #import "BlueCapPeripheral.h"
 #import "BlueCapService.h"
 #import "BlueCapCharacteristic.h"
-#import "BlueCapPeripheral+Private.h"
-#import "BlueCapService+Private.h"
-#import "BlueCapCharacteristic+Private.h"
+#import "BlueCapPeripheral+Friend.h"
+#import "BlueCapService+Friend.h"
+#import "BlueCapCharacteristic+Friend.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapDescriptor ()

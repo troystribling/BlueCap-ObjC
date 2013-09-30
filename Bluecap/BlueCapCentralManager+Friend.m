@@ -1,15 +1,15 @@
 //
-//  BlueCapCentralManager+Private.m
+//  BlueCapCentralManager+Friend.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 8/25/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCentralManager+Private.h"
-#import "BlueCapPeripheral+Private.h"
+#import "BlueCapCentralManager+Friend.h"
+#import "BlueCapPeripheral+Friend.h"
 
-@implementation BlueCapCentralManager (Private)
+@implementation BlueCapCentralManager (Friend)
 
 @dynamic centralManager;
 @dynamic configuredObjects;

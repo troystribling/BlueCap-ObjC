@@ -1,16 +1,16 @@
 //
-//  BlueCapService+Private.m
+//  BlueCapService+Friend.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 8/26/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapService+Private.h"
-#import "BlueCapCharacteristic+Private.h"
-#import "BlueCapCentralManager+Private.h"
+#import "BlueCapService+Friend.h"
+#import "BlueCapCharacteristic+Friend.h"
+#import "BlueCapCentralManager+Friend.h"
 
-@implementation BlueCapService (Private)
+@implementation BlueCapService (Friend)
 
 @dynamic cbService;
 @dynamic discoveredCharacteristics;

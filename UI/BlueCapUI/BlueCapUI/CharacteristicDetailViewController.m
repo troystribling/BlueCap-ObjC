@@ -68,7 +68,7 @@
 }
 
 #pragma mark -
-#pragma mark ChracteristicDetailViewController Private API
+#pragma mark ChracteristicDetailViewController Friend API
 
 - (NSString*)booleanStringValue:(BOOL)__boolValue {
     return __boolValue ?  @"YES" : @"NO";

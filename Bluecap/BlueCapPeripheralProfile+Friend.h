@@ -1,5 +1,5 @@
 //
-//  BlueCapPeripheralProfile+Private.h
+//  BlueCapPeripheralProfile+Friend.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/27/13.
@@ -8,7 +8,7 @@
 
 #import "BlueCapPeripheralProfile.h"
 
-@interface BlueCapPeripheralProfile (Private)
+@interface BlueCapPeripheralProfile (Friend)
 
 @property(nonatomic, retain) NSString*              name;
 @property(nonatomic, retain) NSMutableDictionary*   definedServices;

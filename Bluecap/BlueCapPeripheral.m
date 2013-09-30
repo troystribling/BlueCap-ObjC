@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCentralManager+Private.h"
-#import "BlueCapPeripheral+Private.h"
-#import "BlueCapService+Private.h"
-#import "BlueCapCharacteristic+Private.h"
-#import "BlueCapDescriptor+Private.h"
-#import "BlueCapPeripheralProfile+Private.h"
-#import "BlueCapServiceProfile+Private.h"
-#import "BlueCapCharacteristicProfile+Private.h"
+#import "BlueCapCentralManager+Friend.h"
+#import "BlueCapPeripheral+Friend.h"
+#import "BlueCapService+Friend.h"
+#import "BlueCapCharacteristic+Friend.h"
+#import "BlueCapDescriptor+Friend.h"
+#import "BlueCapPeripheralProfile+Friend.h"
+#import "BlueCapServiceProfile+Friend.h"
+#import "BlueCapCharacteristicProfile+Friend.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapPeripheral ()

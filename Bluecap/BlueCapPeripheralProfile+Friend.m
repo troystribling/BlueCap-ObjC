@@ -1,14 +1,14 @@
 //
-//  BlueCapPeripheralProfile+Private.m
+//  BlueCapPeripheralProfile+Friend.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/27/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapPeripheralProfile+Private.h"
+#import "BlueCapPeripheralProfile+Friend.h"
 
-@implementation BlueCapPeripheralProfile (Private)
+@implementation BlueCapPeripheralProfile (Friend)
 
 @dynamic name;
 @dynamic definedServices;

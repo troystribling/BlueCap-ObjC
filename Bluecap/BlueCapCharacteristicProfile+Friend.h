@@ -1,5 +1,5 @@
 //
-//  BlueCapCharacteristicProfile+Private.h
+//  BlueCapCharacteristicProfile+Friend.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/27/13.
@@ -8,7 +8,7 @@
 
 #import "BlueCapCharacteristicProfile.h"
 
-@interface BlueCapCharacteristicProfile (Private)
+@interface BlueCapCharacteristicProfile (Friend)
 
 @property(nonatomic, retain) CBUUID*        UUID;
 @property(nonatomic, retain) NSString*      name;

@@ -1,14 +1,14 @@
 //
-//  BlueCapCharacteristicProfile+Private.m
+//  BlueCapCharacteristicProfile+Friend.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/27/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCharacteristicProfile+Private.h"
+#import "BlueCapCharacteristicProfile+Friend.h"
 
-@implementation BlueCapCharacteristicProfile (Private)
+@implementation BlueCapCharacteristicProfile (Friend)
 
 @dynamic UUID;
 @dynamic name;

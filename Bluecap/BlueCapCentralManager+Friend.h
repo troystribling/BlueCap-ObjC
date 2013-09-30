@@ -1,5 +1,5 @@
 //
-//  BlueCapCentralManager+Private.h
+//  BlueCapCentralManager+Friend.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 8/25/13.
@@ -8,7 +8,7 @@
 
 #import "BlueCapCentralManager.h"
 
-@interface BlueCapCentralManager (Private)
+@interface BlueCapCentralManager (Friend)
 
 @property(nonatomic, retain) CBCentralManager*              centralManager;
 @property(nonatomic, retain) NSMutableDictionary*           configuredObjects;

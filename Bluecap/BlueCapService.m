@@ -7,9 +7,9 @@
 //
 
 
-#import "BlueCapPeripheral+Private.h"
+#import "BlueCapPeripheral+Friend.h"
 #import "BlueCapService.h"
-#import "BlueCapCharacteristicProfile+Private.h"
+#import "BlueCapCharacteristicProfile+Friend.h"
 
 @interface BlueCapService ()
 

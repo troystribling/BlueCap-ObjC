@@ -1,14 +1,14 @@
 //
-//  BlueCapDescriptorData+Private.m
+//  BlueCapDescriptorData+Friend.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/12/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapDescriptorData+Private.h"
+#import "BlueCapDescriptorData+Friend.h"
 
-@implementation BlueCapDescriptorData (Private)
+@implementation BlueCapDescriptorData (Friend)
 
 @dynamic bcDescriptor;
 

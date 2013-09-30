@@ -1,5 +1,5 @@
 //
-//  BlueCapPeripheral+Private.h
+//  BlueCapPeripheral+Friend.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 8/27/13.
@@ -10,7 +10,7 @@
 
 @class BlueCapPeripheralProfile;
 
-@interface BlueCapPeripheral (Private)
+@interface BlueCapPeripheral (Friend)
 
 @property(nonatomic, retain) CBPeripheral*                  cbPeripheral;
 @property(nonatomic, retain) NSMutableArray*                discoveredServices;

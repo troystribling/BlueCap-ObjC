@@ -1,5 +1,5 @@
 //
-//  BlueCapDescriptorData+Private.h
+//  BlueCapDescriptorData+Friend.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/12/13.
@@ -10,7 +10,7 @@
 
 @class BlueCapDescriptor;
 
-@interface BlueCapDescriptorData (Private)
+@interface BlueCapDescriptorData (Friend)
 
 @property(nonatomic, retain) BlueCapDescriptor* bcDescriptor;
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCentralManager+Private.h"
-#import "BlueCapDescriptorData+Private.h"
-#import "BlueCapDescriptor+Private.h"
+#import "BlueCapCentralManager+Friend.h"
+#import "BlueCapDescriptorData+Friend.h"
+#import "BlueCapDescriptor+Friend.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapDescriptorData ()

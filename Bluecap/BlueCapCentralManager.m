@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCentralManager+Private.h"
-#import "BlueCapPeripheral+Private.h"
-#import "BlueCapPeripheralProfile+Private.h"
+#import "BlueCapCentralManager+Friend.h"
+#import "BlueCapPeripheral+Friend.h"
+#import "BlueCapPeripheralProfile+Friend.h"
 
 @interface BlueCapCentralManager ()
 

@@ -7,7 +7,7 @@
 //
 
 #import "BlueCapPeripheralProfile.h"
-#import "BlueCapServiceProfile+Private.h"
+#import "BlueCapServiceProfile+Friend.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapPeripheralProfile ()

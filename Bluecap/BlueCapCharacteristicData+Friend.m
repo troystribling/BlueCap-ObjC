@@ -1,14 +1,14 @@
 //
-//  BlueCapCharacteristicData+Private.m
+//  BlueCapCharacteristicData+Friend.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/12/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCharacteristicData+Private.h"
+#import "BlueCapCharacteristicData+Friend.h"
 
-@implementation BlueCapCharacteristicData (Private)
+@implementation BlueCapCharacteristicData (Friend)
 
 @dynamic bcCharacteristic;
 

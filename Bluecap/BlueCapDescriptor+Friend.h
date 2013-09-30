@@ -1,5 +1,5 @@
 //
-//  BlueCapDescriptor+Private.h
+//  BlueCapDescriptor+Friend.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 8/31/13.
@@ -8,7 +8,7 @@
 
 #import "BlueCapDescriptor.h"
 
-@interface BlueCapDescriptor (Private)
+@interface BlueCapDescriptor (Friend)
 
 @property(nonatomic, retain) CBDescriptor*                  cbDescriptor;
 @property(nonatomic, retain) BlueCapCharacteristic*         characteristic;

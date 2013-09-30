@@ -1,5 +1,5 @@
 //
-//  BlueCapCharacteristicData+Private.h
+//  BlueCapCharacteristicData+Friend.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/12/13.
@@ -10,7 +10,7 @@
 
 @class BlueCapCharacteristic;
 
-@interface BlueCapCharacteristicData (Private)
+@interface BlueCapCharacteristicData (Friend)
 
 @property(nonatomic, retain) BlueCapCharacteristic*   bcCharacteristic;
 

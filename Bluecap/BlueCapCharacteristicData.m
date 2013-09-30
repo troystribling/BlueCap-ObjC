@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCentralManager+Private.h"
-#import "BlueCapCharacteristic+Private.h"
-#import "BlueCapCharacteristicData+Private.h"
+#import "BlueCapCentralManager+Friend.h"
+#import "BlueCapCharacteristic+Friend.h"
+#import "BlueCapCharacteristicData+Friend.h"
 
 @interface BlueCapCharacteristicData ()
 

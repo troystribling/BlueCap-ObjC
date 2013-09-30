@@ -1,18 +1,18 @@
 //
-//  BlueCapCharacteristic+Private.m
+//  BlueCapCharacteristic+Friend.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 8/26/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCentralManager+Private.h"
-#import "BlueCapCharacteristic+Private.h"
-#import "BlueCapCharacteristicData+Private.h"
-#import "BlueCapDescriptor+Private.h"
-#import "BlueCapService+Private.h"
+#import "BlueCapCentralManager+Friend.h"
+#import "BlueCapCharacteristic+Friend.h"
+#import "BlueCapCharacteristicData+Friend.h"
+#import "BlueCapDescriptor+Friend.h"
+#import "BlueCapService+Friend.h"
 
-@implementation BlueCapCharacteristic (Private)
+@implementation BlueCapCharacteristic (Friend)
 
 @dynamic cbCharacteristic;
 @dynamic discoveredDiscriptors;

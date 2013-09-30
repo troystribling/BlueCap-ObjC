@@ -1,5 +1,5 @@
 //
-//  BlueCapService+Private.h
+//  BlueCapService+Friend.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 8/26/13.
@@ -10,7 +10,7 @@
 
 @class BlueCapCharacteristic;
 
-@interface BlueCapService (Private)
+@interface BlueCapService (Friend)
 
 @property(nonatomic, retain) CBService*                                 cbService;
 @property(nonatomic, retain) NSMutableArray*                            discoveredCharacteristics;
