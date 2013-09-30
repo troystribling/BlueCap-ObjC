@@ -14,6 +14,16 @@
 + (void)create {
     [[BlueCapCentralManager sharedInstance] createPeripheralWithName:@"TI BLE Sensor Tag" andProfile:^(BlueCapPeripheralProfile* peripheralProfile) {
         
+        [peripheralProfile createServiceWithUUID:@"180a"
+                                            name:@"Device Information"
+                                      andProfile:^(BlueCapServiceProfile* serviceProfile) {
+                                      }];
+
+        [peripheralProfile createServiceWithUUID:@"ffe0"
+                                            name:@"Key Pressed"
+                                      andProfile:^(BlueCapServiceProfile* serviceProfile) {
+                                      }];
+
         [peripheralProfile createServiceWithUUID:@"F000AA10-0451-4000-B000-000000000000"
                                             name:@"Accelerometer"
                                         andProfile:^(BlueCapServiceProfile* serviceProfile) {
@@ -55,8 +65,8 @@
                                       andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                       }];
 
-        [peripheralProfile createServiceWithUUID:@"F000AA20-0451-4000-B000-000000000000"
-                                            name:@"Humidity Sensor"
+        [peripheralProfile createServiceWithUUID:@"F000AA60-0451-4000-B000-000000000000"
+                                            name:@"Test Service"
                                       andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                       }];
 
