@@ -124,7 +124,7 @@
         [self.discoveredObjects setObject:bcService forKey:service];
         [self.discoveredServices addObject:bcService];
         if ([self hasProfile]) {
-            BlueCapServiceProfile* serviceProfile = [self.profile.definedServices objectForKey:bcService.UUID];
+            BlueCapServiceProfile* serviceProfile = [self.profile.serviceProfiles objectForKey:bcService.UUID];
             if (serviceProfile) {
                 DLog(@"Service Profile Found: %@", serviceProfile.name);
                 bcService.profile = serviceProfile;
@@ -151,7 +151,7 @@
         [self.discoveredObjects setObject:bcCharacteristic forKey:charateristic];
         [bcService.discoveredCharacteristics addObject:bcCharacteristic];
         if ([bcService hasProfile]) {
-            BlueCapCharacteristicProfile* characteristicProfile = [bcService.profile.definedCharacteristics objectForKey:bcCharacteristic.UUID];
+            BlueCapCharacteristicProfile* characteristicProfile = [bcService.profile.characteristicProfiles objectForKey:bcCharacteristic.UUID];
             if (characteristicProfile) {
                 DLog(@"Characteristic Profile Found: %@", characteristicProfile.name);
                 bcCharacteristic.profile = characteristicProfile;

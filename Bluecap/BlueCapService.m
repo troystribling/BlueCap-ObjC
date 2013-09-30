@@ -15,7 +15,7 @@
 
 @property(nonatomic, retain) CBService*                                 cbService;
 @property(nonatomic, retain) NSMutableArray*                            discoveredCharacteristics;
-@property(nonatomic, retain) NSMutableDictionary*                       definedCharacteristics;
+@property(nonatomic, retain) NSMutableDictionary*                       characteristicProfiles;
 @property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
 @property(nonatomic, retain) BlueCapPeripheral*                         peripheral;
 @property(nonatomic, retain) BlueCapServiceProfile*                     profile;

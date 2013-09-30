@@ -11,7 +11,7 @@
 @implementation BlueCapPeripheralProfile (Friend)
 
 @dynamic name;
-@dynamic definedServices;
+@dynamic serviceProfiles;
 
 + (BlueCapPeripheralProfile*)createWithName:(NSString*)__name andProfile:(BlueCapPeripheralProfileBlock)__profileBlock {
     BlueCapPeripheralProfile* peripheralProfile = [[self alloc] initWithName:__name];
@@ -25,7 +25,7 @@
     self = [super init];
     if (self) {
         self.name = __name;
-        self.definedServices = [NSMutableDictionary dictionary];
+        self.serviceProfiles = [NSMutableDictionary dictionary];
     }
     return self;
 }

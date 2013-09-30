@@ -13,7 +13,7 @@
 @interface BlueCapPeripheralProfile ()
 
 @property(nonatomic, retain) NSString*              name;
-@property(nonatomic, retain) NSMutableDictionary*   definedServices;
+@property(nonatomic, retain) NSMutableDictionary*   serviceProfiles;
 
 @end
 
@@ -32,7 +32,7 @@
 
 - (BlueCapServiceProfile*)createServiceWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapServiceProfileBlock)__profileBlock {
     BlueCapServiceProfile* serviceProfile = [BlueCapServiceProfile createWithUUID:__uuidString name:__name andProfile:__profileBlock];
-    [self.definedServices setObject:serviceProfile forKey:serviceProfile.UUID];
+    [self.serviceProfiles setObject:serviceProfile forKey:serviceProfile.UUID];
     DLog(@"Service Profile Defined: %@-%@", serviceProfile.name, [serviceProfile.UUID stringValue]);
     return serviceProfile;
 }

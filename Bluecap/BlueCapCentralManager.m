@@ -13,7 +13,7 @@
 @interface BlueCapCentralManager ()
 
 @property(nonatomic, retain) NSMutableDictionary*           discoveredPeripherals;
-@property(nonatomic, retain) NSMutableDictionary*           definedPeripherals;
+@property(nonatomic, retain) NSMutableDictionary*           peripheralProfiles;
 @property(nonatomic, retain) NSMutableDictionary*           configuredObjects;
 @property(nonatomic, retain) CBCentralManager*              centralManager;
 @property(nonatomic, retain) dispatch_queue_t               mainQueue;
@@ -49,7 +49,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         self.callbackQueue = dispatch_queue_create("com.gnos.us.callback", DISPATCH_QUEUE_SERIAL);
 		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
-        self.definedPeripherals = [NSMutableDictionary dictionary];
+        self.peripheralProfiles = [NSMutableDictionary dictionary];
         self.configuredObjects = [NSMutableDictionary dictionary];
         self.poweredOn = YES;
 	}
@@ -73,7 +73,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
 - (BlueCapPeripheralProfile*)createPeripheralWithName:(NSString*)__name andProfile:(BlueCapPeripheralProfileBlock)__profileBlock {
     BlueCapPeripheralProfile* peripheralProfile = [BlueCapPeripheralProfile createWithName:__name andProfile:__profileBlock];
-    [self.definedPeripherals setObject:peripheralProfile forKey:peripheralProfile.name];
+    [self.peripheralProfiles setObject:peripheralProfile forKey:peripheralProfile.name];
     DLog(@"Peripheral Profile Defined: %@", peripheralProfile.name);
     return peripheralProfile;
 }
@@ -149,7 +149,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
         DLog(@"Periphreal Discovered: %@-%@", bcperipheral.name, [peripheral.identifier UUIDString]);
         [self.discoveredPeripherals setObject:bcperipheral forKey:peripheral];
-        BlueCapPeripheralProfile* peripheralProfile = [self.definedPeripherals objectForKey:peripheral.name];
+        BlueCapPeripheralProfile* peripheralProfile = [self.peripheralProfiles objectForKey:peripheral.name];
         if (peripheralProfile) {
             DLog(@"Peripheral Profile Found: %@", peripheralProfile.name);
             bcperipheral.profile = peripheralProfile;

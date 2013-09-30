@@ -12,7 +12,7 @@
 
 @dynamic UUID;
 @dynamic name;
-@dynamic definedCharacteristics;
+@dynamic characteristicProfiles;
 
 + (BlueCapServiceProfile*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapServiceProfileBlock)__profileBlock {
     BlueCapServiceProfile* serviceProfile = [[self alloc] initWithUUID:__uuidString andName:__name];
@@ -27,7 +27,7 @@
     if (self) {
         self.name = __name;
         self.UUID = [CBUUID UUIDWithString:__uuidString];
-        self.definedCharacteristics = [NSMutableDictionary dictionary];
+        self.characteristicProfiles = [NSMutableDictionary dictionary];
     }
     return self;
 }

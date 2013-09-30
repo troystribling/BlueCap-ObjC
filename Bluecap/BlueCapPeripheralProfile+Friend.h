@@ -11,7 +11,7 @@
 @interface BlueCapPeripheralProfile (Friend)
 
 @property(nonatomic, retain) NSString*              name;
-@property(nonatomic, retain) NSMutableDictionary*   definedServices;
+@property(nonatomic, retain) NSMutableDictionary*   serviceProfiles;
 
 + (BlueCapPeripheralProfile*)createWithName:(NSString*)__name andProfile:(BlueCapPeripheralProfileBlock)__profileBlock;
 -(id)initWithName:(NSString*)__name;
