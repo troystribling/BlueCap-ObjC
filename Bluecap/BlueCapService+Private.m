@@ -16,7 +16,7 @@
 @dynamic discoveredCharacteristics;
 @dynamic discoveredIncludedServices;
 @dynamic peripheral;
-@dynamic definition;
+@dynamic profile;
 
 @dynamic onChracteristicsDiscoveredCallback;
 

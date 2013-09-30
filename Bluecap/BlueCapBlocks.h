@@ -15,9 +15,9 @@
 @class BlueCapCharacteristicData;
 @class BlueCapDescriptorData;
 
-@class BlueCapCharacteristicDefinition;
-@class BlueCapPeripheralDefinition;
-@class BlueCapServiceDefinition;
+@class BlueCapCharacteristicProfile;
+@class BlueCapPeripheralProfile;
+@class BlueCapServiceProfile;
 
 typedef void(^BlueCapCentralManagerCallback)(void);
 typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
@@ -30,8 +30,8 @@ typedef void(^BlueCapServicesDiscoveredCallback)(NSArray* _services);
 typedef void(^BlueCapCharacteristicsDiscoveredCallback)(NSArray* __characteristics);
 typedef void(^BlueCapDescriptorsDicoveredCallback)(NSArray* __descriptors);
 
-typedef void(^BlueCapPeripheralDefinitionBlock)(BlueCapPeripheralDefinition* __peripheralDefinition);
-typedef void(^BlueCapServiceDefinitionBlock)(BlueCapServiceDefinition* __serviceDefinition);
-typedef void(^BlueCapCharacteristicDefinitionBlock)(BlueCapCharacteristicDefinition* __characteristicDefinition);
+typedef void(^BlueCapPeripheralProfileBlock)(BlueCapPeripheralProfile* __peripheralProfile);
+typedef void(^BlueCapServiceProfileBlock)(BlueCapServiceProfile* __serviceProfile);
+typedef void(^BlueCapCharacteristicProfileBlock)(BlueCapCharacteristicProfile* __characteristicProfile);
 
 #endif

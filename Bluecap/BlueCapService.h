@@ -10,7 +10,7 @@
 
 @class BlueCapPeripheral;
 @class BlueCapService;
-@class BlueCapServiceDefinition;
+@class BlueCapServiceProfile;
 
 @interface BlueCapService : NSObject
 
@@ -20,8 +20,8 @@
 @property(nonatomic, readonly) BOOL         isPrimary;
 
 - (BlueCapPeripheral*)peripheral;
-- (BlueCapServiceDefinition*)definition;
-- (BOOL)hasDefinition;
+- (BlueCapServiceProfile*)profile;
+- (BOOL)hasProfile;
 
 - (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;
 - (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;

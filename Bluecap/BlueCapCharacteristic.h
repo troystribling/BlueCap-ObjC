@@ -9,7 +9,7 @@
 #import "BlueCapBlocks.h"
 
 @class BlueCapService;
-@class BlueCapCharacteristicDefinition;
+@class BlueCapCharacteristicProfile;
 
 @interface BlueCapCharacteristic : NSObject
 
@@ -21,8 +21,8 @@
 @property(nonatomic, readonly) CBUUID*                      UUID;
 
 - (BlueCapService*)service;
-- (BlueCapCharacteristicDefinition*)definition;
-- (BOOL)hasDefinition;
+- (BlueCapCharacteristicProfile*)profile;
+- (BOOL)hasProfile;
 
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 

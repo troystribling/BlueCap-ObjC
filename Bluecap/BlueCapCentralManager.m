@@ -8,7 +8,7 @@
 
 #import "BlueCapCentralManager+Private.h"
 #import "BlueCapPeripheral+Private.h"
-#import "BlueCapPeripheralDefinition+Private.h"
+#import "BlueCapPeripheralProfile+Private.h"
 
 @interface BlueCapCentralManager ()
 
@@ -65,17 +65,17 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 }
 
 #pragma mark -
-#pragma mark Peripheral Definition
+#pragma mark Peripheral Profile
 
-- (BlueCapPeripheralDefinition*)createPeripheralWithName:(NSString*)__name {
-    return [self createPeripheralWithName:(NSString*)__name andDefinition:nil];
+- (BlueCapPeripheralProfile*)createPeripheralWithName:(NSString*)__name {
+    return [self createPeripheralWithName:(NSString*)__name andProfile:nil];
 }
 
-- (BlueCapPeripheralDefinition*)createPeripheralWithName:(NSString*)__name andDefinition:(BlueCapPeripheralDefinitionBlock)__definitionBlock {
-    BlueCapPeripheralDefinition* peripheralDefinition = [BlueCapPeripheralDefinition createWithName:__name andDefinition:__definitionBlock];
-    [self.definedPeripherals setObject:peripheralDefinition forKey:peripheralDefinition.name];
-    DLog(@"Peripheral Defined: %@", peripheralDefinition.name);
-    return peripheralDefinition;
+- (BlueCapPeripheralProfile*)createPeripheralWithName:(NSString*)__name andProfile:(BlueCapPeripheralProfileBlock)__profileBlock {
+    BlueCapPeripheralProfile* peripheralProfile = [BlueCapPeripheralProfile createWithName:__name andProfile:__profileBlock];
+    [self.definedPeripherals setObject:peripheralProfile forKey:peripheralProfile.name];
+    DLog(@"Peripheral Profile Defined: %@", peripheralProfile.name);
+    return peripheralProfile;
 }
 
 #pragma mark -
@@ -149,10 +149,10 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
         DLog(@"Periphreal Discovered: %@-%@", bcperipheral.name, [peripheral.identifier UUIDString]);
         [self.discoveredPeripherals setObject:bcperipheral forKey:peripheral];
-        BlueCapPeripheralDefinition* peripheralDefinition = [self.definedPeripherals objectForKey:peripheral.name];
-        if (peripheralDefinition) {
-            DLog(@"Peripheral Definition Found: %@", peripheralDefinition.name);
-            bcperipheral.definition = peripheralDefinition;
+        BlueCapPeripheralProfile* peripheralProfile = [self.definedPeripherals objectForKey:peripheral.name];
+        if (peripheralProfile) {
+            DLog(@"Peripheral Profile Found: %@", peripheralProfile.name);
+            bcperipheral.profile = peripheralProfile;
         }
         if (self.onPeripheralDiscoveredCallback != nil) {
             [self asyncCallback:^{

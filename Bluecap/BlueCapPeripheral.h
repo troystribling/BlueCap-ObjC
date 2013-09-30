@@ -10,7 +10,7 @@
 
 @class BlueCapService;
 @class BlueCapPeripheral;
-@class BlueCapPeripheralDefinition;
+@class BlueCapPeripheralProfile;
 
 @interface BlueCapPeripheral : NSObject <CBPeripheralDelegate>
 
@@ -20,8 +20,8 @@
 @property(nonatomic, readonly)  CBPeripheralState state;
 @property(nonatomic, readonly)  NSNumber* RSSI;
 
-- (BlueCapPeripheralDefinition*)definition;
-- (BOOL)hasDefinition;
+- (BlueCapPeripheralProfile*)profile;
+- (BOOL)hasProfile;
    
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;
 - (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;

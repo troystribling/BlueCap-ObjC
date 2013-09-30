@@ -11,7 +11,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [TISensorTagPeripheralDefinition create];
+    [TISensorTagPeripheralProfile create];
     return YES;
 }
 							

@@ -60,8 +60,8 @@
     static NSString *CellIdentifier = @"ServiceDetailCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     BlueCapCharacteristic* characteristic = [self.service.characteristics objectAtIndex:indexPath.row];
-    if ([characteristic hasDefinition]) {
-        cell.textLabel.text = characteristic.definition.name;
+    if ([characteristic hasProfile]) {
+        cell.textLabel.text = characteristic.profile.name;
     } else {
         cell.textLabel.text = characteristic.UUID.stringValue;
     }

@@ -11,9 +11,9 @@
 #import "BlueCapService+Private.h"
 #import "BlueCapCharacteristic+Private.h"
 #import "BlueCapDescriptor+Private.h"
-#import "BlueCapPeripheralDefinition+Private.h"
-#import "BlueCapServiceDefinition+Private.h"
-#import "BlueCapCharacteristicDefinition+Private.h"
+#import "BlueCapPeripheralProfile+Private.h"
+#import "BlueCapServiceProfile+Private.h"
+#import "BlueCapCharacteristicProfile+Private.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapPeripheral ()
@@ -21,7 +21,7 @@
 @property(nonatomic, retain) CBPeripheral*                  cbPeripheral;
 @property(nonatomic, retain) NSMutableArray*                discoveredServices;
 @property(nonatomic, retain) NSMapTable*                    discoveredObjects;
-@property(nonatomic, retain) BlueCapPeripheralDefinition*   definition;
+@property(nonatomic, retain) BlueCapPeripheralProfile*      profile;
 
 @property(nonatomic, copy) BlueCapPeripheralCallback            onPeriperialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralCallback            onPeripheralConnectCallback;
@@ -64,12 +64,12 @@
     return self.cbPeripheral.RSSI;
 }
 
-- (BlueCapPeripheralDefinition*)definition {
-    return _definition;
+- (BlueCapPeripheralProfile*)profile {
+    return _profile;
 }
 
-- (BOOL)hasDefinition {
-    return self.definition != nil;
+- (BOOL)hasProfile {
+    return self.profile != nil;
 }
 
 #pragma mark -
@@ -123,11 +123,11 @@
         DLog(@"Discovered Service: %@", [bcService.UUID stringValue]);
         [self.discoveredObjects setObject:bcService forKey:service];
         [self.discoveredServices addObject:bcService];
-        if ([self hasDefinition]) {
-            BlueCapServiceDefinition* serviceDefinition = [self.definition.definedServices objectForKey:bcService.UUID];
-            if (serviceDefinition) {
-                DLog(@"Service Definition Found: %@", serviceDefinition.name);
-                bcService.definition = serviceDefinition;
+        if ([self hasProfile]) {
+            BlueCapServiceProfile* serviceProfile = [self.profile.definedServices objectForKey:bcService.UUID];
+            if (serviceProfile) {
+                DLog(@"Service Profile Found: %@", serviceProfile.name);
+                bcService.profile = serviceProfile;
             }
         }
     }
@@ -150,11 +150,11 @@
         DLog(@"Discovered Characteristic: %@", [bcCharacteristic.UUID stringValue]);
         [self.discoveredObjects setObject:bcCharacteristic forKey:charateristic];
         [bcService.discoveredCharacteristics addObject:bcCharacteristic];
-        if ([bcService hasDefinition]) {
-            BlueCapCharacteristicDefinition* characteristicDefinition = [bcService.definition.definedCharacteristics objectForKey:bcCharacteristic.UUID];
-            if (characteristicDefinition) {
-                DLog(@"Characteristic Definition Found: %@", characteristicDefinition.name);
-                bcCharacteristic.definition = characteristicDefinition;
+        if ([bcService hasProfile]) {
+            BlueCapCharacteristicProfile* characteristicProfile = [bcService.profile.definedCharacteristics objectForKey:bcCharacteristic.UUID];
+            if (characteristicProfile) {
+                DLog(@"Characteristic Profile Found: %@", characteristicProfile.name);
+                bcCharacteristic.profile = characteristicProfile;
             }
         }
     }

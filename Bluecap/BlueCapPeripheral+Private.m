@@ -14,7 +14,7 @@
 @dynamic cbPeripheral;
 @dynamic discoveredServices;
 @dynamic discoveredObjects;
-@dynamic definition;
+@dynamic profile;
 
 @dynamic onPeriperialDisconnectCallback;
 @dynamic onPeripheralConnectCallback;

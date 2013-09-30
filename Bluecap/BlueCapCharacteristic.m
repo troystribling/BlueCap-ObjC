@@ -17,7 +17,7 @@
 @property(nonatomic, retain) CBCharacteristic*                  cbCharacteristic;
 @property(nonatomic, retain) NSMutableArray*                    discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*                    service;
-@property(nonatomic, retain) BlueCapCharacteristicDefinition*   definition;
+@property(nonatomic, retain) BlueCapCharacteristicProfile*      profile;
 
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback    onReadCallback;
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback    onWriteCallback;
@@ -62,16 +62,16 @@
     return _service;
 }
 
-- (BlueCapCharacteristicDefinition*)definition {
-    return _definition;
+- (BlueCapCharacteristicProfile*)profile {
+    return _profile;
 }
 
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property {
     return self.properties & __property;
 }
 
-- (BOOL)hasDefinition {
-    return self.definition != nil;
+- (BOOL)hasProfile {
+    return self.profile != nil;
 }
 
 #pragma mark -

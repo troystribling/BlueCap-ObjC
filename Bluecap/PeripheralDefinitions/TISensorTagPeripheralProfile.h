@@ -1,5 +1,5 @@
 //
-//  TISensorTagPeripheralDefinition.h
+//  TISensorTagPeripheralProfile.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/23/13.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TISensorTagPeripheralDefinition : NSObject
+@interface TISensorTagPeripheralProfile : NSObject
 
 + (void)create;
 

@@ -9,7 +9,7 @@
 
 #import "BlueCapPeripheral+Private.h"
 #import "BlueCapService.h"
-#import "BlueCapCharacteristicDefinition+Private.h"
+#import "BlueCapCharacteristicProfile+Private.h"
 
 @interface BlueCapService ()
 
@@ -18,7 +18,7 @@
 @property(nonatomic, retain) NSMutableDictionary*                       definedCharacteristics;
 @property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
 @property(nonatomic, retain) BlueCapPeripheral*                         peripheral;
-@property(nonatomic, retain) BlueCapServiceDefinition*                  definition;
+@property(nonatomic, retain) BlueCapServiceProfile*                     profile;
 @property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     onChracteristicsDiscoveredCallback;
 
 @end
@@ -48,12 +48,12 @@
     return _peripheral;
 }
 
-- (BlueCapServiceDefinition*)definition {
-    return _definition;
+- (BlueCapServiceProfile*)profile {
+    return _profile;
 }
 
-- (BOOL)hasDefinition {
-    return self.definition != nil;
+- (BOOL)hasProfile {
+    return self.profile != nil;
 }
 
 #pragma mark -

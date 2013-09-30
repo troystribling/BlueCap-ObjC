@@ -59,8 +59,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PeripheralServiceCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PeripheralServiceCell" forIndexPath:indexPath];
     BlueCapService* service = [self.peripheral.services objectAtIndex:indexPath.row];
-    if ([service hasDefinition]) {
-        cell.nameLabel.text = service.definition.name;
+    if ([service hasProfile]) {
+        cell.nameLabel.text = service.profile.name;
     } else {
         cell.nameLabel.text = service.UUID.stringValue;
     }

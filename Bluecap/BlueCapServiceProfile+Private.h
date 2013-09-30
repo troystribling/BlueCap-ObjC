@@ -1,21 +1,21 @@
 //
-//  BlueCapServiceDefinition+Private.h
+//  BlueCapServiceProfile+Private.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/27/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapServiceDefinition.h"
+#import "BlueCapServiceProfile.h"
 
-@interface BlueCapServiceDefinition (Private)
+@interface BlueCapServiceProfile (Private)
 
 @property(nonatomic, retain) CBUUID*                        UUID;
 @property(nonatomic, retain) NSString*                      name;
 @property(nonatomic, retain) NSMutableDictionary*           definedCharacteristics;
 
 
-+ (BlueCapServiceDefinition*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andDefinition:(BlueCapServiceDefinitionBlock)__definitionBlock;
++ (BlueCapServiceProfile*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapServiceProfileBlock)__ProfileBlock;
 
 - (id)initWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
 
