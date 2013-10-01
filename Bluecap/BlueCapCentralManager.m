@@ -91,6 +91,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 	NSArray			*uuidArray	= [NSArray arrayWithObjects:[CBUUID UUIDWithString:uuidString], nil];
 	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
     self.onPeripheralDiscoveredCallback = __onPeripheralDiscoveredCallback;
+    [self.discoveredPeripherals removeAllObjects];
 	[self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
 }
 
