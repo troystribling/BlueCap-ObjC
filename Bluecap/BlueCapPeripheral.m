@@ -28,6 +28,10 @@
 @property(nonatomic, copy) BlueCapServicesDiscoveredCallback    onServicesDiscoveredCallback;
 @property(nonatomic, copy) BlueCapPeripheralRSSICallback        onRSSIUpdate;
 
+- (void)clearServices;
+- (void)clearCharacteristics:(BlueCapService*)__service;
+- (void)clearDescriptors:(BlueCapCharacteristic*)__chraracteristics;
+
 @end
 
 @implementation BlueCapPeripheral
@@ -113,11 +117,39 @@
 #pragma mark -
 #pragma mark BlueCapPeripheral PrivateAPI
 
+- (void)clearServices {
+    DLog(@"BEFORE COUNT: %d", [self.discoveredObjects count]);
+    for (BlueCapService* service in self.discoveredServices) {
+        [self.discoveredObjects removeObjectForKey:service.cbService];
+    }
+    [self.discoveredServices removeAllObjects];
+    DLog(@"AFTER COUNT: %d", [self.discoveredObjects count]);
+}
+
+- (void)clearCharacteristics:(BlueCapService*)service {
+    DLog(@"BEFORE COUNT: %d", [self.discoveredObjects count]);
+    for (BlueCapCharacteristic* characteristic in service.discoveredCharacteristics) {
+        [self.discoveredObjects removeObjectForKey:characteristic.cbCharacteristic];
+    }
+    [service.discoveredCharacteristics removeAllObjects];
+    DLog(@"AFTER COUNT: %d", [self.discoveredObjects count]);
+}
+
+- (void)clearDescriptors:(BlueCapCharacteristic*)chraracteristic {
+    DLog(@"BEFORE COUNT: %d", [self.discoveredObjects count]);
+    for (BlueCapDescriptor* descriptor in chraracteristic.discoveredDiscriptors) {
+        [self.discoveredObjects removeObjectForKey:descriptor.cbDescriptor];
+    }
+    [chraracteristic.discoveredDiscriptors removeAllObjects];
+    DLog(@"AFTER COUNT: %d", [self.discoveredObjects count]);
+}
+
 #pragma mark -
 #pragma mark CBPeripheralDelegate
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverServices:(NSError*)error {
     DLog(@"Discovered %d Services", [peripheral.services count]);
+    [self clearServices];
     for (CBService* service in peripheral.services) {
         BlueCapService* bcService = [BlueCapService withCBService:service andPeripheral:self];
         DLog(@"Discovered Service: %@", [bcService.UUID stringValue]);
@@ -145,6 +177,7 @@
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverCharacteristicsForService:(CBService*)service error:(NSError*)error {
     DLog(@"Discovered %d Service Characteristics", [service.characteristics count]);
     BlueCapService* bcService = [self.discoveredObjects objectForKey:service];
+    [self clearCharacteristics:bcService];
     for (CBCharacteristic* charateristic in service.characteristics) {
         BlueCapCharacteristic* bcCharacteristic = [BlueCapCharacteristic withCBCharacteristic:charateristic andService:bcService];
         DLog(@"Discovered Characteristic: %@", [bcCharacteristic.UUID stringValue]);
@@ -164,6 +197,7 @@
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
     DLog(@"Discovered %d Characteristic Discriptors", [characteristic.descriptors count]);
     BlueCapCharacteristic* bcCharateristic = [self.discoveredObjects objectForKey:characteristic];
+    [self clearDescriptors:bcCharateristic];
     for (CBDescriptor* descriptor in characteristic.descriptors) {
         BlueCapDescriptor* bcDescriptor = [BlueCapDescriptor withCBDiscriptor:descriptor andChracteristic:bcCharateristic];
         [self.discoveredObjects setObject:bcDescriptor forKey:descriptor];
