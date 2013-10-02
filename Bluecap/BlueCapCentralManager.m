@@ -87,12 +87,11 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     [self.centralManager scanForPeripheralsWithServices:nil options:nil];
 }
 
-- (void)startScanningForUUIDString:(NSString*)uuidString onDiscovery:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback {
-	NSArray			*uuidArray	= [NSArray arrayWithObjects:[CBUUID UUIDWithString:uuidString], nil];
+- (void)startScanningForPeripheralsWithServiceUUIDs:(NSArray*)__uuids onDiscovery:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback {
 	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
     self.onPeripheralDiscoveredCallback = __onPeripheralDiscoveredCallback;
     [self.discoveredPeripherals removeAllObjects];
-	[self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
+	[self.centralManager scanForPeripheralsWithServices:__uuids options:options];
 }
 
 - (void)stopScanning {
