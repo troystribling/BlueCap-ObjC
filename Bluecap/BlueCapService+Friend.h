@@ -20,7 +20,7 @@
 @property(nonatomic, retain) BlueCapServiceProfile*                     profile;
 
 + (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__peripheral;
-
 - (void)didDiscoverCharacterics:(NSArray*)__discoveredCharacteristics;
+- (void)callCharacteristicWriteWhenDiscovered:(NSArray*)__discoveredCharacteristics;
 
 @end

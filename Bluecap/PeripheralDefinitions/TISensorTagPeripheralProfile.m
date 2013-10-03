@@ -87,7 +87,7 @@
                                                                           }];
 
                                         [serviceProfile createCharacteristicWithUUID:@"f000aa12-0451-4000-b000-000000000000"
-                                                                                name:@"Accelerometer Configure"
+                                                                                name:@"Accelerometer "
                                                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
                                                                           }];
                                             

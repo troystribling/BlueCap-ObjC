@@ -12,6 +12,8 @@
 
 @dynamic UUID;
 @dynamic name;
+@dynamic writeWhenDiscoveredCallback;
+@dynamic processDataCallback;
 
 
 + (BlueCapCharacteristicProfile*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapCharacteristicProfileBlock)__profileBlock {

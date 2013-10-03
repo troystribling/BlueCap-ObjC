@@ -9,6 +9,7 @@
 #import "BlueCapService+Friend.h"
 #import "BlueCapCharacteristic+Friend.h"
 #import "BlueCapCentralManager+Friend.h"
+#import "BlueCapCharacteristicProfile+Friend.h"
 
 @implementation BlueCapService (Friend)
 
@@ -40,6 +41,16 @@
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onChracteristicsDiscoveredCallback(__discoveredCharacteristics);
         }];
+    }
+}
+
+- (void)callCharacteristicWriteWhenDiscovered:(NSArray*)__discoveredCharacteristics {
+    for(BlueCapCharacteristic* charcteristic in __discoveredCharacteristics) {
+        if (charcteristic.profile) {
+            if (charcteristic.profile.writeWhenDiscoveredCallback) {
+                [charcteristic write:charcteristic.profile.writeWhenDiscoveredCallback() onWrite:nil];
+            }
+        }
     }
 }
 

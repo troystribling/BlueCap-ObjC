@@ -9,6 +9,7 @@
 #import "BlueCapCentralManager+Friend.h"
 #import "BlueCapCharacteristic+Friend.h"
 #import "BlueCapCharacteristicData+Friend.h"
+#import "BlueCapCharacteristicProfile+Friend.h"
 
 @interface BlueCapCharacteristicData ()
 
@@ -32,6 +33,17 @@
 
 - (NSString*)stringValue {
     return [[NSString alloc] initWithData:self.value encoding:NSUTF8StringEncoding];
+}
+
+- (NSArray*)processedValues {
+    NSArray* values = [NSArray array];
+    BlueCapCharacteristicProfile* profile = self.characteristic.profile;
+    if (profile) {
+        if (profile.processDataCallback) {
+            values = profile.processDataCallback(self.value);
+        }
+    }
+    return values;
 }
 
 @end

@@ -10,8 +10,11 @@
 
 @interface BlueCapCharacteristicProfile (Friend)
 
-@property(nonatomic, retain) CBUUID*        UUID;
-@property(nonatomic, retain) NSString*      name;
+@property(nonatomic, retain) CBUUID*                                        UUID;
+@property(nonatomic, retain) NSString*                                      name;
+@property(nonatomic, copy) BlueCapCharacteristicProfileWriteWhenDiscovered  writeWhenDiscoveredCallback;
+@property(nonatomic, copy) BlueCapCharacteristicProfileProcessData          processDataCallback;
+
 
 + (BlueCapCharacteristicProfile*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapCharacteristicProfileBlock)__profileBlock;
 

@@ -10,8 +10,10 @@
 
 @interface BlueCapCharacteristicProfile ()
 
-@property(nonatomic, retain) CBUUID*      UUID;
-@property(nonatomic, retain) NSString*      name;
+@property(nonatomic, retain) CBUUID*                                        UUID;
+@property(nonatomic, retain) NSString*                                      name;
+@property(nonatomic, copy) BlueCapCharacteristicProfileWriteWhenDiscovered  writeWhenDiscoveredCallback;
+@property(nonatomic, copy) BlueCapCharacteristicProfileProcessData          processDataCallback;
 
 @end
 
@@ -23,6 +25,14 @@
 
 - (NSString*)name {
     return _name;
+}
+
+- (void)writeWhenDiscovered:(BlueCapCharacteristicProfileWriteWhenDiscovered)__writeWhenDiscoveredCallback {
+    self.writeWhenDiscoveredCallback = __writeWhenDiscoveredCallback;
+}
+
+- (void)processData:(BlueCapCharacteristicProfileProcessData)__processDataCallback {
+    self.processDataCallback = __processDataCallback;
 }
 
 @end
