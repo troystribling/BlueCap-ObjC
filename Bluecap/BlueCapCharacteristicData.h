@@ -16,6 +16,6 @@
 @property(nonatomic, readonly) NSData* value;
 
 - (NSString*)stringValue;
-- (NSArray*)processedValues;
+- (NSDictionary*)processedValues;
 
 @end

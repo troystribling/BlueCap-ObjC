@@ -35,8 +35,8 @@
     return [[NSString alloc] initWithData:self.value encoding:NSUTF8StringEncoding];
 }
 
-- (NSArray*)processedValues {
-    NSArray* values = [NSArray array];
+- (NSDictionary*)processedValues {
+    NSDictionary* values = [NSDictionary dictionary];
     BlueCapCharacteristicProfile* profile = self.characteristic.profile;
     if (profile) {
         if (profile.processDataCallback) {

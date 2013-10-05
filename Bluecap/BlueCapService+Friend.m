@@ -47,7 +47,7 @@
 
 - (void)callCharacteristicWriteWhenDiscovered:(NSArray*)__discoveredCharacteristics {
     for(BlueCapCharacteristic* charcteristic in __discoveredCharacteristics) {
-        if (charcteristic.profile) {
+        if (charcteristic.profile && [charcteristic propertyEnabled:CBCharacteristicPropertyWrite] && [charcteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
             if (charcteristic.profile.writeWhenDiscoveredCallback) {
                 [charcteristic write:charcteristic.profile.writeWhenDiscoveredCallback() onWrite:nil];
             }

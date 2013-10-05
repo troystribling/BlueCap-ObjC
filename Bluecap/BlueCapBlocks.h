@@ -32,7 +32,7 @@ typedef void(^BlueCapServiceProfileBlock)(BlueCapServiceProfile* __serviceProfil
 typedef void(^BlueCapCharacteristicProfileBlock)(BlueCapCharacteristicProfile* __characteristicProfile);
 
 typedef NSData*(^BlueCapCharacteristicProfileWriteWhenDiscovered)(void);
-typedef NSArray*(^BlueCapCharacteristicProfileProcessData)(NSData* __data);
+typedef NSDictionary*(^BlueCapCharacteristicProfileProcessData)(NSData* __data);
 
 typedef void(^BlueCapCharacteristicDataCallback)(BlueCapCharacteristicData* __data, NSError* __error);
 typedef void(^BlueCapDescriptorDataCallback)(BlueCapDescriptorData* __data, NSError* __error);
