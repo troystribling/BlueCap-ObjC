@@ -11,7 +11,6 @@
 #import "BlueCapService+Friend.h"
 #import "BlueCapCharacteristic+Friend.h"
 #import "BlueCapDescriptor+Friend.h"
-#import "BlueCapPeripheralProfile+Friend.h"
 #import "BlueCapServiceProfile+Friend.h"
 #import "BlueCapCharacteristicProfile+Friend.h"
 #import "CBUUID+StringValue.h"
@@ -21,7 +20,6 @@
 @property(nonatomic, retain) CBPeripheral*                  cbPeripheral;
 @property(nonatomic, retain) NSMutableArray*                discoveredServices;
 @property(nonatomic, retain) NSMapTable*                    discoveredObjects;
-@property(nonatomic, retain) BlueCapPeripheralProfile*      profile;
 
 @property(nonatomic, copy) BlueCapPeripheralCallback            onPeriperialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralCallback            onPeripheralConnectCallback;
@@ -66,14 +64,6 @@
 - (NSNumber*)RSSI {
     [self.cbPeripheral readRSSI];
     return self.cbPeripheral.RSSI;
-}
-
-- (BlueCapPeripheralProfile*)profile {
-    return _profile;
-}
-
-- (BOOL)hasProfile {
-    return self.profile != nil;
 }
 
 #pragma mark -
@@ -155,12 +145,10 @@
         DLog(@"Discovered Service: %@", [bcService.UUID stringValue]);
         [self.discoveredObjects setObject:bcService forKey:service];
         [self.discoveredServices addObject:bcService];
-        if ([self hasProfile]) {
-            BlueCapServiceProfile* serviceProfile = [self.profile.serviceProfiles objectForKey:bcService.UUID];
-            if (serviceProfile) {
-                DLog(@"Service Profile Found: %@", serviceProfile.name);
-                bcService.profile = serviceProfile;
-            }
+        BlueCapServiceProfile* serviceProfile = [[BlueCapCentralManager sharedInstance].serviceProfiles objectForKey:bcService.UUID];
+        if (serviceProfile) {
+            DLog(@"Service Profile Found: %@", serviceProfile.name);
+            bcService.profile = serviceProfile;
         }
     }
     if (self.onServicesDiscoveredCallback) {

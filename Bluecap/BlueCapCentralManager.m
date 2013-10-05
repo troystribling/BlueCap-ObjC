@@ -8,13 +8,13 @@
 
 #import "BlueCapCentralManager+Friend.h"
 #import "BlueCapPeripheral+Friend.h"
-#import "BlueCapPeripheralProfile+Friend.h"
+#import "BlueCapServiceProfile+Friend.h"
+#import "CBUUID+StringValue.h"
 
 @interface BlueCapCentralManager ()
 
 @property(nonatomic, retain) NSMutableDictionary*           discoveredPeripherals;
-@property(nonatomic, retain) NSMutableDictionary*           peripheralProfiles;
-@property(nonatomic, retain) NSMutableDictionary*           configuredObjects;
+@property(nonatomic, retain) NSMutableDictionary*           serviceProfiles;
 @property(nonatomic, retain) CBCentralManager*              centralManager;
 @property(nonatomic, retain) dispatch_queue_t               mainQueue;
 @property(nonatomic, retain) dispatch_queue_t               callbackQueue;
@@ -49,8 +49,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         self.callbackQueue = dispatch_queue_create("com.gnos.us.callback", DISPATCH_QUEUE_SERIAL);
 		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
-        self.peripheralProfiles = [NSMutableDictionary dictionary];
-        self.configuredObjects = [NSMutableDictionary dictionary];
+        self.serviceProfiles = [NSMutableDictionary dictionary];
         self.poweredOn = YES;
 	}
     return self;
@@ -65,17 +64,17 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 }
 
 #pragma mark -
-#pragma mark Peripheral Profile
+#pragma mark Service Profile
 
-- (BlueCapPeripheralProfile*)createPeripheralWithName:(NSString*)__name {
-    return [self createPeripheralWithName:(NSString*)__name andProfile:nil];
+- (BlueCapServiceProfile*)createServiceWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
+    return [self createServiceWithUUID:__uuidString name:__name andProfile:nil];
 }
 
-- (BlueCapPeripheralProfile*)createPeripheralWithName:(NSString*)__name andProfile:(BlueCapPeripheralProfileBlock)__profileBlock {
-    BlueCapPeripheralProfile* peripheralProfile = [BlueCapPeripheralProfile createWithName:__name andProfile:__profileBlock];
-    [self.peripheralProfiles setObject:peripheralProfile forKey:peripheralProfile.name];
-    DLog(@"Peripheral Profile Defined: %@", peripheralProfile.name);
-    return peripheralProfile;
+- (BlueCapServiceProfile*)createServiceWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapServiceProfileBlock)__profileBlock {
+    BlueCapServiceProfile* serviceProfile = [BlueCapServiceProfile createWithUUID:__uuidString name:__name andProfile:__profileBlock];
+    [self.serviceProfiles setObject:serviceProfile forKey:serviceProfile.UUID];
+    DLog(@"Service Profile Defined: %@-%@", serviceProfile.name, [serviceProfile.UUID stringValue]);
+    return serviceProfile;
 }
 
 #pragma mark -
@@ -149,11 +148,6 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
         DLog(@"Periphreal Discovered: %@-%@", bcperipheral.name, [peripheral.identifier UUIDString]);
         [self.discoveredPeripherals setObject:bcperipheral forKey:peripheral];
-        BlueCapPeripheralProfile* peripheralProfile = [self.peripheralProfiles objectForKey:peripheral.name];
-        if (peripheralProfile) {
-            DLog(@"Peripheral Profile Found: %@", peripheralProfile.name);
-            bcperipheral.profile = peripheralProfile;
-        }
         if (self.onPeripheralDiscoveredCallback != nil) {
             [self asyncCallback:^{
                 self.onPeripheralDiscoveredCallback(bcperipheral);

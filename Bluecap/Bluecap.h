@@ -20,8 +20,8 @@
 #import "BlueCapCharacteristicData.h"
 #import "BlueCapDescriptorData.h"
 
-#import "BlueCapPeripheralProfile.h"
 #import "BlueCapServiceProfile.h"
 #import "BlueCapCharacteristicProfile.h"
 
-#import "TISensorTagPeripheralProfile.h"
+#import "TISensorTagServiceProfile.h"
+#import "StandardServiceProfiles.h"

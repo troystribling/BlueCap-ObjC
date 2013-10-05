@@ -19,9 +19,6 @@
 @property(nonatomic, readonly)  NSUUID* identifier;
 @property(nonatomic, readonly)  CBPeripheralState state;
 @property(nonatomic, readonly)  NSNumber* RSSI;
-
-- (BlueCapPeripheralProfile*)profile;
-- (BOOL)hasProfile;
    
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;
 - (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;

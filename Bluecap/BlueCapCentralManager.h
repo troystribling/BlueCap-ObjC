@@ -21,7 +21,7 @@
 - (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback;
 - (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback;
 
-- (BlueCapPeripheralProfile*)createPeripheralWithName:(NSString*)__name;
-- (BlueCapPeripheralProfile*)createPeripheralWithName:(NSString*)__name andProfile:(BlueCapPeripheralProfileBlock)__profileBlock;
+- (BlueCapServiceProfile*)createServiceWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
+- (BlueCapServiceProfile*)createServiceWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapServiceProfileBlock)__profileBlock;
 
 @end

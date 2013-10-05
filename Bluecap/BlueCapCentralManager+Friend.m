@@ -12,7 +12,7 @@
 @implementation BlueCapCentralManager (Friend)
 
 @dynamic centralManager;
-@dynamic configuredObjects;
+@dynamic serviceProfiles;
 @dynamic mainQueue;
 @dynamic callbackQueue;
 

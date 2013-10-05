@@ -15,7 +15,6 @@
 @property(nonatomic, retain) CBPeripheral*                  cbPeripheral;
 @property(nonatomic, retain) NSMutableArray*                discoveredServices;
 @property(nonatomic, retain) NSMapTable*                    discoveredObjects;
-@property(nonatomic, retain) BlueCapPeripheralProfile*      profile;
 
 @property(nonatomic, copy) BlueCapPeripheralCallback        onPeriperialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralCallback        onPeripheralConnectCallback;
