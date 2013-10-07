@@ -37,21 +37,10 @@
 }
 
 - (void)didDiscoverCharacterics:(NSArray*)__discoveredCharacteristics {
-    [self callCharacteristicWriteWhenDiscovered:__discoveredCharacteristics];
     if (self.onChracteristicsDiscoveredCallback) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.onChracteristicsDiscoveredCallback(__discoveredCharacteristics);
         }];
-    }
-}
-
-- (void)callCharacteristicWriteWhenDiscovered:(NSArray*)__discoveredCharacteristics {
-    for(BlueCapCharacteristic* charcteristic in __discoveredCharacteristics) {
-        if (charcteristic.profile && [charcteristic propertyEnabled:CBCharacteristicPropertyWrite] && [charcteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
-            if (charcteristic.profile.writeWhenDiscoveredCallback) {
-                [charcteristic write:charcteristic.profile.writeWhenDiscoveredCallback() onWrite:nil];
-            }
-        }
     }
 }
 

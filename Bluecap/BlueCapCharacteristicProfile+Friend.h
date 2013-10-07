@@ -12,7 +12,9 @@
 
 @property(nonatomic, retain) CBUUID*                                        UUID;
 @property(nonatomic, retain) NSString*                                      name;
-@property(nonatomic, copy) BlueCapCharacteristicProfileWriteWhenDiscovered  writeWhenDiscoveredCallback;
+@property(nonatomic, retain) NSMutableDictionary*                           writeMethods;
+@property(nonatomic, retain) NSMutableDictionary*                           readMethods;
+@property(nonatomic, copy) BlueCapCharacteristicProfileWhenDiscovered       whenDiscoveredCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileProcessData          processDataCallback;
 
 

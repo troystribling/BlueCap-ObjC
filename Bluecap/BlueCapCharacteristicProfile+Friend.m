@@ -12,7 +12,9 @@
 
 @dynamic UUID;
 @dynamic name;
-@dynamic writeWhenDiscoveredCallback;
+@dynamic writeMethods;
+@dynamic readMethods;
+@dynamic whenDiscoveredCallback;
 @dynamic processDataCallback;
 
 
@@ -29,6 +31,8 @@
     if (self) {
         self.name = __name;
         self.UUID = [CBUUID UUIDWithString:__uuidString];
+        self.writeMethods = [NSMutableDictionary dictionary];
+        self.readMethods = [NSMutableDictionary dictionary];
     }
     return self;
 }

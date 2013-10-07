@@ -13,7 +13,10 @@
 - (CBUUID*)UUID;
 - (NSString*)name;
 
-- (void)writeWhenDiscovered:(BlueCapCharacteristicProfileWriteWhenDiscovered)__writeWhenDiscoveredCallback;
+- (void)write:(NSString*)__methodName usingBlock:(BlueCapCharacteristicProfileWrite)__writeBlock;
+- (void)read:(NSString*)__methodName usingBlock:(BlueCapCharacteristicProfileRead)__readBlock;
+
+- (void)whenDiscovered:(BlueCapCharacteristicProfileWhenDiscovered)__whenDiscoveredCallback;
 - (void)processData:(BlueCapCharacteristicProfileProcessData)__processDataCallback;
 
 @end

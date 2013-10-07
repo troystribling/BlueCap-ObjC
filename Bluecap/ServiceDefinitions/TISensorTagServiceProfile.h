@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define TISENSOR_TAG_ACCELEROMETER_ON   0x01
+
 @interface TISensorTagServiceProfile : NSObject
 
 + (void)create;

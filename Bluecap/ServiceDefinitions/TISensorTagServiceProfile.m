@@ -28,13 +28,17 @@
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa12-0451-4000-b000-000000000000"
-                                                name:@"Accelerometer "
+                                                name:@"Accelerometer On/Off"
                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                              [chracteristicProfile whenDiscovered:^{
+                                              }];
                                           }];
             
         [serviceProfile createCharacteristicWithUUID:@"f000aa13-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer Update Period"
                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                              [chracteristicProfile whenDiscovered:^{
+                                              }];
                                           }];
                                    
     }];
@@ -52,7 +56,7 @@
                                           }];
       
         [serviceProfile createCharacteristicWithUUID:@"f000aa32-0451-4000-b000-000000000000"
-                                                name:@"Magnetometer Configure"
+                                                name:@"Magnetometer On/Off"
                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
                                           }];
 
@@ -76,7 +80,7 @@
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa52-0451-4000-b000-000000000000"
-                                                name:@"Gyroscope Configure"
+                                                name:@"Gyroscope On/Off"
                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
                                           }];
                                    
@@ -95,7 +99,7 @@
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa02-0451-4000-b000-000000000000"
-                                                name:@"Temperature Sensor Configure"
+                                                name:@"Temperature Sensor On/Off"
                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
                                           }];
                                    
@@ -114,7 +118,7 @@
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa42-0451-4000-b000-000000000000"
-                                                name:@"Barometer Configure"
+                                                name:@"Barometer On/Off"
                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
                                           }];
 
@@ -138,7 +142,7 @@
                                                                     }];
                                   
                                   [serviceProfile createCharacteristicWithUUID:@"f000aa22-0451-4000-b000-000000000000"
-                                                                          name:@"Hygrometer Configure"
+                                                                          name:@"Hygrometer On/Off"
                                                                     andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
                                                                     }];
                                       
@@ -154,7 +158,7 @@
                                         }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa62-0451-4000-b000-000000000000"
-                                              name:@"Test Configure"
+                                              name:@"Test On/Off"
                                         andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
                                         }];
 
