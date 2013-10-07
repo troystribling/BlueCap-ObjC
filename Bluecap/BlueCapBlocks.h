@@ -31,10 +31,9 @@ typedef void(^BlueCapPeripheralProfileBlock)(BlueCapPeripheralProfile* __periphe
 typedef void(^BlueCapServiceProfileBlock)(BlueCapServiceProfile* __serviceProfile);
 typedef void(^BlueCapCharacteristicProfileBlock)(BlueCapCharacteristicProfile* __characteristicProfile);
 
-typedef void(^BlueCapCharacteristicProfileWhenDiscovered)(void);
-typedef void(^BlueCapCharacteristicProfileWrite)(void);
-typedef NSDictionary*(^BlueCapCharacteristicProfileRead)(NSData* __data);
-typedef NSDictionary*(^BlueCapCharacteristicProfileProcessData)(NSData* __data);
+typedef void(^BlueCapCharacteristicProfileWhenDiscoveredCallback)(BlueCapCharacteristic* __characteristic);
+typedef NSData*(^BlueCapCharacteristicProfileWrite)(void);
+typedef NSDictionary*(^BlueCapCharacteristicProfileProcessReadCallback)(NSData* __data);
 
 typedef void(^BlueCapCharacteristicDataCallback)(BlueCapCharacteristicData* __data, NSError* __error);
 typedef void(^BlueCapDescriptorDataCallback)(BlueCapDescriptorData* __data, NSError* __error);

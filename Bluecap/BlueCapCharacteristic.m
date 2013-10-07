@@ -9,6 +9,7 @@
 #import "BlueCapCentralManager+Friend.h"
 #import "BlueCapPeripheral+Friend.h"
 #import "BlueCapService+Friend.h"
+#import "BlueCapCharacteristicProfile+Friend.h"
 #import "BlueCapCharacteristic.h"
 
 @interface BlueCapCharacteristic () {
@@ -97,6 +98,15 @@
 - (void)write:(NSData*)data onWrite:(BlueCapCharacteristicDataCallback)__onWriteCallback {
     self.onWriteCallback = __onWriteCallback;
     [self.service.peripheral.cbPeripheral writeValue:data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
+}
+
+- (void)writeValueNamed:(NSString*)__valueName onWrite:(BlueCapCharacteristicDataCallback)__onWriteCallback {
+    if (self.profile) {
+        BlueCapCharacteristicProfileWrite valueWrite = [self.profile.writeMethods objectForKey:__valueName];
+        if (valueWrite) {
+            [self write:valueWrite() onWrite:__onWriteCallback];
+        }
+    }
 }
 
 #pragma mark -

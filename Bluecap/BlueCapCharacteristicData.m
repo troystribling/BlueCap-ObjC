@@ -39,8 +39,8 @@
     NSDictionary* values = [NSDictionary dictionary];
     BlueCapCharacteristicProfile* profile = self.characteristic.profile;
     if (profile) {
-        if (profile.processDataCallback) {
-            values = profile.processDataCallback(self.value);
+        if (profile.processReadCallback) {
+            values = profile.processReadCallback(self.value);
         }
     }
     return values;

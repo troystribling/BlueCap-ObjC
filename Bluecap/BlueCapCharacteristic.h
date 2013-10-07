@@ -31,6 +31,7 @@
 
 - (void)read:(BlueCapCharacteristicDataCallback)__onReadCallback;
 - (void)write:(NSData*)data onWrite:(BlueCapCharacteristicDataCallback)__onWriteCallback;
+- (void)writeValueNamed:(NSString*)data onWrite:(BlueCapCharacteristicDataCallback)__onWriteCallback;
 
 - (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__onDiscriptorsDicoveredCallback;
 

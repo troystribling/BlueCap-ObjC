@@ -30,14 +30,14 @@
         [serviceProfile createCharacteristicWithUUID:@"f000aa12-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer On/Off"
                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
-                                              [chracteristicProfile whenDiscovered:^{
+                                              [chracteristicProfile whenDiscovered:^(BlueCapCharacteristic* characteristic) {
                                               }];
                                           }];
             
         [serviceProfile createCharacteristicWithUUID:@"f000aa13-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer Update Period"
                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
-                                              [chracteristicProfile whenDiscovered:^{
+                                              [chracteristicProfile whenDiscovered:^(BlueCapCharacteristic* characteristic){
                                               }];
                                           }];
                                    

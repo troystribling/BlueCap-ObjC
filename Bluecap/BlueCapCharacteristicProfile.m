@@ -10,12 +10,11 @@
 
 @interface BlueCapCharacteristicProfile ()
 
-@property(nonatomic, retain) CBUUID*                                        UUID;
-@property(nonatomic, retain) NSString*                                      name;
-@property(nonatomic, retain) NSMutableDictionary*                           writeMethods;
-@property(nonatomic, retain) NSMutableDictionary*                           readMethods;
-@property(nonatomic, copy) BlueCapCharacteristicProfileWhenDiscovered       whenDiscoveredCallback;
-@property(nonatomic, copy) BlueCapCharacteristicProfileProcessData          processDataCallback;
+@property(nonatomic, retain) CBUUID*                                            UUID;
+@property(nonatomic, retain) NSString*                                          name;
+@property(nonatomic, retain) NSMutableDictionary*                               writeMethods;
+@property(nonatomic, copy) BlueCapCharacteristicProfileProcessReadCallback      processReadCallback;
+@property(nonatomic, copy) BlueCapCharacteristicProfileWhenDiscoveredCallback   whenDiscoveredCallback;
 
 @end
 
@@ -29,20 +28,16 @@
     return _name;
 }
 
-- (void)write:(NSString*)__methodName usingBlock:(BlueCapCharacteristicProfileWrite)__writeBlock {
-    [self.writeMethods setObject:__writeBlock forKey:__methodName];
+- (void)writeValueNamed:(NSString*)__methodName usingBlock:(BlueCapCharacteristicProfileWrite)__writeBlock {
+    [self.writeMethods setObject:[__writeBlock copy] forKey:__methodName];
 }
 
-- (void)read:(NSString*)__methodName usingBlock:(BlueCapCharacteristicProfileRead)__readBlock {
-    [self.writeMethods setObject:__readBlock forKey:__methodName];
-}
-
-- (void)whenDiscovered:(BlueCapCharacteristicProfileWhenDiscovered)__whenDiscoveredCallback {
+- (void)whenDiscovered:(BlueCapCharacteristicProfileWhenDiscoveredCallback)__whenDiscoveredCallback {
     self.whenDiscoveredCallback = __whenDiscoveredCallback;
 }
 
-- (void)processData:(BlueCapCharacteristicProfileProcessData)__processDataCallback {
-    self.processDataCallback = __processDataCallback;
+- (void)processRead:(BlueCapCharacteristicProfileProcessReadCallback)__processDataCallback {
+    self.processReadCallback = __processDataCallback;
 }
 
 @end

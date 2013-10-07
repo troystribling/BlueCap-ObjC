@@ -176,6 +176,7 @@
             if (characteristicProfile) {
                 DLog(@"Characteristic Profile Found: %@", characteristicProfile.name);
                 bcCharacteristic.profile = characteristicProfile;
+                bcCharacteristic.profile.whenDiscoveredCallback(bcCharacteristic);
             }
         }
     }
