@@ -26,12 +26,12 @@
 
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 
-- (void)startNotifications:(BlueCapCharacteristicDataCallback)__onReadCallback;
+- (void)startNotifications:(BlueCapCharacteristicDataCallback)__afterReadCallback;
 - (void)stopNotifications;
 
-- (void)read:(BlueCapCharacteristicDataCallback)__onReadCallback;
-- (void)write:(NSData*)data onWrite:(BlueCapCharacteristicDataCallback)__onWriteCallback;
-- (void)writeValueNamed:(NSString*)data onWrite:(BlueCapCharacteristicDataCallback)__onWriteCallback;
+- (void)read:(BlueCapCharacteristicDataCallback)__afterReadCallback;
+- (void)write:(NSData*)data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
+- (void)writeValueNamed:(NSString*)data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
 
 - (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__onDiscriptorsDicoveredCallback;
 

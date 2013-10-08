@@ -28,16 +28,16 @@
     return _name;
 }
 
-- (void)writeValueNamed:(NSString*)__methodName usingBlock:(BlueCapCharacteristicProfileWrite)__writeBlock {
+- (void)serializeValueNamed:(NSString*)__methodName usingBlock:(BlueCapCharacteristicProfileWrite)__writeBlock {
     [self.writeMethods setObject:[__writeBlock copy] forKey:__methodName];
+}
+
+- (void)deserialize:(BlueCapCharacteristicProfileProcessReadCallback)__processDataCallback {
+    self.processReadCallback = __processDataCallback;
 }
 
 - (void)whenDiscovered:(BlueCapCharacteristicProfileWhenDiscoveredCallback)__whenDiscoveredCallback {
     self.whenDiscoveredCallback = __whenDiscoveredCallback;
-}
-
-- (void)processRead:(BlueCapCharacteristicProfileProcessReadCallback)__processDataCallback {
-    self.processReadCallback = __processDataCallback;
 }
 
 @end

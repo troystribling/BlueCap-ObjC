@@ -17,8 +17,8 @@
 @dynamic cbCharacteristic;
 @dynamic discoveredDiscriptors;
 @dynamic service;
-@dynamic onWriteCallback;
-@dynamic onReadCallback;
+@dynamic afterWriteCallback;
+@dynamic afterReadCallback;
 @dynamic onDescriptorsDiscoveredCallback;
 @dynamic profile;
 
@@ -37,9 +37,9 @@
 }
 
 - (void)didUpdateValue:(NSError*)error {
-    if (self.onReadCallback != nil) {
+    if (self.afterReadCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onReadCallback([BlueCapCharacteristicData withCharacteristic:self], error);
+            self.afterReadCallback([BlueCapCharacteristicData withCharacteristic:self], error);
         }];
     }
 }
@@ -48,9 +48,9 @@
 }
 
 - (void)didWriteValue:(NSError*)error{
-    if (self.onWriteCallback != nil) {
+    if (self.afterWriteCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onWriteCallback([BlueCapCharacteristicData withCharacteristic:self], error);
+            self.afterWriteCallback([BlueCapCharacteristicData withCharacteristic:self], error);
         }];
     }
 }

@@ -20,8 +20,8 @@
 @property(nonatomic, retain) BlueCapService*                    service;
 @property(nonatomic, retain) BlueCapCharacteristicProfile*      profile;
 
-@property(nonatomic, copy) BlueCapCharacteristicDataCallback    onReadCallback;
-@property(nonatomic, copy) BlueCapCharacteristicDataCallback    onWriteCallback;
+@property(nonatomic, copy) BlueCapCharacteristicDataCallback    afterReadCallback;
+@property(nonatomic, copy) BlueCapCharacteristicDataCallback    afterWriteCallback;
 @property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  onDescriptorsDiscoveredCallback;
 
 @end
@@ -78,8 +78,8 @@
 #pragma mark -
 #pragma mark Manage Notifications
 
-- (void)startNotifications:(BlueCapCharacteristicDataCallback)__onReadCallback {
-    self.onReadCallback = __onReadCallback;
+- (void)startNotifications:(BlueCapCharacteristicDataCallback)__afterReadCallback {
+    self.afterReadCallback = __afterReadCallback;
     [self.service.peripheral.cbPeripheral setNotifyValue:YES forCharacteristic:self.cbCharacteristic];
 }
 
@@ -90,21 +90,21 @@
 #pragma mark - 
 #pragma I/O
 
-- (void)read:(BlueCapCharacteristicDataCallback)__onReadCallback {
-    self.onReadCallback = __onReadCallback;
+- (void)read:(BlueCapCharacteristicDataCallback)__afterReadCallback {
+    self.afterReadCallback = __afterReadCallback;
     [self.service.peripheral.cbPeripheral readValueForCharacteristic:self.cbCharacteristic];
 }
 
-- (void)write:(NSData*)data onWrite:(BlueCapCharacteristicDataCallback)__onWriteCallback {
-    self.onWriteCallback = __onWriteCallback;
+- (void)write:(NSData*)data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
+    self.afterWriteCallback = __afterWriteCallback;
     [self.service.peripheral.cbPeripheral writeValue:data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
 }
 
-- (void)writeValueNamed:(NSString*)__valueName onWrite:(BlueCapCharacteristicDataCallback)__onWriteCallback {
+- (void)writeValueNamed:(NSString*)__valueName afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
     if (self.profile) {
         BlueCapCharacteristicProfileWrite valueWrite = [self.profile.writeMethods objectForKey:__valueName];
         if (valueWrite) {
-            [self write:valueWrite() onWrite:__onWriteCallback];
+            [self write:valueWrite() afterWriteCall:__afterWriteCallback];
         }
     }
 }

@@ -30,7 +30,26 @@
         [serviceProfile createCharacteristicWithUUID:@"f000aa12-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer On/Off"
                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                              [chracteristicProfile serializeValueNamed:TISENSOR_TAG_ACCELEROMETER_ON usingBlock:^NSData* {
+                                                  uint8_t data = TISENSOR_TAG_ACCELEROMETER_ON_VALUE;
+                                                  return [NSData dataWithBytes:&data length:1];
+                                              }];
+                                              [chracteristicProfile serializeValueNamed:TISENSOR_TAG_ACCELEROMETER_OFF usingBlock:^NSData* {
+                                                  uint8_t data = TISENSOR_TAG_ACCELEROMETER_OFF_VALUE;
+                                                  return [NSData dataWithBytes:&data length:1];
+                                              }];
                                               [chracteristicProfile whenDiscovered:^(BlueCapCharacteristic* characteristic) {
+                                                  [characteristic writeValueNamed:TISENSOR_TAG_ACCELEROMETER_ON afterWriteCall:nil];
+                                              }];
+                                              [chracteristicProfile deserialize:^NSDictionary*(NSData* data) {
+                                                  uint8_t value;
+                                                  [data getBytes:&value length:1];
+                                                  BOOL boolValue = YES;
+                                                  if (value == 0) {
+                                                      boolValue = NO;
+                                                  }
+                                                  return  [NSDictionary dictionaryWithObject:TISENSOR_TAG_ACCELEROMTER_ENABLED
+                                                                                      forKey:[NSNumber numberWithBool:boolValue]];
                                               }];
                                           }];
             
