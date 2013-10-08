@@ -23,7 +23,7 @@
     return self.bcCharacteristic;
 }
 
--(NSData*)value {
+- (NSData*)dataValue {
     __block NSData* __value = [NSData data];
     [[BlueCapCentralManager sharedInstance] syncMain:^{
         __value = self.bcCharacteristic.cbCharacteristic.value;
@@ -31,19 +31,15 @@
     return __value;
 }
 
-- (NSString*)stringValue {
-    return [[NSString alloc] initWithData:self.value encoding:NSUTF8StringEncoding];
-}
-
-- (NSDictionary*)processedValues {
-    NSDictionary* values = [NSDictionary dictionary];
+- (NSDictionary*)value {
+    NSDictionary* deserializedVals = [NSDictionary dictionary];
     BlueCapCharacteristicProfile* profile = self.characteristic.profile;
     if (profile) {
-        if (profile.processReadCallback) {
-            values = profile.processReadCallback(self.value);
+        if (profile.deserializeCallback) {
+            deserializedVals = profile.deserializeCallback([self dataValue]);
         }
     }
-    return values;
+    return deserializedVals;
 }
 
 @end

@@ -30,9 +30,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.characteristic read:^(BlueCapCharacteristicData* __data, NSError* error) {
-        self.valueTextField.text = [__data stringValue];
-    }];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.uuidLabel.text = self.characteristic.UUID.stringValue;
     self.broadcastingLabel.text = [self booleanStringValue:self.characteristic.isBroadcasted];

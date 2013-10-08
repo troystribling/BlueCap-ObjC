@@ -12,9 +12,10 @@
 
 @dynamic UUID;
 @dynamic name;
-@dynamic writeMethods;
-@dynamic processReadCallback;
-@dynamic whenDiscoveredCallback;
+@dynamic serializeBlocks;
+@dynamic serializeCallback;
+@dynamic deserializeCallback;
+@dynamic afterDiscoveredCallback;
 
 
 + (BlueCapCharacteristicProfile*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapCharacteristicProfileBlock)__profileBlock {
@@ -30,7 +31,7 @@
     if (self) {
         self.name = __name;
         self.UUID = [CBUUID UUIDWithString:__uuidString];
-        self.writeMethods = [NSMutableDictionary dictionary];
+        self.serializeBlocks = [NSMutableDictionary dictionary];
     }
     return self;
 }

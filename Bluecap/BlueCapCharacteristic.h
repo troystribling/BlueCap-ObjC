@@ -30,8 +30,9 @@
 - (void)stopNotifications;
 
 - (void)read:(BlueCapCharacteristicDataCallback)__afterReadCallback;
-- (void)write:(NSData*)data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
-- (void)writeValueNamed:(NSString*)data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
+- (void)write:(NSData*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
+- (void)writeValueNamed:(NSString*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
+- (void)writeValue:(id)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
 
 - (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__onDiscriptorsDicoveredCallback;
 

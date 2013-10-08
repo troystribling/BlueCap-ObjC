@@ -38,7 +38,7 @@
                                                   uint8_t data = TISENSOR_TAG_ACCELEROMETER_OFF_VALUE;
                                                   return [NSData dataWithBytes:&data length:1];
                                               }];
-                                              [chracteristicProfile whenDiscovered:^(BlueCapCharacteristic* characteristic) {
+                                              [chracteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeValueNamed:TISENSOR_TAG_ACCELEROMETER_ON afterWriteCall:nil];
                                               }];
                                               [chracteristicProfile deserialize:^NSDictionary*(NSData* data) {
@@ -56,7 +56,7 @@
         [serviceProfile createCharacteristicWithUUID:@"f000aa13-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer Update Period"
                                           andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
-                                              [chracteristicProfile whenDiscovered:^(BlueCapCharacteristic* characteristic){
+                                              [chracteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic){
                                               }];
                                           }];
                                    
