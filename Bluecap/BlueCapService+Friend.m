@@ -18,8 +18,7 @@
 @dynamic discoveredIncludedServices;
 @dynamic peripheral;
 @dynamic profile;
-
-@dynamic onChracteristicsDiscoveredCallback;
+@dynamic afterChracteristicsDiscoveredCallback;
 
 + (BlueCapService*)withCBService:(CBService*)__cbservice andPeripheral:(BlueCapPeripheral*)__peripheral {
     return [[BlueCapService alloc] initWithCBService:__cbservice andPeripheral:__peripheral];
@@ -37,9 +36,9 @@
 }
 
 - (void)didDiscoverCharacterics:(NSArray*)__discoveredCharacteristics {
-    if (self.onChracteristicsDiscoveredCallback) {
+    if (self.afterChracteristicsDiscoveredCallback) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onChracteristicsDiscoveredCallback(__discoveredCharacteristics);
+            self.afterChracteristicsDiscoveredCallback(__discoveredCharacteristics);
         }];
     }
 }

@@ -22,7 +22,7 @@
 
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback    afterReadCallback;
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback    afterWriteCallback;
-@property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  onDescriptorsDiscoveredCallback;
+@property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  afterDescriptorsDiscoveredCallback;
 
 @end
 
@@ -90,12 +90,12 @@
 #pragma mark - 
 #pragma I/O
 
-- (void)read:(BlueCapCharacteristicDataCallback)__afterReadCallback {
+- (void)readData:(BlueCapCharacteristicDataCallback)__afterReadCallback {
     self.afterReadCallback = __afterReadCallback;
     [self.service.peripheral.cbPeripheral readValueForCharacteristic:self.cbCharacteristic];
 }
 
-- (void)write:(NSData*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
+- (void)writeData:(NSData*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
     self.afterWriteCallback = __afterWriteCallback;
     [self.service.peripheral.cbPeripheral writeValue:__data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
 }
@@ -104,7 +104,7 @@
     if (self.profile) {
         BlueCapCharacteristicProfileSerializeCallback serializeBlock = [self.profile.serializeBlocks objectForKey:__valueName];
         if (serializeBlock) {
-            [self write:serializeBlock() afterWriteCall:__afterWriteCallback];
+            [self writeData:serializeBlock() afterWriteCall:__afterWriteCallback];
         }
     }
 }
@@ -112,7 +112,7 @@
 - (void)writeValue:(id)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
     if (self.profile) {
         if (self.profile.serializeCallback) {
-            [self write:self.profile.serializeCallback(__data) afterWriteCall:__afterWriteCallback];
+            [self writeData:self.profile.serializeCallback(__data) afterWriteCall:__afterWriteCallback];
         }
     }
 }
@@ -120,8 +120,8 @@
 #pragma mark -
 #pragma mark Discover Descriptors
 
-- (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__onDiscriptorsDicoveredCallback {
-    self.onDescriptorsDiscoveredCallback = __onDiscriptorsDicoveredCallback;
+- (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__afterDescriptorsDiscoveredCallback {
+    self.afterDescriptorsDiscoveredCallback = __afterDescriptorsDiscoveredCallback;
     [self.service.peripheral.cbPeripheral discoverDescriptorsForCharacteristic:self.cbCharacteristic];
 }
 

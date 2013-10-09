@@ -23,7 +23,7 @@
 - (BlueCapServiceProfile*)profile;
 - (BOOL)hasProfile;
 
-- (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;
-- (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__onChracteristicsDiscoveredCallback;
+- (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)_afterChracteristicsDiscoveredCallback;
+- (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__afterChracteristicsDiscoveredCallback;
 
 @end

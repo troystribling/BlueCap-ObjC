@@ -19,7 +19,7 @@
 @dynamic service;
 @dynamic afterWriteCallback;
 @dynamic afterReadCallback;
-@dynamic onDescriptorsDiscoveredCallback;
+@dynamic afterDescriptorsDiscoveredCallback;
 @dynamic profile;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
@@ -56,9 +56,9 @@
 }
 
 - (void)didDiscoverDescriptors:(NSArray*)__descriptors {
-    if (self.onDescriptorsDiscoveredCallback) {
+    if (self.afterDescriptorsDiscoveredCallback) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onDescriptorsDiscoveredCallback(__descriptors);
+            self.afterDescriptorsDiscoveredCallback(__descriptors);
         }];
     }
 }

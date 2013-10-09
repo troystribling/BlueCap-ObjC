@@ -14,12 +14,12 @@
 
 + (BlueCapCentralManager*)sharedInstance;
 
-- (void)startScanning:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback;
-- (void)startScanningForPeripheralsWithServiceUUIDs:(NSArray*)__uuids onDiscovery:(BlueCapPeripheralCallback)__onPeripheralDiscoveredCallback;
+- (void)startScanning:(BlueCapPeripheralCallback)__afterPeripheralDiscoveredCallback;
+- (void)startScanningForPeripheralsWithServiceUUIDs:(NSArray*)__uuids onDiscovery:(BlueCapPeripheralCallback)__afterPeripheralDiscoveredCallback;
 - (void)stopScanning;
 
-- (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback;
-- (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback onPowerOff:(BlueCapCentralManagerCallback)__onPowerOffCallback;
+- (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback;
+- (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback onPowerOff:(BlueCapCentralManagerCallback)__afterPowerOffCallback;
 
 - (BlueCapServiceProfile*)createServiceWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
 - (BlueCapServiceProfile*)createServiceWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapServiceProfileBlock)__profileBlock;

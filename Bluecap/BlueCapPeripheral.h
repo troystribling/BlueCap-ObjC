@@ -20,11 +20,11 @@
 @property(nonatomic, readonly)  CBPeripheralState state;
 @property(nonatomic, readonly)  NSNumber* RSSI;
    
-- (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;
-- (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__onServicesDiscovered;
+- (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
+- (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
 
-- (void)connect:(BlueCapPeripheralCallback)__onPeripheralConnect;
-- (void)disconnect:(BlueCapPeripheralCallback)__onPeripheralDisconnect;
+- (void)connect:(BlueCapPeripheralCallback)__afterPeripheralConnect;
+- (void)disconnect:(BlueCapPeripheralCallback)__afterPeripheralDisconnect;
 - (void)connect;
 - (void)disconnect;
 

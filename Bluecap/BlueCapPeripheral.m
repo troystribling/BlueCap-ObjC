@@ -21,10 +21,10 @@
 @property(nonatomic, retain) NSMutableArray*                discoveredServices;
 @property(nonatomic, retain) NSMapTable*                    discoveredObjects;
 
-@property(nonatomic, copy) BlueCapPeripheralCallback            onPeriperialDisconnectCallback;
-@property(nonatomic, copy) BlueCapPeripheralCallback            onPeripheralConnectCallback;
-@property(nonatomic, copy) BlueCapServicesDiscoveredCallback    onServicesDiscoveredCallback;
-@property(nonatomic, copy) BlueCapPeripheralRSSICallback        onRSSIUpdate;
+@property(nonatomic, copy) BlueCapPeripheralCallback            afterPeriperialDisconnectCallback;
+@property(nonatomic, copy) BlueCapPeripheralCallback            afterPeripheralConnectCallback;
+@property(nonatomic, copy) BlueCapServicesDiscoveredCallback    afterServicesDiscoveredCallback;
+@property(nonatomic, copy) BlueCapPeripheralRSSICallback        afterRSSIUpdate;
 
 - (void)clearServices;
 - (void)clearCharacteristics:(BlueCapService*)__service;
@@ -69,29 +69,29 @@
 #pragma mark -
 #pragma mark Discover Services
 
-- (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__onServicesDiscoveredCallback {
-    self.onServicesDiscoveredCallback = __onServicesDiscoveredCallback;
+- (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__afterServicesDiscoveredCallback {
+    self.afterServicesDiscoveredCallback = __afterServicesDiscoveredCallback;
     [self.cbPeripheral discoverServices:nil];
 }
 
-- (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__onServicesDiscoveredCallback {
-    self.onServicesDiscoveredCallback = __onServicesDiscoveredCallback;
+- (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscoveredCallback {
+    self.afterServicesDiscoveredCallback = __afterServicesDiscoveredCallback;
     [self.cbPeripheral discoverServices:__services];
 }
 
 #pragma mark -
 #pragma mark Connect/Disconnect Peripheral
 
-- (void)connect:(BlueCapPeripheralCallback)__onPeripheralConnect {
+- (void)connect:(BlueCapPeripheralCallback)__afterPeripheralConnect {
     if (self.cbPeripheral.state == CBPeripheralStateDisconnected) {
-        self.onPeripheralConnectCallback = __onPeripheralConnect;
+        self.afterPeripheralConnectCallback = __afterPeripheralConnect;
         [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:self.cbPeripheral options:nil];
     }
 }
 
-- (void)disconnect:(BlueCapPeripheralCallback)__onPeripheralDisconnect {
+- (void)disconnect:(BlueCapPeripheralCallback)__afterPeripheralDisconnect {
     if (self.cbPeripheral.state == CBPeripheralStateConnected) {
-        self.onPeriperialDisconnectCallback = __onPeripheralDisconnect;
+        self.afterPeriperialDisconnectCallback = __afterPeripheralDisconnect;
         [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
     }
 }
@@ -151,9 +151,9 @@
             bcService.profile = serviceProfile;
         }
     }
-    if (self.onServicesDiscoveredCallback) {
+    if (self.afterServicesDiscoveredCallback) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onServicesDiscoveredCallback(self.discoveredServices);
+            self.afterServicesDiscoveredCallback(self.discoveredServices);
         }];
     }
 }

@@ -15,9 +15,9 @@
 @dynamic discoveredServices;
 @dynamic discoveredObjects;
 
-@dynamic onPeriperialDisconnectCallback;
-@dynamic onPeripheralConnectCallback;
-@dynamic onRSSIUpdateCallback;
+@dynamic afterPeriperialDisconnectCallback;
+@dynamic afterPeripheralConnectCallback;
+@dynamic afterRSSIUpdateCallback;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral {
     return [[BlueCapPeripheral alloc] initWithCBPeripheral:__cbPeripheral];
@@ -35,25 +35,25 @@
 }
 
 - (void)didDisconnectPeripheral:(BlueCapPeripheral*)__peripheral {
-    if (self.onPeriperialDisconnectCallback != nil) {
+    if (self.afterPeriperialDisconnectCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onPeriperialDisconnectCallback(__peripheral);
+            self.afterPeriperialDisconnectCallback(__peripheral);
         }];
     }
 }
 
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral {
-    if (self.onPeripheralConnectCallback != nil) {
+    if (self.afterPeripheralConnectCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onPeripheralConnectCallback(__peripheral);
+            self.afterPeripheralConnectCallback(__peripheral);
         }];
     }
 }
 
 - (void)didUpdateRSSI:(BlueCapPeripheral*)__peripheral error:(NSError*)__error {
-    if (self.onRSSIUpdateCallback != nil) {
+    if (self.afterRSSIUpdateCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onRSSIUpdateCallback(__peripheral.RSSI, __error);
+            self.afterRSSIUpdateCallback(__peripheral.RSSI, __error);
         }];
     }
 }
