@@ -15,6 +15,7 @@
 @dynamic serializeBlocks;
 @dynamic serializeCallback;
 @dynamic deserializeCallback;
+@dynamic stringValueCallback;
 @dynamic afterDiscoveredCallback;
 
 

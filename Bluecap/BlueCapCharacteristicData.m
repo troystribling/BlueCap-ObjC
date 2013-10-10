@@ -42,4 +42,15 @@
     return deserializedVals;
 }
 
+- (NSDictionary*)stringValue {
+    NSDictionary* stringVals = [NSDictionary dictionary];
+    BlueCapCharacteristicProfile* profile = self.characteristic.profile;
+    if (profile) {
+        if (profile.stringValueCallback) {
+            stringVals = profile.stringValueCallback([self value]);
+        }
+    }
+    return stringVals;
+}
+
 @end

@@ -15,6 +15,7 @@
 @property(nonatomic, retain) NSMutableDictionary*                                   serializeBlocks;
 @property(nonatomic, copy) BlueCapCharacteristicProfileSerializeWithDataCallback    serializeCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileDeserializeCallback          deserializeCallback;
+@property(nonatomic, copy) BlueCapCharacteristicProfileStringValueCallback          stringValueCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileAfterDiscoveredCallback      afterDiscoveredCallback;
 
 @end
@@ -39,6 +40,10 @@
 
 - (void)deserialize:(BlueCapCharacteristicProfileDeserializeCallback)__deserializeCallback {
     self.deserializeCallback = __deserializeCallback;
+}
+
+- (void)stringValue:(BlueCapCharacteristicProfileStringValueCallback)__stringValueCallback {
+    self.stringValueCallback = __stringValueCallback;
 }
 
 - (void)afterDiscovered:(BlueCapCharacteristicProfileAfterDiscoveredCallback)__afterDiscoveredCallback {

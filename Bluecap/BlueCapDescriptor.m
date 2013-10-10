@@ -64,7 +64,7 @@
     [self.characteristic.service.peripheral.cbPeripheral readValueForDescriptor:self.cbDescriptor];
 }
 
-- (void)write:(NSData*)data onWrite:(BlueCapDescriptorDataCallback)__onWriteCallback {
+- (void)writeData:(NSData*)data onWrite:(BlueCapDescriptorDataCallback)__onWriteCallback {
     self.onWriteCallback = __onWriteCallback;
     [self.characteristic.service.peripheral.cbPeripheral writeValue:data forDescriptor:self.cbDescriptor];
 }

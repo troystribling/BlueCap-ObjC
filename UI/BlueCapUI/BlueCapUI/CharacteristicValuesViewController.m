@@ -7,6 +7,7 @@
 //
 
 #import "CharacteristicValuesViewController.h"
+#import "CharacteristicValueCell.h"
 
 @interface CharacteristicValuesViewController ()
 
@@ -22,6 +23,8 @@
 }
 
 - (void)viewDidLoad {
+    [self.characteristic readData:^(BlueCapCharacteristicData* __data, NSError* __error) {        
+    }];
     [super viewDidLoad];
 }
 
@@ -40,8 +43,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"CharacteristicValueCell";
+    CharacteristicValueCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     return cell;
 }
 

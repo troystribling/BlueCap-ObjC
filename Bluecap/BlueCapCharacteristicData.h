@@ -16,5 +16,6 @@
 
 - (NSData*)dataValue;
 - (NSDictionary*)value;
+- (NSDictionary*)stringValue;
 
 @end

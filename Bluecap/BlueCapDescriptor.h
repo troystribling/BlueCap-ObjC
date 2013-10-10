@@ -17,7 +17,7 @@
 - (BlueCapCharacteristic*)characteristic;
 
 - (void)read:(BlueCapDescriptorDataCallback)__onReadCallback;
-- (void)write:(NSData*)data onWrite:(BlueCapDescriptorDataCallback)__onWriteCallback;
+- (void)writeData:(NSData*)data onWrite:(BlueCapDescriptorDataCallback)__onWriteCallback;
 - (NSString*)typeStringValue;
 
 @end

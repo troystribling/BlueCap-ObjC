@@ -17,6 +17,10 @@
 
 @implementation BlueCapDescriptorData
 
+- (BlueCapDescriptor*)descriptor {
+    return self.bcDescriptor;
+}
+
 - (NSString*)stringValue {
     NSString* uuidString = self.descriptor.UUID.stringValue;
     __block NSString* result = @"Unkown";
@@ -36,10 +40,6 @@
         }
     }];
     return result;
-}
-
-- (BlueCapDescriptor*)descriptor {
-    return self.bcDescriptor;
 }
 
 - (NSNumber*)numberValue {

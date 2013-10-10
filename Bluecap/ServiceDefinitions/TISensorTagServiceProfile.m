@@ -48,8 +48,16 @@
                                                   if (value == 0) {
                                                       boolValue = NO;
                                                   }
-                                                  return  [NSDictionary dictionaryWithObject:TISENSOR_TAG_ACCELEROMTER_ENABLED
-                                                                                      forKey:[NSNumber numberWithBool:boolValue]];
+                                                  return  [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:boolValue]
+                                                                                      forKey:TISENSOR_TAG_ACCELEROMTER_ENABLED];
+                                              }];
+                                              [chracteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                  NSString* stringVal = @"NO";
+                                                  if ([[data objectForKey:TISENSOR_TAG_ACCELEROMTER_ENABLED] boolValue]) {
+                                                      stringVal = @"YES";
+                                                  }
+                                                  return [NSDictionary dictionaryWithObject:stringVal
+                                                                                     forKey:TISENSOR_TAG_ACCELEROMTER_ENABLED];
                                               }];
                                           }];
             

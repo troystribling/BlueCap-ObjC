@@ -15,6 +15,8 @@
 @property(nonatomic, retain) NSMutableDictionary*                                   serializeBlocks;
 @property(nonatomic, copy) BlueCapCharacteristicProfileSerializeWithDataCallback    serializeCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileDeserializeCallback          deserializeCallback;
+@property(nonatomic, copy) BlueCapCharacteristicProfileStringValueCallback          stringValueCallback;
+
 @property(nonatomic, copy) BlueCapCharacteristicProfileAfterDiscoveredCallback      afterDiscoveredCallback;
 
 + (BlueCapCharacteristicProfile*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapCharacteristicProfileBlock)__profileBlock;
