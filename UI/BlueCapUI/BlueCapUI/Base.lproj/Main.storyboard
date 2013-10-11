@@ -249,7 +249,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ljK-JQ-Agv" kind="push" id="HiV-sn-Ldg"/>
+                                            <segue destination="ljK-JQ-Agv" kind="push" identifier="CharacteristicValues" id="HiV-sn-Ldg"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -659,10 +659,10 @@
             </objects>
             <point key="canvasLocation" x="3067" y="249"/>
         </scene>
-        <!--Table View Controller - Values-->
+        <!--Characteristic Values View Controller - Values-->
         <scene sceneID="0ms-TL-iQP">
             <objects>
-                <tableViewController id="ljK-JQ-Agv" sceneMemberID="viewController">
+                <tableViewController id="ljK-JQ-Agv" customClass="CharacteristicValuesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ryT-Ue-dbY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

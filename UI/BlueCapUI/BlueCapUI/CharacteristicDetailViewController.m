@@ -8,6 +8,7 @@
 
 #import "CharacteristicDetailViewController.h"
 #import "CharacteristicDescriptorsViewController.h"
+#import "CharacteristicValuesViewController.h"
 
 @interface CharacteristicDetailViewController ()
 
@@ -60,6 +61,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"CharacteristicDescriptors"]) {
         CharacteristicDescriptorsViewController* viewController = segue.destinationViewController;
+        viewController.characteristic = self.characteristic;
+    } else if ([segue.identifier isEqualToString:@"CharacteristicValues"]) {
+        CharacteristicValuesViewController* viewController = segue.destinationViewController;
         viewController.characteristic = self.characteristic;
     }
 }
