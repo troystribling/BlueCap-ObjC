@@ -108,30 +108,30 @@
 #pragma mark BlueCapPeripheral PrivateAPI
 
 - (void)clearServices {
-    DLog(@"BEFORE COUNT: %d", [self.discoveredObjects count]);
+    DLog(@"CLEAR SERVICES BEFORE COUNT: %d", [self.discoveredObjects count]);
     for (BlueCapService* service in self.discoveredServices) {
         [self.discoveredObjects removeObjectForKey:service.cbService];
     }
     [self.discoveredServices removeAllObjects];
-    DLog(@"AFTER COUNT: %d", [self.discoveredObjects count]);
+    DLog(@"CLEAR SERVICES AFTER COUNT: %d", [self.discoveredObjects count]);
 }
 
 - (void)clearCharacteristics:(BlueCapService*)service {
-    DLog(@"BEFORE COUNT: %d", [self.discoveredObjects count]);
+    DLog(@"CLEAR CHARACTERISTICS BEFORE COUNT: %d", [self.discoveredObjects count]);
     for (BlueCapCharacteristic* characteristic in service.discoveredCharacteristics) {
         [self.discoveredObjects removeObjectForKey:characteristic.cbCharacteristic];
     }
     [service.discoveredCharacteristics removeAllObjects];
-    DLog(@"AFTER COUNT: %d", [self.discoveredObjects count]);
+    DLog(@"CLEAR CHARACTERISTICS AFTER COUNT: %d", [self.discoveredObjects count]);
 }
 
 - (void)clearDescriptors:(BlueCapCharacteristic*)chraracteristic {
-    DLog(@"BEFORE COUNT: %d", [self.discoveredObjects count]);
+    DLog(@"CLEAR DESCRIPTORS BEFORE COUNT: %d", [self.discoveredObjects count]);
     for (BlueCapDescriptor* descriptor in chraracteristic.discoveredDiscriptors) {
         [self.discoveredObjects removeObjectForKey:descriptor.cbDescriptor];
     }
     [chraracteristic.discoveredDiscriptors removeAllObjects];
-    DLog(@"AFTER COUNT: %d", [self.discoveredObjects count]);
+    DLog(@"CLEAR DESCRIPTORS AFTER COUNT: %d", [self.discoveredObjects count]);
 }
 
 #pragma mark -
@@ -176,7 +176,9 @@
             if (characteristicProfile) {
                 DLog(@"Characteristic Profile Found: %@", characteristicProfile.name);
                 bcCharacteristic.profile = characteristicProfile;
-                bcCharacteristic.profile.afterDiscoveredCallback(bcCharacteristic);
+                if (characteristicProfile.afterDiscoveredCallback) {
+                    bcCharacteristic.profile.afterDiscoveredCallback(bcCharacteristic);
+                }
             }
         }
     }
