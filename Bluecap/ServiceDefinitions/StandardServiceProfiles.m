@@ -24,47 +24,47 @@
                                   
         [serviceProfile createCharacteristicWithUUID:@"2a23"
                                                 name:@"System ID"
-                                          andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a24"
                                                 name:@"Model Number"
-                                          andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a25"
                                                 name:@"Serial Number"
-                                          andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a26"
                                                 name:@"Firmware Revision"
-                                          andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a27"
                                                 name:@"Hardware Revision"
-                                          andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a28"
                                                 name:@"Software Revision"
-                                          andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a29"
                                                 name:@"Manufacturer Name"
-                                          andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a2a"
                                                 name:@"Certification Data"
-                                          andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a50"
                                                 name:@"PnP ID"
-                                          andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                           }];
 
         }];
@@ -78,7 +78,7 @@
                                   
         [serviceProfile createCharacteristicWithUUID:@"ffe1"
                                                 name:@"Key Pressed State"
-                                          andProfile:^(BlueCapCharacteristicProfile* chracteristicProfile) {
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                           }];
 
         }];
