@@ -702,7 +702,16 @@
                             <outlet property="delegate" destination="ljK-JQ-Agv" id="pzs-29-ayV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Values" id="kKL-KP-SaW"/>
+                    <navigationItem key="navigationItem" title="Values" id="kKL-KP-SaW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Ujk-4y-jRa">
+                            <connections>
+                                <action selector="refeshValues:" destination="ljK-JQ-Agv" id="aeG-Ec-tUA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="refreshutton" destination="Ujk-4y-jRa" id="Ngl-Uz-aNi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Iy-e4-WX9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

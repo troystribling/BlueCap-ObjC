@@ -13,6 +13,9 @@
 
 @property(nonatomic, retain) NSDictionary* values;
 
+- (IBAction)refeshValues:(id)sender;
+- (void)readData;
+
 @end
 
 @implementation CharacteristicValuesViewController
@@ -26,17 +29,28 @@
 
 - (void)viewDidLoad {
     self.values = [NSDictionary dictionary];
+    [self readData];
+    [super viewDidLoad];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (IBAction)refeshValues:(id)sender {
+    [self readData];
+}
+
+- (void)readData {
     [self.characteristic readData:^(BlueCapCharacteristicData* __data, NSError* __error) {
         dispatch_sync(dispatch_get_main_queue(), ^{
             self.values = [__data stringValue];
             [self.tableView reloadData];
         });
     }];
-    [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Table view data source
