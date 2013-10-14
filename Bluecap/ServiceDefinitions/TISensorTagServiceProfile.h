@@ -21,6 +21,8 @@
 #define TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT @"Y Acceleration"
 #define TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT @"Z Acceleration"
 
+#define TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD    @"Update Period"
+
 @interface TISensorTagServiceProfile : NSObject
 
 + (void)create;

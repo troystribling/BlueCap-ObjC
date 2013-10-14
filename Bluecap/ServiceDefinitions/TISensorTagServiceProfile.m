@@ -9,10 +9,16 @@
 #import "BlueCap.h"
 #import "TISensorTagServiceProfile.h"
 
-NSNumber* charFromData(NSData* data, NSRange range) {
+NSNumber* blueCapCharFromData(NSData* data, NSRange range) {
     int8_t val;
     [data getBytes:&val range:range];
     return [NSNumber numberWithChar:val];
+}
+
+NSNumber* blueCapUnsignedCharFromData(NSData* data) {
+    int8_t val;
+    [data getBytes:&val length:1];
+    return [NSNumber numberWithUnsignedChar:val];
 }
 
 @implementation TISensorTagServiceProfile
@@ -32,11 +38,11 @@ NSNumber* charFromData(NSData* data, NSRange range) {
                                                 name:@"Accelerometer Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserialize:^NSDictionary*(NSData* data) {
-                                                  NSNumber* accxNumber = charFromData(data, NSMakeRange(0,1));
-                                                  NSNumber* accyNumber = charFromData(data, NSMakeRange(1,1));
-                                                  NSNumber* acczNumber = charFromData(data, NSMakeRange(2,1));
-                                                  float accxScaled = [accxNumber floatValue]/64.0f;
-                                                  float accyScaled = [accyNumber floatValue]/64.0f;
+                                                  NSNumber* accxNumber = blueCapCharFromData(data, NSMakeRange(0,1));
+                                                  NSNumber* accyNumber = blueCapCharFromData(data, NSMakeRange(1,1));
+                                                  NSNumber* acczNumber = blueCapCharFromData(data, NSMakeRange(2,1));
+                                                  float accxScaled = -[accxNumber floatValue]/64.0f;
+                                                  float accyScaled = -[accyNumber floatValue]/64.0f;
                                                   float acczScaled = [acczNumber floatValue]/64.0f;
                                                   return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
                                                                                               [NSNumber numberWithFloat:accxScaled],
@@ -96,6 +102,24 @@ NSNumber* charFromData(NSData* data, NSRange range) {
         [serviceProfile createCharacteristicWithUUID:@"f000aa13-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer Update Period"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                              [characteristicProfile serialize:^NSData*(id data) {
+                                                  uint8_t value = (uint8_t)[data integerValue]/10;
+                                                  if (value < 0x0a) {
+                                                      value = 0x0a;
+                                                  } else if (value > 0xff) {
+                                                      value = 0xff;
+                                                  }
+                                                  return [NSData dataWithBytes:&value length:1];
+                                              }];
+                                              [characteristicProfile deserialize:^NSDictionary*(NSData* data) {
+                                                  int unscaledValue = 10*[blueCapUnsignedCharFromData(data) integerValue];
+                                                  return [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:unscaledValue]
+                                                                                     forKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD];
+                                              }];
+                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                  return [NSDictionary dictionaryWithObject:[[data objectForKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD] stringValue]
+                                                                                     forKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD];
+                                              }];
                                           }];
                                    
     }];
