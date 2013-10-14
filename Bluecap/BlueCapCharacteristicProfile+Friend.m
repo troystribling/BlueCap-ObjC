@@ -13,8 +13,8 @@
 @dynamic UUID;
 @dynamic name;
 @dynamic serializeBlocks;
-@dynamic serializeCallback;
-@dynamic deserializeCallback;
+@dynamic serializeDataCallback;
+@dynamic deserializeDataCallback;
 @dynamic stringValueCallback;
 @dynamic afterDiscoveredCallback;
 

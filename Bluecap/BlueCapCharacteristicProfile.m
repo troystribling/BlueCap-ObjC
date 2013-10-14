@@ -10,13 +10,13 @@
 
 @interface BlueCapCharacteristicProfile ()
 
-@property(nonatomic, retain) CBUUID*                                                UUID;
-@property(nonatomic, retain) NSString*                                              name;
-@property(nonatomic, retain) NSMutableDictionary*                                   serializeBlocks;
-@property(nonatomic, copy) BlueCapCharacteristicProfileSerializeWithDataCallback    serializeCallback;
-@property(nonatomic, copy) BlueCapCharacteristicProfileDeserializeCallback          deserializeCallback;
-@property(nonatomic, copy) BlueCapCharacteristicProfileStringValueCallback          stringValueCallback;
-@property(nonatomic, copy) BlueCapCharacteristicProfileAfterDiscoveredCallback      afterDiscoveredCallback;
+@property(nonatomic, retain) CBUUID*                                                    UUID;
+@property(nonatomic, retain) NSString*                                                  name;
+@property(nonatomic, retain) NSMutableDictionary*                                       serializeBlocks;
+@property(nonatomic, copy) BlueCapCharacteristicProfileSerializeWithDataCallback        serializeDataCallback;
+@property(nonatomic, copy) BlueCapCharacteristicProfileDeserializeDataCallback          deserializeDataCallback;
+@property(nonatomic, copy) BlueCapCharacteristicProfileStringValueCallback              stringValueCallback;
+@property(nonatomic, copy) BlueCapCharacteristicProfileAfterDiscoveredCallback          afterDiscoveredCallback;
 
 @end
 
@@ -30,16 +30,16 @@
     return _name;
 }
 
-- (void)serializeValueNamed:(NSString*)__valueName usingBlock:(BlueCapCharacteristicProfileSerializeCallback)__serializeBlock {
+- (void)serializeValueNamed:(NSString*)__valueName usingBlock:(BlueCapCharacteristicProfileSerializeDataCallback)__serializeBlock {
     [self.serializeBlocks setObject:[__serializeBlock copy] forKey:__valueName];
 }
 
-- (void)serialize:(BlueCapCharacteristicProfileSerializeWithDataCallback)__serializeBlock {
-    self.serializeCallback = __serializeBlock;
+- (void)serializeData:(BlueCapCharacteristicProfileSerializeWithDataCallback)__serializeBlock {
+    self.serializeDataCallback = __serializeBlock;
 }
 
-- (void)deserialize:(BlueCapCharacteristicProfileDeserializeCallback)__deserializeCallback {
-    self.deserializeCallback = __deserializeCallback;
+- (void)deserializeData:(BlueCapCharacteristicProfileDeserializeDataCallback)__deserializeCallback {
+    self.deserializeDataCallback = __deserializeCallback;
 }
 
 - (void)stringValue:(BlueCapCharacteristicProfileStringValueCallback)__stringValueCallback {

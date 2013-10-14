@@ -668,11 +668,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharacteristicValueCell" id="q9H-Fo-Way" customClass="CharacteristicValueCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharacteristicValueCell" id="q9H-Fo-Way" customClass="CharacteristicValueCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q9H-Fo-Way" id="PAI-wi-1fK">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kS-yg-EBr">
@@ -683,7 +683,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHv-O5-QAn">
-                                            <rect key="frame" x="160" y="11" width="140" height="22"/>
+                                            <rect key="frame" x="160" y="11" width="120" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -694,6 +694,7 @@
                                 <connections>
                                     <outlet property="valueLable" destination="UHv-O5-QAn" id="w2k-F4-G2R"/>
                                     <outlet property="valueNameLable" destination="6kS-yg-EBr" id="hwm-vf-zs7"/>
+                                    <segue destination="Fgs-SR-AAC" kind="push" trigger="accessoryAction" id="q4r-zp-GzL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -716,6 +717,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Iy-e4-WX9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3613" y="-137"/>
+        </scene>
+        <!--Characteristic Value View Controller - New Value-->
+        <scene sceneID="ONO-2I-dJx">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YHC-G5-ek2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Fgs-SR-AAC" customClass="CharacteristicValueViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="06i-bw-orJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="d6j-Q2-Vpp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MOZ-6m-7pg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J6D-MW-7oK">
+                                <rect key="frame" x="20" y="95" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Value" id="qC6-hX-sHJ"/>
+                    <connections>
+                        <outlet property="valueTextField" destination="J6D-MW-7oK" id="z93-SD-m62"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="4072" y="-137"/>
         </scene>
         <!--Characteristic Descriptors View Controller - Descriptors-->
         <scene sceneID="wiS-Ff-ISu">

@@ -13,9 +13,9 @@
 - (CBUUID*)UUID;
 - (NSString*)name;
 
-- (void)serializeValueNamed:(NSString*)__valueName usingBlock:(BlueCapCharacteristicProfileSerializeCallback)__serializeBlock;
-- (void)serialize:(BlueCapCharacteristicProfileSerializeWithDataCallback)__serializeBlock;
-- (void)deserialize:(BlueCapCharacteristicProfileDeserializeCallback)__deserializeCallback;
+- (void)serializeValueNamed:(NSString*)__valueName usingBlock:(BlueCapCharacteristicProfileSerializeDataCallback)__serializeBlock;
+- (void)serializeData:(BlueCapCharacteristicProfileSerializeWithDataCallback)__serializeBlock;
+- (void)deserializeData:(BlueCapCharacteristicProfileDeserializeDataCallback)__deserializeCallback;
 - (void)stringValue:(BlueCapCharacteristicProfileStringValueCallback)__stringValueCallback;
 - (void)afterDiscovered:(BlueCapCharacteristicProfileAfterDiscoveredCallback)__afterDiscoveredCallback;
 

@@ -100,9 +100,13 @@
     [self.service.peripheral.cbPeripheral writeValue:__data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
 }
 
+- (void)writeString:(NSString*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
+    self.afterWriteCallback = __afterWriteCallback;
+}
+
 - (void)writeValueNamed:(NSString*)__valueName afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
     if (self.profile) {
-        BlueCapCharacteristicProfileSerializeCallback serializeBlock = [self.profile.serializeBlocks objectForKey:__valueName];
+        BlueCapCharacteristicProfileSerializeDataCallback serializeBlock = [self.profile.serializeBlocks objectForKey:__valueName];
         if (serializeBlock) {
             [self writeData:serializeBlock() afterWriteCall:__afterWriteCallback];
         }
@@ -111,8 +115,8 @@
 
 - (void)writeValue:(id)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
     if (self.profile) {
-        if (self.profile.serializeCallback) {
-            [self writeData:self.profile.serializeCallback(__data) afterWriteCall:__afterWriteCallback];
+        if (self.profile.serializeDataCallback) {
+            [self writeData:self.profile.serializeDataCallback(__data) afterWriteCall:__afterWriteCallback];
         }
     }
 }

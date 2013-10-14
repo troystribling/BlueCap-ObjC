@@ -37,7 +37,7 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
         [serviceProfile createCharacteristicWithUUID:@"f000aa11-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-                                              [characteristicProfile deserialize:^NSDictionary*(NSData* data) {
+                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                                                   NSNumber* accxNumber = blueCapCharFromData(data, NSMakeRange(0,1));
                                                   NSNumber* accyNumber = blueCapCharFromData(data, NSMakeRange(1,1));
                                                   NSNumber* acczNumber = blueCapCharFromData(data, NSMakeRange(2,1));
@@ -79,7 +79,7 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeValueNamed:TISENSOR_TAG_ACCELEROMETER_ON afterWriteCall:nil];
                                               }];
-                                              [characteristicProfile deserialize:^NSDictionary*(NSData* data) {
+                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                                                   uint8_t value;
                                                   [data getBytes:&value length:1];
                                                   BOOL boolValue = YES;
@@ -102,7 +102,7 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
         [serviceProfile createCharacteristicWithUUID:@"f000aa13-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer Update Period"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-                                              [characteristicProfile serialize:^NSData*(id data) {
+                                              [characteristicProfile serializeData:^NSData*(id data) {
                                                   uint8_t value = (uint8_t)[data integerValue]/10;
                                                   if (value < 0x0a) {
                                                       value = 0x0a;
@@ -111,7 +111,7 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
                                                   }
                                                   return [NSData dataWithBytes:&value length:1];
                                               }];
-                                              [characteristicProfile deserialize:^NSDictionary*(NSData* data) {
+                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                                                   int unscaledValue = 10*[blueCapUnsignedCharFromData(data) integerValue];
                                                   return [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:unscaledValue]
                                                                                      forKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD];

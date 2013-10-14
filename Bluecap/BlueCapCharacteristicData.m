@@ -35,8 +35,8 @@
     NSDictionary* deserializedVals = [NSDictionary dictionary];
     BlueCapCharacteristicProfile* profile = self.characteristic.profile;
     if (profile) {
-        if (profile.deserializeCallback) {
-            deserializedVals = profile.deserializeCallback([self dataValue]);
+        if (profile.deserializeDataCallback) {
+            deserializedVals = profile.deserializeDataCallback([self dataValue]);
         }
     }
     return deserializedVals;
