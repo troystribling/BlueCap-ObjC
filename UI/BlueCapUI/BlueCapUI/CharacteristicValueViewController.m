@@ -29,4 +29,16 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark -
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField {
+    NSString* value = self.valueTextField.text;
+    if (value) {
+        [self.characteristic writeObject:value];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    return YES;
+}
+
 @end

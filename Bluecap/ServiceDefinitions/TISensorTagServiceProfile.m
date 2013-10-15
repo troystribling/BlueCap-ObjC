@@ -103,7 +103,8 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
                                                 name:@"Accelerometer Update Period"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile serializeObject:^NSData*(id data) {
-                                                  uint8_t value = (uint8_t)[data integerValue]/10;
+                                                  int intValue = [data intValue]/10;
+                                                  uint8_t value = (uint8_t)(intValue);
                                                   if (value < 0x0a) {
                                                       value = 0x0a;
                                                   } else if (value > 0xff) {
