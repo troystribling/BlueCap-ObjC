@@ -694,7 +694,7 @@
                                 <connections>
                                     <outlet property="valueLable" destination="UHv-O5-QAn" id="w2k-F4-G2R"/>
                                     <outlet property="valueNameLable" destination="6kS-yg-EBr" id="hwm-vf-zs7"/>
-                                    <segue destination="Fgs-SR-AAC" kind="push" trigger="accessoryAction" id="q4r-zp-GzL"/>
+                                    <segue destination="Fgs-SR-AAC" kind="push" identifier="CharacteristicValue" id="bdE-6o-T7h"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

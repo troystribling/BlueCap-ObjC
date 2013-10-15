@@ -8,6 +8,7 @@
 
 #import "CharacteristicValuesViewController.h"
 #import "CharacteristicValueCell.h"
+#import "CharacteristicValueViewController.h"
 
 @interface CharacteristicValuesViewController ()
 
@@ -35,6 +36,13 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"CharacteristicValue"]) {
+        CharacteristicValuesViewController *viewController = segue.destinationViewController;
+        viewController.characteristic = self.characteristic;
+    }
 }
 
 #pragma mark -
@@ -67,6 +75,10 @@
     static NSString *CellIdentifier = @"CharacteristicValueCell";
     CharacteristicValueCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSArray* valueNames = [self.values allKeys];
+    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] ||
+        [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     NSString* valueName = [valueNames objectAtIndex:indexPath.row];
     cell.valueNameLable.text = valueName;
     cell.valueLable.text = [self.values objectForKey:valueName];

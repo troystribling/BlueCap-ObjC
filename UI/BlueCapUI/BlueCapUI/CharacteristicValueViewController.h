@@ -10,6 +10,7 @@
 
 @interface CharacteristicValueViewController : UIViewController
 
-@property(nonatomic, retain) IBOutlet UITextField*   valueTextField;
+@property(nonatomic, retain) IBOutlet UITextField*      valueTextField;
+@property(nonatomic, retain) BlueCapCharacteristic*     characteristic;
 
 @end

@@ -13,7 +13,7 @@
 @property(nonatomic, retain) CBUUID*                                                    UUID;
 @property(nonatomic, retain) NSString*                                                  name;
 @property(nonatomic, retain) NSMutableDictionary*                                       serializeBlocks;
-@property(nonatomic, copy) BlueCapCharacteristicProfileSerializeWithDataCallback        serializeDataCallback;
+@property(nonatomic, copy) BlueCapCharacteristicProfileSerializeObjectCallback          serializeObjectCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileDeserializeDataCallback          deserializeDataCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileStringValueCallback              stringValueCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileAfterDiscoveredCallback          afterDiscoveredCallback;
@@ -30,12 +30,12 @@
     return _name;
 }
 
-- (void)serializeValueNamed:(NSString*)__valueName usingBlock:(BlueCapCharacteristicProfileSerializeDataCallback)__serializeBlock {
+- (void)serializeValueNamed:(NSString*)__valueName usingBlock:(BlueCapCharacteristicProfileSerializeValueCallback)__serializeBlock {
     [self.serializeBlocks setObject:[__serializeBlock copy] forKey:__valueName];
 }
 
-- (void)serializeData:(BlueCapCharacteristicProfileSerializeWithDataCallback)__serializeBlock {
-    self.serializeDataCallback = __serializeBlock;
+- (void)serializeObject:(BlueCapCharacteristicProfileSerializeObjectCallback)__serializeBlock {
+    self.serializeObjectCallback = __serializeBlock;
 }
 
 - (void)deserializeData:(BlueCapCharacteristicProfileDeserializeDataCallback)__deserializeCallback {
