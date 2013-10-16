@@ -14,6 +14,7 @@
 
 - (NSString*)booleanStringValue:(BOOL)__boolValue;
 - (NSString*)propertyEnabledStringValue:(CBCharacteristicProperties)__property;
+- (IBAction)toggleNotifications;
 
 @end
 
@@ -45,12 +46,18 @@
     self.propertyExtendedProperties.text = [self propertyEnabledStringValue:CBCharacteristicPropertyExtendedProperties];
     self.propertyNotifyEncryptionRequired.text = [self propertyEnabledStringValue:CBCharacteristicPropertyNotifyEncryptionRequired];
     self.propertyIndicateEncryptionRequired.text = [self propertyEnabledStringValue:CBCharacteristicPropertyIndicateEncryptionRequired];
-    if (self.characteristic.isNotifying) {
-        [self.notifiyButton setTitle:@"Stop Notifications" forState:UIControlStateNormal];
-        [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyNotify]) {
+        self.notifiyButton.enabled = YES;
+        if (self.characteristic.isNotifying) {
+            [self.notifiyButton setTitle:@"Stop Notifications" forState:UIControlStateNormal];
+            [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+        } else {
+            [self.notifiyButton setTitle:@"Start Notifications" forState:UIControlStateNormal];
+            [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.1 green:0.7 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+        }
     } else {
-        [self.notifiyButton setTitle:@"Start Notifications" forState:UIControlStateNormal];
-        [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.1 green:0.7 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+        [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0] forState:UIControlStateDisabled];
+        self.notifiyButton.enabled = NO;
     }
 }
 
@@ -65,6 +72,17 @@
     } else if ([segue.identifier isEqualToString:@"CharacteristicValues"]) {
         CharacteristicValuesViewController* viewController = segue.destinationViewController;
         viewController.characteristic = self.characteristic;
+    }
+}
+
+#pragma mark -
+#pragma mark ChracteristicDetailViewController Private
+
+- (IBAction)toggleNotifications {
+    if (self.characteristic.isNotifying) {
+        [self.characteristic stopNotifications];
+    } else {
+        [self.characteristic startNotifications];
     }
 }
 

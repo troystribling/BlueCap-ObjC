@@ -79,18 +79,36 @@
 #pragma mark -
 #pragma mark Manage Notifications
 
-- (void)startNotifications:(BlueCapCharacteristicDataCallback)__afterReadCallback {
-    [[BlueCapCentralManager sharedInstance] syncMain:^{
-        self.afterReadCallback = __afterReadCallback;
+- (void)startNotifications {
+    if ([self propertyEnabled:CBCharacteristicPropertyNotify]) {
         [self.service.peripheral.cbPeripheral setNotifyValue:YES forCharacteristic:self.cbCharacteristic];
-    }];
+    } else {
+        [NSException raise:@"Notifications not supported" format:@"characteristic %@ does not support notifications", [self.UUID stringValue]];
+    }
 }
 
 - (void)stopNotifications {
-    [[BlueCapCentralManager sharedInstance] syncMain:^{
-        self.afterReadCallback = nil;
+    if ([self propertyEnabled:CBCharacteristicPropertyNotify]) {
         [self.service.peripheral.cbPeripheral setNotifyValue:NO forCharacteristic:self.cbCharacteristic];
-    }];
+    } else {
+        [NSException raise:@"Notifications not supported" format:@"characteristic %@ does not support notifications", [self.UUID stringValue]];
+    }
+}
+
+- (void)receiveNotifications:(BlueCapCharacteristicDataCallback)__afterReadCallback {
+    if ([self propertyEnabled:CBCharacteristicPropertyNotify]) {
+        self.afterReadCallback = __afterReadCallback;
+    } else {
+        [NSException raise:@"Notifications not supported" format:@"characteristic %@ does not support notifications", [self.UUID stringValue]];
+    }
+}
+
+- (void)dropNotifications {
+    if ([self propertyEnabled:CBCharacteristicPropertyNotify]) {
+        self.afterReadCallback = nil;
+    } else {
+        [NSException raise:@"Notifications not supported" format:@"characteristic %@ does not support notifications", [self.UUID stringValue]];
+    }
 }
 
 #pragma mark -

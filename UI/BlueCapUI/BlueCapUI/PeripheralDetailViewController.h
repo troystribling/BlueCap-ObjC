@@ -15,6 +15,4 @@
 @property(nonatomic, retain) IBOutlet UILabel*      uuidLabel;
 @property(nonatomic, retain) IBOutlet UILabel*      rssiLabel;
 
-- (IBAction)disconnect:(id)sender;
-
 @end

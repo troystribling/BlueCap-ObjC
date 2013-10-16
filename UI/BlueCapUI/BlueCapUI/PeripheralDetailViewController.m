@@ -11,6 +11,8 @@
 
 @interface PeripheralDetailViewController ()
 
+- (IBAction)disconnect:(id)sender;
+
 @end
 
 @implementation PeripheralDetailViewController
