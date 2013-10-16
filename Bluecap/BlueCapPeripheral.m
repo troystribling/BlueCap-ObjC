@@ -177,7 +177,9 @@
                 DLog(@"Characteristic Profile Found: %@", characteristicProfile.name);
                 bcCharacteristic.profile = characteristicProfile;
                 if (characteristicProfile.afterDiscoveredCallback) {
-                    bcCharacteristic.profile.afterDiscoveredCallback(bcCharacteristic);
+                    [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+                        bcCharacteristic.profile.afterDiscoveredCallback(bcCharacteristic);
+                    }];
                 }
             }
         }

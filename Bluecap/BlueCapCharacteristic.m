@@ -11,6 +11,7 @@
 #import "BlueCapService+Friend.h"
 #import "BlueCapCharacteristicProfile+Friend.h"
 #import "BlueCapCharacteristic.h"
+#import "CBUUID+StringValue.h"
 
 @interface BlueCapCharacteristic () {
 }
@@ -79,29 +80,46 @@
 #pragma mark Manage Notifications
 
 - (void)startNotifications:(BlueCapCharacteristicDataCallback)__afterReadCallback {
-    self.afterReadCallback = __afterReadCallback;
-    [self.service.peripheral.cbPeripheral setNotifyValue:YES forCharacteristic:self.cbCharacteristic];
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
+        self.afterReadCallback = __afterReadCallback;
+        [self.service.peripheral.cbPeripheral setNotifyValue:YES forCharacteristic:self.cbCharacteristic];
+    }];
 }
 
 - (void)stopNotifications {
-    [self.service.peripheral.cbPeripheral setNotifyValue:NO forCharacteristic:self.cbCharacteristic];
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
+        self.afterReadCallback = nil;
+        [self.service.peripheral.cbPeripheral setNotifyValue:NO forCharacteristic:self.cbCharacteristic];
+    }];
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma I/O
 
 - (void)readData:(BlueCapCharacteristicDataCallback)__afterReadCallback {
-    self.afterReadCallback = __afterReadCallback;
-    [self.service.peripheral.cbPeripheral readValueForCharacteristic:self.cbCharacteristic];
+    if ([self propertyEnabled:CBCharacteristicPropertyRead]) {
+        self.afterReadCallback = __afterReadCallback;
+        [self.service.peripheral.cbPeripheral readValueForCharacteristic:self.cbCharacteristic];
+    } else {
+        [NSException raise:@"Read not supported" format:@"characteristic %@ does not support read", [self.UUID stringValue]];
+    }
 }
 
 - (void)writeData:(NSData*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
-    self.afterWriteCallback = __afterWriteCallback;
-    [self.service.peripheral.cbPeripheral writeValue:__data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
+    if ([self propertyEnabled:CBCharacteristicPropertyWrite]) {
+        self.afterWriteCallback = __afterWriteCallback;
+        [self.service.peripheral.cbPeripheral writeValue:__data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
+    } else {
+        [NSException raise:@"Write with response not supported" format:@"characteristic %@ does not support write with response", [self.UUID stringValue]];
+    }
 }
 
 - (void)writeData:(NSData*)__data {
-    [self.service.peripheral.cbPeripheral writeValue:__data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithoutResponse];
+    if ([self propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
+        [self.service.peripheral.cbPeripheral writeValue:__data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithoutResponse];
+    } else {
+        [NSException raise:@"Write without response not supported" format:@"characteristic %@ does not support write without response", [self.UUID stringValue]];
+    }
 }
 
 - (void)writeValueNamed:(NSString*)__valueName afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
