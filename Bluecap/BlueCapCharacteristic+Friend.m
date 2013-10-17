@@ -17,10 +17,11 @@
 @dynamic cbCharacteristic;
 @dynamic discoveredDiscriptors;
 @dynamic service;
+@dynamic profile;
 @dynamic afterWriteCallback;
 @dynamic afterReadCallback;
 @dynamic afterDescriptorsDiscoveredCallback;
-@dynamic profile;
+@dynamic notificationStateDidChangeCallback;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
     return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andService:__service];
@@ -45,6 +46,11 @@
 }
 
 - (void)didUpdateNotificationState:(NSError*)error {
+    if (self.notificationStateDidChangeCallback) {
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+            self.notificationStateDidChangeCallback();
+        }];
+    }
 }
 
 - (void)didWriteValue:(NSError*)error{

@@ -16,10 +16,12 @@
 @property(nonatomic, retain) CBCharacteristic*                  cbCharacteristic;
 @property(nonatomic, retain) NSMutableArray*                    discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*                    service;
-@property(nonatomic, copy) BlueCapCharacteristicDataCallback    afterReadCallback;
-@property(nonatomic, copy) BlueCapCharacteristicDataCallback    afterWriteCallback;
-@property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  afterDescriptorsDiscoveredCallback;
 @property(nonatomic, retain) BlueCapCharacteristicProfile*      profile;
+
+@property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterReadCallback;
+@property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterWriteCallback;
+@property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback              afterDescriptorsDiscoveredCallback;
+@property(nonatomic, copy) BlueCapCharacteristicNotificationStateDidChange  notificationStateDidChangeCallback;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service;
 - (id)initWithCBCharacteristic:(CBCharacteristic*)__cbCharacteristic andService:(BlueCapService*)__service;

@@ -21,9 +21,10 @@
 @property(nonatomic, retain) BlueCapService*                    service;
 @property(nonatomic, retain) BlueCapCharacteristicProfile*      profile;
 
-@property(nonatomic, copy) BlueCapCharacteristicDataCallback    afterReadCallback;
-@property(nonatomic, copy) BlueCapCharacteristicDataCallback    afterWriteCallback;
-@property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback  afterDescriptorsDiscoveredCallback;
+@property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterReadCallback;
+@property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterWriteCallback;
+@property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback              afterDescriptorsDiscoveredCallback;
+@property(nonatomic, copy) BlueCapCharacteristicNotificationStateDidChange  notificationStateDidChangeCallback;
 
 @end
 
@@ -79,23 +80,25 @@
 #pragma mark -
 #pragma mark Manage Notifications
 
-- (void)startNotifications {
+- (void)startNotifications:(BlueCapCharacteristicNotificationStateDidChange)__notificationStateDidChangeCallback {
     if ([self propertyEnabled:CBCharacteristicPropertyNotify]) {
+        self.notificationStateDidChangeCallback = __notificationStateDidChangeCallback;
         [self.service.peripheral.cbPeripheral setNotifyValue:YES forCharacteristic:self.cbCharacteristic];
     } else {
         [NSException raise:@"Notifications not supported" format:@"characteristic %@ does not support notifications", [self.UUID stringValue]];
     }
 }
 
-- (void)stopNotifications {
+- (void)stopNotifications:(BlueCapCharacteristicNotificationStateDidChange)__notificationStateDidChangeCallback {
     if ([self propertyEnabled:CBCharacteristicPropertyNotify]) {
+        self.notificationStateDidChangeCallback = __notificationStateDidChangeCallback;
         [self.service.peripheral.cbPeripheral setNotifyValue:NO forCharacteristic:self.cbCharacteristic];
     } else {
         [NSException raise:@"Notifications not supported" format:@"characteristic %@ does not support notifications", [self.UUID stringValue]];
     }
 }
 
-- (void)receiveNotifications:(BlueCapCharacteristicDataCallback)__afterReadCallback {
+- (void)receiveUpdates:(BlueCapCharacteristicDataCallback)__afterReadCallback {
     if ([self propertyEnabled:CBCharacteristicPropertyNotify]) {
         self.afterReadCallback = __afterReadCallback;
     } else {
@@ -103,7 +106,7 @@
     }
 }
 
-- (void)dropNotifications {
+- (void)dropUpdates {
     if ([self propertyEnabled:CBCharacteristicPropertyNotify]) {
         self.afterReadCallback = nil;
     } else {

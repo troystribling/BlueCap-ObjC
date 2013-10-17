@@ -16,6 +16,7 @@
 
 - (IBAction)refeshValues:(id)sender;
 - (void)readData;
+- (void)loadData:(NSDictionary*)__data;
 
 @end
 
@@ -37,6 +38,12 @@
     [self readData];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    if (self.characteristic.isNotifying) {
+        [self.characteristic dropUpdates];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -56,12 +63,24 @@
 }
 
 - (void)readData {
-    [self.characteristic readData:^(BlueCapCharacteristicData* __data, NSError* __error) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            self.values = [__data stringValue];
-            [self.tableView reloadData];
-        });
-    }];
+    if (self.characteristic.isNotifying) {
+        self.refreshButton.enabled = NO;
+        [self.characteristic receiveUpdates:^(BlueCapCharacteristicData* __data, NSError* __error) {
+            [self loadData:[__data stringValue]];
+        }];
+    } else {
+        self.refreshButton.enabled = YES;
+        [self.characteristic readData:^(BlueCapCharacteristicData* __data, NSError* __error) {
+            [self loadData:[__data stringValue]];
+        }];
+    }
+}
+
+- (void)loadData:(NSDictionary*)__data {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        self.values = __data;
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark - Table view data source

@@ -55,9 +55,9 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                                                                              [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_X_COMPONENT] stringValue],
-                                                                                              [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT] stringValue],
-                                                                                              [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT] stringValue], nil]
+                                                                                              [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_X_COMPONENT] floatValue]],
+                                                                                              [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT] floatValue]],
+                                                                                              [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT] floatValue]], nil]
                                                                                      forKeys:[NSArray arrayWithObjects:
                                                                                               TISENSOR_TAG_ACCELEROMTER_VALUE_X_COMPONENT,
                                                                                               TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT,

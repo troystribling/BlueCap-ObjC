@@ -15,6 +15,7 @@
 - (NSString*)booleanStringValue:(BOOL)__boolValue;
 - (NSString*)propertyEnabledStringValue:(CBCharacteristicProperties)__property;
 - (IBAction)toggleNotifications;
+- (void)setNotifiyButtonLabel;
 
 @end
 
@@ -48,13 +49,7 @@
     self.propertyIndicateEncryptionRequired.text = [self propertyEnabledStringValue:CBCharacteristicPropertyIndicateEncryptionRequired];
     if ([self.characteristic propertyEnabled:CBCharacteristicPropertyNotify]) {
         self.notifiyButton.enabled = YES;
-        if (self.characteristic.isNotifying) {
-            [self.notifiyButton setTitle:@"Stop Notifications" forState:UIControlStateNormal];
-            [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
-        } else {
-            [self.notifiyButton setTitle:@"Start Notifications" forState:UIControlStateNormal];
-            [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.1 green:0.7 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
-        }
+        [self setNotifiyButtonLabel];
     } else {
         [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0] forState:UIControlStateDisabled];
         self.notifiyButton.enabled = NO;
@@ -80,9 +75,27 @@
 
 - (IBAction)toggleNotifications {
     if (self.characteristic.isNotifying) {
-        [self.characteristic stopNotifications];
+        [self.characteristic stopNotifications:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setNotifiyButtonLabel];
+            });
+        }];
     } else {
-        [self.characteristic startNotifications];
+        [self.characteristic startNotifications:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setNotifiyButtonLabel];
+            });
+        }];
+    }
+}
+
+- (void)setNotifiyButtonLabel {
+    if (self.characteristic.isNotifying) {
+        [self.notifiyButton setTitle:@"Stop Notifications" forState:UIControlStateNormal];
+        [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+    } else {
+        [self.notifiyButton setTitle:@"Start Notifications" forState:UIControlStateNormal];
+        [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.1 green:0.7 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
     }
 }
 

@@ -26,10 +26,10 @@
 
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 
-- (void)startNotifications;
-- (void)stopNotifications;
-- (void)receiveNotifications:(BlueCapCharacteristicDataCallback)__afterReadCallback;
-- (void)dropNotifications;
+- (void)startNotifications:(BlueCapCharacteristicNotificationStateDidChange)__notificationStateDidChangeCallback;
+- (void)stopNotifications:(BlueCapCharacteristicNotificationStateDidChange)__notificationStateDidChangeCallback;
+- (void)receiveUpdates:(BlueCapCharacteristicDataCallback)__afterReadCallback;
+- (void)dropUpdates;
 
 - (void)readData:(BlueCapCharacteristicDataCallback)__afterReadCallback;
 

@@ -714,7 +714,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="refreshutton" destination="Ujk-4y-jRa" id="Ngl-Uz-aNi"/>
+                        <outlet property="refreshButton" destination="Ujk-4y-jRa" id="la4-U9-zec"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Iy-e4-WX9" userLabel="First Responder" sceneMemberID="firstResponder"/>

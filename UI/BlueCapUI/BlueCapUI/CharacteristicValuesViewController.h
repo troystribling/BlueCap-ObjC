@@ -11,6 +11,6 @@
 @interface CharacteristicValuesViewController : UITableViewController
 
 @property(nonatomic, retain) BlueCapCharacteristic*     characteristic;
-@property(nonatomic, retain) IBOutlet UIBarButtonItem   *refreshutton;
+@property(nonatomic, retain) IBOutlet UIBarButtonItem   *refreshButton;
 
 @end
