@@ -10,6 +10,7 @@
 
 @interface PeripheralCell : UITableViewCell
 
+@property(nonatomic, weak) BlueCapPeripheral*                   peripheral;
 @property(nonatomic, retain) IBOutlet UILabel*                  rssiLabel;
 @property(nonatomic, retain) IBOutlet UILabel*                  nameLabel;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView*  connectingActivityIndicator;

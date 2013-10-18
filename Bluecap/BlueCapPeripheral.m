@@ -15,7 +15,7 @@
 #import "BlueCapCharacteristicProfile+Friend.h"
 #import "CBUUID+StringValue.h"
 
-#define RSSI_UPDATE_PERIOD_SEC  1
+#define RSSI_UPDATE_PERIOD_SEC  0.2
 
 @interface BlueCapPeripheral ()
 
@@ -266,7 +266,7 @@
 - (void)peripheralDidUpdateRSSI:(CBPeripheral*)peripheral error:(NSError*)__error {
     if (self.afterRSSIUpdateCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterRSSIUpdateCallback(self.RSSI, __error);
+            self.afterRSSIUpdateCallback(self, __error);
         }];
     }
 }

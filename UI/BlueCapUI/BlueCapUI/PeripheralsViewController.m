@@ -82,8 +82,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString* cellIdentifier = @"PeripheralCell";
     PeripheralCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    CBPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
+    BlueCapPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
     [cell.connectingActivityIndicator stopAnimating];
+    cell.peripheral = peripheral;
+    cell.rssiLabel.text = [NSString stringWithFormat:@"%@dB", peripheral.RSSI];
     if (peripheral.state == CBPeripheralStateDisconnected) {
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
@@ -109,9 +111,6 @@
             [self reloadTableData];
         }];
     }
-}
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*)indexPath {
 }
 
 @end

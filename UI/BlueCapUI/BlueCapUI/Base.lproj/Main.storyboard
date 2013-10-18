@@ -854,6 +854,7 @@
                                 <connections>
                                     <outlet property="connectingActivityIndicator" destination="gqE-d5-je8" id="aCL-6k-C0o"/>
                                     <outlet property="nameLabel" destination="BsC-C9-NZC" id="ZMK-nz-Q53"/>
+                                    <outlet property="rssiLabel" destination="LCu-7z-Qgz" id="gv1-AH-3ss"/>
                                     <segue destination="XKG-l0-TPz" kind="push" identifier="PeripheralDetail" trigger="accessoryAction" id="tZw-mu-C7H"/>
                                 </connections>
                             </tableViewCell>

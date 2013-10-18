@@ -37,7 +37,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.peripheral recieveRSSIUpdates:^(NSNumber* __rssi, NSError* error) {
+    [self.peripheral recieveRSSIUpdates:^(BlueCapPeripheral* periheral, NSError* error) {
         [self updateUSSI];
     }];
 }

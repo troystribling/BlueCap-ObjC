@@ -22,7 +22,7 @@
 typedef void(^BlueCapCentralManagerCallback)(void);
 typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
 
-typedef void(^BlueCapPeripheralRSSICallback)(NSNumber* __rssi, NSError* __error);
+typedef void(^BlueCapPeripheralRSSICallback)(BlueCapPeripheral* __peripheral, NSError* __error);
 typedef void(^BlueCapServicesDiscoveredCallback)(NSArray* _services);
 typedef void(^BlueCapCharacteristicsDiscoveredCallback)(NSArray* __characteristics);
 typedef void(^BlueCapDescriptorsDicoveredCallback)(NSArray* __descriptors);
