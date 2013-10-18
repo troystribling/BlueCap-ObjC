@@ -23,6 +23,9 @@
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
 - (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
 
+- (void)recieveRSSIUpdates:(BlueCapPeripheralRSSICallback)__afterRSSIUpdate;
+- (void)dropRSSIUpdates;
+
 - (void)connect:(BlueCapPeripheralCallback)__afterPeripheralConnect;
 - (void)disconnect:(BlueCapPeripheralCallback)__afterPeripheralDisconnect;
 - (void)connect;

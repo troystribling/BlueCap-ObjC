@@ -15,6 +15,8 @@
 #import "BlueCapCharacteristicProfile+Friend.h"
 #import "CBUUID+StringValue.h"
 
+#define RSSI_UPDATE_PERIOD_SEC  1
+
 @interface BlueCapPeripheral ()
 
 @property(nonatomic, retain) CBPeripheral*                  cbPeripheral;
@@ -24,11 +26,13 @@
 @property(nonatomic, copy) BlueCapPeripheralCallback            afterPeriperialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralCallback            afterPeripheralConnectCallback;
 @property(nonatomic, copy) BlueCapServicesDiscoveredCallback    afterServicesDiscoveredCallback;
-@property(nonatomic, copy) BlueCapPeripheralRSSICallback        afterRSSIUpdate;
+@property(nonatomic, copy) BlueCapPeripheralRSSICallback        afterRSSIUpdateCallback;
 
 - (void)clearServices;
 - (void)clearCharacteristics:(BlueCapService*)__service;
 - (void)clearDescriptors:(BlueCapCharacteristic*)__chraracteristics;
+
+- (void)readRSSI;
 
 @end
 
@@ -62,7 +66,6 @@
 }
 
 - (NSNumber*)RSSI {
-    [self.cbPeripheral readRSSI];
     return self.cbPeripheral.RSSI;
 }
 
@@ -77,6 +80,24 @@
 - (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscoveredCallback {
     self.afterServicesDiscoveredCallback = __afterServicesDiscoveredCallback;
     [self.cbPeripheral discoverServices:__services];
+}
+
+#pragma mark -
+#pragma mark RSSI Updates
+
+- (void)recieveRSSIUpdates:(BlueCapPeripheralRSSICallback)__afterRSSIUpdate {
+    [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+        if (self.afterRSSIUpdateCallback == nil) {
+            self.afterRSSIUpdateCallback = __afterRSSIUpdate;
+            [self readRSSI];
+        }
+    }];
+}
+
+- (void)dropRSSIUpdates {
+    [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+        self.afterRSSIUpdateCallback = nil;
+    }];
 }
 
 #pragma mark -
@@ -132,6 +153,16 @@
     }
     [chraracteristic.discoveredDiscriptors removeAllObjects];
     DLog(@"CLEAR DESCRIPTORS AFTER COUNT: %d", [self.discoveredObjects count]);
+}
+
+- (void)readRSSI {
+    [self.cbPeripheral readRSSI];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RSSI_UPDATE_PERIOD_SEC * NSEC_PER_SEC));
+    dispatch_after(popTime, [BlueCapCentralManager sharedInstance].callbackQueue, ^(void) {
+        if (self.afterRSSIUpdateCallback) {
+            [self readRSSI];
+        }
+    });
 }
 
 #pragma mark -
@@ -232,11 +263,11 @@
 - (void)peripheralDidUpdateName:(CBPeripheral*)peripheral {
 }
 
-- (void)peripheralDidUpdateRSSI:(CBPeripheral*)peripheral error:(NSError*)error {
-    if (error) {
-        DLog(@"Error '%@' updating RSSI for peripherial: %@", [error localizedDescription], peripheral.name);
-    } else {
-        DLog(@"Updated RSSI for peripherial: %@", peripheral.name);
+- (void)peripheralDidUpdateRSSI:(CBPeripheral*)peripheral error:(NSError*)__error {
+    if (self.afterRSSIUpdateCallback != nil) {
+        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+            self.afterRSSIUpdateCallback(self.RSSI, __error);
+        }];
     }
 }
 

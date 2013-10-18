@@ -202,14 +202,4 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 	}
 }
 
-- (void)peripheralDidUpdateRSSI:(CBPeripheral*)peripheral error:(NSError*)__error {
-    BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
-    if (bcPeripheral != nil) {
-        DLog(@"Peripheral RSSI Updated: %@", peripheral.name);
-        [bcPeripheral didUpdateRSSI:bcPeripheral error:__error];
-    } else {
-        DLog(@"Peripheral '%@' not found", peripheral.name);
-    }
-}
-
 @end

@@ -17,7 +17,6 @@
 
 @dynamic afterPeriperialDisconnectCallback;
 @dynamic afterPeripheralConnectCallback;
-@dynamic afterRSSIUpdateCallback;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral {
     return [[BlueCapPeripheral alloc] initWithCBPeripheral:__cbPeripheral];
@@ -46,14 +45,6 @@
     if (self.afterPeripheralConnectCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.afterPeripheralConnectCallback(__peripheral);
-        }];
-    }
-}
-
-- (void)didUpdateRSSI:(BlueCapPeripheral*)__peripheral error:(NSError*)__error {
-    if (self.afterRSSIUpdateCallback != nil) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterRSSIUpdateCallback(__peripheral.RSSI, __error);
         }];
     }
 }

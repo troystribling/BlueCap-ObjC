@@ -12,6 +12,7 @@
 @interface PeripheralDetailViewController ()
 
 - (IBAction)disconnect:(id)sender;
+- (void)updateUSSI;
 
 @end
 
@@ -31,12 +32,18 @@
     [super viewDidLoad];
     self.navigationItem.title = self.peripheral.name;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    if (self.peripheral.RSSI) {
-        self.rssiLabel.text = [NSString stringWithFormat:@"%@dB", self.peripheral.RSSI];
-    } else {
-        self.rssiLabel.text = @"Unknown";
-    }
     self.uuidLabel.text = self.peripheral.identifier.UUIDString;
+    [self updateUSSI];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.peripheral recieveRSSIUpdates:^(NSNumber* __rssi, NSError* error) {
+        [self updateUSSI];
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.peripheral dropRSSIUpdates];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,5 +64,15 @@
 
 #pragma mark -
 #pragma mark PeripheralViewController PrivateAPI
+
+- (void)updateUSSI {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.peripheral.RSSI) {
+            self.rssiLabel.text = [NSString stringWithFormat:@"%@dB", self.peripheral.RSSI];
+        } else {
+            self.rssiLabel.text = @"Unknown";
+        }
+    });
+}
 
 @end

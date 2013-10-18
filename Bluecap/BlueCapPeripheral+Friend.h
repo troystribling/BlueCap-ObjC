@@ -18,13 +18,11 @@
 
 @property(nonatomic, copy) BlueCapPeripheralCallback        afterPeriperialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralCallback        afterPeripheralConnectCallback;
-@property(nonatomic, copy) BlueCapPeripheralRSSICallback    afterRSSIUpdateCallback;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral;
 - (id)initWithCBPeripheral:(CBPeripheral*)__cbPeripheral;
 
 - (void)didDisconnectPeripheral:(BlueCapPeripheral*)__peripheral;
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral;
-- (void)didUpdateRSSI:(BlueCapPeripheral*)__peripheral error:(NSError*)__error;
 
 @end
