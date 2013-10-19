@@ -20,10 +20,14 @@
 @property(nonatomic, copy) BlueCapPeripheralDisconnectCallback      afterPeriperialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralConnectCallback         afterPeripheralConnectCallback;
 
+@property(nonatomic, assign) BLueCapPeripheralConnectionError   currentError;
+
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral;
 - (id)initWithCBPeripheral:(CBPeripheral*)__cbPeripheral;
 
 - (void)didDisconnectPeripheral:(BlueCapPeripheral*)__peripheral;
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral;
+
+- (NSError*)error;
 
 @end

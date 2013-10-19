@@ -15,7 +15,7 @@
 #import "BlueCapCharacteristicProfile+Friend.h"
 #import "CBUUID+StringValue.h"
 
-#define RSSI_UPDATE_PERIOD_SEC          0.2
+#define RSSI_UPDATE_PERIOD_SEC          0.5
 #define PERIPHERAL_CONNECTION_TIMEOUT   10
 
 @interface BlueCapPeripheral ()
@@ -29,6 +29,8 @@
 @property(nonatomic, copy) BlueCapPeripheralConnectCallback     afterPeripheralConnectCallback;
 @property(nonatomic, copy) BlueCapServicesDiscoveredCallback    afterServicesDiscoveredCallback;
 @property(nonatomic, copy) BlueCapPeripheralRSSICallback        afterRSSIUpdateCallback;
+
+@property(nonatomic, assign) BLueCapPeripheralConnectionError   currentError;
 
 - (void)clearServices;
 - (void)clearCharacteristics:(BlueCapService*)__service;
@@ -111,7 +113,7 @@
 #pragma mark Connect/Disconnect Peripheral
 
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
-    if (self.cbPeripheral.state == CBPeripheralStateDisconnected) {
+    if (self.cbPeripheral.state != CBPeripheralStateConnected) {
         self.afterPeripheralConnectCallback = __afterPeripheralConnect;
         [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:self.cbPeripheral options:nil];
         [self timeoutConnection];
@@ -120,6 +122,7 @@
 
 - (void)disconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect {
     if (self.cbPeripheral.state == CBPeripheralStateConnected) {
+        self.currentError = BLueCapPeripheralConnectionErrorNone;
         self.afterPeriperialDisconnectCallback = __afterPeripheralDisconnect;
         [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
     }
@@ -179,6 +182,8 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(PERIPHERAL_CONNECTION_TIMEOUT * NSEC_PER_SEC));
     dispatch_after(popTime, [BlueCapCentralManager sharedInstance].callbackQueue, ^(void) {
         if (self.state != CBPeripheralStateConnected) {
+            DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
+            self.currentError = BLueCapPeripheralConnectionErrorTimeout;
             [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
         }
     });

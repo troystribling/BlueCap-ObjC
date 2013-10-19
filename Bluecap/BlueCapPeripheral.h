@@ -12,6 +12,12 @@
 @class BlueCapPeripheral;
 @class BlueCapPeripheralProfile;
 
+typedef enum {
+    BLueCapPeripheralConnectionErrorNone,
+    BLueCapPeripheralConnectionErrorTimeout,
+    BLueCapPeripheralConnectionErrorDisconnected
+} BLueCapPeripheralConnectionError;
+
 @interface BlueCapPeripheral : NSObject <CBPeripheralDelegate>
 
 @property(nonatomic, readonly)  NSArray* services;
