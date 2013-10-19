@@ -34,6 +34,9 @@
     BlueCapCentralManager* blueCapCentralManager = [BlueCapCentralManager sharedInstance];
     [blueCapCentralManager powerOn:^{
         [blueCapCentralManager startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
+            [peripheral connect:^(BlueCapPeripheral* connectPeripheral, NSError* error) {
+                [self reloadTableData];
+            }];
             [self reloadTableData];
         }];
     } onPowerOff:^{
