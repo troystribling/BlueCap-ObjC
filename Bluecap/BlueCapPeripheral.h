@@ -19,15 +19,17 @@
 @property(nonatomic, readonly)  NSUUID* identifier;
 @property(nonatomic, readonly)  CBPeripheralState state;
 @property(nonatomic, readonly)  NSNumber* RSSI;
-   
+
+- (NSDictionary*)advertisement;
+
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
 - (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
 
 - (void)recieveRSSIUpdates:(BlueCapPeripheralRSSICallback)__afterRSSIUpdate;
 - (void)dropRSSIUpdates;
 
-- (void)connect:(BlueCapPeripheralCallback)__afterPeripheralConnect;
-- (void)disconnect:(BlueCapPeripheralCallback)__afterPeripheralDisconnect;
+- (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect;
+- (void)disconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect;
 - (void)connect;
 - (void)disconnect;
 

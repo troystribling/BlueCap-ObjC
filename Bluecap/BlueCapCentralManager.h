@@ -14,8 +14,8 @@
 
 + (BlueCapCentralManager*)sharedInstance;
 
-- (void)startScanning:(BlueCapPeripheralCallback)__afterPeripheralDiscoveredCallback;
-- (void)startScanningForPeripheralsWithServiceUUIDs:(NSArray*)__uuids onDiscovery:(BlueCapPeripheralCallback)__afterPeripheralDiscoveredCallback;
+- (void)startScanning:(BlueCapPeripheralDiscoveredCallback)__afterPeripheralDiscoveredCallback;
+- (void)startScanningForPeripheralsWithServiceUUIDs:(NSArray*)__uuids onDiscovery:(BlueCapPeripheralDiscoveredCallback)__afterPeripheralDiscoveredCallback;
 - (void)stopScanning;
 
 - (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback;

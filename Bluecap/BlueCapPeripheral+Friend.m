@@ -14,6 +14,7 @@
 @dynamic cbPeripheral;
 @dynamic discoveredServices;
 @dynamic discoveredObjects;
+@dynamic advertisement;
 
 @dynamic afterPeriperialDisconnectCallback;
 @dynamic afterPeripheralConnectCallback;
@@ -44,7 +45,7 @@
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral {
     if (self.afterPeripheralConnectCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterPeripheralConnectCallback(__peripheral);
+            self.afterPeripheralConnectCallback(__peripheral, nil);
         }];
     }
 }

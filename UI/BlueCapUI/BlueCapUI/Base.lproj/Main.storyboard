@@ -842,19 +842,11 @@
                                             <rect key="frame" x="280" y="12" width="20" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-90dB" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCu-7z-Qgz">
-                                            <rect key="frame" x="219" y="12" width="54" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="connectingActivityIndicator" destination="gqE-d5-je8" id="aCL-6k-C0o"/>
                                     <outlet property="nameLabel" destination="BsC-C9-NZC" id="ZMK-nz-Q53"/>
-                                    <outlet property="rssiLabel" destination="LCu-7z-Qgz" id="gv1-AH-3ss"/>
                                     <segue destination="XKG-l0-TPz" kind="push" identifier="PeripheralDetail" trigger="accessoryAction" id="tZw-mu-C7H"/>
                                 </connections>
                             </tableViewCell>

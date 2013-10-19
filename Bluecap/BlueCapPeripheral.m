@@ -15,16 +15,18 @@
 #import "BlueCapCharacteristicProfile+Friend.h"
 #import "CBUUID+StringValue.h"
 
-#define RSSI_UPDATE_PERIOD_SEC  0.2
+#define RSSI_UPDATE_PERIOD_SEC          0.2
+#define PERIPHERAL_CONNECTION_TIMEOUT   10
 
 @interface BlueCapPeripheral ()
 
-@property(nonatomic, retain) CBPeripheral*                  cbPeripheral;
-@property(nonatomic, retain) NSMutableArray*                discoveredServices;
-@property(nonatomic, retain) NSMapTable*                    discoveredObjects;
+@property(nonatomic, retain) CBPeripheral*      cbPeripheral;
+@property(nonatomic, retain) NSMutableArray*    discoveredServices;
+@property(nonatomic, retain) NSMapTable*        discoveredObjects;
+@property(nonatomic, retain) NSDictionary*      advertisement;
 
-@property(nonatomic, copy) BlueCapPeripheralCallback            afterPeriperialDisconnectCallback;
-@property(nonatomic, copy) BlueCapPeripheralCallback            afterPeripheralConnectCallback;
+@property(nonatomic, copy) BlueCapPeripheralDisconnectCallback  afterPeriperialDisconnectCallback;
+@property(nonatomic, copy) BlueCapPeripheralConnectCallback     afterPeripheralConnectCallback;
 @property(nonatomic, copy) BlueCapServicesDiscoveredCallback    afterServicesDiscoveredCallback;
 @property(nonatomic, copy) BlueCapPeripheralRSSICallback        afterRSSIUpdateCallback;
 
@@ -33,6 +35,7 @@
 - (void)clearDescriptors:(BlueCapCharacteristic*)__chraracteristics;
 
 - (void)readRSSI;
+- (void)timeoutConnection;
 
 @end
 
@@ -69,6 +72,10 @@
     return self.cbPeripheral.RSSI;
 }
 
+- (NSDictionary*)advertisement {
+    return _advertisement;
+}
+
 #pragma mark -
 #pragma mark Discover Services
 
@@ -103,14 +110,15 @@
 #pragma mark -
 #pragma mark Connect/Disconnect Peripheral
 
-- (void)connect:(BlueCapPeripheralCallback)__afterPeripheralConnect {
+- (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
     if (self.cbPeripheral.state == CBPeripheralStateDisconnected) {
         self.afterPeripheralConnectCallback = __afterPeripheralConnect;
         [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:self.cbPeripheral options:nil];
+        [self timeoutConnection];
     }
 }
 
-- (void)disconnect:(BlueCapPeripheralCallback)__afterPeripheralDisconnect {
+- (void)disconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect {
     if (self.cbPeripheral.state == CBPeripheralStateConnected) {
         self.afterPeriperialDisconnectCallback = __afterPeripheralDisconnect;
         [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
@@ -156,11 +164,22 @@
 }
 
 - (void)readRSSI {
-    [self.cbPeripheral readRSSI];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RSSI_UPDATE_PERIOD_SEC * NSEC_PER_SEC));
+    if (self.state == CBPeripheralStateConnected) {
+        [self.cbPeripheral readRSSI];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RSSI_UPDATE_PERIOD_SEC * NSEC_PER_SEC));
+        dispatch_after(popTime, [BlueCapCentralManager sharedInstance].callbackQueue, ^(void) {
+            if (self.afterRSSIUpdateCallback) {
+                [self readRSSI];
+            }
+        });
+    }
+}
+
+- (void)timeoutConnection {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(PERIPHERAL_CONNECTION_TIMEOUT * NSEC_PER_SEC));
     dispatch_after(popTime, [BlueCapCentralManager sharedInstance].callbackQueue, ^(void) {
-        if (self.afterRSSIUpdateCallback) {
-            [self readRSSI];
+        if (self.state != CBPeripheralStateConnected) {
+            [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
         }
     });
 }

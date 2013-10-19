@@ -33,7 +33,7 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     BlueCapCentralManager* blueCapCentralManager = [BlueCapCentralManager sharedInstance];
     [blueCapCentralManager powerOn:^{
-        [blueCapCentralManager startScanning:^(BlueCapPeripheral* __peripheral) {
+        [blueCapCentralManager startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
             [self reloadTableData];
         }];
     } onPowerOff:^{
@@ -44,6 +44,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self reloadTableData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,7 +88,6 @@
     BlueCapPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
     [cell.connectingActivityIndicator stopAnimating];
     cell.peripheral = peripheral;
-    cell.rssiLabel.text = [NSString stringWithFormat:@"%@dB", peripheral.RSSI];
     if (peripheral.state == CBPeripheralStateDisconnected) {
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
@@ -103,7 +105,7 @@
     PeripheralCell* cell = (PeripheralCell*)[tableView cellForRowAtIndexPath:indexPath];
     [cell.connectingActivityIndicator startAnimating];
     if (peripheral.state == CBPeripheralStateDisconnected) {
-        [peripheral connect:^(BlueCapPeripheral* __peripheral) {
+        [peripheral connect:^(BlueCapPeripheral* __peripheral, NSError* __error) {
             [self reloadTableData];
         }];
     } else {

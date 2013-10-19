@@ -20,12 +20,15 @@
 @class BlueCapServiceProfile;
 
 typedef void(^BlueCapCentralManagerCallback)(void);
+typedef void(^BlueCapPeripheralDiscoveredCallback)(BlueCapPeripheral* __peripheral, NSNumber* __RSSI);
 typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
 
 typedef void(^BlueCapPeripheralRSSICallback)(BlueCapPeripheral* __peripheral, NSError* __error);
 typedef void(^BlueCapServicesDiscoveredCallback)(NSArray* _services);
 typedef void(^BlueCapCharacteristicsDiscoveredCallback)(NSArray* __characteristics);
 typedef void(^BlueCapDescriptorsDicoveredCallback)(NSArray* __descriptors);
+typedef void(^BlueCapPeripheralConnectCallback)(BlueCapPeripheral* __peripheral, NSError* __error);
+typedef void(^BlueCapPeripheralDisconnectCallback)(BlueCapPeripheral* __peripheral);
 
 typedef void(^BlueCapPeripheralProfileBlock)(BlueCapPeripheralProfile* __peripheralProfile);
 typedef void(^BlueCapServiceProfileBlock)(BlueCapServiceProfile* __serviceProfile);
