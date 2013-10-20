@@ -1,5 +1,5 @@
 //
-//  StandardServiceProfiles.h
+//  GATTProfiles.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 10/4/13.
@@ -21,7 +21,7 @@
 #define GATT_DEVICE_INFORMATION_CERTIFICATION_DATA      @"Certification Data"
 #define GATT_DEVICE_INFORMATION_PNP_ID                  @"PnP ID"
 
-@interface StandardServiceProfiles : NSObject
+@interface GATTProfiles : NSObject
 
 + (void)create;
 

@@ -24,4 +24,4 @@
 #import "BlueCapCharacteristicProfile.h"
 
 #import "TISensorTagServiceProfile.h"
-#import "StandardServiceProfiles.h"
+#import "GATTProfiles.h"

@@ -1,5 +1,5 @@
 //
-//  StandardServiceProfiles.m
+//  GATTProfiles.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 10/4/13.
@@ -7,9 +7,9 @@
 //
 
 #import "BlueCap.h"
-#import "StandardServiceProfiles.h"
+#import "GATTProfiles.h"
 
-@implementation StandardServiceProfiles
+@implementation GATTProfiles
 
 + (void)create {
 
