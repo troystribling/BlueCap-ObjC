@@ -44,24 +44,17 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
                                                   float accxScaled = -[accxNumber floatValue]/64.0f;
                                                   float accyScaled = -[accyNumber floatValue]/64.0f;
                                                   float acczScaled = [acczNumber floatValue]/64.0f;
-                                                  return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                                                                              [NSNumber numberWithFloat:accxScaled],
-                                                                                              [NSNumber numberWithFloat:accyScaled],
-                                                                                              [NSNumber numberWithFloat:acczScaled], nil]
-                                                                                     forKeys:[NSArray arrayWithObjects:
-                                                                                              TISENSOR_TAG_ACCELEROMTER_VALUE_X_COMPONENT,
-                                                                                              TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT,
-                                                                                              TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT, nil]];
+                                                  return @{TISENSOR_TAG_ACCELEROMTER_VALUE_X_COMPONENT:[NSNumber numberWithFloat:accxScaled],
+                                                           TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT:[NSNumber numberWithFloat:accyScaled],
+                                                           TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT:[NSNumber numberWithFloat:acczScaled]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                                                  return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                                                                              [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_X_COMPONENT] floatValue]],
-                                                                                              [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT] floatValue]],
-                                                                                              [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT] floatValue]], nil]
-                                                                                     forKeys:[NSArray arrayWithObjects:
-                                                                                              TISENSOR_TAG_ACCELEROMTER_VALUE_X_COMPONENT,
-                                                                                              TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT,
-                                                                                              TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT, nil]];
+                                                  return @{TISENSOR_TAG_ACCELEROMTER_VALUE_X_COMPONENT:
+                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_X_COMPONENT] floatValue]],
+                                                           TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT:
+                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT] floatValue]],
+                                                           TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT:
+                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT] floatValue]]};
                                               }];
                                           }];
 
@@ -86,16 +79,14 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
                                                   if (value == 0) {
                                                       boolValue = NO;
                                                   }
-                                                  return  [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:boolValue]
-                                                                                      forKey:TISENSOR_TAG_ACCELEROMTER_ENABLED];
+                                                  return  @{TISENSOR_TAG_ACCELEROMTER_ENABLED:[NSNumber numberWithBool:boolValue]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   NSString* stringVal = @"NO";
                                                   if ([[data objectForKey:TISENSOR_TAG_ACCELEROMTER_ENABLED] boolValue]) {
                                                       stringVal = @"YES";
                                                   }
-                                                  return [NSDictionary dictionaryWithObject:stringVal
-                                                                                     forKey:TISENSOR_TAG_ACCELEROMTER_ENABLED];
+                                                  return @{TISENSOR_TAG_ACCELEROMTER_ENABLED:stringVal};
                                               }];
                                           }];
             
@@ -114,12 +105,10 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
                                               }];
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                                                   int unscaledValue = 10*[blueCapUnsignedCharFromData(data) integerValue];
-                                                  return [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:unscaledValue]
-                                                                                     forKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD];
+                                                  return @{TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD:[NSNumber numberWithInt:unscaledValue]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                                                  return [NSDictionary dictionaryWithObject:[[data objectForKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD] stringValue]
-                                                                                     forKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD];
+                                                  return @{TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD:[[data objectForKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD] stringValue]};
                                               }];
                                           }];
                                    

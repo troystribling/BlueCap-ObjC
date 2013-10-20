@@ -100,6 +100,8 @@
     if ([self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] ||
         [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     NSString* valueName = [valueNames objectAtIndex:indexPath.row];
     cell.valueNameLable.text = valueName;
