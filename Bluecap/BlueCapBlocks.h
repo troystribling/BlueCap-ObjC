@@ -37,7 +37,7 @@ typedef void(^BlueCapCharacteristicProfileBlock)(BlueCapCharacteristicProfile* _
 typedef void(^BlueCapCharacteristicNotificationStateDidChange)(void);
 
 typedef void(^BlueCapCharacteristicProfileAfterDiscoveredCallback)(BlueCapCharacteristic* __characteristic);
-typedef NSData*(^BlueCapCharacteristicProfileSerializeValueCallback)(void);
+typedef NSData*(^BlueCapCharacteristicProfileSerializeNamedObjectCallback)(NSString* __objectName, id __data);
 typedef NSData*(^BlueCapCharacteristicProfileSerializeObjectCallback)(id __data);
 
 typedef NSDictionary*(^BlueCapCharacteristicProfileDeserializeDataCallback)(NSData* __data);
