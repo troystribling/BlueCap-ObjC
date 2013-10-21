@@ -78,12 +78,14 @@
         [self.characteristic stopNotifications:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setNotifiyButtonLabel];
+                self.notifyingLabel.text = [self booleanStringValue:self.characteristic.isNotifying];
             });
         }];
     } else {
         [self.characteristic startNotifications:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setNotifiyButtonLabel];
+                self.notifyingLabel.text = [self booleanStringValue:self.characteristic.isNotifying];
             });
         }];
     }

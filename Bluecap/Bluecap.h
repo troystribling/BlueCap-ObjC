@@ -25,3 +25,7 @@
 
 #import "TISensorTagServiceProfile.h"
 #import "GATTProfiles.h"
+
+NSNumber* blueCapCharFromData(NSData* data, NSRange range);
+NSNumber* blueCapUnsignedCharFromData(NSData* data);
+BOOL blueCapBooleanFromData(NSData* data);

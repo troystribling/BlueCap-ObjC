@@ -16,3 +16,25 @@ void DebugLog(NSString* format, ...) {
     va_end(args);
 #endif
 }
+
+NSNumber* blueCapCharFromData(NSData* data, NSRange range) {
+    int8_t val;
+    [data getBytes:&val range:range];
+    return [NSNumber numberWithChar:val];
+}
+
+NSNumber* blueCapUnsignedCharFromData(NSData* data) {
+    int8_t val;
+    [data getBytes:&val length:1];
+    return [NSNumber numberWithUnsignedChar:val];
+}
+
+BOOL blueCapBooleanFromData(NSData* data) {
+    uint8_t value;
+    [data getBytes:&value length:1];
+    BOOL boolValue = YES;
+    if (value == 0) {
+        boolValue = NO;
+    }
+    return boolValue;
+}
