@@ -28,4 +28,4 @@
 
 NSNumber* blueCapCharFromData(NSData* data, NSRange range);
 NSNumber* blueCapUnsignedCharFromData(NSData* data);
-BOOL blueCapBooleanFromData(NSData* data);
+NSData* blueCapUnsignedCharToData(uint8_t data);

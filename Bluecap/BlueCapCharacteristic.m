@@ -143,26 +143,26 @@
     }
 }
 
-- (void)writeObjectNamed:(NSString*)__objectName afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
+- (void)writeObjectValueNamed:(NSString*)__objectName afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
     if (self.profile) {
         BlueCapCharacteristicProfileSerializeNamedObjectCallback serializeBlock = self.profile.serializeNamedObjectCallback;
-        if (serializeBlock) {
-            id namedObject = [self.profile.objectDefinitions objectForKey:__objectName];
-            if (namedObject) {
-                [self writeData:serializeBlock(__objectName, namedObject) afterWriteCall:__afterWriteCallback];
-            }
+        id objectValue = [self.profile.objectValues objectForKey:__objectName];
+        if (serializeBlock && objectValue) {
+            [self writeData:serializeBlock(__objectName, objectValue)];
+        } else if (objectValue) {
+            [self writeData:objectValue afterWriteCall:__afterWriteCallback];
         }
     }
 }
 
-- (void)writeObjectNamed:(NSString*)__objectName {
+- (void)writeObjectValueNamed:(NSString*)__objectName {
     if (self.profile) {
         BlueCapCharacteristicProfileSerializeNamedObjectCallback serializeBlock = self.profile.serializeNamedObjectCallback;
-        if (serializeBlock) {
-            id namedObject = [self.profile.objectDefinitions objectForKey:__objectName];
-            if (namedObject) {
-                [self writeData:serializeBlock(__objectName, namedObject)];
-            }
+        id objectValue = [self.profile.objectValues objectForKey:__objectName];
+        if (serializeBlock && objectValue) {
+            [self writeData:serializeBlock(__objectName, objectValue)];
+        } else if (objectValue) {
+            [self writeData:objectValue];
         }
     }
 }

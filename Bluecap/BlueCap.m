@@ -29,12 +29,6 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
     return [NSNumber numberWithUnsignedChar:val];
 }
 
-BOOL blueCapBooleanFromData(NSData* data) {
-    uint8_t value;
-    [data getBytes:&value length:1];
-    BOOL boolValue = YES;
-    if (value == 0) {
-        boolValue = NO;
-    }
-    return boolValue;
+NSData* blueCapUnsignedCharToData(uint8_t data) {
+    return [NSData dataWithBytes:&data length:1];
 }

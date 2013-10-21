@@ -12,7 +12,7 @@
 
 @property(nonatomic, retain) CBUUID*                                                    UUID;
 @property(nonatomic, retain) NSString*                                                  name;
-@property(nonatomic, retain) NSDictionary*                                              objectDefinitions;
+@property(nonatomic, retain) NSDictionary*                                              objectValues;
 @property(nonatomic, copy) BlueCapCharacteristicProfileSerializeNamedObjectCallback     serializeNamedObjectCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileSerializeObjectCallback          serializeObjectCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileDeserializeDataCallback          deserializeDataCallback;
@@ -31,8 +31,8 @@
     return _name;
 }
 
-- (void)defineObject:(id)__data withName:(NSString*)__valueName {
-    [self.objectDefinitions setValue:__data forKey:__valueName];
+- (void)setObjectValue:(id)__objectValue named:(NSString*)__valueName {
+    [self.objectValues setValue:__objectValue forKey:__valueName];
 }
 
 - (void)serializeNamedObject:(BlueCapCharacteristicProfileSerializeNamedObjectCallback)__serializeBlock {
