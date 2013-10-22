@@ -1,18 +1,18 @@
 //
-//  CharacteristicValueViewController.m
+//  CharacteristicFreeFormValueViewController.m
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 10/13/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "CharacteristicValueViewController.h"
+#import "CharacteristicFreeFormValueViewController.h"
 
-@interface CharacteristicValueViewController ()
+@interface CharacteristicFreeFormValueViewController ()
 
 @end
 
-@implementation CharacteristicValueViewController
+@implementation CharacteristicFreeFormValueViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

@@ -671,7 +671,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharacteristicValueCell" rowHeight="71" id="q9H-Fo-Way" customClass="CharacteristicValueCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharacteristicValueCell" rowHeight="71" id="q9H-Fo-Way" customClass="CharacteristicValueCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q9H-Fo-Way" id="PAI-wi-1fK">
@@ -697,7 +697,6 @@
                                 <connections>
                                     <outlet property="valueLable" destination="UHv-O5-QAn" id="w2k-F4-G2R"/>
                                     <outlet property="valueNameLable" destination="6kS-yg-EBr" id="hwm-vf-zs7"/>
-                                    <segue destination="Fgs-SR-AAC" kind="push" identifier="CharacteristicValue" id="bdE-6o-T7h"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -715,16 +714,18 @@
                     </navigationItem>
                     <connections>
                         <outlet property="refreshButton" destination="Ujk-4y-jRa" id="la4-U9-zec"/>
+                        <segue destination="Fgs-SR-AAC" kind="push" identifier="CharacteristicFreeFormValue" id="Shv-rw-Zsd"/>
+                        <segue destination="Ab0-DZ-mXp" kind="push" identifier="CharacteristicDiscreteValue" id="bnk-4c-Gfl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Iy-e4-WX9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3613" y="-137"/>
         </scene>
-        <!--Characteristic Value View Controller - New Value-->
+        <!--Characteristic Free Form Value View Controller - New Value-->
         <scene sceneID="ONO-2I-dJx">
             <objects>
-                <viewController id="Fgs-SR-AAC" customClass="CharacteristicValueViewController" sceneMemberID="viewController">
+                <viewController id="Fgs-SR-AAC" customClass="CharacteristicFreeFormValueViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="06i-bw-orJ"/>
                         <viewControllerLayoutGuide type="bottom" id="d6j-Q2-Vpp"/>
@@ -752,7 +753,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YHC-G5-ek2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4072" y="-137"/>
+            <point key="canvasLocation" x="4161" y="-501"/>
         </scene>
         <!--Characteristic Descriptors View Controller - Descriptors-->
         <scene sceneID="wiS-Ff-ISu">
@@ -814,6 +815,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYQ-Fz-Bsk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3613" y="551"/>
+        </scene>
+        <!--Characteristic Discrete Value View Controller - New Value-->
+        <scene sceneID="FiJ-VJ-H6P">
+            <objects>
+                <tableViewController id="Ab0-DZ-mXp" customClass="CharacteristicDiscreteValueViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Jnh-PR-nUt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ESD-Ul-cK9" style="IBUITableViewCellStyleDefault" id="j8L-Uf-bOc">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j8L-Uf-bOc" id="y2m-hq-NYd">
+                                    <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ESD-Ul-cK9">
+                                            <rect key="frame" x="15" y="0.0" width="266" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ab0-DZ-mXp" id="zfY-e1-ARa"/>
+                            <outlet property="delegate" destination="Ab0-DZ-mXp" id="lvf-zd-jv0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="New Value" id="bgq-MF-JxE"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6dd-MF-fJ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4161" y="192"/>
         </scene>
         <!--Peripherals View Controller - Peripherals-->
         <scene sceneID="fVi-u5-rlX">

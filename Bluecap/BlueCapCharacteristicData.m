@@ -37,8 +37,8 @@
     if (profile) {
         if (profile.deserializeDataCallback) {
             deserializedVals = profile.deserializeDataCallback([self dataValue]);
-        } else if ([self.characteristic hasObjectValues]) {
-            for(NSData* objectValue in [profile.objectValues allValues]) {
+        } else if ([self.characteristic hasValues]) {
+            for(NSData* objectValue in [profile.valueObjects allValues]) {
                 if ([objectValue isEqualToData:[self dataValue]]) {
                     deserializedVals = [NSDictionary dictionaryWithObject:[profile.valueNames objectForKey:objectValue] forKey:profile.name];
                     break;
@@ -55,7 +55,7 @@
     if (profile) {
         if (profile.stringValueCallback) {
             stringVals = profile.stringValueCallback([self value]);
-        } else if ([self.characteristic hasObjectValues]) {
+        } else if ([self.characteristic hasValues]) {
             stringVals =[self value];
         }
     }

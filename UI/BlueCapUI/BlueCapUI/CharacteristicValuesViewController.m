@@ -8,7 +8,8 @@
 
 #import "CharacteristicValuesViewController.h"
 #import "CharacteristicValueCell.h"
-#import "CharacteristicValueViewController.h"
+#import "CharacteristicFreeFormValueViewController.h"
+#import "CharacteristicDiscreteValueViewController.h"
 
 @interface CharacteristicValuesViewController ()
 
@@ -48,14 +49,16 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"CharacteristicValue"]) {
-        CharacteristicValuesViewController *viewController = segue.destinationViewController;
+    if ([[segue identifier] isEqualToString:@"CharacteristicFreeFormValue"]) {
+        CharacteristicValuesViewController* viewController = segue.destinationViewController;
+        viewController.characteristic = self.characteristic;
+    } else if ([[segue identifier] isEqualToString:@"CharacteristicDiscreteValue"]) {
+        CharacteristicDiscreteValueViewController* viewController = segue.destinationViewController;
         viewController.characteristic = self.characteristic;
     }
 }
 
-#pragma mark -
-#pragma mark Private
+#pragma mark - Private
 
 - (IBAction)refeshValues:(id)sender {
     [self readData];
@@ -80,6 +83,18 @@
         self.values = __data;
         [self.tableView reloadData];
     });
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] || [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
+        if ([self.characteristic hasValues]) {
+            [self performSegueWithIdentifier:@"CharacteristicDiscreteValue" sender:self];
+        } else {
+            [self performSegueWithIdentifier:@"CharacteristicFreeFormValue" sender:self];
+        }
+    }
 }
 
 #pragma mark - Table view data source

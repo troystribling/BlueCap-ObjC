@@ -13,7 +13,7 @@
 - (CBUUID*)UUID;
 - (NSString*)name;
 
-- (void)setObjectValue:(id)__objectValue named:(NSString*)__valueName;
+- (void)setValue:(id)__objectValue named:(NSString*)__valueName;
 - (void)serializeNamedObject:(BlueCapCharacteristicProfileSerializeNamedObjectCallback)__serializeBlock;
 - (void)serializeObject:(BlueCapCharacteristicProfileSerializeObjectCallback)__serializeBlock;
 

@@ -1,5 +1,5 @@
 //
-//  CharacteristicValueViewController.h
+//  CharacteristicFreeFormValueViewController.h
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 10/13/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CharacteristicValueViewController : UIViewController <UITextFieldDelegate>
+@interface CharacteristicFreeFormValueViewController : UIViewController <UITextFieldDelegate>
 
 @property(nonatomic, retain) IBOutlet UITextField*      valueTextField;
 @property(nonatomic, retain) BlueCapCharacteristic*     characteristic;

@@ -23,7 +23,8 @@
 - (BlueCapService*)service;
 - (BlueCapCharacteristicProfile*)profile;
 - (BOOL)hasProfile;
-- (bool)hasObjectValues;
+- (BOOL)hasValues;
+- (NSArray*)allValues;
 
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 
@@ -38,8 +39,8 @@
 - (void)writeData:(NSData*)__data;
 - (void)writeObject:(id)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
 - (void)writeObject:(id)__data;
-- (void)writeObjectValueNamed:(NSString*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
-- (void)writeObjectValueNamed:(NSString*)__data;
+- (void)writeValueNamed:(NSString*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
+- (void)writeValueNamed:(NSString*)__data;
 
 - (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__onDiscriptorsDicoveredCallback;
 

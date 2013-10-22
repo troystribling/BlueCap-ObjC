@@ -50,12 +50,12 @@
         [serviceProfile createCharacteristicWithUUID:@"f000aa12-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer Enabled"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-                                              [characteristicProfile setObjectValue:blueCapUnsignedCharToData(TISENSOR_TAG_ACCELEROMETER_ON_VALUE)
-                                                                              named:TISENSOR_TAG_ACCELEROMETER_ON];
-                                              [characteristicProfile setObjectValue:blueCapUnsignedCharToData(TISENSOR_TAG_ACCELEROMETER_OFF_VALUE)
-                                                                              named:TISENSOR_TAG_ACCELEROMETER_OFF];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_ACCELEROMETER_ON_VALUE)
+                                                                        named:TISENSOR_TAG_ACCELEROMETER_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_ACCELEROMETER_OFF_VALUE)
+                                                                        named:TISENSOR_TAG_ACCELEROMETER_OFF];
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
-                                                  [characteristic writeObjectValueNamed:TISENSOR_TAG_ACCELEROMETER_ON afterWriteCall:nil];
+                                                  [characteristic writeValueNamed:TISENSOR_TAG_ACCELEROMETER_ON afterWriteCall:nil];
                                               }];
                                           }];
             
@@ -67,8 +67,6 @@
                                                   uint8_t value = (uint8_t)(intValue);
                                                   if (value < 0x0a) {
                                                       value = 0x0a;
-                                                  } else if (value > 0xff) {
-                                                      value = 0xff;
                                                   }
                                                   return [NSData dataWithBytes:&value length:1];
                                               }];

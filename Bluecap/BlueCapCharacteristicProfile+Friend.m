@@ -12,7 +12,7 @@
 
 @dynamic UUID;
 @dynamic name;
-@dynamic objectValues;
+@dynamic valueObjects;
 @dynamic valueNames;
 @dynamic serializeNamedObjectCallback;
 @dynamic serializeObjectCallback;
@@ -34,7 +34,7 @@
     if (self) {
         self.name = __name;
         self.UUID = [CBUUID UUIDWithString:__uuidString];
-        self.objectValues = [NSMutableDictionary dictionary];
+        self.valueObjects = [NSMutableDictionary dictionary];
         self.valueNames = [NSMutableDictionary dictionary];
     }
     return self;

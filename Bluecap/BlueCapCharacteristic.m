@@ -77,12 +77,20 @@
     return self.profile != nil;
 }
 
-- (bool)hasObjectValues {
+- (BOOL)hasValues {
     BOOL result = NO;
     if ([self hasProfile]) {
-        result = [self.profile.objectValues count] > 0;
+        result = [self.profile.valueObjects count] > 0;
     }
     return result;
+}
+
+- (NSArray*)allValues {
+    NSArray* valueNames = [NSArray array];
+    if ([self hasValues]) {
+        valueNames = [self.profile.valueNames allKeys];
+    }
+    return valueNames;
 }
 
 #pragma mark -
@@ -151,10 +159,10 @@
     }
 }
 
-- (void)writeObjectValueNamed:(NSString*)__objectName afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
+- (void)writeValueNamed:(NSString*)__objectName afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
     if (self.profile) {
         BlueCapCharacteristicProfileSerializeNamedObjectCallback serializeBlock = self.profile.serializeNamedObjectCallback;
-        id objectValue = [self.profile.objectValues objectForKey:__objectName];
+        id objectValue = [self.profile.valueObjects objectForKey:__objectName];
         if (serializeBlock && objectValue) {
             [self writeData:serializeBlock(__objectName, objectValue)];
         } else if (objectValue) {
@@ -163,10 +171,10 @@
     }
 }
 
-- (void)writeObjectValueNamed:(NSString*)__objectName {
+- (void)writeValueNamed:(NSString*)__objectName {
     if (self.profile) {
         BlueCapCharacteristicProfileSerializeNamedObjectCallback serializeBlock = self.profile.serializeNamedObjectCallback;
-        id objectValue = [self.profile.objectValues objectForKey:__objectName];
+        id objectValue = [self.profile.valueObjects objectForKey:__objectName];
         if (serializeBlock && objectValue) {
             [self writeData:serializeBlock(__objectName, objectValue)];
         } else if (objectValue) {
