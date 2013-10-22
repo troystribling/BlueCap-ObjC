@@ -11,7 +11,6 @@
 #pragma mark -
 #pragma mark Accelerometer
 
-#define TISENSOR_TAG_ACCELEROMTER_ENABLED           @"Enabled"
 #define TISENSOR_TAG_ACCELEROMETER_ON               @"Yes"
 #define TISENSOR_TAG_ACCELEROMETER_ON_VALUE         0x01
 #define TISENSOR_TAG_ACCELEROMETER_OFF              @"No"
@@ -26,7 +25,6 @@
 #pragma mark -
 #pragma mark Barometer
 
-#define TISENSOR_TAG_BAROMETER_ENABLED                  @"Enabled"
 #define TISENSOR_TAG_BAROMETER_ON                       @"Yes"
 #define TISENSOR_TAG_BAROMETER_ON_VALUE                 0x01
 #define TISENSOR_TAG_BAROMETER_OFF                      @"No"
@@ -46,7 +44,6 @@
 #pragma mark -
 #pragma mark Gyrosope
 
-#define TISENSOR_TAG_GYROSCOPE_ENABLED              @"Enabled"
 #define TISENSOR_TAG_GYROSCOPE_X_AXIS_ON            @"X-Axis Enables"
 #define TISENSOR_TAG_GYROSCOPE_X_AXIS_ON_VALUE      0x01
 #define TISENSOR_TAG_GYROSCOPE_Y_AXIS_ON            @"Y-Axis Enabled"
@@ -67,7 +64,6 @@
 #pragma mark -
 #pragma mark Magnetometer
 
-#define TISENSOR_TAG_MAGNETOMETER_ENABLED           @"Enabled"
 #define TISENSOR_TAG_MAGNETOMETER_ON                @"Yes"
 #define TISENSOR_TAG_MAGNETOMETER_ON_VALUE          0x01
 #define TISENSOR_TAG_MAGNETOMETER_OFF               @"No"
@@ -76,7 +72,6 @@
 #pragma mark -
 #pragma mark Hygrometer
 
-#define TISENSOR_TAG_HYGROMETER_ENABLED           @"Enabled"
 #define TISENSOR_TAG_HYGROMETER_ON                @"Yes"
 #define TISENSOR_TAG_HYGROMETER_ON_VALUE          0x01
 #define TISENSOR_TAG_HYGROMETER_OFF               @"No"

@@ -13,6 +13,7 @@
 @property(nonatomic, retain) CBUUID*                                                    UUID;
 @property(nonatomic, retain) NSString*                                                  name;
 @property(nonatomic, retain) NSDictionary*                                              objectValues;
+@property(nonatomic, retain) NSDictionary*                                              valueNames;
 @property(nonatomic, copy) BlueCapCharacteristicProfileSerializeNamedObjectCallback     serializeNamedObjectCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileSerializeObjectCallback          serializeObjectCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileDeserializeDataCallback          deserializeDataCallback;

@@ -42,6 +42,8 @@
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.afterReadCallback([BlueCapCharacteristicData withCharacteristic:self], error);
         }];
+    } else if ([self hasObjectValues]) {
+        
     }
 }
 

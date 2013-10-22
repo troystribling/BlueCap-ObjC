@@ -23,6 +23,7 @@
 - (BlueCapService*)service;
 - (BlueCapCharacteristicProfile*)profile;
 - (BOOL)hasProfile;
+- (bool)hasObjectValues;
 
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 

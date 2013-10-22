@@ -37,6 +37,13 @@
     if (profile) {
         if (profile.deserializeDataCallback) {
             deserializedVals = profile.deserializeDataCallback([self dataValue]);
+        } else if ([self.characteristic hasObjectValues]) {
+            for(NSData* objectValue in [profile.objectValues allValues]) {
+                if ([objectValue isEqualToData:[self dataValue]]) {
+                    deserializedVals = [NSDictionary dictionaryWithObject:[profile.valueNames objectForKey:objectValue] forKey:profile.name];
+                    break;
+                }
+            }
         }
     }
     return deserializedVals;
@@ -48,6 +55,8 @@
     if (profile) {
         if (profile.stringValueCallback) {
             stringVals = profile.stringValueCallback([self value]);
+        } else if ([self.characteristic hasObjectValues]) {
+            stringVals =[self value];
         }
     }
     return stringVals;

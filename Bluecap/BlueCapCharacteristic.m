@@ -77,6 +77,14 @@
     return self.profile != nil;
 }
 
+- (bool)hasObjectValues {
+    BOOL result = NO;
+    if ([self hasProfile]) {
+        result = [self.profile.objectValues count] > 0;
+    }
+    return result;
+}
+
 #pragma mark -
 #pragma mark Manage Notifications
 

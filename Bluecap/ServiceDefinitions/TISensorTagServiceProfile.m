@@ -48,23 +48,15 @@
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa12-0451-4000-b000-000000000000"
-                                                name:@"Accelerometer On/Off"
+                                                name:@"Accelerometer Enabled"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-                                              [characteristicProfile setObjectValue:blueCapUnsignedCharToData(TISENSOR_TAG_ACCELEROMETER_ON_VALUE) named:TISENSOR_TAG_ACCELEROMETER_ON];
-                                              [characteristicProfile setObjectValue:blueCapUnsignedCharToData(TISENSOR_TAG_ACCELEROMETER_OFF_VALUE) named:TISENSOR_TAG_ACCELEROMETER_OFF];
+                                              [characteristicProfile setObjectValue:blueCapUnsignedCharToData(TISENSOR_TAG_ACCELEROMETER_ON_VALUE)
+                                                                              named:TISENSOR_TAG_ACCELEROMETER_ON];
+                                              [characteristicProfile setObjectValue:blueCapUnsignedCharToData(TISENSOR_TAG_ACCELEROMETER_OFF_VALUE)
+                                                                              named:TISENSOR_TAG_ACCELEROMETER_OFF];
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeObjectValueNamed:TISENSOR_TAG_ACCELEROMETER_ON afterWriteCall:nil];
                                               }];
-//                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-//                                                  return  @{TISENSOR_TAG_ACCELEROMTER_ENABLED:[NSNumber numberWithBool:blueCapBooleanFromData(data)]};
-//                                              }];
-//                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-//                                                  NSString* stringVal = @"NO";
-//                                                  if ([[data objectForKey:TISENSOR_TAG_ACCELEROMTER_ENABLED] boolValue]) {
-//                                                      stringVal = @"YES";
-//                                                  }
-//                                                  return @{TISENSOR_TAG_ACCELEROMTER_ENABLED:stringVal};
-//                                              }];
                                           }];
             
         [serviceProfile createCharacteristicWithUUID:@"f000aa13-0451-4000-b000-000000000000"

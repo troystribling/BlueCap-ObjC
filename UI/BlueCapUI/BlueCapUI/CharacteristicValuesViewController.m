@@ -31,7 +31,6 @@
 
 - (void)viewDidLoad {
     self.values = [NSDictionary dictionary];
-    [self readData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
