@@ -109,4 +109,10 @@
     return [self booleanStringValue:[self.characteristic propertyEnabled:__property]];
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
+    
+}
+
 @end

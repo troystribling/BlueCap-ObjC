@@ -26,6 +26,8 @@
 @property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback              afterDescriptorsDiscoveredCallback;
 @property(nonatomic, copy) BlueCapCharacteristicNotificationStateDidChange  notificationStateDidChangeCallback;
 
+- (NSDictionary*)deserailizeDataValues;
+
 @end
 
 @implementation BlueCapCharacteristic
@@ -99,12 +101,7 @@
         if (profile.deserializeDataCallback) {
             deserializedVals = profile.deserializeDataCallback([self dataValue]);
         } else if ([self hasValues]) {
-            for(NSData* objectValue in [profile.valueObjects allValues]) {
-                if ([objectValue isEqualToData:[self dataValue]]) {
-                    deserializedVals = [NSDictionary dictionaryWithObject:[profile.valueNames objectForKey:objectValue] forKey:profile.name];
-                    break;
-                }
-            }
+            deserializedVals = [self deserailizeDataValues];
         }
     }
     return deserializedVals;
@@ -129,6 +126,22 @@
         valueNames = [self.profile.valueNames allValues];
     }
     return valueNames;
+}
+
+#pragma mark - Private
+
+- (NSDictionary*)deserailizeDataValues {
+    NSDictionary* deserializedVals = [NSDictionary dictionary];
+    BlueCapCharacteristicProfile* profile = self.profile;
+    for(id objectValue in [profile.valueObjects allValues]) {
+        if ([objectValue isKindOfClass:[NSData class]]) {
+            if ([objectValue isEqualToData:[self dataValue]]) {
+                deserializedVals = [NSDictionary dictionaryWithObject:[profile.valueNames objectForKey:objectValue] forKey:profile.name];
+                break;
+            }
+        }
+    }
+    return deserializedVals;
 }
 
 #pragma mark - Manage Notifications
@@ -202,7 +215,9 @@
         if (serializeBlock && objectValue) {
             [self writeData:serializeBlock(__objectName, objectValue)];
         } else if (objectValue) {
-            [self writeData:objectValue afterWriteCall:__afterWriteCallback];
+            if ([objectValue isKindOfClass:[NSData class]]) {
+                [self writeData:objectValue afterWriteCall:__afterWriteCallback];
+            }
         }
     }
 }
@@ -214,7 +229,9 @@
         if (serializeBlock && objectValue) {
             [self writeData:serializeBlock(__objectName, objectValue)];
         } else if (objectValue) {
-            [self writeData:objectValue];
+            if ([objectValue isKindOfClass:[NSData class]]) {
+                [self writeData:objectValue];
+            }
         }
     }
 }
