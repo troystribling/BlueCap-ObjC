@@ -50,11 +50,11 @@
     DescriptorDetailCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     BlueCapDescriptor* descriptor = [self.characteristic.descriptors objectAtIndex:indexPath.row];
     cell.typeLabel.text = [descriptor typeStringValue];
-    [descriptor read:^(BlueCapDescriptorData* __value, NSError* __error) {
+    [descriptor read:^(BlueCapDescriptor* __descriptor, NSError* __error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             DescriptorDetailCell* cell = (DescriptorDetailCell*)[self.tableView cellForRowAtIndexPath:indexPath];
             if (cell) {
-                cell.valuelabel.text = [__value stringValue];
+                cell.valuelabel.text = [__descriptor stringValue];
                 [cell setNeedsLayout];
             }
         });

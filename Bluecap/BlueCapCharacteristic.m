@@ -84,6 +84,45 @@
     return result;
 }
 
+- (NSData*)dataValue {
+    __block NSData* __value = [NSData data];
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
+        __value = self.cbCharacteristic.value;
+    }];
+    return __value;
+}
+
+- (NSDictionary*)value {
+    NSDictionary* deserializedVals = [NSDictionary dictionary];
+    BlueCapCharacteristicProfile* profile = self.profile;
+    if (profile) {
+        if (profile.deserializeDataCallback) {
+            deserializedVals = profile.deserializeDataCallback([self dataValue]);
+        } else if ([self hasValues]) {
+            for(NSData* objectValue in [profile.valueObjects allValues]) {
+                if ([objectValue isEqualToData:[self dataValue]]) {
+                    deserializedVals = [NSDictionary dictionaryWithObject:[profile.valueNames objectForKey:objectValue] forKey:profile.name];
+                    break;
+                }
+            }
+        }
+    }
+    return deserializedVals;
+}
+
+- (NSDictionary*)stringValue {
+    NSDictionary* stringVals = [NSDictionary dictionary];
+    BlueCapCharacteristicProfile* profile = self.profile;
+    if (profile) {
+        if (profile.stringValueCallback) {
+            stringVals = profile.stringValueCallback([self value]);
+        } else if ([self hasValues]) {
+            stringVals =[self value];
+        }
+    }
+    return stringVals;
+}
+
 - (NSArray*)allValues {
     NSArray* valueNames = [NSArray array];
     if ([self hasValues]) {

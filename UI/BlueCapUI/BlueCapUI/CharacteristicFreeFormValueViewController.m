@@ -34,7 +34,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField*)textField {
     NSString* value = self.valueTextField.text;
     if (value) {
-        [self.characteristic writeObject:value afterWriteCall:^(BlueCapCharacteristicData* __data, NSError* __error) {
+        [self.characteristic writeObject:value afterWriteCall:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });

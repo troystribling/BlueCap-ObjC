@@ -11,9 +11,7 @@
 
 @class BlueCapPeripheral;
 @class BlueCapCharacteristic;
-
-@class BlueCapCharacteristicData;
-@class BlueCapDescriptorData;
+@class BlueCapDescriptor;
 
 @class BlueCapCharacteristicProfile;
 @class BlueCapPeripheralProfile;
@@ -43,7 +41,7 @@ typedef NSData*(^BlueCapCharacteristicProfileSerializeObjectCallback)(id __data)
 typedef NSDictionary*(^BlueCapCharacteristicProfileDeserializeDataCallback)(NSData* __data);
 typedef NSDictionary*(^BlueCapCharacteristicProfileStringValueCallback)(NSDictionary* __data);
 
-typedef void(^BlueCapCharacteristicDataCallback)(BlueCapCharacteristicData* __data, NSError* __error);
-typedef void(^BlueCapDescriptorDataCallback)(BlueCapDescriptorData* __data, NSError* __error);
+typedef void(^BlueCapCharacteristicDataCallback)(BlueCapCharacteristic* __characteristic, NSError* __error);
+typedef void(^BlueCapDescriptorDataCallback)(BlueCapDescriptor* __descriptors, NSError* __error);
 
 #endif

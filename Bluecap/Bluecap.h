@@ -17,9 +17,6 @@
 #import "BlueCapCharacteristic.h"
 #import "BlueCapDescriptor.h"
 
-#import "BlueCapCharacteristicData.h"
-#import "BlueCapDescriptorData.h"
-
 #import "BlueCapServiceProfile.h"
 #import "BlueCapCharacteristicProfile.h"
 

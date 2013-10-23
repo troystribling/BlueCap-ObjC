@@ -8,7 +8,6 @@
 
 #import "BlueCapCentralManager+Friend.h"
 #import "BlueCapCharacteristic+Friend.h"
-#import "BlueCapCharacteristicData+Friend.h"
 #import "BlueCapDescriptor+Friend.h"
 #import "BlueCapService+Friend.h"
 
@@ -40,7 +39,7 @@
 - (void)didUpdateValue:(NSError*)error {
     if (self.afterReadCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterReadCallback([BlueCapCharacteristicData withCharacteristic:self], error);
+            self.afterReadCallback(self, error);
         }];
     } else if ([self hasValues]) {
         
@@ -58,7 +57,7 @@
 - (void)didWriteValue:(NSError*)error{
     if (self.afterWriteCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterWriteCallback([BlueCapCharacteristicData withCharacteristic:self], error);
+            self.afterWriteCallback(self, error);
         }];
     }
 }

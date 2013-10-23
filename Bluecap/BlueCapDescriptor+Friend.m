@@ -8,7 +8,6 @@
 
 #import "BlueCapDescriptor+Friend.h"
 #import "BlueCapCentralManager+Friend.h"
-#import "BlueCapDescriptorData+Friend.h"
 
 @implementation BlueCapDescriptor (Friend)
 
@@ -33,7 +32,7 @@
 - (void)didUpdateValue:(NSError*)error {
     if (self.onReadCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onReadCallback([BlueCapDescriptorData withDescriptor:self], error);
+            self.onReadCallback(self, error);
         }];
     }
 }
@@ -41,7 +40,7 @@
 - (void)didWriteValue:(NSError*)error{
     if (self.onWriteCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.onWriteCallback([BlueCapDescriptorData withDescriptor:self], error);
+            self.onWriteCallback(self, error);
         }];
     }
 }

@@ -13,6 +13,7 @@
 #import "BlueCapPeripheral+Friend.h"
 #import "BlueCapService+Friend.h"
 #import "BlueCapCharacteristic+Friend.h"
+#import "BlueCapCentralManager+Friend.h"
 #import "CBUUID+StringValue.h"
 
 @interface BlueCapDescriptor ()
@@ -52,6 +53,69 @@
     } else if ([uuidString isEqualToString:CBUUIDCharacteristicAggregateFormatString]) {
         result = @"Aggregate Format";
     }
+    return result;
+}
+
+- (NSString*)stringValue {
+    NSString* uuidString = self.UUID.stringValue;
+    __block NSString* result = @"Unkown";
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
+        // value is NSNumber
+        if([uuidString isEqualToString:CBUUIDCharacteristicExtendedPropertiesString]  ||
+           [uuidString isEqualToString:CBUUIDClientCharacteristicConfigurationString] ||
+           [uuidString isEqualToString:CBUUIDServerCharacteristicConfigurationString]) {
+            result = [self.cbDescriptor.value stringValue];
+            // value is NSString
+        } else if ([uuidString isEqualToString:CBUUIDCharacteristicUserDescriptionString]) {
+            result = self.cbDescriptor.value;
+            // value is NSData
+        } else if ([uuidString isEqualToString:CBUUIDCharacteristicFormatString] ||
+                   [uuidString isEqualToString:CBUUIDCharacteristicAggregateFormatString]) {
+            result = [[NSString alloc] initWithData:self.cbDescriptor.value encoding:NSUTF8StringEncoding];
+        }
+    }];
+    return result;
+}
+
+- (NSNumber*)numberValue {
+    NSString* uuidString = self.UUID.stringValue;
+    __block NSNumber* result = [NSNumber numberWithInt:-1];
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
+        // value is NSNumber
+        if([uuidString isEqualToString:CBUUIDCharacteristicExtendedPropertiesString]  ||
+           [uuidString isEqualToString:CBUUIDClientCharacteristicConfigurationString] ||
+           [uuidString isEqualToString:CBUUIDServerCharacteristicConfigurationString]) {
+            result = self.cbDescriptor.value;
+            // value is NSString
+        } else if ([uuidString isEqualToString:CBUUIDCharacteristicUserDescriptionString]) {
+            result = [[NSNumberFormatter alloc] numberFromString:self.cbDescriptor.value];
+            // value is NSData
+        } else if ([uuidString isEqualToString:CBUUIDCharacteristicFormatString] ||
+                   [uuidString isEqualToString:CBUUIDCharacteristicAggregateFormatString]) {
+            [NSException raise:@"Invalid Descriptor value format" format:@"value with format NSData cannot be converted to NSNumber"];
+        }
+    }];
+    return result;
+}
+
+- (NSData*)dataValue {
+    NSString* uuidString = self.UUID.stringValue;
+    __block NSData* result = [NSData data];
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
+        // value is NSNumber
+        if([uuidString isEqualToString:CBUUIDCharacteristicExtendedPropertiesString]  ||
+           [uuidString isEqualToString:CBUUIDClientCharacteristicConfigurationString] ||
+           [uuidString isEqualToString:CBUUIDServerCharacteristicConfigurationString]) {
+            result = [NSKeyedArchiver archivedDataWithRootObject:self.cbDescriptor.value];
+            // value is NSString
+        } else if ([uuidString isEqualToString:CBUUIDCharacteristicUserDescriptionString]) {
+            result = [self.cbDescriptor.value dataUsingEncoding:NSUTF8StringEncoding];
+            // value is NSData
+        } else if ([uuidString isEqualToString:CBUUIDCharacteristicFormatString] ||
+                   [uuidString isEqualToString:CBUUIDCharacteristicAggregateFormatString]) {
+            result = self.cbDescriptor.value;
+        }
+    }];
     return result;
 }
 

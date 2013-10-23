@@ -67,13 +67,13 @@
 - (void)readData {
     if (self.characteristic.isNotifying) {
         self.refreshButton.enabled = NO;
-        [self.characteristic receiveUpdates:^(BlueCapCharacteristicData* __data, NSError* __error) {
-            [self loadData:[__data stringValue]];
+        [self.characteristic receiveUpdates:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
+            [self loadData:[__characteristic stringValue]];
         }];
     } else {
         self.refreshButton.enabled = YES;
-        [self.characteristic readData:^(BlueCapCharacteristicData* __data, NSError* __error) {
-            [self loadData:[__data stringValue]];
+        [self.characteristic readData:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
+            [self loadData:[__characteristic stringValue]];
         }];
     }
 }

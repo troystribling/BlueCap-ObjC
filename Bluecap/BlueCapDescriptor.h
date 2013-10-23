@@ -16,6 +16,10 @@
 
 - (BlueCapCharacteristic*)characteristic;
 
+- (NSString*)stringValue;
+- (NSNumber*)numberValue;
+- (NSData*)dataValue;
+
 - (void)read:(BlueCapDescriptorDataCallback)__onReadCallback;
 - (void)writeData:(NSData*)data onWrite:(BlueCapDescriptorDataCallback)__onWriteCallback;
 - (NSString*)typeStringValue;

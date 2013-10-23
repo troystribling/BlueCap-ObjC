@@ -47,7 +47,7 @@
 
 - (NSString*)selectedValue {
     
-    return
+    return nil;
 }
 
 #pragma mark - Table view delegate

@@ -17,7 +17,6 @@
 @property(nonatomic, readonly) BOOL                         isBroadcasted;
 @property(nonatomic, readonly) BOOL                         isNotifying;
 @property(nonatomic, readonly) CBCharacteristicProperties   properties;
-@property(nonatomic, readonly) NSData*                      value;
 @property(nonatomic, readonly) CBUUID*                      UUID;
 
 - (BlueCapService*)service;
@@ -25,6 +24,10 @@
 - (BOOL)hasProfile;
 - (BOOL)hasValues;
 - (NSArray*)allValues;
+
+- (NSData*)dataValue;
+- (NSDictionary*)value;
+- (NSDictionary*)stringValue;
 
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 
