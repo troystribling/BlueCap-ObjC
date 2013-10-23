@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark -
-#pragma mark Accelerometer
+#pragma mark - Accelerometer
 
 #define TISENSOR_TAG_ACCELEROMETER_ON               @"Yes"
 #define TISENSOR_TAG_ACCELEROMETER_ON_VALUE         0x01
@@ -22,8 +21,7 @@
 
 #define TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD    @"Update Period"
 
-#pragma mark -
-#pragma mark Barometer
+#pragma mark - Barometer
 
 #define TISENSOR_TAG_BAROMETER_ON                       @"Yes"
 #define TISENSOR_TAG_BAROMETER_ON_VALUE                 0x01
@@ -32,8 +30,7 @@
 #define TISENSOR_TAG_BAROMETER_READ_CALIBRATION         @"Read Calibration Data"
 #define TISENSOR_TAG_BAROMETER_READ_CALIBRATION_VALUE   0x02
 
-#pragma mark - 
-#pragma mark Temperature
+#pragma mark - Temperature
 
 #define TISENSOR_TAG_TEMPERATURE_ENABLED            @"Enabled"
 #define TISENSOR_TAG_TEMPERATURE_ON                 @"Yes"
@@ -41,8 +38,7 @@
 #define TISENSOR_TAG_TEMPERATURE_OFF                @"No"
 #define TISENSOR_TAG_TEMPERATURE_OFF_VALUE          0x00
 
-#pragma mark -
-#pragma mark Gyrosope
+#pragma mark - Gyrosope
 
 #define TISENSOR_TAG_GYROSCOPE_X_AXIS_ON            @"X-Axis Enables"
 #define TISENSOR_TAG_GYROSCOPE_X_AXIS_ON_VALUE      0x01
@@ -61,24 +57,21 @@
 #define TISENSOR_TAG_GYROSCOPE_OFF                  @"No"
 #define TISENSOR_TAG_GYROSCOPE_OFF_VALUE            0x00
 
-#pragma mark -
-#pragma mark Magnetometer
+#pragma mark - Magnetometer
 
 #define TISENSOR_TAG_MAGNETOMETER_ON                @"Yes"
 #define TISENSOR_TAG_MAGNETOMETER_ON_VALUE          0x01
 #define TISENSOR_TAG_MAGNETOMETER_OFF               @"No"
 #define TISENSOR_TAG_MAGNETOMETER_OFF_VALUE         0x00
 
-#pragma mark -
-#pragma mark Hygrometer
+#pragma mark - Hygrometer
 
 #define TISENSOR_TAG_HYGROMETER_ON                @"Yes"
 #define TISENSOR_TAG_HYGROMETER_ON_VALUE          0x01
 #define TISENSOR_TAG_HYGROMETER_OFF               @"No"
 #define TISENSOR_TAG_HYGROMETER_OFF_VALUE         0x00
 
-#pragma mark -
-#pragma mark Device Test
+#pragma mark - Device Test
 
 
 @interface TISensorTagServiceProfile : NSObject

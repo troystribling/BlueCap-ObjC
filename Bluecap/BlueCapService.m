@@ -25,8 +25,7 @@
 
 @implementation BlueCapService
 
-#pragma mark -
-#pragma mark BlueCapService
+#pragma mark - BlueCapService
 
 - (CBUUID*)UUID {
     return self.cbService.UUID;
@@ -56,8 +55,7 @@
     return self.profile != nil;
 }
 
-#pragma mark -
-#pragma mark Discover Characteritics
+#pragma mark - Discover Characteritics
 
 - (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)__afterChracteristicsDiscoveredCallback {
     self.afterChracteristicsDiscoveredCallback = __afterChracteristicsDiscoveredCallback;
@@ -69,7 +67,6 @@
     [self.peripheral.cbPeripheral discoverCharacteristics:__characteristics forService:self.cbService];
 }
 
-#pragma mark -
-#pragma mark BlueCapService PrivateAPI
+#pragma mark - BlueCapService PrivateAPI
 
 @end

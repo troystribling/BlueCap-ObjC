@@ -15,8 +15,7 @@
 
     BlueCapCentralManager* centralManager = [BlueCapCentralManager sharedInstance];
 
-#pragma mark -
-#pragma mark Device Information
+#pragma mark - Device Information
 
     [centralManager createServiceWithUUID:@"180a"
                                      name:@"Device Information"
@@ -123,8 +122,7 @@
 
         }];
 
-#pragma mark -
-#pragma mark Key Pressed
+#pragma mark - Key Pressed
 
     [centralManager createServiceWithUUID:@"ffe0"
                                      name:@"Key Pressed"

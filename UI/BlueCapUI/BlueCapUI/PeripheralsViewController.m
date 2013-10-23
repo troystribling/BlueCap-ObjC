@@ -19,8 +19,7 @@
 
 @implementation PeripheralsViewController
 
-#pragma mark -
-#pragma mark PeripheralsViewController
+#pragma mark - PeripheralsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -64,8 +63,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark PeripheralsViewController PrivateAPI
+#pragma mark - PeripheralsViewController PrivateAPI
 
 - (void)reloadTableData {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -73,8 +71,7 @@
     });
 }
 
-#pragma mark -
-#pragma mark UITableViewDataSource
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -100,8 +97,7 @@
     return cell;
 }
 
-#pragma mark -
-#pragma mark UITableViewDelegate
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     BlueCapPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];

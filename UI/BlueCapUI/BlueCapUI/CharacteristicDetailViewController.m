@@ -21,8 +21,7 @@
 
 @implementation CharacteristicDetailViewController
 
-#pragma mark -
-#pragma mark ChracteristicDetailViewController
+#pragma mark - ChracteristicDetailViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -70,8 +69,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark ChracteristicDetailViewController Private
+#pragma mark - ChracteristicDetailViewController Private
 
 - (IBAction)toggleNotifications {
     if (self.characteristic.isNotifying) {
@@ -101,8 +99,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark ChracteristicDetailViewController Friend API
+#pragma mark - ChracteristicDetailViewController Friend API
 
 - (NSString*)booleanStringValue:(BOOL)__boolValue {
     return __boolValue ?  @"YES" : @"NO";

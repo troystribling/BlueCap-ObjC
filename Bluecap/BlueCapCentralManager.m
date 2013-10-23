@@ -31,8 +31,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 
 @implementation BlueCapCentralManager
 
-#pragma mark -
-#pragma mark BlueCapCentralManager
+#pragma mark - BlueCapCentralManager
 
 + (BlueCapCentralManager*)sharedInstance {
     @synchronized(self) {
@@ -65,8 +64,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     return __periperals;
 }
 
-#pragma mark -
-#pragma mark Service Profile
+#pragma mark - Service Profile
 
 - (BlueCapServiceProfile*)createServiceWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
     return [self createServiceWithUUID:__uuidString name:__name andProfile:nil];
@@ -79,8 +77,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     return serviceProfile;
 }
 
-#pragma mark -
-#pragma mark Scan for Periherals
+#pragma mark - Scan for Periherals
 
 - (void)startScanning:(BlueCapPeripheralDiscoveredCallback)__afterPeripheralDiscoveredCallback {
     DLog(@"Start Scanning");
@@ -99,8 +96,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 	[self.centralManager stopScan];
 }
 
-#pragma mark -
-#pragma mark Power On
+#pragma mark - Power On
 
 - (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback {
     self.afterPowerOnCallback = __onPowerOnCallback;
@@ -122,8 +118,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)createPeripheralWithUUID:(NSString*)__uuidString andConfiguration:(BlueCapPeripheralCallback)__configurationBlock {
 }
 
-#pragma mark -
-#pragma mark CBCentralManagerDelegate
+#pragma mark - CBCentralManagerDelegate
 
 - (void)centralManager:(CBCentralManager*)central didConnectPeripheral:(CBPeripheral*)peripheral {
     BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];

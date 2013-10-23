@@ -26,8 +26,7 @@
 
 @implementation BlueCapDescriptor
 
-#pragma mark -
-#pragma mark BlueCapCharacteristic
+#pragma mark - BlueCapCharacteristic
 
 - (CBUUID*)UUID {
     return _cbDescriptor.UUID;
@@ -56,8 +55,7 @@
     return result;
 }
 
-#pragma mark -
-#pragma mark I/O
+#pragma mark - I/O
 
 - (void)read:(BlueCapDescriptorDataCallback)__onReadCallback {
     self.onReadCallback = __onReadCallback;
@@ -69,7 +67,6 @@
     [self.characteristic.service.peripheral.cbPeripheral writeValue:data forDescriptor:self.cbDescriptor];
 }
 
-#pragma mark -
-#pragma mark BlueCapCharacteristic PrivateAPI
+#pragma mark - BlueCapCharacteristic PrivateAPI
 
 @end

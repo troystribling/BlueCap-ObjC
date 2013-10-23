@@ -45,8 +45,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark UITableDataSource
+#pragma mark - UITableDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     return 1;
@@ -68,7 +67,6 @@
     return cell;
 }
 
-#pragma mark -
-#pragma mark UITableViewDelegate
+#pragma mark - UITableViewDelegate
 
 @end

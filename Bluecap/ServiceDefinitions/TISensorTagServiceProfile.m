@@ -16,8 +16,7 @@
     
     BlueCapCentralManager* centralManager = [BlueCapCentralManager sharedInstance];
     
-#pragma mark -
-#pragma mark Accelerometer
+#pragma mark - Accelerometer
 
     [centralManager createServiceWithUUID:@"F000AA10-0451-4000-B000-000000000000"
                                      name:@"Accelerometer"
@@ -81,8 +80,7 @@
                                    
     }];
 
-#pragma mark -
-#pragma mark Magnetometer
+#pragma mark - Magnetometer
 
     [centralManager createServiceWithUUID:@"F000AA30-0451-4000-B000-000000000000"
                                      name:@"Magnetometer"
@@ -126,8 +124,7 @@
                                    
     }];
 
-#pragma mark -
-#pragma mark Gyroscope
+#pragma mark - Gyroscope
 
     [centralManager createServiceWithUUID:@"F000AA50-0451-4000-B000-000000000000"
                                      name:@"Gyroscope"
@@ -190,8 +187,7 @@
                                    
     }];
 
-#pragma mark -
-#pragma mark Temperature
+#pragma mark - Temperature
 
     [centralManager createServiceWithUUID:@"F000AA00-0451-4000-B000-000000000000"
                                      name:@"IR Temperature Sensor"
@@ -229,8 +225,7 @@
                                           }];
     }];
 
-#pragma mark -
-#pragma mark Barometer
+#pragma mark - Barometer
 
     [centralManager createServiceWithUUID:@"F000AA40-0451-4000-B000-000000000000"
                                      name:@"Barometer"
@@ -280,8 +275,7 @@
                                    
     }];
 
-#pragma mark -
-#pragma mark Hygrometer
+#pragma mark - Hygrometer
 
     [centralManager createServiceWithUUID:@"F000AA20-0451-4000-B000-000000000000"
                                         name:@"Hygrometer"

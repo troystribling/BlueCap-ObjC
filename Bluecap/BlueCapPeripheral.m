@@ -43,8 +43,7 @@
 
 @implementation BlueCapPeripheral
 
-#pragma mark -
-#pragma mark BlueCapPeripheral
+#pragma mark - BlueCapPeripheral
 
 - (NSArray*)services {
     __block NSArray* __services = [NSArray array];
@@ -78,8 +77,7 @@
     return _advertisement;
 }
 
-#pragma mark -
-#pragma mark Discover Services
+#pragma mark - Discover Services
 
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__afterServicesDiscoveredCallback {
     self.afterServicesDiscoveredCallback = __afterServicesDiscoveredCallback;
@@ -91,8 +89,7 @@
     [self.cbPeripheral discoverServices:__services];
 }
 
-#pragma mark -
-#pragma mark RSSI Updates
+#pragma mark - RSSI Updates
 
 - (void)recieveRSSIUpdates:(BlueCapPeripheralRSSICallback)__afterRSSIUpdate {
     [[BlueCapCentralManager sharedInstance] asyncCallback:^{
@@ -109,8 +106,7 @@
     }];
 }
 
-#pragma mark -
-#pragma mark Connect/Disconnect Peripheral
+#pragma mark - Connect/Disconnect Peripheral
 
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
     if (self.cbPeripheral.state != CBPeripheralStateConnected) {
@@ -136,8 +132,7 @@
     [self disconnect:nil];
 }
 
-#pragma mark -
-#pragma mark BlueCapPeripheral PrivateAPI
+#pragma mark - BlueCapPeripheral PrivateAPI
 
 - (void)clearServices {
     DLog(@"CLEAR SERVICES BEFORE COUNT: %d", [self.discoveredObjects count]);
@@ -189,8 +184,7 @@
     });
 }
 
-#pragma mark -
-#pragma mark CBPeripheralDelegate
+#pragma mark - CBPeripheralDelegate
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverServices:(NSError*)error {
     DLog(@"Discovered %d Services", [peripheral.services count]);

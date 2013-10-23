@@ -30,8 +30,7 @@
 
 @implementation BlueCapCharacteristic
 
-#pragma mark -
-#pragma mark BlueCapCharacteristic
+#pragma mark - BlueCapCharacteristic
 
 - (NSArray*)descriptors {
     __block NSArray* __descriptors = [NSArray array];
@@ -93,8 +92,7 @@
     return valueNames;
 }
 
-#pragma mark -
-#pragma mark Manage Notifications
+#pragma mark - Manage Notifications
 
 - (void)startNotifications:(BlueCapCharacteristicNotificationStateDidChange)__notificationStateDidChangeCallback {
     if ([self propertyEnabled:CBCharacteristicPropertyNotify]) {
@@ -130,8 +128,7 @@
     }
 }
 
-#pragma mark -
-#pragma I/O
+#pragma mark - I/O
 
 - (void)readData:(BlueCapCharacteristicDataCallback)__afterReadCallback {
     if ([self propertyEnabled:CBCharacteristicPropertyRead]) {
@@ -200,15 +197,13 @@
     }
 }
 
-#pragma mark -
-#pragma mark Discover Descriptors
+#pragma mark - Discover Descriptors
 
 - (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__afterDescriptorsDiscoveredCallback {
     self.afterDescriptorsDiscoveredCallback = __afterDescriptorsDiscoveredCallback;
     [self.service.peripheral.cbPeripheral discoverDescriptorsForCharacteristic:self.cbCharacteristic];
 }
 
-#pragma mark -
-#pragma mark BlueCapCharacteristic PrivateAPI
+#pragma mark - BlueCapCharacteristic PrivateAPI
 
 @end

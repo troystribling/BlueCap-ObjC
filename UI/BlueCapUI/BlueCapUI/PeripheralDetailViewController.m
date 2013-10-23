@@ -18,8 +18,7 @@
 
 @implementation PeripheralDetailViewController
 
-#pragma mark -
-#pragma mark PeripheralViewController
+#pragma mark - PeripheralViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -62,8 +61,7 @@
     }
 }
 
-#pragma mark -
-#pragma mark PeripheralViewController PrivateAPI
+#pragma mark - PeripheralViewController PrivateAPI
 
 - (void)updateUSSI {
     dispatch_async(dispatch_get_main_queue(), ^{

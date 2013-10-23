@@ -10,6 +10,8 @@
 
 @interface CharacteristicDiscreteValueViewController ()
 
+- (NSString*)selectedValue;
+
 @end
 
 @implementation CharacteristicDiscreteValueViewController
@@ -37,8 +39,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell*cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.textLabel.text = [[self.characteristic allValues] objectAtIndex:indexPath.row];
     return cell;
+}
+
+
+- (NSString*)selectedValue {
+    
+    return
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
 }
 
 @end

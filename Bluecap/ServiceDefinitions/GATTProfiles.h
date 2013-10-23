@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark -
-#pragma mark Device Information
+#pragma mark - Device Information
 
 #define GATT_DEVICE_INFORMATION_SYSTEM_ID               @"System ID"
 #define GATT_DEVICE_INFORMATION_MODEL_NUMBER            @"Model Number"

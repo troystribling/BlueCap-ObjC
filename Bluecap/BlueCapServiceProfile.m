@@ -28,8 +28,7 @@
     return _name;
 }
 
-#pragma mark -
-#pragma mark Characteristic Profile
+#pragma mark - Characteristic Profile
 
 - (BlueCapCharacteristicProfile*)createCharacteristicWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
     return [self createCharacteristicWithUUID:__uuidString name:__name andProfile:nil];
