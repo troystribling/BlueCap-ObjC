@@ -126,7 +126,7 @@
 - (NSArray*)allValues {
     NSArray* valueNames = [NSArray array];
     if ([self hasValues]) {
-        valueNames = [self.profile.valueNames allKeys];
+        valueNames = [self.profile.valueNames allValues];
     }
     return valueNames;
 }

@@ -56,8 +56,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
-    static NSString *CellIdentifier = @"ServiceDetailCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ServiceDetailCell" forIndexPath:indexPath];
     BlueCapCharacteristic* characteristic = [self.service.characteristics objectAtIndex:indexPath.row];
     if ([characteristic hasProfile]) {
         cell.textLabel.text = characteristic.profile.name;
