@@ -46,7 +46,7 @@
     self.propertyExtendedProperties.text = [self propertyEnabledStringValue:CBCharacteristicPropertyExtendedProperties];
     self.propertyNotifyEncryptionRequired.text = [self propertyEnabledStringValue:CBCharacteristicPropertyNotifyEncryptionRequired];
     self.propertyIndicateEncryptionRequired.text = [self propertyEnabledStringValue:CBCharacteristicPropertyIndicateEncryptionRequired];
-    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyNotify]) {
+    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyNotify] && [self.characteristic hasProfile]) {
         self.notifiyButton.enabled = YES;
         [self setNotifiyButtonLabel];
     } else {
@@ -112,7 +112,10 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
-    
+    if (![self.characteristic hasProfile] && indexPath.section == 0 && indexPath.row == 0) {
+        cell.textLabel.textColor = [UIColor lightGrayColor];
+        cell.userInteractionEnabled = NO;
+    }
 }
 
 @end
