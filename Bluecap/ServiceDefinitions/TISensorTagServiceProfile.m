@@ -160,6 +160,15 @@
     }];
 
 #pragma mark - Barometer
+/*
+    Calibrated Pressure and Temperature are computed as follows (source Building iPhone and iPad Electronic Projects http://shop.oreilly.com/product/0636920029281.do)
+    C1...C8 = Calibration Coefficients, TR = Raw temperature, PR = Raw Pressure, T = Calibrated Temperature in Celcius, P = Calibrated Pressure in Pascals
+    
+    S = C3 + C4*TR/2^17 + C5*TR^2/2^34
+    O = C6*2^14 + C7*TR/8 + C8TR^2/2^19
+    P = (S*PR + O)/2^14
+    T = C2/2^10 + C1*TR/2^24
+*/
 
     [centralManager createServiceWithUUID:@"F000AA40-0451-4000-B000-000000000000"
                                      name:@"Barometer"
@@ -168,6 +177,16 @@
         [serviceProfile createCharacteristicWithUUID:@"f000aa41-0451-4000-b000-000000000000"
                                                 name:@"Barometer Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                                                  return @{TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE:blueCapInt16FromData(data, NSMakeRange(0, 2)),
+                                                           TISENSOR_TAG_BAROMETER_RAW_PRESSURE:blueCapUnsignedInt16FromData(data, NSMakeRange(2, 2))};
+                                              }];
+                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                  return @{TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE:
+                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE] floatValue]],
+                                                           TISENSOR_TAG_BAROMETER_RAW_PRESSURE:
+                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_PRESSURE] floatValue]]};
+                                              }];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa42-0451-4000-b000-000000000000"
@@ -184,10 +203,26 @@
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa43-0451-4000-b000-000000000000"
-                                                name:@"Barometer Calibration"
+                                                name:@"Barometer Calibration Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                                                  return @{TISENSOR_TAG_BAROMETER_CALIBRATION_C1:blueCapUnsignedInt16FromData(data, NSMakeRange(0, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C2:blueCapUnsignedInt16FromData(data, NSMakeRange(2, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C3:blueCapUnsignedInt16FromData(data, NSMakeRange(4, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C4:blueCapUnsignedInt16FromData(data, NSMakeRange(6, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C5:blueCapInt16FromData(data, NSMakeRange(8, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C6:blueCapInt16FromData(data, NSMakeRange(10, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C7:blueCapInt16FromData(data, NSMakeRange(12, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C8:blueCapInt16FromData(data, NSMakeRange(14, 2))};
+                                              }];
+                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                  NSMutableDictionary* stringValues = [NSMutableDictionary dictionary];
+                                                  for(NSString* key in [data allKeys]) {
+                                                      [stringValues setObject:[NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT] floatValue]] forKey:key];
+                                                  }
+                                                  return stringValues;
+                                              }];
                                           }];
-                                   
     }];
 
 #pragma mark - Hygrometer

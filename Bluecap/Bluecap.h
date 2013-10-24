@@ -24,5 +24,7 @@
 #import "GATTProfiles.h"
 
 NSNumber* blueCapCharFromData(NSData* data, NSRange range);
+NSNumber* blueCapUnsignedInt16FromData(NSData* data, NSRange range);
+NSNumber* blueCapInt16FromData(NSData* data, NSRange range);
 NSNumber* blueCapUnsignedCharFromData(NSData* data);
 NSData* blueCapUnsignedCharToData(uint8_t data);

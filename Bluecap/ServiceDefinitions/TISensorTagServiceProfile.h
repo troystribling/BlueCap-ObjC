@@ -30,6 +30,20 @@
 #define TISENSOR_TAG_BAROMETER_READ_CALIBRATION         @"Read Calibration Data"
 #define TISENSOR_TAG_BAROMETER_READ_CALIBRATION_VALUE   0x02
 
+#define TISENSOR_TAG_BAROMETER_CALIBRATION_C1               @"C1"
+#define TISENSOR_TAG_BAROMETER_CALIBRATION_C2               @"C2"
+#define TISENSOR_TAG_BAROMETER_CALIBRATION_C3               @"C3"
+#define TISENSOR_TAG_BAROMETER_CALIBRATION_C4               @"C4"
+#define TISENSOR_TAG_BAROMETER_CALIBRATION_C5               @"C5"
+#define TISENSOR_TAG_BAROMETER_CALIBRATION_C6               @"C6"
+#define TISENSOR_TAG_BAROMETER_CALIBRATION_C7               @"C7"
+#define TISENSOR_TAG_BAROMETER_CALIBRATION_C8               @"C8"
+#define TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE              @"Raw Temperature"
+#define TISENSOR_TAG_BAROMETER_RAW_PRESSURE                 @"Raw Pressure"
+
+#define TISENSOR_TAG_BAROMETER_TEMPERATURE              @"Temperature"
+#define TISENSOR_TAG_BAROMETER_PRESSURE                 @"Pressure"
+
 #pragma mark - Temperature
 
 #define TISENSOR_TAG_TEMPERATURE_ENABLED            @"Enabled"
