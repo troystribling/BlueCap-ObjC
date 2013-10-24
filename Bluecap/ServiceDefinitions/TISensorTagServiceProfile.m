@@ -92,29 +92,13 @@
                                           }];
       
         [serviceProfile createCharacteristicWithUUID:@"f000aa32-0451-4000-b000-000000000000"
-                                                name:@"Magnetometer On/Off"
+                                                name:@"Magnetometer Enabled"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_MAGNETOMETER_ON usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_MAGNETOMETER_ON_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_MAGNETOMETER_OFF usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_MAGNETOMETER_OFF_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
-//                                                  [characteristic writeValueNamed:TISENSOR_TAG_MAGNETOMETER_ON afterWriteCall:nil];
-//                                              }];
-//                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-//                                                  return  @{TISENSOR_TAG_MAGNETOMETER_ENABLED:[NSNumber numberWithBool:blueCapBooleanFromData(data)]};
-//                                              }];
-//                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-//                                                  NSString* stringVal = @"NO";
-//                                                  if ([[data objectForKey:TISENSOR_TAG_MAGNETOMETER_ENABLED] boolValue]) {
-//                                                      stringVal = @"YES";
-//                                                  }
-//                                                  return @{TISENSOR_TAG_MAGNETOMETER_ENABLED:stringVal};
-//                                              }];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_MAGNETOMETER_ON_VALUE) named:TISENSOR_TAG_MAGNETOMETER_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_MAGNETOMETER_OFF_VALUE) named:TISENSOR_TAG_MAGNETOMETER_OFF];
+                                              [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
+                                                  [characteristic writeValueNamed:TISENSOR_TAG_MAGNETOMETER_ON afterWriteCall:nil];
+                                              }];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa33-0451-4000-b000-000000000000"
@@ -136,53 +120,19 @@
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa52-0451-4000-b000-000000000000"
-                                                name:@"Gyroscope On/Off"
+                                                name:@"Gyroscope Enabled"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_GYROSCOPE_X_AXIS_ON usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_GYROSCOPE_X_AXIS_ON_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_GYROSCOPE_Y_AXIS_ON usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_GYROSCOPE_Y_AXIS_ON_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_GYROSCOPE_XY_AXIS_ON usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_GYROSCOPE_XY_AXIS_ON_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_GYROSCOPE_Z_AXIS_ON usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_GYROSCOPE_Z_AXIS_ON_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_GYROSCOPE_XZ_AXIS_ON usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_GYROSCOPE_XZ_AXIS_ON_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_GYROSCOPE_YZ_AXIS_ON usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_GYROSCOPE_YZ_AXIS_ON_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_GYROSCOPE_XYZ_AXIS_ON usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_GYROSCOPE_XYZ_AXIS_ON_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_GYROSCOPE_OFF usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_GYROSCOPE_OFF_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
-//                                                  [characteristic writeValueNamed:TISENSOR_TAG_GYROSCOPE_XYZ_AXIS_ON afterWriteCall:nil];
-//                                              }];
-//                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-//                                                  return  @{TISENSOR_TAG_GYROSCOPE_ENABLED:[NSNumber numberWithBool:blueCapBooleanFromData(data)]};
-//                                              }];
-//                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-//                                                  NSString* stringVal = @"NO";
-//                                                  if ([[data objectForKey:TISENSOR_TAG_GYROSCOPE_ENABLED] boolValue]) {
-//                                                      stringVal = @"YES";
-//                                                  }
-//                                                  return @{TISENSOR_TAG_GYROSCOPE_ENABLED:stringVal};
-//                                              }];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_GYROSCOPE_X_AXIS_ON_VALUE) named:TISENSOR_TAG_GYROSCOPE_X_AXIS_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_GYROSCOPE_Y_AXIS_ON_VALUE) named:TISENSOR_TAG_GYROSCOPE_Y_AXIS_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_GYROSCOPE_XY_AXIS_ON_VALUE) named:TISENSOR_TAG_GYROSCOPE_XY_AXIS_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_GYROSCOPE_Z_AXIS_ON_VALUE) named:TISENSOR_TAG_GYROSCOPE_Z_AXIS_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_GYROSCOPE_XZ_AXIS_ON_VALUE) named:TISENSOR_TAG_GYROSCOPE_XZ_AXIS_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_GYROSCOPE_YZ_AXIS_ON_VALUE) named:TISENSOR_TAG_GYROSCOPE_YZ_AXIS_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_GYROSCOPE_XYZ_AXIS_ON_VALUE) named:TISENSOR_TAG_GYROSCOPE_XYZ_AXIS_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_GYROSCOPE_OFF_VALUE) named:TISENSOR_TAG_GYROSCOPE_OFF];
+                                              [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
+                                                  [characteristic writeValueNamed:TISENSOR_TAG_GYROSCOPE_XYZ_AXIS_ON afterWriteCall:nil];
+                                              }];
                                           }];
                                    
     }];
@@ -199,29 +149,13 @@
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa02-0451-4000-b000-000000000000"
-                                                name:@"Temperature Sensor On/Off"
+                                                name:@"Temperature Sensor Enabled"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_TEMPERATURE_ON usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_TEMPERATURE_ON_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_TEMPERATURE_OFF usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_TEMPERATURE_OFF_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
-//                                                  [characteristic writeValueNamed:TISENSOR_TAG_TEMPERATURE_ON afterWriteCall:nil];
-//                                              }];
-//                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-//                                                  return  @{TISENSOR_TAG_TEMPERATURE_ENABLED:[NSNumber numberWithBool:blueCapBooleanFromData(data)]};
-//                                              }];
-//                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-//                                                  NSString* stringVal = @"NO";
-//                                                  if ([[data objectForKey:TISENSOR_TAG_TEMPERATURE_ENABLED] boolValue]) {
-//                                                      stringVal = @"YES";
-//                                                  }
-//                                                  return @{TISENSOR_TAG_TEMPERATURE_ENABLED:stringVal};
-//                                              }];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_TEMPERATURE_ON_VALUE) named:TISENSOR_TAG_TEMPERATURE_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_TEMPERATURE_OFF_VALUE) named:TISENSOR_TAG_TEMPERATURE_OFF];
+                                              [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
+                                                  [characteristic writeValueNamed:TISENSOR_TAG_TEMPERATURE_ON afterWriteCall:nil];
+                                              }];
                                           }];
     }];
 
@@ -237,35 +171,16 @@
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa42-0451-4000-b000-000000000000"
-                                                name:@"Barometer On/Off"
+                                                name:@"Barometer Enabled"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_BAROMETER_ON usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_BAROMETER_ON_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_BAROMETER_OFF usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_BAROMETER_OFF_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile serializeValueNamed:TISENSOR_TAG_BAROMETER_READ_CALIBRATION usingBlock:^NSData* {
-//                                                  uint8_t data = TISENSOR_TAG_BAROMETER_READ_CALIBRATION_VALUE;
-//                                                  return [NSData dataWithBytes:&data length:1];
-//                                              }];
-//                                              [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
-//                                                  [characteristic writeValueNamed:TISENSOR_TAG_BAROMETER_ON afterWriteCall:^(BlueCapCharacteristicData* data, NSError* error) {
-//                                                      [data.characteristic writeValueNamed:TISENSOR_TAG_BAROMETER_READ_CALIBRATION afterWriteCall:nil];
-//                                                  }];
-//                                              }];
-//                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-//                                                  return  @{TISENSOR_TAG_BAROMETER_ENABLED:[NSNumber numberWithBool:blueCapBooleanFromData(data)]};
-//                                              }];
-//                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-//                                                  NSString* stringVal = @"NO";
-//                                                  if ([[data objectForKey:TISENSOR_TAG_BAROMETER_ENABLED] boolValue]) {
-//                                                      stringVal = @"YES";
-//                                                  }
-//                                                  return @{TISENSOR_TAG_BAROMETER_ENABLED:stringVal};
-//                                              }];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_BAROMETER_ON_VALUE) named:TISENSOR_TAG_BAROMETER_ON];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_BAROMETER_OFF_VALUE) named:TISENSOR_TAG_BAROMETER_OFF];
+                                              [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_BAROMETER_READ_CALIBRATION_VALUE) named:TISENSOR_TAG_BAROMETER_READ_CALIBRATION];
+                                              [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
+                                                  [characteristic writeValueNamed:TISENSOR_TAG_BAROMETER_ON afterWriteCall:^(BlueCapCharacteristic* characteristic, NSError* error) {
+                                                      [characteristic writeValueNamed:TISENSOR_TAG_BAROMETER_READ_CALIBRATION afterWriteCall:nil];
+                                                  }];
+                                              }];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa43-0451-4000-b000-000000000000"
@@ -287,29 +202,13 @@
                                                                     }];
                                   
                                   [serviceProfile createCharacteristicWithUUID:@"f000aa22-0451-4000-b000-000000000000"
-                                                                          name:@"Hygrometer On/Off"
+                                                                          name:@"Hygrometer Enabled"
                                                                     andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-//                                                                        [characteristicProfile serializeValueNamed:TISENSOR_TAG_HYGROMETER_ON usingBlock:^NSData* {
-//                                                                            uint8_t data = TISENSOR_TAG_HYGROMETER_ON_VALUE;
-//                                                                            return [NSData dataWithBytes:&data length:1];
-//                                                                        }];
-//                                                                        [characteristicProfile serializeValueNamed:TISENSOR_TAG_HYGROMETER_OFF usingBlock:^NSData* {
-//                                                                            uint8_t data = TISENSOR_TAG_HYGROMETER_OFF_VALUE;
-//                                                                            return [NSData dataWithBytes:&data length:1];
-//                                                                        }];
-//                                                                        [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
-//                                                                            [characteristic writeValueNamed:TISENSOR_TAG_HYGROMETER_ON afterWriteCall:nil];
-//                                                                        }];
-//                                                                        [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-//                                                                            return  @{TISENSOR_TAG_HYGROMETER_ENABLED:[NSNumber numberWithBool:blueCapBooleanFromData(data)]};
-//                                                                        }];
-//                                                                        [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-//                                                                            NSString* stringVal = @"NO";
-//                                                                            if ([[data objectForKey:TISENSOR_TAG_HYGROMETER_ENABLED] boolValue]) {
-//                                                                                stringVal = @"YES";
-//                                                                            }
-//                                                                            return @{TISENSOR_TAG_HYGROMETER_ENABLED:stringVal};
-//                                                                        }];
+                                                                        [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_HYGROMETER_ON_VALUE) named:TISENSOR_TAG_HYGROMETER_ON];
+                                                                        [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_HYGROMETER_OFF_VALUE) named:TISENSOR_TAG_HYGROMETER_OFF];
+                                                                        [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
+                                                                            [characteristic writeValueNamed:TISENSOR_TAG_HYGROMETER_ON afterWriteCall:nil];
+                                                                        }];
                                                                     }];
                                       
                                   }];
