@@ -26,13 +26,13 @@ NSNumber* blueCapCharFromData(NSData* data, NSRange range) {
 NSNumber* blueCapUnsignedInt16FromData(NSData* data, NSRange range) {
     uint16_t val;
     [data getBytes:&val range:range];
-    return [NSNumber numberWithChar:val];
+    return [NSNumber numberWithUnsignedShort:val];
 }
 
 NSNumber* blueCapInt16FromData(NSData* data, NSRange range) {
     int16_t val;
     [data getBytes:&val range:range];
-    return [NSNumber numberWithChar:val];
+    return [NSNumber numberWithShort:val];
 }
 
 NSNumber* blueCapUnsignedCharFromData(NSData* data) {

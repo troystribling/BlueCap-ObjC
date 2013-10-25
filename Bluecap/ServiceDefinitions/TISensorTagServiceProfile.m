@@ -9,7 +9,6 @@
 #import "BlueCap.h"
 #import "TISensorTagServiceProfile.h"
 
-
 @implementation TISensorTagServiceProfile
 
 + (void)create {
@@ -218,7 +217,7 @@
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   NSMutableDictionary* stringValues = [NSMutableDictionary dictionary];
                                                   for(NSString* key in [data allKeys]) {
-                                                      [stringValues setObject:[NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT] floatValue]] forKey:key];
+                                                      [stringValues setObject:[NSString stringWithFormat:@"%d", [[data objectForKey:key] integerValue]] forKey:key];
                                                   }
                                                   return stringValues;
                                               }];
