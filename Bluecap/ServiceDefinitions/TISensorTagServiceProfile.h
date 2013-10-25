@@ -52,6 +52,9 @@
 #define TISENSOR_TAG_TEMPERATURE_OFF                @"No"
 #define TISENSOR_TAG_TEMPERATURE_OFF_VALUE          0x00
 
+#define TISENSOR_TAG_TEMPERATURE_OBJECT             @"Object Temperature"
+#define TISENSOR_TAG_TEMPERATURE_AMBIENT            @"Ambient Temperature"
+
 #pragma mark - Gyrosope
 
 #define TISENSOR_TAG_GYROSCOPE_X_AXIS_ON            @"X-Axis Enables"

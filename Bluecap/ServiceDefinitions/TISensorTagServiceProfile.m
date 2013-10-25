@@ -143,8 +143,16 @@
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa01-0451-4000-b000-000000000000"
-                                                name:@"Temperature"
+                                                name:@"Temperature Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                                                  double ambient = [blueCapInt16FromData(data, NSMakeRange(0, 2)) doubleValue];
+                                                  double object = [blueCapInt16FromData(data, NSMakeRange(2, 2)) doubleValue];
+                                                  double tRef = 298.15;
+                                                  double tAmb = ambient/128.0;
+                                                  return @{TISENSOR_TAG_TEMPERATURE_AMBIENT:[NSNumber numberWithDouble:ambient],
+                                                           TISENSOR_TAG_TEMPERATURE_OBJECT:[NSNumber numberWithDouble:object]};
+                                              }];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa02-0451-4000-b000-000000000000"
@@ -160,8 +168,9 @@
 
 #pragma mark - Barometer
 /*
-    Calibrated Pressure and Temperature are computed as follows (source Building iPhone and iPad Electronic Projects http://shop.oreilly.com/product/0636920029281.do)
-    C1...C8 = Calibration Coefficients, TR = Raw temperature, PR = Raw Pressure, T = Calibrated Temperature in Celcius, P = Calibrated Pressure in Pascals
+    Calibrated Pressure and Temperature are computed as follows
+    C1...C8 = Calibration Coefficients, TR = Raw temperature, PR = Raw Pressure, 
+    T = Calibrated Temperature in Celcius, P = Calibrated Pressure in Pascals
     
     S = C3 + C4*TR/2^17 + C5*TR^2/2^34
     O = C6*2^14 + C7*TR/8 + C8TR^2/2^19
