@@ -12,7 +12,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [TISensorTagServiceProfile create];
-    [GATTProfiles create];
+    [BLEGATTProfiles create];
     return YES;
 }
 							

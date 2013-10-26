@@ -14,10 +14,10 @@
 		0543815F17CA89F00071AC73 /* BlueCapCentralManager+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543815E17CA89F00071AC73 /* BlueCapCentralManager+Friend.m */; };
 		0543816217CADBC90071AC73 /* CBUUID+StringValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543816117CADBC90071AC73 /* CBUUID+StringValue.m */; };
 		0543816317CADCD90071AC73 /* CBUUID+StringValue.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0543816017CADBC90071AC73 /* CBUUID+StringValue.h */; };
-		054766BF17FFB09B005C4125 /* GATTProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 054766BE17FFB09B005C4125 /* GATTProfiles.m */; };
+		054766BF17FFB09B005C4125 /* BLEGATTProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 054766BE17FFB09B005C4125 /* BLEGATTProfiles.m */; };
 		054766C417FFB3C5005C4125 /* BlueCapServiceProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 054766C117FFB3C5005C4125 /* BlueCapServiceProfile.m */; };
 		054766C517FFB3C5005C4125 /* BlueCapServiceProfile+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 054766C317FFB3C5005C4125 /* BlueCapServiceProfile+Friend.m */; };
-		054766C617FFB845005C4125 /* GATTProfiles.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054766BD17FFB09B005C4125 /* GATTProfiles.h */; };
+		054766C617FFB845005C4125 /* BLEGATTProfiles.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054766BD17FFB09B005C4125 /* BLEGATTProfiles.h */; };
 		0565A0AC17C1EA7F00BFB1C0 /* BlueCap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */; };
 		0565A0AD17C1ED6100BFB1C0 /* BlueCap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E6897617C1E0890013246A /* BlueCap.h */; };
 		0565A0AE17C1ED6100BFB1C0 /* BlueCapCentralManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E6897717C1E0890013246A /* BlueCapCentralManager.h */; };
@@ -64,7 +64,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				054766C617FFB845005C4125 /* GATTProfiles.h in CopyFiles */,
+				054766C617FFB845005C4125 /* BLEGATTProfiles.h in CopyFiles */,
 				059329E217F3DE4700D514F1 /* BlueCapBlocks.h in CopyFiles */,
 				059329E017F13BC900D514F1 /* TISensorTagServiceProfile.h in CopyFiles */,
 				059329DA17F1350100D514F1 /* BlueCapCharacteristicProfile.h in CopyFiles */,
@@ -90,8 +90,8 @@
 		0543815E17CA89F00071AC73 /* BlueCapCentralManager+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapCentralManager+Friend.m"; sourceTree = "<group>"; };
 		0543816017CADBC90071AC73 /* CBUUID+StringValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+StringValue.h"; sourceTree = "<group>"; };
 		0543816117CADBC90071AC73 /* CBUUID+StringValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+StringValue.m"; sourceTree = "<group>"; };
-		054766BD17FFB09B005C4125 /* GATTProfiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GATTProfiles.h; sourceTree = "<group>"; };
-		054766BE17FFB09B005C4125 /* GATTProfiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GATTProfiles.m; sourceTree = "<group>"; };
+		054766BD17FFB09B005C4125 /* BLEGATTProfiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEGATTProfiles.h; sourceTree = "<group>"; };
+		054766BE17FFB09B005C4125 /* BLEGATTProfiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEGATTProfiles.m; sourceTree = "<group>"; };
 		054766C017FFB3C5005C4125 /* BlueCapServiceProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCapServiceProfile.h; sourceTree = "<group>"; };
 		054766C117FFB3C5005C4125 /* BlueCapServiceProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCapServiceProfile.m; sourceTree = "<group>"; };
 		054766C217FFB3C5005C4125 /* BlueCapServiceProfile+Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlueCapServiceProfile+Friend.h"; sourceTree = "<group>"; };
@@ -162,8 +162,8 @@
 			children = (
 				059329CE17F0989500D514F1 /* TISensorTagServiceProfile.h */,
 				059329CF17F0989500D514F1 /* TISensorTagServiceProfile.m */,
-				054766BD17FFB09B005C4125 /* GATTProfiles.h */,
-				054766BE17FFB09B005C4125 /* GATTProfiles.m */,
+				054766BD17FFB09B005C4125 /* BLEGATTProfiles.h */,
+				054766BE17FFB09B005C4125 /* BLEGATTProfiles.m */,
 			);
 			name = ServiceProfiles;
 			path = ServiceDefinitions;
@@ -413,7 +413,7 @@
 				05E6897917C1E09C0013246A /* BlueCapCentralManager.m in Sources */,
 				059769D417CC472000BDE5B5 /* BlueCapService+Friend.m in Sources */,
 				059769D717CC479700BDE5B5 /* BlueCapCharacteristic.m in Sources */,
-				054766BF17FFB09B005C4125 /* GATTProfiles.m in Sources */,
+				054766BF17FFB09B005C4125 /* BLEGATTProfiles.m in Sources */,
 				054766C417FFB3C5005C4125 /* BlueCapServiceProfile.m in Sources */,
 				059329D017F0989500D514F1 /* TISensorTagServiceProfile.m in Sources */,
 			);
