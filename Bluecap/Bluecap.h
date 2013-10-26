@@ -23,8 +23,12 @@
 #import "TISensorTagServiceProfile.h"
 #import "GATTProfiles.h"
 
+NSNumber* blueCapUnsignedInt16LittleFromData(NSData* data, NSRange range);
+NSNumber* blueCapUnsignedInt16BigFromData(NSData* data, NSRange range);
+
+NSNumber* blueCapInt16LittleFromData(NSData* data, NSRange range);
+NSNumber* blueCapInt16BigFromData(NSData* data, NSRange range);
+
 NSNumber* blueCapCharFromData(NSData* data, NSRange range);
-NSNumber* blueCapUnsignedInt16FromData(NSData* data, NSRange range);
-NSNumber* blueCapInt16FromData(NSData* data, NSRange range);
 NSNumber* blueCapUnsignedCharFromData(NSData* data);
 NSData* blueCapUnsignedCharToData(uint8_t data);

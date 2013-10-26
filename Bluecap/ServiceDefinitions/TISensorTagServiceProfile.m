@@ -146,12 +146,29 @@
                                                 name:@"Temperature Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  double ambient = [blueCapInt16FromData(data, NSMakeRange(0, 2)) doubleValue];
-                                                  double object = [blueCapInt16FromData(data, NSMakeRange(2, 2)) doubleValue];
-                                                  double tRef = 298.15;
-                                                  double tAmb = ambient/128.0;
-                                                  return @{TISENSOR_TAG_TEMPERATURE_AMBIENT:[NSNumber numberWithDouble:ambient],
-                                                           TISENSOR_TAG_TEMPERATURE_OBJECT:[NSNumber numberWithDouble:object]};
+                                                  double ambientT = [blueCapInt16LittleFromData(data, NSMakeRange(0, 2)) doubleValue]/128.0;
+                                                  double objectT = [blueCapInt16LittleFromData(data, NSMakeRange(2, 2)) doubleValue]*0.00000015625;
+                                                  double ambientTAbs = ambientT + 273.15;
+                                                  double refT = 298.15;
+                                                  double S0 = 6.4*pow(10,-14);
+                                                  double a1 = 1.75*pow(10,-3);
+                                                  double a2 = -1.678*pow(10,-5);
+                                                  double b0 = -2.94*pow(10,-5);
+                                                  double b1 = -5.7*pow(10,-7);
+                                                  double b2 = 4.63*pow(10,-9);
+                                                  double c2 = 13.4f;
+                                                  double S = S0*(1+a1*(ambientTAbs - refT)+a2*pow((ambientTAbs - refT),2));
+                                                  double Vos = b0 + b1*(ambientTAbs - refT) + b2*pow((ambientTAbs - refT),2);
+                                                  double fObj = (objectT - Vos) + c2*pow((objectT - Vos),2);
+                                                  double Tobj = pow(pow(ambientTAbs,4) + (fObj/S),.25);
+                                                  return @{TISENSOR_TAG_TEMPERATURE_AMBIENT:[NSNumber numberWithDouble:ambientT],
+                                                           TISENSOR_TAG_TEMPERATURE_OBJECT:[NSNumber numberWithDouble:(Tobj - 273.15)]};
+                                              }];
+                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                  return @{TISENSOR_TAG_TEMPERATURE_AMBIENT:
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_TEMPERATURE_AMBIENT] integerValue]],
+                                                           TISENSOR_TAG_TEMPERATURE_OBJECT:
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_TEMPERATURE_OBJECT] integerValue]]};
                                               }];
                                           }];
 
@@ -186,8 +203,8 @@
                                                 name:@"Barometer Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE:blueCapInt16FromData(data, NSMakeRange(0, 2)),
-                                                           TISENSOR_TAG_BAROMETER_RAW_PRESSURE:blueCapUnsignedInt16FromData(data, NSMakeRange(2, 2))};
+                                                  return @{TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE:blueCapInt16LittleFromData(data, NSMakeRange(0, 2)),
+                                                           TISENSOR_TAG_BAROMETER_RAW_PRESSURE:blueCapUnsignedInt16LittleFromData(data, NSMakeRange(2, 2))};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return @{TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE:
@@ -214,14 +231,14 @@
                                                 name:@"Barometer Calibration Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{TISENSOR_TAG_BAROMETER_CALIBRATION_C1:blueCapUnsignedInt16FromData(data, NSMakeRange(0, 2)),
-                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C2:blueCapUnsignedInt16FromData(data, NSMakeRange(2, 2)),
-                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C3:blueCapUnsignedInt16FromData(data, NSMakeRange(4, 2)),
-                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C4:blueCapUnsignedInt16FromData(data, NSMakeRange(6, 2)),
-                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C5:blueCapInt16FromData(data, NSMakeRange(8, 2)),
-                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C6:blueCapInt16FromData(data, NSMakeRange(10, 2)),
-                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C7:blueCapInt16FromData(data, NSMakeRange(12, 2)),
-                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C8:blueCapInt16FromData(data, NSMakeRange(14, 2))};
+                                                  return @{TISENSOR_TAG_BAROMETER_CALIBRATION_C1:blueCapUnsignedInt16LittleFromData(data, NSMakeRange(0, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C2:blueCapUnsignedInt16LittleFromData(data, NSMakeRange(2, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C3:blueCapUnsignedInt16LittleFromData(data, NSMakeRange(4, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C4:blueCapUnsignedInt16LittleFromData(data, NSMakeRange(6, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C5:blueCapInt16LittleFromData(data, NSMakeRange(8, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C6:blueCapInt16LittleFromData(data, NSMakeRange(10, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C7:blueCapInt16LittleFromData(data, NSMakeRange(12, 2)),
+                                                           TISENSOR_TAG_BAROMETER_CALIBRATION_C8:blueCapInt16LittleFromData(data, NSMakeRange(14, 2))};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   NSMutableDictionary* stringValues = [NSMutableDictionary dictionary];

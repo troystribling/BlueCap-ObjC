@@ -17,22 +17,40 @@ void DebugLog(NSString* format, ...) {
 #endif
 }
 
+#pragma mark - UnsignedInt16
+
+NSNumber* blueCapUnsignedInt16LittleFromData(NSData* data, NSRange range) {
+    uint16_t val;
+    [data getBytes:&val range:range];
+    return [NSNumber numberWithUnsignedShort:CFSwapInt16LittleToHost(val)];
+}
+
+NSNumber* blueCapUnsignedInt16BigFromData(NSData* data, NSRange range) {
+    uint16_t val;
+    [data getBytes:&val range:range];
+    return [NSNumber numberWithUnsignedShort:CFSwapInt16BigToHost(val)];
+}
+
+#pragma mark - Int16
+
+NSNumber* blueCapInt16LittleFromData(NSData* data, NSRange range) {
+    int16_t val;
+    [data getBytes:&val range:range];
+    return [NSNumber numberWithShort:CFSwapInt16LittleToHost(val)];
+}
+
+NSNumber* blueCapInt16BigFromData(NSData* data, NSRange range) {
+    int16_t val;
+    [data getBytes:&val range:range];
+    return [NSNumber numberWithShort:CFSwapInt16BigToHost(val)];
+}
+
+#pragma mark - Char
+
 NSNumber* blueCapCharFromData(NSData* data, NSRange range) {
     int8_t val;
     [data getBytes:&val range:range];
     return [NSNumber numberWithChar:val];
-}
-
-NSNumber* blueCapUnsignedInt16FromData(NSData* data, NSRange range) {
-    uint16_t val;
-    [data getBytes:&val range:range];
-    return [NSNumber numberWithUnsignedShort:val];
-}
-
-NSNumber* blueCapInt16FromData(NSData* data, NSRange range) {
-    int16_t val;
-    [data getBytes:&val range:range];
-    return [NSNumber numberWithShort:val];
 }
 
 NSNumber* blueCapUnsignedCharFromData(NSData* data) {
