@@ -33,6 +33,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    if ([self.characteristic hasProfile]) {
+        self.navigationItem.title = self.characteristic.profile.name;
+    }
     self.uuidLabel.text = self.characteristic.UUID.stringValue;
     self.broadcastingLabel.text = [self booleanStringValue:self.characteristic.isBroadcasted];
     self.notifyingLabel.text = [self booleanStringValue:self.characteristic.isNotifying];

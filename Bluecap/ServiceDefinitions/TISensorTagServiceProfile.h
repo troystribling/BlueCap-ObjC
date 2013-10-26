@@ -46,14 +46,16 @@
 
 #pragma mark - Temperature
 
-#define TISENSOR_TAG_TEMPERATURE_ENABLED            @"Enabled"
-#define TISENSOR_TAG_TEMPERATURE_ON                 @"Yes"
-#define TISENSOR_TAG_TEMPERATURE_ON_VALUE           0x01
-#define TISENSOR_TAG_TEMPERATURE_OFF                @"No"
-#define TISENSOR_TAG_TEMPERATURE_OFF_VALUE          0x00
+#define TISENSOR_TAG_TEMPERATURE_ENABLED                @"Enabled"
+#define TISENSOR_TAG_TEMPERATURE_ON                     @"Yes"
+#define TISENSOR_TAG_TEMPERATURE_ON_VALUE               0x01
+#define TISENSOR_TAG_TEMPERATURE_OFF                    @"No"
+#define TISENSOR_TAG_TEMPERATURE_OFF_VALUE              0x00
 
-#define TISENSOR_TAG_TEMPERATURE_OBJECT             @"Object Temperature"
-#define TISENSOR_TAG_TEMPERATURE_AMBIENT            @"Ambient Temperature"
+#define TISENSOR_TAG_CALIBRATED_TEMPERATURE_OBJECT      @"Calibrated Object Temperature"
+#define TISENSOR_TAG_CALIBRATED_TEMPERATURE_AMBIENT     @"Calibrated Ambient Temperature"
+#define TISENSOR_TAG_RAW_TEMPERATURE_OBJECT             @"Raw Object Temperature"
+#define TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT            @"Raw Ambient Temperature"
 
 #pragma mark - Gyrosope
 

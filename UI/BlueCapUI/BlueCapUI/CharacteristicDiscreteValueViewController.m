@@ -24,6 +24,7 @@
 }
 
 - (void)viewDidLoad {
+    self.navigationItem.title = self.characteristic.profile.name;
     [super viewDidLoad];
 }
 

@@ -22,6 +22,8 @@
 }
 
 - (void)viewDidLoad {
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    self.navigationItem.title = self.characteristic.profile.name;
     [super viewDidLoad];
 }
 

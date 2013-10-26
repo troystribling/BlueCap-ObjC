@@ -18,7 +18,7 @@
 #pragma mark - Accelerometer
 
     [centralManager createServiceWithUUID:@"F000AA10-0451-4000-B000-000000000000"
-                                     name:@"Accelerometer"
+                                     name:@"TI Accelerometer"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                    
         [serviceProfile createCharacteristicWithUUID:@"f000aa11-0451-4000-b000-000000000000"
@@ -82,7 +82,7 @@
 #pragma mark - Magnetometer
 
     [centralManager createServiceWithUUID:@"F000AA30-0451-4000-B000-000000000000"
-                                     name:@"Magnetometer"
+                                     name:@"TI Magnetometer"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                    
         [serviceProfile createCharacteristicWithUUID:@"f000aa31-0451-4000-b000-000000000000"
@@ -110,7 +110,7 @@
 #pragma mark - Gyroscope
 
     [centralManager createServiceWithUUID:@"F000AA50-0451-4000-B000-000000000000"
-                                     name:@"Gyroscope"
+                                     name:@"TI Gyroscope"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa51-0451-4000-b000-000000000000"
@@ -139,36 +139,44 @@
 #pragma mark - Temperature
 
     [centralManager createServiceWithUUID:@"F000AA00-0451-4000-B000-000000000000"
-                                     name:@"IR Temperature Sensor"
+                                     name:@"TI IR Temperature Sensor"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa01-0451-4000-b000-000000000000"
                                                 name:@"Temperature Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  double ambientT = [blueCapInt16LittleFromData(data, NSMakeRange(0, 2)) doubleValue]/128.0;
-                                                  double objectT = [blueCapInt16LittleFromData(data, NSMakeRange(2, 2)) doubleValue]*0.00000015625;
-                                                  double ambientTAbs = ambientT + 273.15;
-                                                  double refT = 298.15;
-                                                  double S0 = 6.4*pow(10,-14);
+                                                  NSNumber* rawObject = blueCapInt16LittleFromData(data, NSMakeRange(0, 2));
+                                                  NSNumber* rawAmbient = blueCapInt16LittleFromData(data, NSMakeRange(2, 2));
+                                                  double calAmbient = [rawAmbient doubleValue]/128.0;
+                                                  double vObj2 = [rawObject doubleValue]*0.00000015625;
+                                                  double tDie2 = calAmbient + 273.15;
+                                                  double s0 = 6.4*pow(10,-14);
                                                   double a1 = 1.75*pow(10,-3);
                                                   double a2 = -1.678*pow(10,-5);
                                                   double b0 = -2.94*pow(10,-5);
                                                   double b1 = -5.7*pow(10,-7);
                                                   double b2 = 4.63*pow(10,-9);
                                                   double c2 = 13.4f;
-                                                  double S = S0*(1+a1*(ambientTAbs - refT)+a2*pow((ambientTAbs - refT),2));
-                                                  double Vos = b0 + b1*(ambientTAbs - refT) + b2*pow((ambientTAbs - refT),2);
-                                                  double fObj = (objectT - Vos) + c2*pow((objectT - Vos),2);
-                                                  double Tobj = pow(pow(ambientTAbs,4) + (fObj/S),.25);
-                                                  return @{TISENSOR_TAG_TEMPERATURE_AMBIENT:[NSNumber numberWithDouble:ambientT],
-                                                           TISENSOR_TAG_TEMPERATURE_OBJECT:[NSNumber numberWithDouble:(Tobj - 273.15)]};
+                                                  double tRef = 298.15;
+                                                  double s = s0*(1+a1*(tDie2 - tRef)+a2*pow((tDie2 - tRef),2));
+                                                  double vOs = b0 + b1*(tDie2 - tRef) + b2*pow((tDie2 - tRef),2);
+                                                  double fObj = (vObj2 - vOs) + c2*pow((vObj2 - vOs),2);
+                                                  double tObj = pow(pow(tDie2,4) + (fObj/s),.25) - 273.15;
+                                                  return @{TISENSOR_TAG_CALIBRATED_TEMPERATURE_AMBIENT:[NSNumber numberWithDouble:calAmbient],
+                                                           TISENSOR_TAG_CALIBRATED_TEMPERATURE_OBJECT:[NSNumber numberWithDouble:tObj],
+                                                           TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT:rawAmbient,
+                                                           TISENSOR_TAG_RAW_TEMPERATURE_OBJECT:rawObject};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                                                  return @{TISENSOR_TAG_TEMPERATURE_AMBIENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_TEMPERATURE_AMBIENT] integerValue]],
-                                                           TISENSOR_TAG_TEMPERATURE_OBJECT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_TEMPERATURE_OBJECT] integerValue]]};
+                                                  return @{TISENSOR_TAG_CALIBRATED_TEMPERATURE_AMBIENT:
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_CALIBRATED_TEMPERATURE_AMBIENT] integerValue]],
+                                                           TISENSOR_TAG_CALIBRATED_TEMPERATURE_OBJECT:
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_CALIBRATED_TEMPERATURE_OBJECT] integerValue]],
+                                                           TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT:
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT] integerValue]],
+                                                           TISENSOR_TAG_RAW_TEMPERATURE_OBJECT:
+                                                                [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_OBJECT] integerValue]]};
                                               }];
                                           }];
 
@@ -196,7 +204,7 @@
 */
 
     [centralManager createServiceWithUUID:@"F000AA40-0451-4000-B000-000000000000"
-                                     name:@"Barometer"
+                                     name:@"TI Barometer"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                 
         [serviceProfile createCharacteristicWithUUID:@"f000aa41-0451-4000-b000-000000000000"
@@ -253,7 +261,7 @@
 #pragma mark - Hygrometer
 
     [centralManager createServiceWithUUID:@"F000AA20-0451-4000-B000-000000000000"
-                                        name:@"Hygrometer"
+                                        name:@"TI Hygrometer"
                                   andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                       
                                   [serviceProfile createCharacteristicWithUUID:@"f000aa21-0451-4000-b000-000000000000"
@@ -274,7 +282,7 @@
                                   }];
 
     [centralManager createServiceWithUUID:@"F000AA60-0451-4000-B000-000000000000"
-                                     name:@"TISensorTag Test"
+                                     name:@"TI Sensor Tag Test"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                       
         [serviceProfile createCharacteristicWithUUID:@"f000aa61-0451-4000-b000-000000000000"
