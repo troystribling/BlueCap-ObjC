@@ -15,9 +15,12 @@
 #define TISENSOR_TAG_ACCELEROMETER_OFF              @"No"
 #define TISENSOR_TAG_ACCELEROMETER_OFF_VALUE        0x00
 
-#define TISENSOR_TAG_ACCELEROMTER_VALUE_X_COMPONENT @"X Acceleration"
-#define TISENSOR_TAG_ACCELEROMTER_VALUE_Y_COMPONENT @"Y Acceleration"
-#define TISENSOR_TAG_ACCELEROMTER_VALUE_Z_COMPONENT @"Z Acceleration"
+#define TISENSOR_TAG_ACCELEROMTER_X_COMPONENT       @"X Acceleration"
+#define TISENSOR_TAG_ACCELEROMTER_Y_COMPONENT       @"Y Acceleration"
+#define TISENSOR_TAG_ACCELEROMTER_Z_COMPONENT       @"Z Acceleration"
+#define TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT   @"Raw X Acceleration"
+#define TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT   @"Raw Y Acceleration"
+#define TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT   @"Raw Z Acceleration"
 
 #define TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD    @"Update Period"
 
@@ -52,8 +55,8 @@
 #define TISENSOR_TAG_TEMPERATURE_OFF                    @"No"
 #define TISENSOR_TAG_TEMPERATURE_OFF_VALUE              0x00
 
-#define TISENSOR_TAG_CALIBRATED_TEMPERATURE_OBJECT      @"Calibrated Object Temperature"
-#define TISENSOR_TAG_CALIBRATED_TEMPERATURE_AMBIENT     @"Calibrated Ambient Temperature"
+#define TISENSOR_TAG_TEMPERATURE_OBJECT                 @"Object Temperature"
+#define TISENSOR_TAG_TEMPERATURE_AMBIENT                @"Ambient Temperature"
 #define TISENSOR_TAG_RAW_TEMPERATURE_OBJECT             @"Raw Object Temperature"
 #define TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT            @"Raw Ambient Temperature"
 
@@ -76,6 +79,13 @@
 #define TISENSOR_TAG_GYROSCOPE_OFF                  @"No"
 #define TISENSOR_TAG_GYROSCOPE_OFF_VALUE            0x00
 
+#define TISENSOR_TAG_GYROSCOPE_X_COMPONENT          @"X Component"
+#define TISENSOR_TAG_GYROSCOPE_Y_COMPONENT          @"Y Component"
+#define TISENSOR_TAG_GYROSCOPE_Z_COMPONENT          @"Z Component"
+#define TISENSOR_TAG_GYROSCOPE_RAW_X_COMPONENT      @"Raw X Component"
+#define TISENSOR_TAG_GYROSCOPE_RAW_Y_COMPONENT      @"Raw Y Component"
+#define TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT      @"Raw Z Component"
+
 #pragma mark - Magnetometer
 
 #define TISENSOR_TAG_MAGNETOMETER_ON                @"Yes"
@@ -83,12 +93,26 @@
 #define TISENSOR_TAG_MAGNETOMETER_OFF               @"No"
 #define TISENSOR_TAG_MAGNETOMETER_OFF_VALUE         0x00
 
+#define TISENSOR_TAG_MAGNETOMETER_X_COMPONENT           @"X Component"
+#define TISENSOR_TAG_MAGNETOMETER_Y_COMPONENT           @"Y Component"
+#define TISENSOR_TAG_MAGNETOMETER_Z_COMPONENT           @"Z Component"
+#define TISENSOR_TAG_MAGNETOMETER_RAW_X_COMPONENT       @"Raw X Component"
+#define TISENSOR_TAG_MAGNETOMETER_RAW_Y_COMPONENT       @"Raw Y Component"
+#define TISENSOR_TAG_MAGNETOMETER_RAW_Z_COMPONENT       @"Raw Z Component"
+
+#define TISENSOR_TAG_MAGNETOMETER_UPDATE_PERIOD         @"Update Period"
+
 #pragma mark - Hygrometer
 
 #define TISENSOR_TAG_HYGROMETER_ON                @"Yes"
 #define TISENSOR_TAG_HYGROMETER_ON_VALUE          0x01
 #define TISENSOR_TAG_HYGROMETER_OFF               @"No"
 #define TISENSOR_TAG_HYGROMETER_OFF_VALUE         0x00
+
+#define TISENSOR_TAG_HYGROMETER_TEMPERATURE         @"Temperature"
+#define TISENSOR_TAG_HYGROMETER_HUMIDITY            @"Humidity"
+#define TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE     @"Raw Temperature"
+#define TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY        @"Raw Humidity"
 
 #pragma mark - Device Test
 
