@@ -49,7 +49,6 @@
 
 #pragma mark - Temperature
 
-#define TISENSOR_TAG_TEMPERATURE_ENABLED                @"Enabled"
 #define TISENSOR_TAG_TEMPERATURE_ON                     @"Yes"
 #define TISENSOR_TAG_TEMPERATURE_ON_VALUE               0x01
 #define TISENSOR_TAG_TEMPERATURE_OFF                    @"No"
@@ -115,6 +114,20 @@
 #define TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY        @"Raw Humidity"
 
 #pragma mark - Device Test
+
+#define TISENSOR_TAG_TEST_ON                @"YES"
+#define TISENSOR_TAG_TEST_ON_VALUE          0x83
+#define TISENSOR_TAG_TEST_OFF               @"NO"
+#define TISENSOR_TAG_TEST_OFF_VALUE         0x00
+
+#define TISENSOR_TAG_TEST_1_RESULT          @"Test 1"
+#define TISENSOR_TAG_TEST_2_RESULT          @"Test 2"
+#define TISENSOR_TAG_TEST_3_RESULT          @"Test 3"
+#define TISENSOR_TAG_TEST_4_RESULT          @"Test 4"
+#define TISENSOR_TAG_TEST_5_RESULT          @"Test 5"
+#define TISENSOR_TAG_TEST_6_RESULT          @"Test 6"
+#define TISENSOR_TAG_TEST_7_RESULT          @"Test 7"
+#define TISENSOR_TAG_TEST_8_RESULT          @"Test 8"
 
 
 @interface TISensorTagServiceProfile : NSObject

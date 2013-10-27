@@ -25,18 +25,18 @@
                                                 name:@"Accelerometer Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  NSNumber* accxNumber = blueCapCharFromData(data, NSMakeRange(0,1));
-                                                  NSNumber* accyNumber = blueCapCharFromData(data, NSMakeRange(1,1));
-                                                  NSNumber* acczNumber = blueCapCharFromData(data, NSMakeRange(2,1));
-                                                  float accx= -[accxNumber floatValue]/64.0f;
-                                                  float accy = -[accyNumber floatValue]/64.0f;
-                                                  float accz = [acczNumber floatValue]/64.0f;
-                                                  return @{TISENSOR_TAG_ACCELEROMTER_X_COMPONENT:[NSNumber numberWithFloat:accx],
-                                                           TISENSOR_TAG_ACCELEROMTER_Y_COMPONENT:[NSNumber numberWithFloat:accy],
-                                                           TISENSOR_TAG_ACCELEROMTER_Z_COMPONENT:[NSNumber numberWithFloat:accz],
-                                                           TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT:accxNumber,
-                                                           TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT:accyNumber,
-                                                           TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT:acczNumber};
+                                                  NSNumber* xCompNumber = blueCapCharFromData(data, NSMakeRange(0,1));
+                                                  NSNumber* yCompNumber = blueCapCharFromData(data, NSMakeRange(1,1));
+                                                  NSNumber* zCompNumber = blueCapCharFromData(data, NSMakeRange(2,1));
+                                                  float xComp = -[xCompNumber floatValue]/64.0f;
+                                                  float yComp = -[yCompNumber floatValue]/64.0f;
+                                                  float zComp = [zCompNumber floatValue]/64.0f;
+                                                  return @{TISENSOR_TAG_ACCELEROMTER_X_COMPONENT:[NSNumber numberWithFloat:xComp],
+                                                           TISENSOR_TAG_ACCELEROMTER_Y_COMPONENT:[NSNumber numberWithFloat:yComp],
+                                                           TISENSOR_TAG_ACCELEROMTER_Z_COMPONENT:[NSNumber numberWithFloat:zComp],
+                                                           TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT:xCompNumber,
+                                                           TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT:yCompNumber,
+                                                           TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT:zCompNumber};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return @{TISENSOR_TAG_ACCELEROMTER_X_COMPONENT:
@@ -101,9 +101,9 @@
                                                   NSNumber* xCompNumber = blueCapInt16BigFromData(data, NSMakeRange(0, 2));
                                                   NSNumber* yCompNumber = blueCapInt16BigFromData(data, NSMakeRange(2, 2));
                                                   NSNumber* zCompNumber = blueCapInt16BigFromData(data, NSMakeRange(4, 2));
-                                                  double xComp = -[xCompNumber doubleValue]*10.0/32768;
-                                                  double yComp = -[yCompNumber doubleValue]*10.0/32768;
-                                                  double zComp = [zCompNumber doubleValue]*10.0/32768;
+                                                  double xComp = -[xCompNumber doubleValue]*20.0/65536.0;
+                                                  double yComp = -[yCompNumber doubleValue]*20.0/65536.0;
+                                                  double zComp = [zCompNumber doubleValue]*20.0/65536.0;
                                                   return @{TISENSOR_TAG_MAGNETOMETER_X_COMPONENT:[NSNumber numberWithDouble:xComp],
                                                            TISENSOR_TAG_MAGNETOMETER_Y_COMPONENT:[NSNumber numberWithDouble:yComp],
                                                            TISENSOR_TAG_MAGNETOMETER_Z_COMPONENT:[NSNumber numberWithDouble:zComp],
@@ -168,6 +168,34 @@
         [serviceProfile createCharacteristicWithUUID:@"f000aa51-0451-4000-b000-000000000000"
                                                 name:@"Gyroscope Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                                                  NSNumber* xCompNumber = blueCapInt16BigFromData(data, NSMakeRange(0, 2));
+                                                  NSNumber* yCompNumber = blueCapInt16BigFromData(data, NSMakeRange(2, 2));
+                                                  NSNumber* zCompNumber = blueCapInt16BigFromData(data, NSMakeRange(4, 2));
+                                                  double xComp = -[xCompNumber doubleValue]*500.0/65536.0;
+                                                  double yComp = -[yCompNumber doubleValue]*500.0/65536.0;
+                                                  double zComp = [zCompNumber doubleValue]*500.0/65536.0;
+                                                  return @{TISENSOR_TAG_GYROSCOPE_X_COMPONENT:[NSNumber numberWithDouble:xComp],
+                                                           TISENSOR_TAG_GYROSCOPE_Y_COMPONENT:[NSNumber numberWithDouble:yComp],
+                                                           TISENSOR_TAG_GYROSCOPE_Z_COMPONENT:[NSNumber numberWithDouble:zComp],
+                                                           TISENSOR_TAG_GYROSCOPE_RAW_X_COMPONENT: xCompNumber,
+                                                           TISENSOR_TAG_GYROSCOPE_RAW_Y_COMPONENT: yCompNumber,
+                                                           TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT: zCompNumber};
+                                              }];
+                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                  return @{TISENSOR_TAG_GYROSCOPE_X_COMPONENT:
+                                                               [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_X_COMPONENT] floatValue]],
+                                                           TISENSOR_TAG_GYROSCOPE_Y_COMPONENT:
+                                                               [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_Y_COMPONENT] floatValue]],
+                                                           TISENSOR_TAG_GYROSCOPE_Z_COMPONENT:
+                                                               [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_Z_COMPONENT] floatValue]],
+                                                           TISENSOR_TAG_GYROSCOPE_RAW_X_COMPONENT:
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_X_COMPONENT] integerValue]],
+                                                           TISENSOR_TAG_GYROSCOPE_RAW_Y_COMPONENT:
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_Y_COMPONENT] integerValue]],
+                                                           TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT:
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT] integerValue]]};
+                                              }];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa52-0451-4000-b000-000000000000"
@@ -222,9 +250,9 @@
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return @{TISENSOR_TAG_TEMPERATURE_AMBIENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_TEMPERATURE_AMBIENT] integerValue]],
+                                                               [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_TEMPERATURE_AMBIENT] floatValue]],
                                                            TISENSOR_TAG_TEMPERATURE_OBJECT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_TEMPERATURE_OBJECT] integerValue]],
+                                                               [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_TEMPERATURE_OBJECT] floatValue]],
                                                            TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT:
                                                                [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT] integerValue]],
                                                            TISENSOR_TAG_RAW_TEMPERATURE_OBJECT:
@@ -319,6 +347,26 @@
                                   [serviceProfile createCharacteristicWithUUID:@"f000aa21-0451-4000-b000-000000000000"
                                                                           name:@"Hygrometer"
                                                                     andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                                                        [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                                                                            NSNumber* tempNumber = blueCapUnsignedInt16LittleFromData(data, NSMakeRange(0, 2));
+                                                                            NSNumber* humidNumber = blueCapUnsignedInt16LittleFromData(data, NSMakeRange(2, 2));
+                                                                            double temp = -46.86 + 175.72*[tempNumber doubleValue]/65536.0;
+                                                                            double humid = -6.0 + 125.0*[humidNumber doubleValue]/65536.0;
+                                                                            return @{TISENSOR_TAG_HYGROMETER_TEMPERATURE:[NSNumber numberWithDouble:temp],
+                                                                                     TISENSOR_TAG_HYGROMETER_HUMIDITY:[NSNumber numberWithDouble:humid],
+                                                                                     TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE:tempNumber,
+                                                                                     TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY:humidNumber};
+                                                                        }];
+                                                                        [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                                            return @{TISENSOR_TAG_HYGROMETER_TEMPERATURE:
+                                                                                         [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_HYGROMETER_TEMPERATURE] floatValue]],
+                                                                                     TISENSOR_TAG_HYGROMETER_HUMIDITY:
+                                                                                         [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_HYGROMETER_HUMIDITY] floatValue]],
+                                                                                     TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE:
+                                                                                         [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE] integerValue]],
+                                                                                     TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY:
+                                                                                         [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] integerValue]]};
+                                                                        }];
                                                                     }];
                                   
                                   [serviceProfile createCharacteristicWithUUID:@"f000aa22-0451-4000-b000-000000000000"
@@ -333,7 +381,7 @@
                                       
                                   }];
 
-#pragma mark - Test
+#pragma mark - Sensor Tag Test
     
     [centralManager createServiceWithUUID:@"F000AA60-0451-4000-B000-000000000000"
                                      name:@"TI Sensor Tag Test"
@@ -342,11 +390,44 @@
         [serviceProfile createCharacteristicWithUUID:@"f000aa61-0451-4000-b000-000000000000"
                                               name:@"Test Data"
                                         andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                            [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                                                uint8_t testResults = [blueCapUnsignedCharFromData(data) unsignedCharValue];
+                                                uint8_t test1Result = testResults & (1 << 0);
+                                                uint8_t test2Result = testResults & (1 << 1);
+                                                uint8_t test3Result = testResults & (1 << 2);
+                                                uint8_t test4Result = testResults & (1 << 3);
+                                                uint8_t test5Result = testResults & (1 << 4);
+                                                uint8_t test6Result = testResults & (1 << 5);
+                                                uint8_t test7Result = testResults & (1 << 6);
+                                                uint8_t test8Result = testResults & (1 << 7);
+                                                return @{TISENSOR_TAG_TEST_1_RESULT:[NSNumber numberWithUnsignedChar:test1Result],
+                                                         TISENSOR_TAG_TEST_2_RESULT:[NSNumber numberWithUnsignedChar:test2Result],
+                                                         TISENSOR_TAG_TEST_3_RESULT:[NSNumber numberWithUnsignedChar:test3Result],
+                                                         TISENSOR_TAG_TEST_4_RESULT:[NSNumber numberWithUnsignedChar:test4Result],
+                                                         TISENSOR_TAG_TEST_5_RESULT:[NSNumber numberWithUnsignedChar:test5Result],
+                                                         TISENSOR_TAG_TEST_6_RESULT:[NSNumber numberWithUnsignedChar:test6Result],
+                                                         TISENSOR_TAG_TEST_7_RESULT:[NSNumber numberWithUnsignedChar:test7Result],
+                                                         TISENSOR_TAG_TEST_8_RESULT:[NSNumber numberWithUnsignedChar:test8Result]};
+                                            }];
+                                            [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                NSMutableDictionary* stringResults = [NSMutableDictionary dictionary];
+                                                for (NSString* resultName in [data allKeys]) {
+                                                    uint8_t result = [[data valueForKey:resultName] unsignedCharValue];
+                                                    if (result == 0) {
+                                                        [stringResults setObject:@"FAILED" forKey:resultName];
+                                                    } else {
+                                                        [stringResults setObject:@"PASSED" forKey:resultName];
+                                                    }
+                                                }
+                                                return stringResults;
+                                            }];
                                         }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa62-0451-4000-b000-000000000000"
-                                              name:@"Test On/Off"
+                                              name:@"Test Enabled"
                                         andProfile:^(BlueCapCharacteristicProfile* characteristicProfile ) {
+                                            [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_TEST_ON_VALUE) named:TISENSOR_TAG_TEST_ON];
+                                            [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_TEST_OFF_VALUE) named:TISENSOR_TAG_TEST_OFF];
                                         }];
 
     }];
