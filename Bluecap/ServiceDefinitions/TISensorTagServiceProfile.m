@@ -101,9 +101,9 @@
                                                   NSNumber* xCompNumber = blueCapInt16BigFromData(data, NSMakeRange(0, 2));
                                                   NSNumber* yCompNumber = blueCapInt16BigFromData(data, NSMakeRange(2, 2));
                                                   NSNumber* zCompNumber = blueCapInt16BigFromData(data, NSMakeRange(4, 2));
-                                                  double xComp = -[xCompNumber doubleValue]*1000.0/32768;
-                                                  double yComp = -[yCompNumber doubleValue]*1000.0/32768;
-                                                  double zComp = [zCompNumber doubleValue]*1000.0/32768;
+                                                  double xComp = -[xCompNumber doubleValue]*10.0/32768;
+                                                  double yComp = -[yCompNumber doubleValue]*10.0/32768;
+                                                  double zComp = [zCompNumber doubleValue]*10.0/32768;
                                                   return @{TISENSOR_TAG_MAGNETOMETER_X_COMPONENT:[NSNumber numberWithDouble:xComp],
                                                            TISENSOR_TAG_MAGNETOMETER_Y_COMPONENT:[NSNumber numberWithDouble:yComp],
                                                            TISENSOR_TAG_MAGNETOMETER_Z_COMPONENT:[NSNumber numberWithDouble:zComp],
@@ -113,11 +113,11 @@
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return @{TISENSOR_TAG_MAGNETOMETER_X_COMPONENT:
-                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_X_COMPONENT] floatValue]],
+                                                               [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_X_COMPONENT] floatValue]],
                                                            TISENSOR_TAG_MAGNETOMETER_Y_COMPONENT:
-                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_Y_COMPONENT] floatValue]],
+                                                               [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_Y_COMPONENT] floatValue]],
                                                            TISENSOR_TAG_MAGNETOMETER_Z_COMPONENT:
-                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_Z_COMPONENT] floatValue]],
+                                                               [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_Z_COMPONENT] floatValue]],
                                                            TISENSOR_TAG_MAGNETOMETER_RAW_X_COMPONENT:
                                                                [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_X_COMPONENT] integerValue]],
                                                            TISENSOR_TAG_MAGNETOMETER_RAW_Y_COMPONENT:
