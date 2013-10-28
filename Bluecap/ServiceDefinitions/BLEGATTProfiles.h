@@ -20,8 +20,6 @@
 #define BLE_GATT_DEVICE_INFORMATION_CERTIFICATION_DATA      @"Certification Data"
 #define BLE_GATT_DEVICE_INFORMATION_PNP_ID                  @"PnP ID"
 
-#define BLE_GATT_KEY_PRESSED                                @"Key"
-
 @interface BLEGATTProfiles : NSObject
 
 + (void)create;

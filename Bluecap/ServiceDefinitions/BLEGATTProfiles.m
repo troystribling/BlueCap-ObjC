@@ -121,31 +121,6 @@
                                           }];
 
         }];
-
-#pragma mark - Key Pressed
-
-    [centralManager createServiceWithUUID:@"ffe0"
-                                     name:@"Key Pressed"
-                               andProfile:^(BlueCapServiceProfile* serviceProfile) {
-                                  
-        [serviceProfile createCharacteristicWithUUID:@"ffe1"
-                                                name:@"Key Pressed State"
-                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  if (data.length > 0) {
-                                                      return @{BLE_GATT_KEY_PRESSED:blueCapUnsignedCharFromData(data)};
-                                                  } else {
-                                                      return @{BLE_GATT_KEY_PRESSED:[NSNumber numberWithInt:0]};
-                                                  }
-                                              }];
-                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                                                  return @{BLE_GATT_KEY_PRESSED:[NSString stringWithFormat:@"%d", [[data objectForKey:BLE_GATT_KEY_PRESSED] integerValue]]};
-                                              }];
-                                          }];
-
-        }];
-
-
 }
 
 @end

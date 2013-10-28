@@ -129,6 +129,7 @@
 #define TISENSOR_TAG_TEST_7_RESULT          @"Test 7"
 #define TISENSOR_TAG_TEST_8_RESULT          @"Test 8"
 
+#define TISENSOR_TAG_KEY_PRESSED            @"Key"
 
 @interface TISensorTagServiceProfile : NSObject
 
