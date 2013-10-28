@@ -98,12 +98,12 @@
                                                 name:@"Magnetometer Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  NSNumber* xCompNumber = blueCapInt16BigFromData(data, NSMakeRange(0, 2));
-                                                  NSNumber* yCompNumber = blueCapInt16BigFromData(data, NSMakeRange(2, 2));
-                                                  NSNumber* zCompNumber = blueCapInt16BigFromData(data, NSMakeRange(4, 2));
-                                                  double xComp = -[xCompNumber doubleValue]*20.0/65536.0;
-                                                  double yComp = -[yCompNumber doubleValue]*20.0/65536.0;
-                                                  double zComp = [zCompNumber doubleValue]*20.0/65536.0;
+                                                  NSNumber* xCompNumber = blueCapInt16LittleFromData(data, NSMakeRange(0, 2));
+                                                  NSNumber* yCompNumber = blueCapInt16LittleFromData(data, NSMakeRange(2, 2));
+                                                  NSNumber* zCompNumber = blueCapInt16LittleFromData(data, NSMakeRange(4, 2));
+                                                  double xComp = -[xCompNumber doubleValue]*2000.0/65536.0;
+                                                  double yComp = -[yCompNumber doubleValue]*2000.0/65536.0;
+                                                  double zComp = [zCompNumber doubleValue]*2000.0/65536.0;
                                                   return @{TISENSOR_TAG_MAGNETOMETER_X_COMPONENT:[NSNumber numberWithDouble:xComp],
                                                            TISENSOR_TAG_MAGNETOMETER_Y_COMPONENT:[NSNumber numberWithDouble:yComp],
                                                            TISENSOR_TAG_MAGNETOMETER_Z_COMPONENT:[NSNumber numberWithDouble:zComp],
@@ -169,9 +169,9 @@
                                                 name:@"Gyroscope Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  NSNumber* xCompNumber = blueCapInt16BigFromData(data, NSMakeRange(0, 2));
-                                                  NSNumber* yCompNumber = blueCapInt16BigFromData(data, NSMakeRange(2, 2));
-                                                  NSNumber* zCompNumber = blueCapInt16BigFromData(data, NSMakeRange(4, 2));
+                                                  NSNumber* xCompNumber = blueCapInt16LittleFromData(data, NSMakeRange(0, 2));
+                                                  NSNumber* yCompNumber = blueCapInt16LittleFromData(data, NSMakeRange(2, 2));
+                                                  NSNumber* zCompNumber = blueCapInt16LittleFromData(data, NSMakeRange(4, 2));
                                                   double xComp = -[xCompNumber doubleValue]*500.0/65536.0;
                                                   double yComp = -[yCompNumber doubleValue]*500.0/65536.0;
                                                   double zComp = [zCompNumber doubleValue]*500.0/65536.0;
