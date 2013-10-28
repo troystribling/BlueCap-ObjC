@@ -67,6 +67,14 @@
 }
 
 - (void)readData {
+    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyRead]) {
+        [self.characteristic readData:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
+            [self loadData:[__characteristic stringValue]];
+        }];
+    } else {
+        self.values = [self.characteristic stringValue];
+        [self.tableView reloadData];
+    }
     if (self.characteristic.isNotifying) {
         self.refreshButton.enabled = NO;
         [self.characteristic receiveUpdates:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
@@ -74,9 +82,6 @@
         }];
     } else {
         self.refreshButton.enabled = YES;
-        [self.characteristic readData:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
-            [self loadData:[__characteristic stringValue]];
-        }];
     }
 }
 

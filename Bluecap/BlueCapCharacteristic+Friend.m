@@ -41,8 +41,6 @@
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.afterReadCallback(self, error);
         }];
-    } else if ([self hasValues]) {
-        
     }
 }
 
