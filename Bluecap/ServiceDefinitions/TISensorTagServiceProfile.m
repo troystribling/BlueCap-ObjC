@@ -412,7 +412,7 @@
                                             [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                 NSMutableDictionary* stringResults = [NSMutableDictionary dictionary];
                                                 for (NSString* resultName in [data allKeys]) {
-                                                    uint8_t result = [[data valueForKey:resultName] unsignedCharValue];
+                                                    int result = [[data valueForKey:resultName] integerValue];
                                                     if (result == 0) {
                                                         [stringResults setObject:@"FAILED" forKey:resultName];
                                                     } else {

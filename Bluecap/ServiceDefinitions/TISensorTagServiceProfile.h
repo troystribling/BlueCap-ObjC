@@ -116,7 +116,7 @@
 #pragma mark - Device Test
 
 #define TISENSOR_TAG_TEST_ON                @"YES"
-#define TISENSOR_TAG_TEST_ON_VALUE          0x83
+#define TISENSOR_TAG_TEST_ON_VALUE          0x81
 #define TISENSOR_TAG_TEST_OFF               @"NO"
 #define TISENSOR_TAG_TEST_OFF_VALUE         0x00
 
