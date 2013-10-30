@@ -904,30 +904,50 @@
             </objects>
             <point key="canvasLocation" x="1218" y="249"/>
         </scene>
-        <!--Table View Controller - Root View Controller-->
+        <!--Profiles View Controller - Profiles-->
         <scene sceneID="YHQ-Rd-s1p">
             <objects>
-                <tableViewController id="zEN-c1-NRB" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nVc-LP-GhE">
+                <tableViewController id="zEN-c1-NRB" customClass="ProfilesViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="59" sectionHeaderHeight="22" sectionFooterHeight="22" id="nVc-LP-GhE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oXK-Rm-dzd">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="59" id="oXK-Rm-dzd" customClass="ProfileCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oXK-Rm-dzd" id="NKt-Sf-FuI">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="273" height="58"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVE-dJ-nL1">
+                                            <rect key="frame" x="20" y="11" width="253" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UUID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NuQ-ec-i8p">
+                                            <rect key="frame" x="20" y="32" width="253" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="FVE-dJ-nL1" id="OBK-DW-UfH"/>
+                                    <outlet property="uuidLabel" destination="NuQ-ec-i8p" id="xgE-U4-li0"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="aU2-gG-Xfx"/>
+                    <navigationItem key="navigationItem" title="Profiles" id="aU2-gG-Xfx"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMN-lM-Vvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1302" y="1652"/>
+            <point key="canvasLocation" x="1285" y="1652"/>
         </scene>
         <!--Navigation Controller - Profiles-->
         <scene sceneID="qez-Id-BOC">
@@ -970,11 +990,11 @@
             </objects>
             <point key="canvasLocation" x="1285" y="934"/>
         </scene>
-        <!--Navigation Controller - Peripheral Manager-->
+        <!--Navigation Controller - Peripheral-->
         <scene sceneID="Gdg-cU-BBN">
             <objects>
                 <navigationController definesPresentationContext="YES" id="ysN-jF-arT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Peripheral Manager" id="mB3-kQ-w76"/>
+                    <tabBarItem key="tabBarItem" title="Peripheral" id="mB3-kQ-w76"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hrb-An-DV2">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -990,7 +1010,7 @@
         <scene sceneID="QUf-L4-Zem">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="Gm5-G9-oBc" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="duC-6S-kA2">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1006,11 +1026,11 @@
             </objects>
             <point key="canvasLocation" x="195" y="934"/>
         </scene>
-        <!--Navigation Controller - Central Manager-->
+        <!--Navigation Controller - Central-->
         <scene sceneID="9nG-V3-L1A">
             <objects>
                 <navigationController definesPresentationContext="YES" id="ekL-3M-31h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Central Manager" id="07S-vg-Fo9"/>
+                    <tabBarItem key="tabBarItem" title="Central" id="07S-vg-Fo9"/>
                     <navigationItem key="navigationItem" id="Nc3-wH-8SC"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Qv-4W-Kpb">

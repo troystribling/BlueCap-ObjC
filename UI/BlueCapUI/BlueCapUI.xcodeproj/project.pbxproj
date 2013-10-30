@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0504D1001820A18400A5C607 /* ProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D0FF1820A18400A5C607 /* ProfilesViewController.m */; };
+		0504D13F1820A80000A5C607 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D13E1820A80000A5C607 /* ProfileCell.m */; };
 		052A001717BB2CD4006D7AB3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001617BB2CD4006D7AB3 /* Foundation.framework */; };
 		052A001917BB2CD4006D7AB3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001817BB2CD4006D7AB3 /* CoreGraphics.framework */; };
 		052A001B17BB2CD4006D7AB3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001A17BB2CD4006D7AB3 /* UIKit.framework */; };
@@ -69,6 +71,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0504D0FE1820A18400A5C607 /* ProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilesViewController.h; sourceTree = "<group>"; };
+		0504D0FF1820A18400A5C607 /* ProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesViewController.m; sourceTree = "<group>"; };
+		0504D13D1820A80000A5C607 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		0504D13E1820A80000A5C607 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		052A001317BB2CD4006D7AB3 /* BlueCapUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueCapUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		052A001617BB2CD4006D7AB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		052A001817BB2CD4006D7AB3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -243,6 +249,10 @@
 				05D645FF17C341F4008A251D /* PeripheralServicesViewController.m */,
 				05D6E51E17BFDEC70019B575 /* PeripheralsViewController.h */,
 				05D6E51F17BFDEC70019B575 /* PeripheralsViewController.m */,
+				0504D13D1820A80000A5C607 /* ProfileCell.h */,
+				0504D13E1820A80000A5C607 /* ProfileCell.m */,
+				0504D0FE1820A18400A5C607 /* ProfilesViewController.h */,
+				0504D0FF1820A18400A5C607 /* ProfilesViewController.m */,
 				059769E317CF1CED00BDE5B5 /* ServiceDetailViewController.h */,
 				059769E417CF1CED00BDE5B5 /* ServiceDetailViewController.m */,
 			);
@@ -388,9 +398,11 @@
 				05A261071816C9FC00232014 /* CharacteristicDiscreteValueViewController.m in Sources */,
 				057CA28817FD10E2002AF4A2 /* CharacteristicValuesViewController.m in Sources */,
 				05D6460017C341F4008A251D /* PeripheralServicesViewController.m in Sources */,
+				0504D1001820A18400A5C607 /* ProfilesViewController.m in Sources */,
 				0536D3DC17D52DB200BA1165 /* CharacteristicDetailViewController.m in Sources */,
 				059769E517CF1CED00BDE5B5 /* ServiceDetailViewController.m in Sources */,
 				05D6E52017BFDEC70019B575 /* PeripheralsViewController.m in Sources */,
+				0504D13F1820A80000A5C607 /* ProfileCell.m in Sources */,
 				054766C91803AF6F005C4125 /* CharacteristicValueCell.m in Sources */,
 				05D6460517C5A73E008A251D /* PeripheraCell.m in Sources */,
 				0536D3E917D5615700BA1165 /* CharacteristicDescriptorsViewController.m in Sources */,

@@ -436,7 +436,7 @@
 #pragma mark - Key Pressed
     
     [centralManager createServiceWithUUID:@"ffe0"
-                                     name:@"Key Pressed"
+                                     name:@"TI Key Pressed"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                    [serviceProfile createCharacteristicWithUUID:@"ffe1"
                                                                            name:@"Key Pressed State"
