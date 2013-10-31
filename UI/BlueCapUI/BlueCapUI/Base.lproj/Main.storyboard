@@ -904,16 +904,16 @@
             </objects>
             <point key="canvasLocation" x="1218" y="249"/>
         </scene>
-        <!--Profiles View Controller - Profiles-->
+        <!--Service Profiles View Controller - Service Profiles-->
         <scene sceneID="YHQ-Rd-s1p">
             <objects>
-                <tableViewController id="zEN-c1-NRB" customClass="ProfilesViewController" sceneMemberID="viewController">
+                <tableViewController id="zEN-c1-NRB" customClass="ServiceProfilesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="59" sectionHeaderHeight="22" sectionFooterHeight="22" id="nVc-LP-GhE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="59" id="oXK-Rm-dzd" customClass="ProfileCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ServiceProfileCell" rowHeight="59" id="oXK-Rm-dzd" customClass="ServiceProfileCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oXK-Rm-dzd" id="NKt-Sf-FuI">
@@ -921,14 +921,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVE-dJ-nL1">
-                                            <rect key="frame" x="20" y="11" width="253" height="21"/>
+                                            <rect key="frame" x="20" y="10" width="250" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UUID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NuQ-ec-i8p">
-                                            <rect key="frame" x="20" y="32" width="253" height="21"/>
+                                            <rect key="frame" x="20" y="32" width="250" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -939,15 +939,103 @@
                                 <connections>
                                     <outlet property="nameLabel" destination="FVE-dJ-nL1" id="OBK-DW-UfH"/>
                                     <outlet property="uuidLabel" destination="NuQ-ec-i8p" id="xgE-U4-li0"/>
+                                    <segue destination="zWl-Dc-J9w" kind="push" trigger="accessoryAction" id="NTR-Lf-tkD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Profiles" id="aU2-gG-Xfx"/>
+                    <navigationItem key="navigationItem" title="Service Profiles" id="aU2-gG-Xfx"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMN-lM-Vvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1285" y="1652"/>
+            <point key="canvasLocation" x="1218" y="1652"/>
+        </scene>
+        <!--Characteristic Profiles View Controller - Characteristic Profiles-->
+        <scene sceneID="pPZ-cj-EZf">
+            <objects>
+                <tableViewController id="zWl-Dc-J9w" customClass="CharacteristicProfilesViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="59" sectionHeaderHeight="22" sectionFooterHeight="22" id="llw-2h-NAC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharateristicProfileCell" rowHeight="59" id="ohF-qc-mMF" customClass="CharateristicProfileCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="59"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ohF-qc-mMF" id="SbN-10-15W">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="58"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leG-xG-pv0">
+                                            <rect key="frame" x="20" y="10" width="250" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UUID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJ8-kz-tth">
+                                            <rect key="frame" x="20" y="32" width="250" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="leG-xG-pv0" id="JGU-Ji-Ny3"/>
+                                    <outlet property="uuidLabel" destination="uJ8-kz-tth" id="Rda-pb-9rs"/>
+                                    <segue destination="KJi-TH-L2L" kind="push" id="1Vc-Eh-yAc"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zWl-Dc-J9w" id="4ZC-f2-eaq"/>
+                            <outlet property="delegate" destination="zWl-Dc-J9w" id="pwt-VQ-rYN"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Characteristic Profiles" id="vhD-sr-YSy"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hE8-Nu-VNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1695" y="1654"/>
+        </scene>
+        <!--Characteristic Profile Values View Controller - Characteristic Values-->
+        <scene sceneID="xKB-CJ-bqP">
+            <objects>
+                <tableViewController id="KJi-TH-L2L" customClass="CharacteristicProfileValuesViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ntU-6W-CqR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="fnf-qW-SuX" style="IBUITableViewCellStyleDefault" id="2uV-za-o9g">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2uV-za-o9g" id="eBW-mR-pp7">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fnf-qW-SuX">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="KJi-TH-L2L" id="7F5-bX-ee5"/>
+                            <outlet property="delegate" destination="KJi-TH-L2L" id="64i-F2-bLw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Characteristic Values" id="Aeh-BT-Hy4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dsp-Mq-Xro" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2176" y="1654"/>
         </scene>
         <!--Navigation Controller - Profiles-->
         <scene sceneID="qez-Id-BOC">
@@ -988,7 +1076,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOS-Lb-KBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1285" y="934"/>
+            <point key="canvasLocation" x="1218" y="934"/>
         </scene>
         <!--Navigation Controller - Peripheral-->
         <scene sceneID="Gdg-cU-BBN">

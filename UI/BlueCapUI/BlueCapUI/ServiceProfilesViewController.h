@@ -1,5 +1,5 @@
 //
-//  ProfilesViewController.h
+//  ServiceProfilesViewController.h
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 10/29/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfilesViewController : UITableViewController
+@interface ServiceProfilesViewController : UITableViewController
 
 @end

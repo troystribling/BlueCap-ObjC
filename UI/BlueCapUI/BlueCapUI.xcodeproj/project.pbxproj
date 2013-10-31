@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0504D1001820A18400A5C607 /* ProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D0FF1820A18400A5C607 /* ProfilesViewController.m */; };
-		0504D13F1820A80000A5C607 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D13E1820A80000A5C607 /* ProfileCell.m */; };
+		0504D1001820A18400A5C607 /* ServiceProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D0FF1820A18400A5C607 /* ServiceProfilesViewController.m */; };
+		0504D13F1820A80000A5C607 /* ServiceProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D13E1820A80000A5C607 /* ServiceProfileCell.m */; };
+		0504D1421821F6C300A5C607 /* CharacteristicProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D1411821F6C300A5C607 /* CharacteristicProfilesViewController.m */; };
+		0504D1451821F76300A5C607 /* CharateristicProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D1441821F76300A5C607 /* CharateristicProfileCell.m */; };
+		0504D1481821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D1471821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m */; };
 		052A001717BB2CD4006D7AB3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001617BB2CD4006D7AB3 /* Foundation.framework */; };
 		052A001917BB2CD4006D7AB3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001817BB2CD4006D7AB3 /* CoreGraphics.framework */; };
 		052A001B17BB2CD4006D7AB3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001A17BB2CD4006D7AB3 /* UIKit.framework */; };
@@ -71,10 +74,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0504D0FE1820A18400A5C607 /* ProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilesViewController.h; sourceTree = "<group>"; };
-		0504D0FF1820A18400A5C607 /* ProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesViewController.m; sourceTree = "<group>"; };
-		0504D13D1820A80000A5C607 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
-		0504D13E1820A80000A5C607 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		0504D0FE1820A18400A5C607 /* ServiceProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceProfilesViewController.h; sourceTree = "<group>"; };
+		0504D0FF1820A18400A5C607 /* ServiceProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceProfilesViewController.m; sourceTree = "<group>"; };
+		0504D13D1820A80000A5C607 /* ServiceProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceProfileCell.h; sourceTree = "<group>"; };
+		0504D13E1820A80000A5C607 /* ServiceProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceProfileCell.m; sourceTree = "<group>"; };
+		0504D1401821F6C300A5C607 /* CharacteristicProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicProfilesViewController.h; sourceTree = "<group>"; };
+		0504D1411821F6C300A5C607 /* CharacteristicProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicProfilesViewController.m; sourceTree = "<group>"; };
+		0504D1431821F76300A5C607 /* CharateristicProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharateristicProfileCell.h; sourceTree = "<group>"; };
+		0504D1441821F76300A5C607 /* CharateristicProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharateristicProfileCell.m; sourceTree = "<group>"; };
+		0504D1461821FDBE00A5C607 /* CharacteristicProfileValuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicProfileValuesViewController.h; sourceTree = "<group>"; };
+		0504D1471821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicProfileValuesViewController.m; sourceTree = "<group>"; };
 		052A001317BB2CD4006D7AB3 /* BlueCapUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueCapUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		052A001617BB2CD4006D7AB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		052A001817BB2CD4006D7AB3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -233,10 +242,16 @@
 				05A261061816C9FC00232014 /* CharacteristicDiscreteValueViewController.m */,
 				05855022180B878B00BD2318 /* CharacteristicFreeFormValueViewController.h */,
 				05855023180B878B00BD2318 /* CharacteristicFreeFormValueViewController.m */,
+				0504D1401821F6C300A5C607 /* CharacteristicProfilesViewController.h */,
+				0504D1411821F6C300A5C607 /* CharacteristicProfilesViewController.m */,
+				0504D1461821FDBE00A5C607 /* CharacteristicProfileValuesViewController.h */,
+				0504D1471821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m */,
 				054766C71803AF6F005C4125 /* CharacteristicValueCell.h */,
 				054766C81803AF6F005C4125 /* CharacteristicValueCell.m */,
 				057CA28617FD10E2002AF4A2 /* CharacteristicValuesViewController.h */,
 				057CA28717FD10E2002AF4A2 /* CharacteristicValuesViewController.m */,
+				0504D1431821F76300A5C607 /* CharateristicProfileCell.h */,
+				0504D1441821F76300A5C607 /* CharateristicProfileCell.m */,
 				0536D3EA17D8528C00BA1165 /* DescriptorDetailCell.h */,
 				0536D3EB17D8528C00BA1165 /* DescriptorDetailCell.m */,
 				05D6460417C5A73E008A251D /* PeripheraCell.m */,
@@ -249,12 +264,12 @@
 				05D645FF17C341F4008A251D /* PeripheralServicesViewController.m */,
 				05D6E51E17BFDEC70019B575 /* PeripheralsViewController.h */,
 				05D6E51F17BFDEC70019B575 /* PeripheralsViewController.m */,
-				0504D13D1820A80000A5C607 /* ProfileCell.h */,
-				0504D13E1820A80000A5C607 /* ProfileCell.m */,
-				0504D0FE1820A18400A5C607 /* ProfilesViewController.h */,
-				0504D0FF1820A18400A5C607 /* ProfilesViewController.m */,
 				059769E317CF1CED00BDE5B5 /* ServiceDetailViewController.h */,
 				059769E417CF1CED00BDE5B5 /* ServiceDetailViewController.m */,
+				0504D13D1820A80000A5C607 /* ServiceProfileCell.h */,
+				0504D13E1820A80000A5C607 /* ServiceProfileCell.m */,
+				0504D0FE1820A18400A5C607 /* ServiceProfilesViewController.h */,
+				0504D0FF1820A18400A5C607 /* ServiceProfilesViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -394,15 +409,18 @@
 			files = (
 				059769D117CB121600BDE5B5 /* PeripheralServiceCell.m in Sources */,
 				0565A0B417C3321800BFB1C0 /* PeripheralDetailViewController.m in Sources */,
+				0504D1451821F76300A5C607 /* CharateristicProfileCell.m in Sources */,
 				0536D3EC17D8528C00BA1165 /* DescriptorDetailCell.m in Sources */,
+				0504D1421821F6C300A5C607 /* CharacteristicProfilesViewController.m in Sources */,
 				05A261071816C9FC00232014 /* CharacteristicDiscreteValueViewController.m in Sources */,
 				057CA28817FD10E2002AF4A2 /* CharacteristicValuesViewController.m in Sources */,
+				0504D1481821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m in Sources */,
 				05D6460017C341F4008A251D /* PeripheralServicesViewController.m in Sources */,
-				0504D1001820A18400A5C607 /* ProfilesViewController.m in Sources */,
+				0504D1001820A18400A5C607 /* ServiceProfilesViewController.m in Sources */,
 				0536D3DC17D52DB200BA1165 /* CharacteristicDetailViewController.m in Sources */,
 				059769E517CF1CED00BDE5B5 /* ServiceDetailViewController.m in Sources */,
 				05D6E52017BFDEC70019B575 /* PeripheralsViewController.m in Sources */,
-				0504D13F1820A80000A5C607 /* ProfileCell.m in Sources */,
+				0504D13F1820A80000A5C607 /* ServiceProfileCell.m in Sources */,
 				054766C91803AF6F005C4125 /* CharacteristicValueCell.m in Sources */,
 				05D6460517C5A73E008A251D /* PeripheraCell.m in Sources */,
 				0536D3E917D5615700BA1165 /* CharacteristicDescriptorsViewController.m in Sources */,

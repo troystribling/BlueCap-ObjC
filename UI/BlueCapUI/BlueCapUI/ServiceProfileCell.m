@@ -1,14 +1,14 @@
 //
-//  ProfileCell.m
+//  ServiceProfileCell.m
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 10/29/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "ProfileCell.h"
+#import "ServiceProfileCell.h"
 
-@implementation ProfileCell
+@implementation ServiceProfileCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
