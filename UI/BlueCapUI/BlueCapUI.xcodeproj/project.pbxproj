@@ -12,6 +12,7 @@
 		0504D1421821F6C300A5C607 /* CharacteristicProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D1411821F6C300A5C607 /* CharacteristicProfilesViewController.m */; };
 		0504D1451821F76300A5C607 /* CharateristicProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D1441821F76300A5C607 /* CharateristicProfileCell.m */; };
 		0504D1481821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D1471821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m */; };
+		0504D14B18233F5500A5C607 /* PeripheralManagerServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504D14A18233F5500A5C607 /* PeripheralManagerServicesViewController.m */; };
 		052A001717BB2CD4006D7AB3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001617BB2CD4006D7AB3 /* Foundation.framework */; };
 		052A001917BB2CD4006D7AB3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001817BB2CD4006D7AB3 /* CoreGraphics.framework */; };
 		052A001B17BB2CD4006D7AB3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 052A001A17BB2CD4006D7AB3 /* UIKit.framework */; };
@@ -84,6 +85,8 @@
 		0504D1441821F76300A5C607 /* CharateristicProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharateristicProfileCell.m; sourceTree = "<group>"; };
 		0504D1461821FDBE00A5C607 /* CharacteristicProfileValuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicProfileValuesViewController.h; sourceTree = "<group>"; };
 		0504D1471821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicProfileValuesViewController.m; sourceTree = "<group>"; };
+		0504D14918233F5500A5C607 /* PeripheralManagerServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralManagerServicesViewController.h; sourceTree = "<group>"; };
+		0504D14A18233F5500A5C607 /* PeripheralManagerServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralManagerServicesViewController.m; sourceTree = "<group>"; };
 		052A001317BB2CD4006D7AB3 /* BlueCapUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueCapUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		052A001617BB2CD4006D7AB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		052A001817BB2CD4006D7AB3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -258,6 +261,8 @@
 				05D6460317C5A73E008A251D /* PeripheralCell.h */,
 				0565A0B217C3321800BFB1C0 /* PeripheralDetailViewController.h */,
 				0565A0B317C3321800BFB1C0 /* PeripheralDetailViewController.m */,
+				0504D14918233F5500A5C607 /* PeripheralManagerServicesViewController.h */,
+				0504D14A18233F5500A5C607 /* PeripheralManagerServicesViewController.m */,
 				059769CF17CB121600BDE5B5 /* PeripheralServiceCell.h */,
 				059769D017CB121600BDE5B5 /* PeripheralServiceCell.m */,
 				05D645FE17C341F4008A251D /* PeripheralServicesViewController.h */,
@@ -416,6 +421,7 @@
 				057CA28817FD10E2002AF4A2 /* CharacteristicValuesViewController.m in Sources */,
 				0504D1481821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m in Sources */,
 				05D6460017C341F4008A251D /* PeripheralServicesViewController.m in Sources */,
+				0504D14B18233F5500A5C607 /* PeripheralManagerServicesViewController.m in Sources */,
 				0504D1001820A18400A5C607 /* ServiceProfilesViewController.m in Sources */,
 				0536D3DC17D52DB200BA1165 /* CharacteristicDetailViewController.m in Sources */,
 				059769E517CF1CED00BDE5B5 /* ServiceDetailViewController.m in Sources */,

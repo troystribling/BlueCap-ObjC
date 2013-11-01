@@ -1041,7 +1041,7 @@
         <scene sceneID="qez-Id-BOC">
             <objects>
                 <navigationController definesPresentationContext="YES" id="6n5-d3-u2z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profiles" id="UGG-m5-JJE"/>
+                    <tabBarItem key="tabBarItem" title="Profiles" image="profiles" id="UGG-m5-JJE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i9N-nT-Ltn">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1053,10 +1053,10 @@
             </objects>
             <point key="canvasLocation" x="742" y="1652"/>
         </scene>
-        <!--Table View Controller - Root View Controller-->
+        <!--Peripheral Manager Services View Controller - Services-->
         <scene sceneID="5VM-kU-80y">
             <objects>
-                <tableViewController id="OpE-Vd-Nsp" sceneMemberID="viewController">
+                <tableViewController id="OpE-Vd-Nsp" customClass="PeripheralManagerServicesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7th-Ip-ULY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1072,7 +1072,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="C04-Oz-Lr0"/>
+                    <navigationItem key="navigationItem" title="Services" id="C04-Oz-Lr0"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOS-Lb-KBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1082,7 +1082,7 @@
         <scene sceneID="Gdg-cU-BBN">
             <objects>
                 <navigationController definesPresentationContext="YES" id="ysN-jF-arT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Peripheral" id="mB3-kQ-w76"/>
+                    <tabBarItem key="tabBarItem" title="Peripheral" image="peripheral" id="mB3-kQ-w76"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hrb-An-DV2">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1118,7 +1118,7 @@
         <scene sceneID="9nG-V3-L1A">
             <objects>
                 <navigationController definesPresentationContext="YES" id="ekL-3M-31h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Central" id="07S-vg-Fo9"/>
+                    <tabBarItem key="tabBarItem" title="Central" image="central" id="07S-vg-Fo9"/>
                     <navigationItem key="navigationItem" id="Nc3-wH-8SC"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Qv-4W-Kpb">
@@ -1133,6 +1133,11 @@
             <point key="canvasLocation" x="742" y="249"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="central" width="30" height="30"/>
+        <image name="peripheral" width="30" height="30"/>
+        <image name="profiles" width="30" height="30"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
