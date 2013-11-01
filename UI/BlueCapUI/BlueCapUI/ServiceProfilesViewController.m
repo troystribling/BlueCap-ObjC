@@ -7,6 +7,7 @@
 //
 
 #import "ServiceProfilesViewController.h"
+#import "CharacteristicProfilesViewController.h"
 #import "ServiceProfileCell.h"
 
 @interface ServiceProfilesViewController ()
@@ -29,6 +30,14 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"CharacteristicProfiles"]) {
+        NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
+        CharacteristicProfilesViewController* viewController = segue.destinationViewController;
+        viewController.serviceProfile = [[[BlueCapCentralManager sharedInstance].serviceProfiles allValues] objectAtIndex:indexPath.row];
+    }
 }
 
 #pragma mark - Table view data source

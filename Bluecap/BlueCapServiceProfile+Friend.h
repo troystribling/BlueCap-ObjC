@@ -12,7 +12,7 @@
 
 @property(nonatomic, retain) CBUUID*                        UUID;
 @property(nonatomic, retain) NSString*                      name;
-@property(nonatomic, retain) NSMutableDictionary*           characteristicProfiles;
+@property(nonatomic, retain) NSMutableDictionary*           characteristicProfilesDictionary;
 
 
 + (BlueCapServiceProfile*)createWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapServiceProfileBlock)__ProfileBlock;

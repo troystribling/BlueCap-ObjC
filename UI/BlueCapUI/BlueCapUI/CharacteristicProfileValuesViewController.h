@@ -10,4 +10,6 @@
 
 @interface CharacteristicProfileValuesViewController : UITableViewController
 
+@property(nonatomic, retain) BlueCapCharacteristicProfile* characteristicProfile;
+
 @end

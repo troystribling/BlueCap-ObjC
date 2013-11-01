@@ -14,7 +14,7 @@
 
 @property(nonatomic, retain) CBUUID*                UUID;
 @property(nonatomic, retain) NSString*              name;
-@property(nonatomic, retain) NSMutableDictionary*   characteristicProfiles;
+@property(nonatomic, retain) NSMutableDictionary*   characteristicProfilesDictionary;
 
 @end
 
@@ -28,6 +28,10 @@
     return _name;
 }
 
+- (NSArray*)characteristicProfiles {
+    return [self.characteristicProfilesDictionary allValues];
+}
+
 #pragma mark - Characteristic Profile
 
 - (BlueCapCharacteristicProfile*)createCharacteristicWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
@@ -36,7 +40,7 @@
 
 - (BlueCapCharacteristicProfile*)createCharacteristicWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapCharacteristicProfileBlock)__profileBlock {
     BlueCapCharacteristicProfile* chracteristicProfile = [BlueCapCharacteristicProfile createWithUUID:__uuidString name:__name andProfile:__profileBlock];
-    [self.characteristicProfiles setObject:chracteristicProfile forKey:chracteristicProfile.UUID];
+    [self.characteristicProfilesDictionary setObject:chracteristicProfile forKey:chracteristicProfile.UUID];
     DLog(@"Characteristic Profile Defined: %@-%@", chracteristicProfile.name, [chracteristicProfile.UUID stringValue]);
     return chracteristicProfile;
 }

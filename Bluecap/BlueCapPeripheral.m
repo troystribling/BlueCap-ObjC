@@ -221,7 +221,7 @@
         [self.discoveredObjects setObject:bcCharacteristic forKey:charateristic];
         [bcService.discoveredCharacteristics addObject:bcCharacteristic];
         if ([bcService hasProfile]) {
-            BlueCapCharacteristicProfile* characteristicProfile = [bcService.profile.characteristicProfiles objectForKey:bcCharacteristic.UUID];
+            BlueCapCharacteristicProfile* characteristicProfile = [bcService.profile.characteristicProfilesDictionary objectForKey:bcCharacteristic.UUID];
             if (characteristicProfile) {
                 DLog(@"Characteristic Profile Found: %@", characteristicProfile.name);
                 bcCharacteristic.profile = characteristicProfile;

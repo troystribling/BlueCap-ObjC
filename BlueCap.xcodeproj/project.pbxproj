@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050B2ACA18240BAF00DE5792 /* BlueCapServiceProfile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054766C017FFB3C5005C4125 /* BlueCapServiceProfile.h */; };
 		0543814F17C9772E0071AC73 /* BlueCapPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543814E17C9772E0071AC73 /* BlueCapPeripheral.m */; };
 		0543815217C9775D0071AC73 /* BlueCapService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0543815117C9775D0071AC73 /* BlueCapService.m */; };
 		0543815317C989B10071AC73 /* BlueCapPeripheral.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0543814D17C9772E0071AC73 /* BlueCapPeripheral.h */; };
@@ -64,6 +65,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				050B2ACA18240BAF00DE5792 /* BlueCapServiceProfile.h in CopyFiles */,
 				054766C617FFB845005C4125 /* BLEGATTProfiles.h in CopyFiles */,
 				059329E217F3DE4700D514F1 /* BlueCapBlocks.h in CopyFiles */,
 				059329E017F13BC900D514F1 /* TISensorTagServiceProfile.h in CopyFiles */,

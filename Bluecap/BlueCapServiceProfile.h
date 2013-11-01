@@ -12,6 +12,8 @@
 
 @interface BlueCapServiceProfile : NSObject
 
+@property(nonatomic, retain) NSArray*   characteristicProfiles;
+
 - (CBUUID*)UUID;
 - (NSString*)name;
 
