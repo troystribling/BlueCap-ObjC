@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import <BlueCap/BlueCap.h>
 #import "ServiceProfileCell.h"
 
 @implementation ServiceProfileCell

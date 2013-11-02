@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import <BlueCap/BlueCap.h>
 #import "PeripheralServicesViewController.h"
 #import "PeripheralServiceCell.h"
 #import "ServiceDetailViewController.h"
