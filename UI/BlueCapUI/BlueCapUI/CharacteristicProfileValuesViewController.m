@@ -23,6 +23,7 @@
 }
 
 - (void)viewDidLoad {
+    self.navigationItem.title = [self.characteristicProfile name];
     [super viewDidLoad];
 }
 
@@ -33,16 +34,16 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [[self.characteristicProfile allValues] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CharacteristicProfileValueCell" forIndexPath:indexPath];
+    cell.textLabel.text = [[self.characteristicProfile allValues] objectAtIndex:indexPath.row];
     return cell;
 }
 

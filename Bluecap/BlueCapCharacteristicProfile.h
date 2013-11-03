@@ -12,6 +12,8 @@
 
 - (CBUUID*)UUID;
 - (NSString*)name;
+- (BOOL)hasValues;
+- (NSArray*)allValues;
 
 - (void)setValue:(id)__objectValue named:(NSString*)__valueName;
 - (void)serializeNamedObject:(BlueCapCharacteristicProfileSerializeNamedObjectCallback)__serializeBlock;

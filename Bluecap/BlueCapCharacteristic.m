@@ -81,7 +81,7 @@
 - (BOOL)hasValues {
     BOOL result = NO;
     if ([self hasProfile]) {
-        result = [self.profile.valueObjects count] > 0;
+        result = [self.profile hasValues];
     }
     return result;
 }
@@ -123,7 +123,7 @@
 - (NSArray*)allValues {
     NSArray* valueNames = [NSArray array];
     if ([self hasValues]) {
-        valueNames = [self.profile.valueNames allValues];
+        valueNames = [self.profile allValues];
     }
     return valueNames;
 }

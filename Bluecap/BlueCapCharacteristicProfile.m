@@ -32,6 +32,18 @@
     return _name;
 }
 
+- (BOOL)hasValues {
+    return [self.valueObjects count] > 0;
+}
+
+- (NSArray*)allValues {
+    NSArray* valueNames = [NSArray array];
+    if ([self hasValues]) {
+        valueNames = [self.valueNames allValues];
+    }
+    return valueNames;
+}
+
 - (void)setValue:(id)__objectValue named:(NSString*)__valueName {
     [self.valueObjects setValue:__objectValue forKey:__valueName];
     [self.valueNames setValue:__valueName forKey:__objectValue];

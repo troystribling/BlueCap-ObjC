@@ -959,7 +959,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharateristicProfileCell" rowHeight="59" id="ohF-qc-mMF" customClass="CharateristicProfileCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharacteristicProfileCell" rowHeight="59" id="ohF-qc-mMF" customClass="CharacteristicProfileCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ohF-qc-mMF" id="SbN-10-15W">
@@ -982,8 +982,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="nameLabel" destination="leG-xG-pv0" id="JGU-Ji-Ny3"/>
-                                    <outlet property="uuidLabel" destination="uJ8-kz-tth" id="Rda-pb-9rs"/>
+                                    <outlet property="nameLabel" destination="leG-xG-pv0" id="41T-sl-jul"/>
+                                    <outlet property="uuidLabel" destination="uJ8-kz-tth" id="u87-3X-1mI"/>
                                     <segue destination="KJi-TH-L2L" kind="push" identifier="CharacteristicProfileValues" id="1Vc-Eh-yAc"/>
                                 </connections>
                             </tableViewCell>
@@ -1008,7 +1008,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="fnf-qW-SuX" style="IBUITableViewCellStyleDefault" id="2uV-za-o9g">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharacteristicProfileValueCell" textLabel="fnf-qW-SuX" style="IBUITableViewCellStyleDefault" id="2uV-za-o9g">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2uV-za-o9g" id="eBW-mR-pp7">

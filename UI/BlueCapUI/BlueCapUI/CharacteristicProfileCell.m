@@ -1,15 +1,14 @@
 //
-//  CharateristicProfileCell.m
+//  CharacteristicProfileCell.m
 //  BlueCapUI
 //
-//  Created by Troy Stribling on 10/30/13.
+//  Created by Troy Stribling on 11/2/13.
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <BlueCap/BlueCap.h>
-#import "CharateristicProfileCell.h"
+#import "CharacteristicProfileCell.h"
 
-@implementation CharateristicProfileCell
+@implementation CharacteristicProfileCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

@@ -35,7 +35,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"CharacteristicProfiles"]) {
-        NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
+        NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
         CharacteristicProfilesViewController* viewController = segue.destinationViewController;
         viewController.serviceProfile = [[[BlueCapCentralManager sharedInstance].serviceProfiles allValues] objectAtIndex:indexPath.row];
     }
