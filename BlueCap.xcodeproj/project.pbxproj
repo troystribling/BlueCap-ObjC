@@ -38,6 +38,8 @@
 		059769E217CDA13000BDE5B5 /* BlueCapPeripheral+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769E117CDA13000BDE5B5 /* BlueCapPeripheral+Friend.m */; };
 		059769E817D271ED00BDE5B5 /* BlueCapDescriptor+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769E717D271ED00BDE5B5 /* BlueCapDescriptor+Friend.m */; };
 		05A0F11A17F68A650046B47C /* BlueCapCharacteristicProfile+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0F11917F68A650046B47C /* BlueCapCharacteristicProfile+Friend.m */; };
+		05A5D00E1827029B003FB93C /* BlueCapPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A5D00D1827029B003FB93C /* BlueCapPeripheralManager.m */; };
+		05A5D00F18270C07003FB93C /* BlueCapPeripheralManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05A5D00C1827029B003FB93C /* BlueCapPeripheralManager.h */; };
 		05AA669917B868F90019AC3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669817B868F90019AC3C /* Foundation.framework */; };
 		05AA66A717B868F90019AC3C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA66A617B868F90019AC3C /* XCTest.framework */; };
 		05AA66A817B868F90019AC3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669817B868F90019AC3C /* Foundation.framework */; };
@@ -65,6 +67,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				05A5D00F18270C07003FB93C /* BlueCapPeripheralManager.h in CopyFiles */,
 				050B2ACA18240BAF00DE5792 /* BlueCapServiceProfile.h in CopyFiles */,
 				054766C617FFB845005C4125 /* BLEGATTProfiles.h in CopyFiles */,
 				059329E217F3DE4700D514F1 /* BlueCapBlocks.h in CopyFiles */,
@@ -120,6 +123,8 @@
 		059769E717D271ED00BDE5B5 /* BlueCapDescriptor+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapDescriptor+Friend.m"; sourceTree = "<group>"; };
 		05A0F11817F68A650046B47C /* BlueCapCharacteristicProfile+Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlueCapCharacteristicProfile+Friend.h"; sourceTree = "<group>"; };
 		05A0F11917F68A650046B47C /* BlueCapCharacteristicProfile+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapCharacteristicProfile+Friend.m"; sourceTree = "<group>"; };
+		05A5D00C1827029B003FB93C /* BlueCapPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCapPeripheralManager.h; sourceTree = "<group>"; };
+		05A5D00D1827029B003FB93C /* BlueCapPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCapPeripheralManager.m; sourceTree = "<group>"; };
 		05AA669517B868F90019AC3C /* libBluecap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBluecap.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA669817B868F90019AC3C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05AA66A517B868F90019AC3C /* BluecapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluecapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +179,7 @@
 		05984F1E17F5DBCA008A344D /* CentralManager */ = {
 			isa = PBXGroup;
 			children = (
+				05A5D00B18270276003FB93C /* PeripheralManager */,
 				05A0F11B17F7429A0046B47C /* CentralManager */,
 				05A0F11E17F742BE0046B47C /* Characteristic */,
 				05A0F11F17F743050046B47C /* Descriptor */,
@@ -253,6 +259,15 @@
 				059769DC17CC490400BDE5B5 /* BlueCapDescriptor.m */,
 			);
 			name = Descriptor;
+			sourceTree = "<group>";
+		};
+		05A5D00B18270276003FB93C /* PeripheralManager */ = {
+			isa = PBXGroup;
+			children = (
+				05A5D00C1827029B003FB93C /* BlueCapPeripheralManager.h */,
+				05A5D00D1827029B003FB93C /* BlueCapPeripheralManager.m */,
+			);
+			name = PeripheralManager;
 			sourceTree = "<group>";
 		};
 		05AA668C17B868F90019AC3C = {
@@ -403,6 +418,7 @@
 				0543815217C9775D0071AC73 /* BlueCapService.m in Sources */,
 				05A0F11A17F68A650046B47C /* BlueCapCharacteristicProfile+Friend.m in Sources */,
 				0543814F17C9772E0071AC73 /* BlueCapPeripheral.m in Sources */,
+				05A5D00E1827029B003FB93C /* BlueCapPeripheralManager.m in Sources */,
 				0565A0AC17C1EA7F00BFB1C0 /* BlueCap.m in Sources */,
 				059769E817D271ED00BDE5B5 /* BlueCapDescriptor+Friend.m in Sources */,
 				059769DA17CC47C000BDE5B5 /* BlueCapCharacteristic+Friend.m in Sources */,

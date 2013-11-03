@@ -41,11 +41,11 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     return thisBlueCapCentralManager;
 }
 
-- (id) init {
+- (id)init {
     self = [super init];
     if (self) {
-        self.mainQueue = dispatch_queue_create("com.gnos.us.main", DISPATCH_QUEUE_SERIAL);
-        self.callbackQueue = dispatch_queue_create("com.gnos.us.callback", DISPATCH_QUEUE_SERIAL);
+        self.mainQueue = dispatch_queue_create("com.gnos.us.central.main", DISPATCH_QUEUE_SERIAL);
+        self.callbackQueue = dispatch_queue_create("com.gnos.us.centrail.callback", DISPATCH_QUEUE_SERIAL);
 		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
         _serviceProfiles = [NSMutableDictionary dictionary];
