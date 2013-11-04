@@ -17,6 +17,8 @@
 @class BlueCapPeripheralProfile;
 @class BlueCapServiceProfile;
 
+@class BlueCapPeripheralManager;
+
 typedef void(^BlueCapCentralManagerCallback)(void);
 typedef void(^BlueCapPeripheralDiscoveredCallback)(BlueCapPeripheral* __peripheral, NSNumber* __RSSI);
 typedef void(^BlueCapPeripheralCallback)(BlueCapPeripheral* __peripheral);
@@ -43,5 +45,8 @@ typedef NSDictionary*(^BlueCapCharacteristicProfileStringValueCallback)(NSDictio
 
 typedef void(^BlueCapCharacteristicDataCallback)(BlueCapCharacteristic* __characteristic, NSError* __error);
 typedef void(^BlueCapDescriptorDataCallback)(BlueCapDescriptor* __descriptors, NSError* __error);
+
+typedef void(^BlueCapPeripheralManagerStartedAdvertising)(BlueCapPeripheralManager* __peripheralManager);
+typedef void(^BlueCapPeripheralManagerStoppedAdvertising)(BlueCapPeripheralManager* __peripheralManager);
 
 #endif

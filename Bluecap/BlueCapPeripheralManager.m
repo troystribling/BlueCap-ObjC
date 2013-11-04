@@ -12,9 +12,11 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 
 @interface BlueCapPeripheralManager()
 
-@property(nonatomic, retain) CBPeripheralManager*   cbPeripheralManager;
-@property(nonatomic, retain) dispatch_queue_t       mainQueue;
-@property(nonatomic, retain) dispatch_queue_t       callbackQueue;
+@property(nonatomic, retain) CBPeripheralManager*                       cbPeripheralManager;
+@property(nonatomic, retain) dispatch_queue_t                           mainQueue;
+@property(nonatomic, retain) dispatch_queue_t                           callbackQueue;
+@property(nonatomic, copy) BlueCapPeripheralManagerStartedAdvertising   startedAdvertisingCallback;
+@property(nonatomic, copy) BlueCapPeripheralManagerStoppedAdvertising   stoppedAdvertisingCallback;
 
 @end
 
@@ -39,6 +41,25 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
         self.cbPeripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:self.mainQueue];
     }
     return self;
+}
+
+- (BOOL)isAdvertising {
+    return self.cbPeripheralManager.isAdvertising;
+}
+
+- (CBPeripheralManagerState)state {
+    return self.cbPeripheralManager.state;
+}
+
+- (void)startAdvertising:(BlueCapPeripheralManagerStartedAdvertising)__startedAdvertisingCallback {
+    self.startedAdvertisingCallback = __startedAdvertisingCallback;
+    [self.cbPeripheralManager startAdvertising:@{CBAdvertisementDataLocalNameKey:@"Test",
+                                                 CBAdvertisementDataServiceUUIDsKey:@"abc"}];
+}
+
+- (void)stopAdvertising:(BlueCapPeripheralManagerStoppedAdvertising)__stoppedAdvertisingCallback {
+    self.stoppedAdvertisingCallback = __stoppedAdvertisingCallback;
+    [self.cbPeripheralManager stopAdvertising];
 }
 
 #pragma mark - BlueCapPeripheralManagerDelegate

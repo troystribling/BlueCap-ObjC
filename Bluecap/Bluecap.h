@@ -23,7 +23,7 @@
 #import "BlueCapCharacteristicProfile.h"
 
 #import "TISensorTagServiceProfile.h"
-#import "BLEGATTProfiles.h"
+#import "BLESIGGATTProfiles.h"
 
 NSNumber* blueCapUnsignedInt16LittleFromData(NSData* data, NSRange range);
 NSNumber* blueCapUnsignedInt16BigFromData(NSData* data, NSRange range);

@@ -1,5 +1,5 @@
 //
-//  BLEGATTProfiles.m
+//  BLEGSIGATTProfiles.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 10/4/13.
@@ -7,9 +7,9 @@
 //
 
 #import "BlueCap.h"
-#import "BLEGATTProfiles.h"
+#import "BLESIGGATTProfiles.h"
 
-@implementation BLEGATTProfiles
+@implementation BLESIGGATTProfiles
 
 + (void)create {
 
@@ -25,10 +25,10 @@
                                                 name:@"System ID"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLE_GATT_DEVICE_INFORMATION_SYSTEM_ID:@"Coming Soon"};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_SYSTEM_ID:@"Coming Soon"};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                                                  return @{BLE_GATT_DEVICE_INFORMATION_SYSTEM_ID:@"Coming Soon"};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_SYSTEM_ID:@"Coming Soon"};
                                               }];
                                           }];
 
@@ -36,7 +36,7 @@
                                                 name:@"Model Number"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLE_GATT_DEVICE_INFORMATION_MODEL_NUMBER:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_MODEL_NUMBER:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
@@ -47,7 +47,7 @@
                                                 name:@"Serial Number"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLE_GATT_DEVICE_INFORMATION_SERIAL_NUMBER:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_SERIAL_NUMBER:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
@@ -58,7 +58,7 @@
                                                 name:@"Firmware Revision"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLE_GATT_DEVICE_INFORMATION_FIRMWARE_REVISION:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_FIRMWARE_REVISION:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
@@ -69,7 +69,7 @@
                                                 name:@"Hardware Revision"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLE_GATT_DEVICE_INFORMATION_HARDWARE_REVISION:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_HARDWARE_REVISION:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
@@ -80,7 +80,7 @@
                                                 name:@"Software Revision"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLE_GATT_DEVICE_INFORMATION_SOFTWARE_REVISION:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_SOFTWARE_REVISION:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
@@ -91,7 +91,7 @@
                                                 name:@"Manufacturer Name"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLE_GATT_DEVICE_INFORMATION_SOFTWARE_REVISION:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_SOFTWARE_REVISION:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
@@ -102,7 +102,7 @@
                                                 name:@"Certification Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLE_GATT_DEVICE_INFORMATION_MANUFACTURER_NAME:@"Coming Soon"};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_MANUFACTURER_NAME:@"Coming Soon"};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
@@ -113,7 +113,7 @@
                                                 name:@"PnP ID"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLE_GATT_DEVICE_INFORMATION_PNP_ID:@"Coming Soon"};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_PNP_ID:@"Coming Soon"};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;

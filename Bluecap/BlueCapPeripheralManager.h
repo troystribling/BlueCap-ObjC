@@ -6,9 +6,12 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BlueCapBlocks.h"
 
 @interface BlueCapPeripheralManager : NSObject <CBPeripheralManagerDelegate>
+
+@property(nonatomic, readonly) BOOL                         isAdvertising;
+@property(nonatomic, readonly) CBPeripheralManagerState     state;
 
 +(BlueCapPeripheralManager*)sharedInstance;
 
