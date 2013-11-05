@@ -27,7 +27,7 @@
 
 @implementation BlueCapDescriptor
 
-#pragma mark - BlueCapCharacteristic
+#pragma mark - BlueCapDescriptor
 
 - (CBUUID*)UUID {
     return _cbDescriptor.UUID;
