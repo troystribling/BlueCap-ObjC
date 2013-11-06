@@ -17,10 +17,10 @@
 @property(nonatomic, readonly) CBAttributePermissions                   permissions;
 @property(nonatomic, readonly) CBCharacteristicProperties               properties;
 @property(nonatomic, readonly) CBUUID*                                  UUID;
-@property(nonatomic, readonly, retain) BlueCapCharacteristicProfile*    profile;
 
 + (BlueCapMutableCharacteristic*)createWithPrifile:(BlueCapCharacteristicProfile*)__profile;
 
+- (BlueCapCharacteristicProfile*)profile;
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 - (BOOL)permissionEnabled:(CBAttributePermissions)__permission;
 

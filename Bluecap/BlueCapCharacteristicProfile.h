@@ -10,6 +10,9 @@
 
 @interface BlueCapCharacteristicProfile : NSObject
 
+@property(nonatomic, assign) CBAttributePermissions     permissions;
+@property(nonatomic, assign) CBCharacteristicProperties properties;
+
 - (CBUUID*)UUID;
 - (NSString*)name;
 - (BOOL)hasValues;

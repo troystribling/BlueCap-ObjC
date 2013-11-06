@@ -32,6 +32,8 @@
 -(id)initWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
     self = [super init];
     if (self) {
+        self.permissions = CBAttributePermissionsReadable & CBAttributePermissionsWriteable;
+        self.properties = CBCharacteristicPropertyRead & CBCharacteristicPropertyWrite & CBCharacteristicPropertyNotify;
         self.name = __name;
         self.UUID = [CBUUID UUIDWithString:__uuidString];
         self.valueObjects = [NSMutableDictionary dictionary];
