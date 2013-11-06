@@ -7,16 +7,35 @@
 //
 
 #import "BlueCapMutableCharacteristic.h"
+#import "BlueCapCharacteristicProfile+Friend.h"
 
 @interface BlueCapMutableCharacteristic ()
 
-@property(nonatomic, retain) CBMutableCharacteristic* cbCharacteristic;
+@property(nonatomic, retain) CBMutableCharacteristic*       cbCharacteristic;
+
+- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile;
 
 @end
 
 @implementation BlueCapMutableCharacteristic
 
 #pragma mark - BlueCapCharacteristic
+
++ (BlueCapMutableCharacteristic*)createWithPrifile:(BlueCapCharacteristicProfile*)__profile {
+    return [[BlueCapMutableCharacteristic alloc] initWithProfile:__profile];
+}
+
+- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile {
+    self = [super init];
+    if (self) {
+        _profile = __profile;
+//        self.cbCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_profile.UUID
+//                                                                   properties:_profile.properties
+//                                                                        value:<#(NSData *)#>
+//                                                                  permissions:_profile.permissions];
+    }
+    return self;
+}
 
 - (NSArray*)descriptors {
     return [NSArray array];

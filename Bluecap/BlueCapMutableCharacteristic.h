@@ -8,13 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class BlueCapCharacteristicProfile;
+
 @interface BlueCapMutableCharacteristic : NSObject
 
-@property(nonatomic, readonly) NSArray*                     descriptors;
-@property(nonatomic, readonly) NSArray*                     subscribedCentrals;
-@property(nonatomic, readonly) CBAttributePermissions       permissions;
-@property(nonatomic, readonly) CBCharacteristicProperties   properties;
-@property(nonatomic, readonly) CBUUID*                      UUID;
+@property(nonatomic, readonly) NSArray*                                 descriptors;
+@property(nonatomic, readonly) NSArray*                                 subscribedCentrals;
+@property(nonatomic, readonly) CBAttributePermissions                   permissions;
+@property(nonatomic, readonly) CBCharacteristicProperties               properties;
+@property(nonatomic, readonly) CBUUID*                                  UUID;
+@property(nonatomic, readonly, retain) BlueCapCharacteristicProfile*    profile;
+
++ (BlueCapMutableCharacteristic*)createWithPrifile:(BlueCapCharacteristicProfile*)__profile;
 
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 - (BOOL)permissionEnabled:(CBAttributePermissions)__permission;

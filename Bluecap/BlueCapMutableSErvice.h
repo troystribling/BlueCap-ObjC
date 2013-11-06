@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class BlueCapServiceProfile;
+
 @interface BlueCapMutableService : NSObject
 
-@property(nonatomic, readonly) CBUUID*      UUID;
-@property(nonatomic, readonly) NSArray*     characteristics;
-@property(nonatomic, readonly) NSArray*     includedServices;
-@property(nonatomic, readonly) BOOL         isPrimary;
+@property(nonatomic, readonly) CBUUID*                              UUID;
+@property(nonatomic, readonly) NSArray*                             characteristics;
+@property(nonatomic, readonly) NSArray*                             includedServices;
+@property(nonatomic, readonly) BOOL                                 isPrimary;
+@property(nonatomic, retain, readonly) BlueCapServiceProfile*       profile;
+
++ (BlueCapMutableService*)createWithProfile:(BlueCapServiceProfile*)__serviceProfile;
 
 @end
