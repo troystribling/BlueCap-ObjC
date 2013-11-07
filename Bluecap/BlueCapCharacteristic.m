@@ -18,8 +18,6 @@
 
 @property(nonatomic, retain) CBCharacteristic*                  cbCharacteristic;
 @property(nonatomic, retain) NSMutableArray*                    discoveredDiscriptors;
-@property(nonatomic, retain) BlueCapService*                    service;
-@property(nonatomic, retain) BlueCapCharacteristicProfile*      profile;
 
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterReadCallback;
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterWriteCallback;
@@ -31,6 +29,9 @@
 @end
 
 @implementation BlueCapCharacteristic
+
+@synthesize service = _service;
+@synthesize profile = _profile;
 
 #pragma mark - BlueCapCharacteristic
 
@@ -96,10 +97,9 @@
 
 - (NSDictionary*)value {
     NSDictionary* deserializedVals = [NSDictionary dictionary];
-    BlueCapCharacteristicProfile* profile = self.profile;
-    if (profile) {
-        if (profile.deserializeDataCallback) {
-            deserializedVals = profile.deserializeDataCallback([self dataValue]);
+    if (self.profile) {
+        if (self.profile.deserializeDataCallback) {
+            deserializedVals = self.profile.deserializeDataCallback([self dataValue]);
         } else if ([self hasValues]) {
             deserializedVals = [self deserailizeDataValues];
         }

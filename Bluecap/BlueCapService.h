@@ -14,13 +14,14 @@
 
 @interface BlueCapService : NSObject
 
-@property(nonatomic, readonly) CBUUID*      UUID;
-@property(nonatomic, readonly) NSArray*     characteristics;
-@property(nonatomic, readonly) NSArray*     includedServices;
-@property(nonatomic, readonly) BOOL         isPrimary;
+@property(nonatomic, readonly) CBUUID*                          UUID;
+@property(nonatomic, readonly) NSArray*                         characteristics;
+@property(nonatomic, readonly) NSArray*                         includedServices;
+@property(nonatomic, readonly) BOOL                             isPrimary;
 
-- (BlueCapPeripheral*)peripheral;
-- (BlueCapServiceProfile*)profile;
+@property(nonatomic, retain, readonly) BlueCapPeripheral*       peripheral;
+@property(nonatomic, retain, readonly) BlueCapServiceProfile*   profile;
+
 - (BOOL)hasProfile;
 
 - (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)_afterChracteristicsDiscoveredCallback;

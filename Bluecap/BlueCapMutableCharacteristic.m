@@ -12,7 +12,6 @@
 @interface BlueCapMutableCharacteristic ()
 
 @property(nonatomic, retain) CBMutableCharacteristic*       cbCharacteristic;
-@property(nonatomic, retain) BlueCapCharacteristicProfile*  profile;
 
 - (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile;
 

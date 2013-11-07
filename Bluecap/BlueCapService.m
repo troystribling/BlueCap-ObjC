@@ -17,13 +17,14 @@
 @property(nonatomic, retain) NSMutableArray*                            discoveredCharacteristics;
 @property(nonatomic, retain) NSMutableDictionary*                       characteristicProfiles;
 @property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
-@property(nonatomic, retain) BlueCapPeripheral*                         peripheral;
-@property(nonatomic, retain) BlueCapServiceProfile*                     profile;
 @property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     afterChracteristicsDiscoveredCallback;
 
 @end
 
 @implementation BlueCapService
+
+@synthesize peripheral = _peripheral;
+@synthesize profile = _profile;
 
 #pragma mark - BlueCapService
 

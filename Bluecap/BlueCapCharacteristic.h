@@ -13,11 +13,14 @@
 
 @interface BlueCapCharacteristic : NSObject
 
-@property(nonatomic, readonly) NSArray*                     descriptors;
-@property(nonatomic, readonly) BOOL                         isBroadcasted;
-@property(nonatomic, readonly) BOOL                         isNotifying;
-@property(nonatomic, readonly) CBCharacteristicProperties   properties;
-@property(nonatomic, readonly) CBUUID*                      UUID;
+@property(nonatomic, readonly) NSArray*                                     descriptors;
+@property(nonatomic, readonly) BOOL                                         isBroadcasted;
+@property(nonatomic, readonly) BOOL                                         isNotifying;
+@property(nonatomic, readonly) CBCharacteristicProperties                   properties;
+@property(nonatomic, readonly) CBUUID*                                      UUID;
+
+@property(nonatomic, retain, readonly) BlueCapService*                      service;
+@property(nonatomic, retain, readonly) BlueCapCharacteristicProfile*        profile;
 
 - (BlueCapService*)service;
 - (BlueCapCharacteristicProfile*)profile;

@@ -23,7 +23,6 @@
 @property(nonatomic, retain) CBPeripheral*      cbPeripheral;
 @property(nonatomic, retain) NSMutableArray*    discoveredServices;
 @property(nonatomic, retain) NSMapTable*        discoveredObjects;
-@property(nonatomic, retain) NSDictionary*      advertisement;
 
 @property(nonatomic, copy) BlueCapPeripheralDisconnectCallback  afterPeriperialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralConnectCallback     afterPeripheralConnectCallback;
@@ -42,6 +41,8 @@
 @end
 
 @implementation BlueCapPeripheral
+
+@synthesize advertisement = _advertisement;
 
 #pragma mark - BlueCapPeripheral
 

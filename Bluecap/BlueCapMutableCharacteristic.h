@@ -18,6 +18,8 @@
 @property(nonatomic, readonly) CBCharacteristicProperties               properties;
 @property(nonatomic, readonly) CBUUID*                                  UUID;
 
+@property(nonatomic, retain, readonly) BlueCapCharacteristicProfile*    profile;
+
 + (BlueCapMutableCharacteristic*)createWithPrifile:(BlueCapCharacteristicProfile*)__profile;
 
 - (BlueCapCharacteristicProfile*)profile;
