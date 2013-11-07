@@ -41,4 +41,40 @@
     }
     return self;
 }
+
++ (NSData*)serializeObject:(id)__value usingProfile:(BlueCapCharacteristicProfile*)__profile {
+    NSData* serializedValue = nil;
+    if (__profile) {
+        BlueCapCharacteristicProfileSerializeObjectCallback serializeBlock = __profile.serializeObjectCallback;
+        if (serializedValue) {
+            serializedValue = serializeBlock(__value);
+        } else {
+            [NSException raise:@"Must provide serialization block" format:@"serialization block is nil"];
+        }
+    } else {
+        [NSException raise:@"Must provide profile" format:@"profile is nil"];
+    }
+    return serializedValue;
+}
+
++ (NSData*)serializeNamedValue:(NSString*)__name usingProfile:(BlueCapCharacteristicProfile*)__profile {
+    NSData* serializedValue = nil;
+    if (__profile) {
+        id objectValue = [__profile.valueObjects objectForKey:__name];
+        BlueCapCharacteristicProfileSerializeNamedObjectCallback serializeBlock = __profile.serializeNamedObjectCallback;
+        if (objectValue && serializeBlock) {
+            serializedValue = serializeBlock(__name, objectValue);
+        } else if (objectValue) {
+            if ([objectValue isKindOfClass:[NSData class]]) {
+                serializedValue = objectValue;
+            }
+        } else {
+            [NSException raise:@"Must provide valid value name and serialization block" format:@"value name '%@' is invalid or seialization block is nil", __name];
+        }
+    } else {
+        [NSException raise:@"Must provide profile" format:@"profile is nil"];
+    }
+    return serializedValue;
+}
+
 @end

@@ -20,7 +20,10 @@
 
 @property(nonatomic, retain, readonly) BlueCapCharacteristicProfile*    profile;
 
-+ (BlueCapMutableCharacteristic*)createWithPrifile:(BlueCapCharacteristicProfile*)__profile;
++ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andObject:(id)__value;
++ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value;
++ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andNamedValue:(NSString*)__value;
++ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile;
 
 - (BlueCapCharacteristicProfile*)profile;
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;

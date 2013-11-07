@@ -25,4 +25,7 @@
 
 -(id)initWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
 
++ (NSData*)serializeObject:(id)__value usingProfile:(BlueCapCharacteristicProfile*)__profile;
++ (NSData*)serializeNamedValue:(NSString*)__name usingProfile:(BlueCapCharacteristicProfile*)__profile;
+
 @end

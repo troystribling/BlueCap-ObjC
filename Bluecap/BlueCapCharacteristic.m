@@ -132,11 +132,10 @@
 
 - (NSDictionary*)deserailizeDataValues {
     NSDictionary* deserializedVals = [NSDictionary dictionary];
-    BlueCapCharacteristicProfile* profile = self.profile;
-    for(id objectValue in [profile.valueObjects allValues]) {
+    for(id objectValue in [self.profile.valueObjects allValues]) {
         if ([objectValue isKindOfClass:[NSData class]]) {
             if ([objectValue isEqualToData:[self dataValue]]) {
-                deserializedVals = [NSDictionary dictionaryWithObject:[profile.valueNames objectForKey:objectValue] forKey:profile.name];
+                deserializedVals = [NSDictionary dictionaryWithObject:[self.profile.valueNames objectForKey:objectValue] forKey:self.profile.name];
                 break;
             }
         }
@@ -209,48 +208,22 @@
 }
 
 - (void)writeValueNamed:(NSString*)__objectName afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
-    if (self.profile) {
-        BlueCapCharacteristicProfileSerializeNamedObjectCallback serializeBlock = self.profile.serializeNamedObjectCallback;
-        id objectValue = [self.profile.valueObjects objectForKey:__objectName];
-        if (serializeBlock && objectValue) {
-            [self writeData:serializeBlock(__objectName, objectValue)];
-        } else if (objectValue) {
-            if ([objectValue isKindOfClass:[NSData class]]) {
-                [self writeData:objectValue afterWriteCall:__afterWriteCallback];
-            }
-        }
-    }
+    NSData* serializedValue = [BlueCapCharacteristicProfile serializeNamedValue:__objectName usingProfile:self.profile];
+    [self writeData:serializedValue afterWriteCall:__afterWriteCallback];
 }
 
 - (void)writeValueNamed:(NSString*)__objectName {
-    if (self.profile) {
-        BlueCapCharacteristicProfileSerializeNamedObjectCallback serializeBlock = self.profile.serializeNamedObjectCallback;
-        id objectValue = [self.profile.valueObjects objectForKey:__objectName];
-        if (serializeBlock && objectValue) {
-            [self writeData:serializeBlock(__objectName, objectValue)];
-        } else if (objectValue) {
-            if ([objectValue isKindOfClass:[NSData class]]) {
-                [self writeData:objectValue];
-            }
-        }
-    }
+    NSData* serializedValue = [BlueCapCharacteristicProfile serializeNamedValue:__objectName usingProfile:self.profile];
+    [self writeData:serializedValue];
 }
-- (void)writeObject:(id)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
-    if (self.profile) {
-        BlueCapCharacteristicProfileSerializeObjectCallback serilizeBlock = self.profile.serializeObjectCallback;
-        if (serilizeBlock) {
-            [self writeData:serilizeBlock(__data) afterWriteCall:__afterWriteCallback];
-        }
-    }
+- (void)writeObject:(id)__object afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
+    NSData* serializedValue = [BlueCapCharacteristicProfile serializeObject:__object usingProfile:self.profile];
+    [self writeData:serializedValue afterWriteCall:__afterWriteCallback];
 }
 
-- (void)writeObject:(id)__data {
-    if (self.profile) {
-        BlueCapCharacteristicProfileSerializeObjectCallback serilizeBlock = self.profile.serializeObjectCallback;
-        if (serilizeBlock) {
-            [self writeData:serilizeBlock(__data)];
-        }
-    }
+- (void)writeObject:(id)__object {
+    NSData* serializedValue = [BlueCapCharacteristicProfile serializeObject:__object usingProfile:self.profile];
+    [self writeData:serializedValue];
 }
 
 #pragma mark - Discover Descriptors

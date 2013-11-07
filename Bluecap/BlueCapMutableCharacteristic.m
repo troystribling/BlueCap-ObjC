@@ -11,9 +11,9 @@
 
 @interface BlueCapMutableCharacteristic ()
 
-@property(nonatomic, retain) CBMutableCharacteristic*       cbCharacteristic;
+@property(nonatomic, retain) CBMutableCharacteristic*   cbCharacteristic;
 
-- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile;
+- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value;
 
 @end
 
@@ -21,20 +21,20 @@
 
 #pragma mark - BlueCapCharacteristic
 
-+ (BlueCapMutableCharacteristic*)createWithPrifile:(BlueCapCharacteristicProfile*)__profile {
-    return [[BlueCapMutableCharacteristic alloc] initWithProfile:__profile];
++ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andObject:(id)__value {
+    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeObject:__value usingProfile:__profile]];
 }
 
-- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile {
-    self = [super init];
-    if (self) {
-        _profile = __profile;
-        self.cbCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_profile.UUID
-                                                                   properties:_profile.properties
-                                                                        value:nil
-                                                                  permissions:_profile.permissions];
-    }
-    return self;
++ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value {
+    return [[BlueCapMutableCharacteristic alloc] initWithProfile:__profile andData:__value];
+}
+
++ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andNamedValue:(NSString*)__name {
+    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeNamedValue:__name usingProfile:__profile]];
+}
+
++ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile {
+    return [self withProfile:__profile andData:nil];
 }
 
 - (NSArray*)descriptors {
@@ -63,6 +63,20 @@
 
 - (BOOL)permissionEnabled:(CBAttributePermissions)__permission {
     return self.permissions & __permission;
+}
+
+#pragma mark - Private
+
+- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value  {
+    self = [super init];
+    if (self) {
+        _profile = __profile;
+        self.cbCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_profile.UUID
+                                                                   properties:_profile.properties
+                                                                        value:__value
+                                                                  permissions:_profile.permissions];
+    }
+    return self;
 }
 
 @end
