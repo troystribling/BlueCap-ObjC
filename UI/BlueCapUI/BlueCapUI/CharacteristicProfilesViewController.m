@@ -68,11 +68,6 @@
     BlueCapCharacteristicProfile* characteristicProfile = [self.serviceProfile.characteristicProfiles objectAtIndex:indexPath.row];
     cell.nameLabel.text = characteristicProfile.name;
     cell.uuidLabel.text = [characteristicProfile.UUID stringValue];
-    if ([characteristicProfile hasValues]) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
     return cell;
 }
 
