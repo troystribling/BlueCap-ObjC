@@ -19,9 +19,6 @@
 @property(nonatomic, readonly) CBCharacteristicProperties                   properties;
 @property(nonatomic, readonly) CBUUID*                                      UUID;
 
-@property(nonatomic, retain, readonly) BlueCapService*                      service;
-@property(nonatomic, retain, readonly) BlueCapCharacteristicProfile*        profile;
-
 - (BlueCapService*)service;
 - (BlueCapCharacteristicProfile*)profile;
 - (BOOL)hasProfile;

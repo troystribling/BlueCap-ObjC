@@ -17,6 +17,9 @@
 @property(nonatomic, retain) NSMutableArray*                            discoveredCharacteristics;
 @property(nonatomic, retain) NSMutableDictionary*                       characteristicProfiles;
 @property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
+@property(nonatomic, retain) BlueCapPeripheral*                         peripheral;
+@property(nonatomic, retain) BlueCapServiceProfile*                     profile;
+
 @property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     afterChracteristicsDiscoveredCallback;
 
 @end

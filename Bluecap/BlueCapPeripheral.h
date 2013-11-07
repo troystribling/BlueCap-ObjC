@@ -26,7 +26,7 @@ typedef enum {
 @property(nonatomic, readonly)  CBPeripheralState       state;
 @property(nonatomic, readonly)  NSNumber*               RSSI;
 
-@property(nonatomic, retain, readonly) NSDictionary*    advertisement;
+- (NSDictionary*)advertisement;
 
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
 - (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
