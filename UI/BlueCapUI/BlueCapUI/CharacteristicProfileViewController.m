@@ -8,6 +8,7 @@
 
 #import <BlueCap/BlueCap.h>
 #import "CharacteristicProfileViewController.h"
+#import "CharacteristicProfileValuesViewController.h"
 
 @interface CharacteristicProfileViewController ()
 
@@ -52,6 +53,13 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"CharacteristicProfileValues"]) {
+        CharacteristicProfileValuesViewController* viewController = segue.destinationViewController;
+        viewController.characteristicProfile = self.characteristicProfile;
+    }
+}
+
 #pragma mark - CharacteristicProfileViewController Private
 
 - (NSString*)booleanStringValue:(BOOL)__boolValue {
@@ -71,7 +79,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
-    if (indexPath.section == 0 && indexPath.row == 0 && [self.characteristicProfile hasValues]) {
+    if (indexPath.section == 0 && indexPath.row == 0 && ![self.characteristicProfile hasValues]) {
         cell.textLabel.textColor = [UIColor lightGrayColor];
         cell.userInteractionEnabled = NO;
     }

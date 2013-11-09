@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    self.navigationItem.title = self.serviceProfile.name;
     [super viewDidLoad];
 }
 
@@ -34,23 +35,12 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"CharacteristicProfileValues"]) {
+    if ([segue.identifier isEqualToString:@"CharacteristicProfile"]) {
         NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
         BlueCapCharacteristicProfile* characteristicProfile = [self.serviceProfile.characteristicProfiles objectAtIndex:indexPath.row];
         CharacteristicProfileValuesViewController* viewController = segue.destinationViewController;
         viewController.characteristicProfile = characteristicProfile;
     }
-}
-
-
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    BOOL shouldSegue = NO;
-    NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
-    BlueCapCharacteristicProfile* characteristicProfile = [self.serviceProfile.characteristicProfiles objectAtIndex:indexPath.row];
-    if ([characteristicProfile hasValues]) {
-        shouldSegue = YES;
-    }
-    return shouldSegue;
 }
 
 #pragma mark - Table view data source

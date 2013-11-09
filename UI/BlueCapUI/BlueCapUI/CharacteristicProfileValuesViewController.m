@@ -23,7 +23,7 @@
 }
 
 - (void)viewDidLoad {
-    self.navigationItem.title = [self.characteristicProfile name];
+    self.navigationItem.title = self.characteristicProfile.name;
     [super viewDidLoad];
 }
 
