@@ -66,7 +66,7 @@
     [self.peripheral.cbPeripheral discoverCharacteristics:nil forService:self.cbService];
 }
 
-- (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__afterChracteristicsDiscoveredCallback {
+- (void)discoverCharacteristics:(NSArray*)__characteristics afterDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__afterChracteristicsDiscoveredCallback {
     self.afterChracteristicsDiscoveredCallback = __afterChracteristicsDiscoveredCallback;
     [self.peripheral.cbPeripheral discoverCharacteristics:__characteristics forService:self.cbService];
 }

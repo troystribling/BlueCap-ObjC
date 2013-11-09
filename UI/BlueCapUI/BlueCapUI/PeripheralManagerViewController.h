@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeripheralManagerViewController : UITableViewController
+@interface PeripheralManagerViewController : UITableViewController  <UITextFieldDelegate>
+
+@property(nonatomic, retain) IBOutlet UITextField*  nameTextField;
+@property(nonatomic, retain) IBOutlet UIButton*     advertiseButton;
 
 @end

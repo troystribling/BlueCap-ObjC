@@ -15,6 +15,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 @property(nonatomic, retain) CBPeripheralManager*                       cbPeripheralManager;
 @property(nonatomic, retain) dispatch_queue_t                           mainQueue;
 @property(nonatomic, retain) dispatch_queue_t                           callbackQueue;
+@property(nonatomic, retain) NSMutableDictionary*                       configuredServices;
 @property(nonatomic, copy) BlueCapPeripheralManagerStartedAdvertising   startedAdvertisingCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerStoppedAdvertising   stoppedAdvertisingCallback;
 
@@ -39,6 +40,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
         self.mainQueue = dispatch_queue_create("com.gnos.us.peripheral.main", DISPATCH_QUEUE_SERIAL);
         self.callbackQueue = dispatch_queue_create("com.gnos.us.perpheral.callback", DISPATCH_QUEUE_SERIAL);
         self.cbPeripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:self.mainQueue];
+        self.configuredServices = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -51,10 +53,18 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     return self.cbPeripheralManager.state;
 }
 
-- (void)startAdvertising:(BlueCapPeripheralManagerStartedAdvertising)__startedAdvertisingCallback {
-    self.startedAdvertisingCallback = __startedAdvertisingCallback;
-    [self.cbPeripheralManager startAdvertising:@{CBAdvertisementDataLocalNameKey:@"Test",
-                                                 CBAdvertisementDataServiceUUIDsKey:@"abc"}];
+- (NSArray*)services {
+    return [self.configuredServices allValues];
+}
+
+- (void)startAdvertising:(NSString*)__name afterStart:(BlueCapPeripheralManagerStartedAdvertising)__startedAdvertisingCallback {
+    if ([self.services count] == 0) {
+        self.startedAdvertisingCallback = __startedAdvertisingCallback;
+        [self.cbPeripheralManager startAdvertising:@{CBAdvertisementDataLocalNameKey:__name,
+                                                     CBAdvertisementDataServiceUUIDsKey:self.services}];
+    } else {
+        [NSException raise:@"No services configured" format:@"service array is empty"];
+    }
 }
 
 - (void)stopAdvertising:(BlueCapPeripheralManagerStoppedAdvertising)__stoppedAdvertisingCallback {

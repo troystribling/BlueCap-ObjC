@@ -20,8 +20,8 @@
 - (NSNumber*)numberValue;
 - (NSData*)dataValue;
 
-- (void)read:(BlueCapDescriptorDataCallback)__onReadCallback;
-- (void)writeData:(NSData*)data onWrite:(BlueCapDescriptorDataCallback)__onWriteCallback;
+- (void)read:(BlueCapDescriptorDataCallback)__afterReadCallback;
+- (void)writeData:(NSData*)data afterWrite:(BlueCapDescriptorDataCallback)__afterWriteCallback;
 - (NSString*)typeStringValue;
 
 @end

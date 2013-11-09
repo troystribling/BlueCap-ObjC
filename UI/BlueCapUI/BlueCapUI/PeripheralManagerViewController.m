@@ -1,4 +1,4 @@
- //
+//
 //  PeripheralManagerViewController.m
 //  BlueCapUI
 //
@@ -6,9 +6,13 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import <BlueCap/BlueCap.h>
 #import "PeripheralManagerViewController.h"
 
 @interface PeripheralManagerViewController ()
+
+- (IBAction)toggleAdvertise:(id)sender;
+- (void)setAdvertiseButtonLabel;
 
 @end
 
@@ -23,20 +27,58 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setAdvertiseButtonLabel];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Table view data source
+#pragma mark - Private
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+- (IBAction)toggleAdvertise:(id)sender {
+    BlueCapPeripheralManager* manager = [BlueCapPeripheralManager sharedInstance];
+    if ([manager isAdvertising]) {
+        [manager stopAdvertising:^(BlueCapPeripheralManager* peripheralManager) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setAdvertiseButtonLabel];
+            });
+        }];
+    } else {
+        [manager startAdvertising:self.nameTextField.text afterStart:^(BlueCapPeripheralManager* perpheralManager) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setAdvertiseButtonLabel];
+            });
+        }];
+    }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+- (void)setAdvertiseButtonLabel {
+    if (self.nameTextField.text == nil || [[BlueCapPeripheralManager sharedInstance].services count] == 0) {
+        [self.advertiseButton setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0] forState:UIControlStateDisabled];
+        self.advertiseButton.enabled = NO;
+    } else {
+        self.advertiseButton.enabled = YES;
+        if ([BlueCapPeripheralManager sharedInstance].isAdvertising) {
+            [self.advertiseButton setTitle:@"Start Advertising" forState:UIControlStateNormal];
+            [self.advertiseButton setTitleColor:[UIColor colorWithRed:0.1 green:0.7 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+        } else {
+            [self.advertiseButton setTitle:@"Stop Advertising" forState:UIControlStateNormal];
+            [self.advertiseButton setTitleColor:[UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+        }
+    }
+}
+
+#pragma mark - Table view data source
+
+#pragma mark - UITableViewDelegate
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [self.nameTextField resignFirstResponder];
+    [self setAdvertiseButtonLabel];
+    return YES;
 }
 
 @end

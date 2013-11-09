@@ -44,6 +44,14 @@
     return valueNames;
 }
 
+- (BOOL)propertyEnabled:(CBCharacteristicProperties)__property {
+    return self.properties & __property;
+}
+
+- (BOOL)permissionEnabled:(CBAttributePermissions)__permission {
+    return self.permissions & __permission;
+}
+
 - (void)setValue:(id)__objectValue named:(NSString*)__valueName {
     [self.valueObjects setValue:__objectValue forKey:__valueName];
     [self.valueNames setValue:__valueName forKey:__objectValue];

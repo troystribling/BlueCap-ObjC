@@ -185,19 +185,6 @@
 			path = ServiceDefinitions;
 			sourceTree = "<group>";
 		};
-		05984F1E17F5DBCA008A344D /* CentralManager */ = {
-			isa = PBXGroup;
-			children = (
-				05A5D00B18270276003FB93C /* PeripheralManager */,
-				05A0F11B17F7429A0046B47C /* CentralManager */,
-				05A0F11E17F742BE0046B47C /* Characteristic */,
-				05A0F11F17F743050046B47C /* Descriptor */,
-				05A0F11C17F742A80046B47C /* Peripheral */,
-				05A0F11D17F742B70046B47C /* Service */,
-			);
-			name = CentralManager;
-			sourceTree = "<group>";
-		};
 		05984F1F17F5DC33008A344D /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,13 +324,18 @@
 		05E6897417C1E0890013246A /* BlueCap */ = {
 			isa = PBXGroup;
 			children = (
-				05984F1F17F5DC33008A344D /* Categories */,
-				05984F1E17F5DBCA008A344D /* CentralManager */,
-				05E6897517C1E0890013246A /* BlueCap-Prefix.pch */,
 				05E6897617C1E0890013246A /* BlueCap.h */,
-				0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */,
 				059329E117F3DBB800D514F1 /* BlueCapBlocks.h */,
 				0565A0AF17C1F0D200BFB1C0 /* DebugLog.h */,
+				0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */,
+				05E6897517C1E0890013246A /* BlueCap-Prefix.pch */,
+				05984F1F17F5DC33008A344D /* Categories */,
+				05A0F11B17F7429A0046B47C /* CentralManager */,
+				05A0F11E17F742BE0046B47C /* Characteristic */,
+				05A0F11F17F743050046B47C /* Descriptor */,
+				05A0F11C17F742A80046B47C /* Peripheral */,
+				05A5D00B18270276003FB93C /* PeripheralManager */,
+				05A0F11D17F742B70046B47C /* Service */,
 				059329CD17F0986600D514F1 /* ServiceProfiles */,
 			);
 			path = BlueCap;

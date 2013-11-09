@@ -39,7 +39,7 @@
             }];
             [self reloadTableData];
         }];
-    } onPowerOff:^{
+    } afterPowerOff:^{
         [self reloadTableData];
     }];
     [super viewDidLoad];

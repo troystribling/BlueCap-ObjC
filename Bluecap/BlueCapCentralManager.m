@@ -84,7 +84,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     [self.centralManager scanForPeripheralsWithServices:nil options:nil];
 }
 
-- (void)startScanningForPeripheralsWithServiceUUIDs:(NSArray*)__uuids onDiscovery:(BlueCapPeripheralDiscoveredCallback)__afterPeripheralDiscoveredCallback {
+- (void)startScanningForPeripheralsWithServiceUUIDs:(NSArray*)__uuids afterDiscovery:(BlueCapPeripheralDiscoveredCallback)__afterPeripheralDiscoveredCallback {
 	NSDictionary* options = @{CBCentralManagerScanOptionAllowDuplicatesKey:[NSNumber numberWithBool:NO]};
     self.afterPeripheralDiscoveredCallback = __afterPeripheralDiscoveredCallback;
     [self.discoveredPeripherals removeAllObjects];
@@ -108,7 +108,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     }];
 }
 
-- (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback onPowerOff:(BlueCapCentralManagerCallback)__afterPowerOffCallback {
+- (void)powerOn:(BlueCapCentralManagerCallback)__onPowerOnCallback afterPowerOff:(BlueCapCentralManagerCallback)__afterPowerOffCallback {
     self.afterPowerOffCallback = __afterPowerOffCallback;
     [self powerOn:__onPowerOnCallback];
 }

@@ -24,6 +24,6 @@
 - (BOOL)hasProfile;
 
 - (void)discoverAllCharacteritics:(BlueCapCharacteristicsDiscoveredCallback)_afterChracteristicsDiscoveredCallback;
-- (void)discoverCharacteristics:(NSArray*)__characteristics onDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__afterChracteristicsDiscoveredCallback;
+- (void)discoverCharacteristics:(NSArray*)__characteristics afterDiscovery:(BlueCapCharacteristicsDiscoveredCallback)__afterChracteristicsDiscoveredCallback;
 
 @end

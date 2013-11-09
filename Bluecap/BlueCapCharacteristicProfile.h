@@ -18,6 +18,9 @@
 - (BOOL)hasValues;
 - (NSArray*)allValues;
 
+- (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
+- (BOOL)permissionEnabled:(CBAttributePermissions)__permission;
+
 - (void)setValue:(id)__objectValue named:(NSString*)__valueName;
 - (void)serializeNamedObject:(BlueCapCharacteristicProfileSerializeNamedObjectCallback)__serializeBlock;
 - (void)serializeObject:(BlueCapCharacteristicProfileSerializeObjectCallback)__serializeBlock;

@@ -84,7 +84,7 @@
     [self.cbPeripheral discoverServices:nil];
 }
 
-- (void)discoverServices:(NSArray*)__services onDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscoveredCallback {
+- (void)discoverServices:(NSArray*)__services afterDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscoveredCallback {
     self.afterServicesDiscoveredCallback = __afterServicesDiscoveredCallback;
     [self.cbPeripheral discoverServices:__services];
 }

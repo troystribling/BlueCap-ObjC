@@ -12,7 +12,11 @@
 
 @property(nonatomic, readonly) BOOL                         isAdvertising;
 @property(nonatomic, readonly) CBPeripheralManagerState     state;
+@property(nonatomic, readonly) NSArray*                     services;
 
 +(BlueCapPeripheralManager*)sharedInstance;
+
+- (void)startAdvertising:(NSString*)__name afterStart:(BlueCapPeripheralManagerStartedAdvertising)__startedAdvertisingCallback;
+- (void)stopAdvertising:(BlueCapPeripheralManagerStoppedAdvertising)__stoppedAdvertisingCallback;
 
 @end
