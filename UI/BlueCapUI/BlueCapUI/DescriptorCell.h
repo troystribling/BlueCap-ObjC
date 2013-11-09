@@ -1,5 +1,5 @@
 //
-//  DescriptorDetailCell.h
+//  DescriptorCell.h
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 9/4/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DescriptorDetailCell : UITableViewCell
+@interface DescriptorCell : UITableViewCell
 
 @property(nonatomic, retain) IBOutlet UILabel*   typeLabel;
 @property(nonatomic, retain) IBOutlet UILabel*   valuelabel;

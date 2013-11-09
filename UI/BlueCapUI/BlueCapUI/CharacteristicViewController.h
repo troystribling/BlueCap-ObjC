@@ -1,5 +1,5 @@
 //
-//  CharacteristicDetailViewController.h
+//  CharacteristicViewController.h
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 9/2/13.
@@ -10,7 +10,7 @@
 
 @class BlueCapCharacteristic;
 
-@interface CharacteristicDetailViewController : UITableViewController
+@interface CharacteristicViewController : UITableViewController
 
 @property(nonatomic, retain) BlueCapCharacteristic* characteristic;
 @property(nonatomic, retain) IBOutlet UILabel*      uuidLabel;

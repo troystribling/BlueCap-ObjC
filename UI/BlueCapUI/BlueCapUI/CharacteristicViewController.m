@@ -1,5 +1,5 @@
 //
-//  ChracteristicDetailViewController.m
+//  CharacteristicViewController.m
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 9/2/13.
@@ -7,11 +7,11 @@
 //
 
 #import <BlueCap/BlueCap.h>
-#import "CharacteristicDetailViewController.h"
+#import "CharacteristicViewController.h"
 #import "CharacteristicDescriptorsViewController.h"
 #import "CharacteristicValuesViewController.h"
 
-@interface CharacteristicDetailViewController ()
+@interface CharacteristicViewController ()
 
 - (NSString*)booleanStringValue:(BOOL)__boolValue;
 - (NSString*)propertyEnabledStringValue:(CBCharacteristicProperties)__property;
@@ -20,9 +20,9 @@
 
 @end
 
-@implementation CharacteristicDetailViewController
+@implementation CharacteristicViewController
 
-#pragma mark - ChracteristicDetailViewController
+#pragma mark - CharacteristicViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -73,7 +73,7 @@
     }
 }
 
-#pragma mark - ChracteristicDetailViewController Private
+#pragma mark - Private
 
 - (IBAction)toggleNotifications {
     if (self.characteristic.isNotifying) {

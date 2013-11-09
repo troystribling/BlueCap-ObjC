@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
-        <!--Peripheral Detail View Controller - Name-->
+        <!--Peripheral View Controller - Name-->
         <scene sceneID="xNx-2v-y8B">
             <objects>
-                <tableViewController id="XKG-l0-TPz" customClass="PeripheralDetailViewController" sceneMemberID="viewController">
+                <tableViewController id="XKG-l0-TPz" customClass="PeripheralViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Uag-bF-daR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -254,7 +254,7 @@
                                 <connections>
                                     <outlet property="nameLabel" destination="2oZ-lh-Mdk" id="JDT-Uo-v7A"/>
                                     <outlet property="serviceTypeLabel" destination="jOq-rh-ub5" id="3Le-iL-pNV"/>
-                                    <segue destination="flO-6L-RZ3" kind="push" identifier="ServiceDetail" trigger="accessoryAction" id="z72-Mc-QAG"/>
+                                    <segue destination="flO-6L-RZ3" kind="push" identifier="Service" trigger="accessoryAction" id="z72-Mc-QAG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -269,10 +269,10 @@
             </objects>
             <point key="canvasLocation" x="2154" y="249"/>
         </scene>
-        <!--Service Detail View Controller - Characteristics-->
+        <!--Service View Controller - Characteristics-->
         <scene sceneID="Awb-N4-Vuk">
             <objects>
-                <tableViewController id="flO-6L-RZ3" customClass="ServiceDetailViewController" sceneMemberID="viewController">
+                <tableViewController id="flO-6L-RZ3" customClass="ServiceViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vxs-H7-BUj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -310,10 +310,10 @@
             </objects>
             <point key="canvasLocation" x="2628" y="249"/>
         </scene>
-        <!--Characteristic Detail View Controller - Characteristic-->
+        <!--Characteristic View Controller - Characteristic-->
         <scene sceneID="QcM-LX-kfU">
             <objects>
-                <tableViewController id="qDj-sM-07o" customClass="CharacteristicDetailViewController" sceneMemberID="viewController">
+                <tableViewController id="qDj-sM-07o" customClass="CharacteristicViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hmv-lf-o2k">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -853,7 +853,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DescriptorDetailCell" rowHeight="67" id="2us-bs-y87" customClass="DescriptorDetailCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DescriptorCell" rowHeight="67" id="2us-bs-y87" customClass="DescriptorCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2us-bs-y87" id="iOc-gY-XAq">

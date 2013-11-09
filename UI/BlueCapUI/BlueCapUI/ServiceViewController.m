@@ -1,5 +1,5 @@
 //
-//  ServiceDetailViewController.m
+//  ServiceViewController.m
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 8/28/13.
@@ -7,14 +7,14 @@
 //
 
 #import <BlueCap/BlueCap.h>
-#import "ServiceDetailViewController.h"
-#import "CharacteristicDetailViewController.h"
+#import "ServiceViewController.h"
+#import "CharacteristicViewController.h"
 
-@interface ServiceDetailViewController ()
+@interface ServiceViewController ()
 
 @end
 
-@implementation ServiceDetailViewController
+@implementation ServiceViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -40,7 +40,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"CharacteristicDetail"]) {
         NSIndexPath* selectedIndexPath = [self.tableView indexPathForCell:sender];
-        CharacteristicDetailViewController* viewController = segue.destinationViewController;
+        CharacteristicViewController* viewController = segue.destinationViewController;
         BlueCapCharacteristic* characteristic = [self.service.characteristics objectAtIndex:selectedIndexPath.row];
         viewController.characteristic = characteristic;
     }

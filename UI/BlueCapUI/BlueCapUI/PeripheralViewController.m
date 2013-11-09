@@ -1,5 +1,5 @@
 //
-//  PeripheralDetailViewController.m
+//  PeripheralViewController.m
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 8/19/13.
@@ -7,17 +7,17 @@
 //
 
 #import <BlueCap/BlueCap.h>
-#import "PeripheralDetailViewController.h"
+#import "PeripheralViewController.h"
 #import "PeripheralServicesViewController.h"
 
-@interface PeripheralDetailViewController ()
+@interface PeripheralViewController ()
 
 - (IBAction)disconnect:(id)sender;
 - (void)updateUSSI;
 
 @end
 
-@implementation PeripheralDetailViewController
+@implementation PeripheralViewController
 
 #pragma mark - PeripheralViewController
 

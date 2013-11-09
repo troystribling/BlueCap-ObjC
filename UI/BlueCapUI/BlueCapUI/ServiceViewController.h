@@ -1,5 +1,5 @@
 //
-//  ServiceDetailViewController.h
+//  ServiceViewController.h
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 8/28/13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ServiceDetailViewController : UITableViewController
+@interface ServiceViewController : UITableViewController
 
 @property(nonatomic, retain) BlueCapService* service;
 

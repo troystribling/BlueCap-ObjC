@@ -1,5 +1,5 @@
 //
-//  DescriptorDetailCell.m
+//  DescriptorCell.m
 //  BlueCapUI
 //
 //  Created by Troy Stribling on 9/4/13.
@@ -7,9 +7,9 @@
 //
 
 #import <BlueCap/BlueCap.h>
-#import "DescriptorDetailCell.h"
+#import "DescriptorCell.h"
 
-@implementation DescriptorDetailCell
+@implementation DescriptorCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

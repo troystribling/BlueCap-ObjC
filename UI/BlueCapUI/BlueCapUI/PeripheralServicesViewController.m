@@ -9,7 +9,7 @@
 #import <BlueCap/BlueCap.h>
 #import "PeripheralServicesViewController.h"
 #import "PeripheralServiceCell.h"
-#import "ServiceDetailViewController.h"
+#import "ServiceViewController.h"
 
 @interface PeripheralServicesViewController ()
 
@@ -39,9 +39,9 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"ServiceDetail"]) {
+    if ([[segue identifier] isEqualToString:@"Service"]) {
         NSIndexPath* serviceIndex = [self.tableView indexPathForCell:sender];
-        ServiceDetailViewController* viewController = segue.destinationViewController;
+        ServiceViewController* viewController = segue.destinationViewController;
         viewController.service = [self.peripheral.services objectAtIndex:serviceIndex.row];
     }
 }
