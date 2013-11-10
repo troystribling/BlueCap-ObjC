@@ -13,6 +13,7 @@
 #import "BlueCapDescriptor+Friend.h"
 #import "BlueCapServiceProfile+Friend.h"
 #import "BlueCapCharacteristicProfile+Friend.h"
+#import "BlueCapProfileManager+Friend.h"
 #import "CBUUID+StringValue.h"
 
 #define RSSI_UPDATE_PERIOD_SEC          0.5
@@ -194,7 +195,7 @@
         DLog(@"Discovered Service: %@", [bcService.UUID stringValue]);
         [self.discoveredObjects setObject:bcService forKey:service];
         [self.discoveredServices addObject:bcService];
-        BlueCapServiceProfile* serviceProfile = [[BlueCapCentralManager sharedInstance].serviceProfiles objectForKey:bcService.UUID];
+        BlueCapServiceProfile* serviceProfile = [[BlueCapProfileManager sharedInstance].configuredServiceProfiles objectForKey:bcService.UUID];
         if (serviceProfile) {
             DLog(@"Service Profile Found: %@", serviceProfile.name);
             bcService.profile = serviceProfile;

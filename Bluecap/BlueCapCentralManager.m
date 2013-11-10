@@ -48,7 +48,6 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         self.callbackQueue = dispatch_queue_create("com.gnos.us.centrail.callback", DISPATCH_QUEUE_SERIAL);
 		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
-        _serviceProfiles = [NSMutableDictionary dictionary];
         self.poweredOn = YES;
         self.connecting = NO;
 	}
@@ -61,19 +60,6 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         __periperals = [self.discoveredPeripherals allValues];
     }];
     return __periperals;
-}
-
-#pragma mark - Service Profile
-
-- (BlueCapServiceProfile*)createServiceWithUUID:(NSString*)__uuidString andName:(NSString*)__name {
-    return [self createServiceWithUUID:__uuidString name:__name andProfile:nil];
-}
-
-- (BlueCapServiceProfile*)createServiceWithUUID:(NSString*)__uuidString name:(NSString*)__name andProfile:(BlueCapServiceProfileBlock)__profileBlock {
-    BlueCapServiceProfile* serviceProfile = [BlueCapServiceProfile createWithUUID:__uuidString name:__name andProfile:__profileBlock];
-    [_serviceProfiles setObject:serviceProfile forKey:serviceProfile.UUID];
-    DLog(@"Service Profile Defined: %@-%@", serviceProfile.name, [serviceProfile.UUID stringValue]);
-    return serviceProfile;
 }
 
 #pragma mark - Scan for Periherals

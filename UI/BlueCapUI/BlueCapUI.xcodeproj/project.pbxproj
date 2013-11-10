@@ -243,7 +243,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		05D6460217C3BCAF008A251D /* Controllers */ = {
+		0540FFDD182F1045001B3735 /* Central */ = {
 			isa = PBXGroup;
 			children = (
 				0536D3E717D5615700BA1165 /* CharacteristicDescriptorsViewController.h */,
@@ -252,14 +252,6 @@
 				05A261061816C9FC00232014 /* CharacteristicDiscreteValueViewController.m */,
 				05855022180B878B00BD2318 /* CharacteristicFreeFormValueViewController.h */,
 				05855023180B878B00BD2318 /* CharacteristicFreeFormValueViewController.m */,
-				050C73261825C651002BF77F /* CharacteristicProfileCell.h */,
-				050C73271825C651002BF77F /* CharacteristicProfileCell.m */,
-				0504D1401821F6C300A5C607 /* CharacteristicProfilesViewController.h */,
-				0504D1411821F6C300A5C607 /* CharacteristicProfilesViewController.m */,
-				0504D1461821FDBE00A5C607 /* CharacteristicProfileValuesViewController.h */,
-				0504D1471821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m */,
-				0540FFD4182EC76D001B3735 /* CharacteristicProfileViewController.h */,
-				0540FFD5182EC76D001B3735 /* CharacteristicProfileViewController.m */,
 				054766C71803AF6F005C4125 /* CharacteristicValueCell.h */,
 				054766C81803AF6F005C4125 /* CharacteristicValueCell.m */,
 				057CA28617FD10E2002AF4A2 /* CharacteristicValuesViewController.h */,
@@ -270,10 +262,6 @@
 				0536D3EB17D8528C00BA1165 /* DescriptorCell.m */,
 				05D6460417C5A73E008A251D /* PeripheraCell.m */,
 				05D6460317C5A73E008A251D /* PeripheralCell.h */,
-				0540FFD7182F0482001B3735 /* PeripheralManagerServicesViewController.h */,
-				0540FFD8182F0482001B3735 /* PeripheralManagerServicesViewController.m */,
-				05FE6C17182BF64000941EB0 /* PeripheralManagerViewController.h */,
-				05FE6C18182BF64000941EB0 /* PeripheralManagerViewController.m */,
 				059769CF17CB121600BDE5B5 /* PeripheralServiceCell.h */,
 				059769D017CB121600BDE5B5 /* PeripheralServiceCell.m */,
 				05D645FE17C341F4008A251D /* PeripheralServicesViewController.h */,
@@ -282,14 +270,50 @@
 				05D6E51F17BFDEC70019B575 /* PeripheralsViewController.m */,
 				0565A0B217C3321800BFB1C0 /* PeripheralViewController.h */,
 				0565A0B317C3321800BFB1C0 /* PeripheralViewController.m */,
+				059769E317CF1CED00BDE5B5 /* ServiceViewController.h */,
+				059769E417CF1CED00BDE5B5 /* ServiceViewController.m */,
+			);
+			name = Central;
+			sourceTree = "<group>";
+		};
+		0540FFDE182F104F001B3735 /* Peripheral */ = {
+			isa = PBXGroup;
+			children = (
 				0540FFDA182F05AC001B3735 /* PeripheralManagerServiceProfilesViewController.h */,
 				0540FFDB182F05AC001B3735 /* PeripheralManagerServiceProfilesViewController.m */,
+				0540FFD7182F0482001B3735 /* PeripheralManagerServicesViewController.h */,
+				0540FFD8182F0482001B3735 /* PeripheralManagerServicesViewController.m */,
+				05FE6C17182BF64000941EB0 /* PeripheralManagerViewController.h */,
+				05FE6C18182BF64000941EB0 /* PeripheralManagerViewController.m */,
+			);
+			name = Peripheral;
+			sourceTree = "<group>";
+		};
+		0540FFDF182F1057001B3735 /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				050C73261825C651002BF77F /* CharacteristicProfileCell.h */,
+				050C73271825C651002BF77F /* CharacteristicProfileCell.m */,
+				0504D1401821F6C300A5C607 /* CharacteristicProfilesViewController.h */,
+				0504D1411821F6C300A5C607 /* CharacteristicProfilesViewController.m */,
+				0504D1461821FDBE00A5C607 /* CharacteristicProfileValuesViewController.h */,
+				0504D1471821FDBE00A5C607 /* CharacteristicProfileValuesViewController.m */,
+				0540FFD4182EC76D001B3735 /* CharacteristicProfileViewController.h */,
+				0540FFD5182EC76D001B3735 /* CharacteristicProfileViewController.m */,
 				0504D13D1820A80000A5C607 /* ServiceProfileCell.h */,
 				0504D13E1820A80000A5C607 /* ServiceProfileCell.m */,
 				0504D0FE1820A18400A5C607 /* ServiceProfilesViewController.h */,
 				0504D0FF1820A18400A5C607 /* ServiceProfilesViewController.m */,
-				059769E317CF1CED00BDE5B5 /* ServiceViewController.h */,
-				059769E417CF1CED00BDE5B5 /* ServiceViewController.m */,
+			);
+			name = Profiles;
+			sourceTree = "<group>";
+		};
+		05D6460217C3BCAF008A251D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0540FFDD182F1045001B3735 /* Central */,
+				0540FFDE182F104F001B3735 /* Peripheral */,
+				0540FFDF182F1057001B3735 /* Profiles */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

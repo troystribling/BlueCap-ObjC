@@ -37,7 +37,7 @@
     if ([segue.identifier isEqualToString:@"CharacteristicProfiles"]) {
         NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
         CharacteristicProfilesViewController* viewController = segue.destinationViewController;
-        viewController.serviceProfile = [[[BlueCapCentralManager sharedInstance].serviceProfiles allValues] objectAtIndex:indexPath.row];
+        viewController.serviceProfile = [[BlueCapProfileManager sharedInstance].services objectAtIndex:indexPath.row];
     }
 }
 
@@ -48,13 +48,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[BlueCapCentralManager sharedInstance].serviceProfiles count];
+    return [[BlueCapProfileManager sharedInstance].services count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"ServiceProfileCell";
     ServiceProfileCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    BlueCapServiceProfile* serviceProfile = [[[BlueCapCentralManager sharedInstance].serviceProfiles allValues] objectAtIndex:indexPath.row];
+    BlueCapServiceProfile* serviceProfile = [[BlueCapProfileManager sharedInstance].services objectAtIndex:indexPath.row];
     cell.nameLabel.text = [serviceProfile name];
     cell.uuidLabel.text = [[serviceProfile UUID] stringValue];
     return cell;

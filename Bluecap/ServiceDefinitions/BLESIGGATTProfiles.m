@@ -13,11 +13,11 @@
 
 + (void)create {
 
-    BlueCapCentralManager* centralManager = [BlueCapCentralManager sharedInstance];
+    BlueCapProfileManager* profileManager = [BlueCapProfileManager sharedInstance];
 
 #pragma mark - Device Information
 
-    [centralManager createServiceWithUUID:@"180a"
+    [profileManager createServiceWithUUID:@"180a"
                                      name:@"Device Information"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                   
