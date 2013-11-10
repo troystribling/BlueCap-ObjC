@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		050B2ACA18240BAF00DE5792 /* BlueCapServiceProfile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 054766C017FFB3C5005C4125 /* BlueCapServiceProfile.h */; };
+		05400000183028EE001B3735 /* BlueCapMutableService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05A5D014182877BA003FB93C /* BlueCapMutableService.h */; };
+		05400001183028F9001B3735 /* BlueCapMutableDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05A5D01718287933003FB93C /* BlueCapMutableDescriptor.h */; };
+		0540000218302909001B3735 /* BlueCapMutableCharacteristic.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05A5D011182877A1003FB93C /* BlueCapMutableCharacteristic.h */; };
 		0540FFE3182F1173001B3735 /* BlueCapProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0540FFE2182F1173001B3735 /* BlueCapProfileManager.m */; };
 		0540FFE9182F17B4001B3735 /* BlueCapProfileManager+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 0540FFE8182F17B4001B3735 /* BlueCapProfileManager+Friend.m */; };
 		0540FFEA182F18A1001B3735 /* BlueCapProfileManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0540FFE1182F1173001B3735 /* BlueCapProfileManager.h */; };
@@ -73,6 +76,9 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				0540000218302909001B3735 /* BlueCapMutableCharacteristic.h in CopyFiles */,
+				05400001183028F9001B3735 /* BlueCapMutableDescriptor.h in CopyFiles */,
+				05400000183028EE001B3735 /* BlueCapMutableService.h in CopyFiles */,
 				0540FFEA182F18A1001B3735 /* BlueCapProfileManager.h in CopyFiles */,
 				05A5D00F18270C07003FB93C /* BlueCapPeripheralManager.h in CopyFiles */,
 				050B2ACA18240BAF00DE5792 /* BlueCapServiceProfile.h in CopyFiles */,

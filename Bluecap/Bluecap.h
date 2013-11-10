@@ -19,6 +19,9 @@
 
 #import "BlueCapPeripheralManager.h"
 #import "BlueCapProfileManager.h"
+#import "BlueCapMutableService.h"
+#import "BlueCapMutableCharacteristic.h"
+#import "BlueCapMutableDescriptor.h"
 
 #import "BlueCapServiceProfile.h"
 #import "BlueCapCharacteristicProfile.h"

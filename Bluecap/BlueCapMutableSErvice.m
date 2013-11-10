@@ -50,5 +50,8 @@
     return self.cbService.isPrimary;
 }
 
+- (NSString*)name {
+    return self.profile.name;
+}
 
 @end

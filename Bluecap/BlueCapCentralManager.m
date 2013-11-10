@@ -100,9 +100,6 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 }
 
 
-- (void)createPeripheralWithUUID:(NSString*)__uuidString andConfiguration:(BlueCapPeripheralCallback)__configurationBlock {
-}
-
 #pragma mark - CBCentralManagerDelegate
 
 - (void)centralManager:(CBCentralManager*)central didConnectPeripheral:(CBPeripheral*)peripheral {

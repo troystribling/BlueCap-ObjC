@@ -8,6 +8,7 @@
 
 #import <BlueCap/BlueCap.h>
 #import "PeripheralManagerServiceProfilesViewController.h"
+#import "PeripheralManagerServiceProfileCell.h"
 
 @interface PeripheralManagerServiceProfilesViewController ()
 
@@ -42,9 +43,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"PeripheralManagerServiceProfileCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    PeripheralManagerServiceProfileCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     BlueCapServiceProfile* serviceProfile = [[BlueCapProfileManager sharedInstance].services objectAtIndex:indexPath.row];
-    cell.textLabel.text = serviceProfile.name;
+    cell.nameLabel.text = serviceProfile.name;
+    cell.uuidLabel.text = [serviceProfile.UUID stringValue];
     return cell;
 }
 

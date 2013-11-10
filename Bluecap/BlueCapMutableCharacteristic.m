@@ -13,7 +13,7 @@
 
 @property(nonatomic, retain) CBMutableCharacteristic*   cbCharacteristic;
 
-- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value;
+- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile;
 
 @end
 
@@ -21,20 +21,8 @@
 
 #pragma mark - BlueCapCharacteristic
 
-+ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andObject:(id)__value {
-    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeObject:__value usingProfile:__profile]];
-}
-
-+ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value {
-    return [[BlueCapMutableCharacteristic alloc] initWithProfile:__profile andData:__value];
-}
-
-+ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andNamedValue:(NSString*)__name {
-    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeNamedValue:__name usingProfile:__profile]];
-}
-
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile {
-    return [self withProfile:__profile andData:nil];
+    return [self withProfile:__profile];
 }
 
 - (NSArray*)descriptors {
@@ -57,6 +45,10 @@
     return self.cbCharacteristic.UUID;
 }
 
+- (NSString*)name {
+    return self.profile.name;
+}
+
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property {
     return self.properties & __property;
 }
@@ -67,13 +59,13 @@
 
 #pragma mark - Private
 
-- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value  {
+- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile  {
     self = [super init];
     if (self) {
         _profile = __profile;
         self.cbCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_profile.UUID
                                                                    properties:_profile.properties
-                                                                        value:__value
+                                                                        value:nil
                                                                   permissions:_profile.permissions];
     }
     return self;

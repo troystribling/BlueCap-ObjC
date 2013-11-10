@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import <BlueCap/BlueCap.h>
 #import "PeripheralManagerServicesViewController.h"
+#import "PeripheralManagerServiceCell.h"
 
 @interface PeripheralManagerServicesViewController ()
 
@@ -38,16 +40,19 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [[BlueCapPeripheralManager sharedInstance].services count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"PeripheralManagerServicesViewControllerCell";
+    PeripheralManagerServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    BlueCapMutableService* service = [[BlueCapPeripheralManager sharedInstance].services objectAtIndex:indexPath.row];
+    cell.nameLabel.text = service.name;
+    cell.uuidLabel.text = [service.UUID stringValue];
     return cell;
 }
 

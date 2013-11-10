@@ -18,6 +18,7 @@
 @property(nonatomic, readonly) NSArray*     characteristics;
 @property(nonatomic, readonly) NSArray*     includedServices;
 @property(nonatomic, readonly) BOOL         isPrimary;
+@property(nonatomic, readonly) NSString*    name;
 
 - (BlueCapPeripheral*)peripheral;
 - (BlueCapServiceProfile*)profile;

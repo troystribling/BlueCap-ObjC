@@ -8,6 +8,7 @@
 
 
 #import "BlueCapPeripheral+Friend.h"
+#import "BlueCapServiceProfile+Friend.h"
 #import "BlueCapService.h"
 #import "BlueCapCharacteristicProfile+Friend.h"
 
@@ -45,6 +46,14 @@
 
 - (BOOL)isPrimary {
     return self.cbService.isPrimary;
+}
+
+- (NSString*)name {
+    if ([self hasProfile]) {
+        return self.profile.name;
+    } else {
+        return @"Unkown";
+    }
 }
 
 - (BlueCapPeripheral*)peripheral {

@@ -9,6 +9,7 @@
 #import <BlueCap/BlueCap.h>
 #import "ServiceViewController.h"
 #import "CharacteristicViewController.h"
+#import "CharacteristicCell.h"
 
 @interface ServiceViewController ()
 
@@ -38,7 +39,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"CharacteristicDetail"]) {
+    if ([segue.identifier isEqualToString:@"Characteristic"]) {
         NSIndexPath* selectedIndexPath = [self.tableView indexPathForCell:sender];
         CharacteristicViewController* viewController = segue.destinationViewController;
         BlueCapCharacteristic* characteristic = [self.service.characteristics objectAtIndex:selectedIndexPath.row];
@@ -57,13 +58,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ServiceDetailCell" forIndexPath:indexPath];
+    CharacteristicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CharacteristicCell" forIndexPath:indexPath];
     BlueCapCharacteristic* characteristic = [self.service.characteristics objectAtIndex:indexPath.row];
-    if ([characteristic hasProfile]) {
-        cell.textLabel.text = characteristic.profile.name;
-    } else {
-        cell.textLabel.text = characteristic.UUID.stringValue;
-    }
+    cell.nameLabel.text = characteristic.name;
+    cell.uuidLabel.text = [characteristic.UUID stringValue];
     return cell;
 }
 

@@ -10,8 +10,7 @@
 
 @interface BlueCapCentralManager : NSObject <CBCentralManagerDelegate>
 
-@property(nonatomic, readonly, retain) NSArray*                 periphreals;
-@property(nonatomic, readonly, retain) NSMutableDictionary*     serviceProfiles;
+@property(nonatomic, readonly) NSArray*                 periphreals;
 
 + (BlueCapCentralManager*)sharedInstance;
 

@@ -63,6 +63,14 @@
     return self.cbCharacteristic.UUID;
 }
 
+- (NSString*)name {
+    if ([self hasProfile]) {
+        return self.profile.name;
+    } else {
+        return @"Unkown";
+    }
+}
+
 - (BlueCapService*)service {
     return _service;
 }
@@ -224,6 +232,16 @@
 - (void)writeObject:(id)__object {
     NSData* serializedValue = [BlueCapCharacteristicProfile serializeObject:__object usingProfile:self.profile];
     [self writeData:serializedValue];
+}
+
+- (void)writeValueString:(NSString*)__value afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
+    NSData* serilaiizedValue = [BlueCapCharacteristicProfile fromStringValue:__value usingProfile:self.profile];
+    [self writeData:serilaiizedValue afterWriteCall:__afterWriteCallback];
+}
+
+- (void)writeValueString:(NSString*)__value {
+    NSData* serilaiizedValue = [BlueCapCharacteristicProfile fromStringValue:__value usingProfile:self.profile];
+    [self writeData:serilaiizedValue];
 }
 
 #pragma mark - Discover Descriptors

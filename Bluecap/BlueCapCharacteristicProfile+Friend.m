@@ -16,6 +16,7 @@
 @dynamic valueNames;
 @dynamic serializeNamedObjectCallback;
 @dynamic serializeObjectCallback;
+@dynamic fromStringValueCallback;
 @dynamic deserializeDataCallback;
 @dynamic stringValueCallback;
 @dynamic afterDiscoveredCallback;
@@ -46,7 +47,7 @@
     NSData* serializedValue = nil;
     if (__profile) {
         BlueCapCharacteristicProfileSerializeObjectCallback serializeBlock = __profile.serializeObjectCallback;
-        if (serializedValue) {
+        if (serializeBlock) {
             serializedValue = serializeBlock(__value);
         } else {
             [NSException raise:@"Must provide serialization block" format:@"serialization block is nil"];
@@ -70,6 +71,21 @@
             }
         } else {
             [NSException raise:@"Must provide valid value name and serialization block" format:@"value name '%@' is invalid or seialization block is nil", __name];
+        }
+    } else {
+        [NSException raise:@"Must provide profile" format:@"profile is nil"];
+    }
+    return serializedValue;
+}
+
++ (NSData*)fromStringValue:(NSString*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile {
+    NSData* serializedValue = nil;
+    if (__profile) {
+        BlueCapCharacteristicProfileSerializeObjectCallback serializeBlock = __profile.fromStringValueCallback;
+        if (serializeBlock) {
+            serializedValue = serializeBlock(__value);
+        } else {
+            [NSException raise:@"Must provide serialization block" format:@"serialization block is nil"];
         }
     } else {
         [NSException raise:@"Must provide profile" format:@"profile is nil"];

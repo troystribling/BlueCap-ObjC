@@ -18,6 +18,7 @@
 @property(nonatomic, readonly) BOOL                                         isNotifying;
 @property(nonatomic, readonly) CBCharacteristicProperties                   properties;
 @property(nonatomic, readonly) CBUUID*                                      UUID;
+@property(nonatomic, readonly) NSString*                                    name;
 
 - (BlueCapService*)service;
 - (BlueCapCharacteristicProfile*)profile;
@@ -44,6 +45,8 @@
 - (void)writeObject:(id)__data;
 - (void)writeValueNamed:(NSString*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
 - (void)writeValueNamed:(NSString*)__data;
+- (void)writeValueString:(NSString*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
+- (void)writeValueString:(NSString*)__data;
 
 - (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__onDiscriptorsDicoveredCallback;
 
