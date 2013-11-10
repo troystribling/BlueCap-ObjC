@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import <BlueCap/BlueCap.h>
 #import "PeripheralManagerServiceProfilesViewController.h"
 
 @interface PeripheralManagerServiceProfilesViewController ()
@@ -32,16 +33,18 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [[BlueCapProfileManager sharedInstance].services count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"PeripheralManagerServiceProfileCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    BlueCapServiceProfile* serviceProfile = [[BlueCapProfileManager sharedInstance].services objectAtIndex:indexPath.row];
+    cell.textLabel.text = serviceProfile.name;
     return cell;
 }
 
