@@ -27,8 +27,6 @@
 @property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback              afterDescriptorsDiscoveredCallback;
 @property(nonatomic, copy) BlueCapCharacteristicNotificationStateDidChange  notificationStateDidChangeCallback;
 
-- (NSDictionary*)deserailizeDataValues;
-
 @end
 
 @implementation BlueCapCharacteristic
@@ -109,7 +107,7 @@
         if (self.profile.deserializeDataCallback) {
             deserializedVals = self.profile.deserializeDataCallback([self dataValue]);
         } else if ([self hasValues]) {
-            deserializedVals = [self deserailizeDataValues];
+            deserializedVals = [self.profile deserializeDataValues:[self dataValue]];
         }
     }
     return deserializedVals;
@@ -134,21 +132,6 @@
         valueNames = [self.profile allValues];
     }
     return valueNames;
-}
-
-#pragma mark - Private
-
-- (NSDictionary*)deserailizeDataValues {
-    NSDictionary* deserializedVals = [NSDictionary dictionary];
-    for(id objectValue in [self.profile.valueObjects allValues]) {
-        if ([objectValue isKindOfClass:[NSData class]]) {
-            if ([objectValue isEqualToData:[self dataValue]]) {
-                deserializedVals = [NSDictionary dictionaryWithObject:[self.profile.valueNames objectForKey:objectValue] forKey:self.profile.name];
-                break;
-            }
-        }
-    }
-    return deserializedVals;
 }
 
 #pragma mark - Manage Notifications

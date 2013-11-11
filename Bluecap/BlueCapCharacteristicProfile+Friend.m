@@ -93,4 +93,17 @@
     return serializedValue;
 }
 
+- (NSDictionary*)deserializeDataValues:(NSData*)__dataValue {
+    NSDictionary* deserializedVals = [NSDictionary dictionary];
+    for(id objectValue in [self.valueObjects allValues]) {
+        if ([objectValue isKindOfClass:[NSData class]]) {
+            if ([objectValue isEqualToData:__dataValue]) {
+                deserializedVals = [NSDictionary dictionaryWithObject:[self.valueNames objectForKey:objectValue] forKey:self.name];
+                break;
+            }
+        }
+    }
+    return deserializedVals;
+}
+
 @end

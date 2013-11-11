@@ -33,8 +33,6 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"PeripheralManagerServiceProfiles"]) {
-    }
 }
 
 #pragma mark - Table view data source
