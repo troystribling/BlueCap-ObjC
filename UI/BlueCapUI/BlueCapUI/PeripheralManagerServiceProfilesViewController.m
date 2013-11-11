@@ -53,6 +53,13 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    BlueCapServiceProfile* serviceProfile = [[BlueCapPeripheralManager sharedInstance].services objectAtIndex:indexPath.row];
+    BlueCapMutableService* service = [BlueCapMutableService withProfile:serviceProfile];
+    [[BlueCapPeripheralManager sharedInstance] addService:service whenCompleteCall:^(BlueCapMutableService* addedService, NSError* error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }];
 }
 
 @end

@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapPeripheralManager.h"
+#import "BlueCapPeripheralManager+Friend.h"
+#import "BlueCapMutableService+Friend.h"
 
 static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 
@@ -18,6 +19,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 @property(nonatomic, retain) NSMutableDictionary*                       configuredServices;
 @property(nonatomic, copy) BlueCapPeripheralManagerStartedAdvertising   startedAdvertisingCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerStoppedAdvertising   stoppedAdvertisingCallback;
+@property(nonatomic, copy) BlueCapPeripheralManagerAfterServiceAdded    afterServiceAddedCallback;
 
 @end
 
@@ -72,6 +74,22 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     [self.cbPeripheralManager stopAdvertising];
 }
 
+- (void)addService:(BlueCapMutableService*)__service whenCompleteCall:(BlueCapPeripheralManagerAfterServiceAdded)__afterServiceAddedCallback {
+    self.afterServiceAddedCallback = __afterServiceAddedCallback;
+    [self.configuredServices setObject:__service forKey:__service.UUID];
+    [self.cbPeripheralManager addService:__service.cbService];
+}
+
+- (void)removeService:(BlueCapMutableService*)__service {
+    [self.configuredServices removeObjectForKey:__service.UUID];
+    [self.cbPeripheralManager removeService:__service.cbService];
+}
+
+- (void)removeAllServices {
+    [self.configuredServices removeAllObjects];
+    [self.cbPeripheralManager removeAllServices];
+}
+
 #pragma mark - BlueCapPeripheralManagerDelegate
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral willRestoreState:(NSDictionary*)dict {
@@ -81,6 +99,10 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 }
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral didAddService:(CBService*)service error:(NSError*)error {
+    BlueCapMutableService* bcService = [self.configuredServices objectForKey:service.UUID];
+    [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
+        self.afterServiceAddedCallback(bcService, error);
+    }];
 }
 
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager*)peripheral error:(NSError*)error {

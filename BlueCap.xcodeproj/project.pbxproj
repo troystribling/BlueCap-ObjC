@@ -12,6 +12,7 @@
 		05400001183028F9001B3735 /* BlueCapMutableDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05A5D01718287933003FB93C /* BlueCapMutableDescriptor.h */; };
 		0540000218302909001B3735 /* BlueCapMutableCharacteristic.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05A5D011182877A1003FB93C /* BlueCapMutableCharacteristic.h */; };
 		0540000B18305FFE001B3735 /* BlueCapPeripheralManager+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 0540000A18305FFE001B3735 /* BlueCapPeripheralManager+Friend.m */; };
+		0540000E1830701D001B3735 /* BlueCapMutableService+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 0540000D1830701D001B3735 /* BlueCapMutableService+Friend.m */; };
 		0540FFE3182F1173001B3735 /* BlueCapProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0540FFE2182F1173001B3735 /* BlueCapProfileManager.m */; };
 		0540FFE9182F17B4001B3735 /* BlueCapProfileManager+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 0540FFE8182F17B4001B3735 /* BlueCapProfileManager+Friend.m */; };
 		0540FFEA182F18A1001B3735 /* BlueCapProfileManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0540FFE1182F1173001B3735 /* BlueCapProfileManager.h */; };
@@ -103,6 +104,8 @@
 /* Begin PBXFileReference section */
 		0540000918305FFE001B3735 /* BlueCapPeripheralManager+Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlueCapPeripheralManager+Friend.h"; sourceTree = "<group>"; };
 		0540000A18305FFE001B3735 /* BlueCapPeripheralManager+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapPeripheralManager+Friend.m"; sourceTree = "<group>"; };
+		0540000C1830701D001B3735 /* BlueCapMutableService+Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlueCapMutableService+Friend.h"; sourceTree = "<group>"; };
+		0540000D1830701D001B3735 /* BlueCapMutableService+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapMutableService+Friend.m"; sourceTree = "<group>"; };
 		0540FFE1182F1173001B3735 /* BlueCapProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCapProfileManager.h; sourceTree = "<group>"; };
 		0540FFE2182F1173001B3735 /* BlueCapProfileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCapProfileManager.m; sourceTree = "<group>"; };
 		0540FFE7182F17B4001B3735 /* BlueCapProfileManager+Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlueCapProfileManager+Friend.h"; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 		05A0F11D17F742B70046B47C /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				0540000C1830701D001B3735 /* BlueCapMutableService+Friend.h */,
+				0540000D1830701D001B3735 /* BlueCapMutableService+Friend.m */,
 				05A5D014182877BA003FB93C /* BlueCapMutableService.h */,
 				05A5D015182877BA003FB93C /* BlueCapMutableService.m */,
 				059769D217CC472000BDE5B5 /* BlueCapService+Friend.h */,
@@ -460,6 +465,7 @@
 				0543814F17C9772E0071AC73 /* BlueCapPeripheral.m in Sources */,
 				05A5D00E1827029B003FB93C /* BlueCapPeripheralManager.m in Sources */,
 				0565A0AC17C1EA7F00BFB1C0 /* BlueCap.m in Sources */,
+				0540000E1830701D001B3735 /* BlueCapMutableService+Friend.m in Sources */,
 				059769E817D271ED00BDE5B5 /* BlueCapDescriptor+Friend.m in Sources */,
 				05A5D01918287933003FB93C /* BlueCapMutableDescriptor.m in Sources */,
 				059769DA17CC47C000BDE5B5 /* BlueCapCharacteristic+Friend.m in Sources */,

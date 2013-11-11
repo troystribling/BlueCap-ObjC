@@ -17,6 +17,9 @@
 @class BlueCapPeripheralProfile;
 @class BlueCapServiceProfile;
 
+@class BlueCapMutableService;
+@class BlueCapMutableCharacteristic;
+
 @class BlueCapPeripheralManager;
 
 typedef void(^BlueCapCentralManagerCallback)(void);
@@ -49,5 +52,6 @@ typedef void(^BlueCapDescriptorDataCallback)(BlueCapDescriptor* __descriptors, N
 
 typedef void(^BlueCapPeripheralManagerStartedAdvertising)(BlueCapPeripheralManager* __peripheralManager);
 typedef void(^BlueCapPeripheralManagerStoppedAdvertising)(BlueCapPeripheralManager* __peripheralManager);
+typedef void(^BlueCapPeripheralManagerAfterServiceAdded)(BlueCapMutableService* __service, NSError* error);
 
 #endif

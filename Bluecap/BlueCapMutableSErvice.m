@@ -21,7 +21,7 @@
 
 @synthesize profile = _profile;
 
-+ (BlueCapMutableService*)createWithProfile:(BlueCapServiceProfile*)__profile {
++ (BlueCapMutableService*)withProfile:(BlueCapServiceProfile*)__profile {
     return [[BlueCapMutableService alloc] initWithProfile:__profile];
 }
 

@@ -8,6 +8,8 @@
 
 #import "BlueCapBlocks.h"
 
+@class BlueCapMutableService;
+
 @interface BlueCapPeripheralManager : NSObject <CBPeripheralManagerDelegate>
 
 @property(nonatomic, readonly) BOOL                         isAdvertising;
@@ -18,5 +20,9 @@
 
 - (void)startAdvertising:(NSString*)__name afterStart:(BlueCapPeripheralManagerStartedAdvertising)__startedAdvertisingCallback;
 - (void)stopAdvertising:(BlueCapPeripheralManagerStoppedAdvertising)__stoppedAdvertisingCallback;
+
+- (void)addService:(BlueCapMutableService*)__service whenCompleteCall:(BlueCapPeripheralManagerAfterServiceAdded)__afterServiceAddedCallback;
+- (void)removeService:(BlueCapMutableService*)__service;
+- (void)removeAllServices;
 
 @end

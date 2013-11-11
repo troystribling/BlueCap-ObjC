@@ -19,6 +19,6 @@
 @property(nonatomic, readonly) NSString*                            name;
 @property(nonatomic, retain, readonly) BlueCapServiceProfile*       profile;
 
-+ (BlueCapMutableService*)createWithProfile:(BlueCapServiceProfile*)__serviceProfile;
++ (BlueCapMutableService*)withProfile:(BlueCapServiceProfile*)__serviceProfile;
 
 @end
