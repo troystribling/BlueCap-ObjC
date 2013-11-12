@@ -12,12 +12,12 @@
 
 @interface BlueCapMutableService : NSObject
 
-@property(nonatomic, readonly) CBUUID*                              UUID;
-@property(nonatomic, readonly) NSArray*                             characteristics;
-@property(nonatomic, readonly) NSArray*                             includedServices;
-@property(nonatomic, readonly) BOOL                                 isPrimary;
-@property(nonatomic, readonly) NSString*                            name;
-@property(nonatomic, retain, readonly) BlueCapServiceProfile*       profile;
+@property(nonatomic, readonly) CBUUID*                      UUID;
+@property(nonatomic, readonly) NSArray*                     includedServices;
+@property(nonatomic, readonly) BOOL                         isPrimary;
+@property(nonatomic, readonly) NSString*                    name;
+@property(nonatomic, readonly) BlueCapServiceProfile*       profile;
+@property(nonatomic, retain)   NSArray*                     characteristics;
 
 + (BlueCapMutableService*)withProfile:(BlueCapServiceProfile*)__serviceProfile;
 

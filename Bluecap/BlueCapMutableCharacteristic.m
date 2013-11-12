@@ -38,6 +38,14 @@
     return [self withProfile:__profile andData:nil];
 }
 
++ (NSArray*)withProfiles:(NSArray*)__profiles {
+    NSMutableArray* characteristics = [NSMutableArray array];
+    for (BlueCapCharacteristicProfile* profile in __profiles) {
+        [characteristics addObject:[self withProfile:profile]];
+    }
+    return characteristics;
+}
+
 - (NSArray*)descriptors {
     return [NSArray array];
 }

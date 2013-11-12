@@ -38,10 +38,6 @@
     return self.cbService.UUID;
 }
 
-- (NSArray*)characteristics {
-    return [NSArray array];
-}
-
 - (NSArray*)includedServices {
     return [NSArray array];
 }

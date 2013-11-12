@@ -8,6 +8,8 @@
 
 #import <BlueCap/BlueCap.h>
 #import "PeripheralManagerServicesViewController.h"
+#import "PeripheralManagerServiceProfilesViewController.h"
+#import "PeripheralManagerCharacteristicsViewController.h"
 #import "PeripheralManagerServiceCell.h"
 
 @interface PeripheralManagerServicesViewController ()
@@ -28,11 +30,22 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PeripheralManagerCharacteristics"]) {
+        NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
+        BlueCapMutableService* service = [[BlueCapPeripheralManager sharedInstance].services objectAtIndex:indexPath.row];
+        PeripheralManagerCharacteristicsViewController* viewController = segue.destinationViewController;
+        viewController.service = service;
+    } else if ([segue.identifier isEqualToString:@"PeripheralManagerServiceProfiles"]) {
+    }
 }
 
 #pragma mark - Table view data source

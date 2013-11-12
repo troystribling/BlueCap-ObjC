@@ -25,6 +25,7 @@
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value;
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile;
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andNamedValue:(NSString*)__name;
++ (NSArray*)withProfiles:(NSArray*)__profiles;
 
 - (BlueCapCharacteristicProfile*)profile;
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;

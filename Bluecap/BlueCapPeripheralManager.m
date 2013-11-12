@@ -92,9 +92,6 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 
 #pragma mark - BlueCapPeripheralManagerDelegate
 
-- (void)peripheralManager:(CBPeripheralManager*)peripheral willRestoreState:(NSDictionary*)dict {
-}
-
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager*)peripheral {
 }
 
