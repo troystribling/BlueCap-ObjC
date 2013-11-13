@@ -28,7 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    [self setAdvertiseButtonLabel];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -50,8 +49,11 @@
 - (IBAction)toggleAdvertise:(id)sender {
     BlueCapPeripheralManager* manager = [BlueCapPeripheralManager sharedInstance];
     if ([manager isAdvertising]) {
-        [manager stopAdvertising];
-        [self setAdvertiseButtonLabel];
+        [manager stopAdvertising:^(BlueCapPeripheralManager* peripheralmanager) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setAdvertiseButtonLabel];
+            });
+        }];
     } else {
         [manager startAdvertising:self.nameTextField.text afterStart:^(BlueCapPeripheralManager* perpheralManager) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -62,7 +64,7 @@
 }
 
 - (void)setAdvertiseButtonLabel {
-    if (self.nameTextField.text == nil || [[BlueCapPeripheralManager sharedInstance].services count] == 0) {
+    if ([self.nameTextField.text isEqualToString:@""] || [[BlueCapPeripheralManager sharedInstance].services count] == 0) {
         [self.advertiseButton setTitleColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0] forState:UIControlStateDisabled];
         self.advertiseButton.enabled = NO;
     } else {

@@ -138,7 +138,7 @@
     [self disconnect:nil];
 }
 
-#pragma mark - BlueCapPeripheral PrivateAPI
+#pragma mark - Private
 
 - (void)clearServices {
     DLog(@"CLEAR SERVICES BEFORE COUNT: %d", [self.discoveredObjects count]);

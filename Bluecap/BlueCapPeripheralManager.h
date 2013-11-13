@@ -19,7 +19,7 @@
 +(BlueCapPeripheralManager*)sharedInstance;
 
 - (void)startAdvertising:(NSString*)__name afterStart:(BlueCapPeripheralManagerStartedAdvertising)__startedAdvertisingCallback;
-- (void)stopAdvertising;
+- (void)stopAdvertising:(BlueCapPeripheralManagerStoppedAdvertising)__stoppedAdvertisingCallback;
 
 - (void)addService:(BlueCapMutableService*)__service whenCompleteCall:(BlueCapPeripheralManagerAfterServiceAdded)__afterServiceAddedCallback;
 - (void)removeService:(BlueCapMutableService*)__service;

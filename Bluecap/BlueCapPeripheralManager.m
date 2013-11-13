@@ -9,6 +9,8 @@
 #import "BlueCapPeripheralManager+Friend.h"
 #import "BlueCapMutableService+Friend.h"
 
+#define WAIT_FOR_ADVERTISING_TO_STOP_POLLING_INTERVAL   0.25
+
 static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 
 @interface BlueCapPeripheralManager()
@@ -18,7 +20,10 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 @property(nonatomic, retain) dispatch_queue_t                           callbackQueue;
 @property(nonatomic, retain) NSMutableDictionary*                       configuredServices;
 @property(nonatomic, copy) BlueCapPeripheralManagerStartedAdvertising   startedAdvertisingCallback;
+@property(nonatomic, copy) BlueCapPeripheralManagerStoppedAdvertising   stoppedAdvertisingCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerAfterServiceAdded    afterServiceAddedCallback;
+
+- (void)waitForAdvertisingToStop;
 
 @end
 
@@ -68,8 +73,10 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     }
 }
 
-- (void)stopAdvertising {
+- (void)stopAdvertising:(BlueCapPeripheralManagerStoppedAdvertising)__stoppedAdvertisingCallback {
+    self.stoppedAdvertisingCallback = __stoppedAdvertisingCallback;
     [self.cbPeripheralManager stopAdvertising];
+    [self waitForAdvertisingToStop];
 }
 
 - (void)addService:(BlueCapMutableService*)__service whenCompleteCall:(BlueCapPeripheralManagerAfterServiceAdded)__afterServiceAddedCallback {
@@ -86,6 +93,22 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 - (void)removeAllServices {
     [self.configuredServices removeAllObjects];
     [self.cbPeripheralManager removeAllServices];
+}
+
+#pragma mark - Private
+
+- (void)waitForAdvertisingToStop {
+    if (self.isAdvertising) {
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(WAIT_FOR_ADVERTISING_TO_STOP_POLLING_INTERVAL * NSEC_PER_SEC));
+        dispatch_after(popTime, self.callbackQueue, ^{
+            [self waitForAdvertisingToStop];
+        });
+    } else {
+        [self asyncCallback:^{
+            DLog(@"Peripheral Manager did stop advertising");
+            self.stoppedAdvertisingCallback(self);
+        }];
+    }
 }
 
 #pragma mark - BlueCapPeripheralManagerDelegate
