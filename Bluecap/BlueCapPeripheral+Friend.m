@@ -33,6 +33,7 @@
         self.discoveredServices = [NSMutableArray array];
         self.discoveredObjects = [NSMapTable weakToWeakObjectsMapTable];
         self.currentError = BLueCapPeripheralConnectionErrorDisconnected;
+        self.advertisement = [NSDictionary dictionary];
     }
     return self;
 }

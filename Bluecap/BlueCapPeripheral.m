@@ -55,7 +55,12 @@
 }
 
 - (NSString*)name {
-    return self.cbPeripheral.name;
+    NSString* __name = [self.advertisement objectForKey:CBAdvertisementDataLocalNameKey];
+    if (__name) {
+        return __name;
+    } else {
+        return self.cbPeripheral.name;
+    }
 }
 
 - (NSUUID*)identifier {

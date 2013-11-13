@@ -18,7 +18,6 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 @property(nonatomic, retain) dispatch_queue_t                           callbackQueue;
 @property(nonatomic, retain) NSMutableDictionary*                       configuredServices;
 @property(nonatomic, copy) BlueCapPeripheralManagerStartedAdvertising   startedAdvertisingCallback;
-@property(nonatomic, copy) BlueCapPeripheralManagerStoppedAdvertising   stoppedAdvertisingCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerAfterServiceAdded    afterServiceAddedCallback;
 
 @end
@@ -60,17 +59,16 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 }
 
 - (void)startAdvertising:(NSString*)__name afterStart:(BlueCapPeripheralManagerStartedAdvertising)__startedAdvertisingCallback {
-    if ([self.services count] == 0) {
+    if ([self.services count] > 0) {
         self.startedAdvertisingCallback = __startedAdvertisingCallback;
         [self.cbPeripheralManager startAdvertising:@{CBAdvertisementDataLocalNameKey:__name,
-                                                     CBAdvertisementDataServiceUUIDsKey:self.services}];
+                                                     CBAdvertisementDataServiceUUIDsKey:[self.configuredServices allKeys]}];
     } else {
         [NSException raise:@"No services configured" format:@"service array is empty"];
     }
 }
 
-- (void)stopAdvertising:(BlueCapPeripheralManagerStoppedAdvertising)__stoppedAdvertisingCallback {
-    self.stoppedAdvertisingCallback = __stoppedAdvertisingCallback;
+- (void)stopAdvertising {
     [self.cbPeripheralManager stopAdvertising];
 }
 
@@ -97,12 +95,17 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral didAddService:(CBService*)service error:(NSError*)error {
     BlueCapMutableService* bcService = [self.configuredServices objectForKey:service.UUID];
+    DLog(@"Peripheral Manager did add sevice: %@", bcService.name);
     [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
         self.afterServiceAddedCallback(bcService, error);
     }];
 }
 
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager*)peripheral error:(NSError*)error {
+    DLog(@"Peripheral Manager did start advertising");
+    [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
+        self.startedAdvertisingCallback(self);
+    }];
 }
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral central:(CBCentral*)central didSubscribeToCharacteristic:(CBCharacteristic*)characteristic {

@@ -48,7 +48,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         self.callbackQueue = dispatch_queue_create("com.gnos.us.centrail.callback", DISPATCH_QUEUE_SERIAL);
 		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
-        self.poweredOn = YES;
+        self.poweredOn = NO;
         self.connecting = NO;
 	}
     return self;

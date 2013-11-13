@@ -31,6 +31,11 @@
     [self setAdvertiseButtonLabel];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setAdvertiseButtonLabel];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -45,11 +50,8 @@
 - (IBAction)toggleAdvertise:(id)sender {
     BlueCapPeripheralManager* manager = [BlueCapPeripheralManager sharedInstance];
     if ([manager isAdvertising]) {
-        [manager stopAdvertising:^(BlueCapPeripheralManager* peripheralManager) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self setAdvertiseButtonLabel];
-            });
-        }];
+        [manager stopAdvertising];
+        [self setAdvertiseButtonLabel];
     } else {
         [manager startAdvertising:self.nameTextField.text afterStart:^(BlueCapPeripheralManager* perpheralManager) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -66,11 +68,11 @@
     } else {
         self.advertiseButton.enabled = YES;
         if ([BlueCapPeripheralManager sharedInstance].isAdvertising) {
-            [self.advertiseButton setTitle:@"Start Advertising" forState:UIControlStateNormal];
-            [self.advertiseButton setTitleColor:[UIColor colorWithRed:0.1 green:0.7 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
-        } else {
             [self.advertiseButton setTitle:@"Stop Advertising" forState:UIControlStateNormal];
             [self.advertiseButton setTitleColor:[UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+        } else {
+            [self.advertiseButton setTitle:@"Start Advertising" forState:UIControlStateNormal];
+            [self.advertiseButton setTitleColor:[UIColor colorWithRed:0.1 green:0.7 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
         }
     }
 }
