@@ -49,13 +49,13 @@
 - (IBAction)toggleAdvertise:(id)sender {
     BlueCapPeripheralManager* manager = [BlueCapPeripheralManager sharedInstance];
     if ([manager isAdvertising]) {
-        [manager stopAdvertising:^(BlueCapPeripheralManager* peripheralmanager) {
+        [manager stopAdvertising:^ {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setAdvertiseButtonLabel];
             });
         }];
     } else {
-        [manager startAdvertising:self.nameTextField.text afterStart:^(BlueCapPeripheralManager* perpheralManager) {
+        [manager startAdvertising:self.nameTextField.text afterStart:^ {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setAdvertiseButtonLabel];
             });

@@ -50,8 +50,7 @@ typedef NSDictionary*(^BlueCapCharacteristicProfileStringValueCallback)(NSDictio
 typedef void(^BlueCapCharacteristicDataCallback)(BlueCapCharacteristic* __characteristic, NSError* __error);
 typedef void(^BlueCapDescriptorDataCallback)(BlueCapDescriptor* __descriptors, NSError* __error);
 
-typedef void(^BlueCapPeripheralManagerStartedAdvertising)(BlueCapPeripheralManager* __peripheralManager);
-typedef void(^BlueCapPeripheralManagerStoppedAdvertising)(BlueCapPeripheralManager* __peripheralManager);
+typedef void(^BlueCapPeripheralManagerCallback)(void);
 typedef void(^BlueCapPeripheralManagerAfterServiceAdded)(BlueCapMutableService* __service, NSError* error);
 
 #endif

@@ -18,8 +18,11 @@
 
 +(BlueCapPeripheralManager*)sharedInstance;
 
-- (void)startAdvertising:(NSString*)__name afterStart:(BlueCapPeripheralManagerStartedAdvertising)__startedAdvertisingCallback;
-- (void)stopAdvertising:(BlueCapPeripheralManagerStoppedAdvertising)__stoppedAdvertisingCallback;
+- (void)startAdvertising:(NSString*)__name afterStart:(BlueCapPeripheralManagerCallback)__startedAdvertisingCallback;
+- (void)stopAdvertising:(BlueCapPeripheralManagerCallback)__stoppedAdvertisingCallback;
+
+- (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback;
+- (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback afterPowerOff:(BlueCapCentralManagerCallback)__afterPowerOffCallback;
 
 - (void)addService:(BlueCapMutableService*)__service whenCompleteCall:(BlueCapPeripheralManagerAfterServiceAdded)__afterServiceAddedCallback;
 - (void)removeService:(BlueCapMutableService*)__service;

@@ -19,8 +19,10 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 @property(nonatomic, retain) dispatch_queue_t                           mainQueue;
 @property(nonatomic, retain) dispatch_queue_t                           callbackQueue;
 @property(nonatomic, retain) NSMutableDictionary*                       configuredServices;
-@property(nonatomic, copy) BlueCapPeripheralManagerStartedAdvertising   startedAdvertisingCallback;
-@property(nonatomic, copy) BlueCapPeripheralManagerStoppedAdvertising   stoppedAdvertisingCallback;
+@property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterStartedAdvertisingCallback;
+@property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterStoppedAdvertisingCallback;
+@property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterPowerOnCallback;
+@property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterPowerOffCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerAfterServiceAdded    afterServiceAddedCallback;
 
 - (void)waitForAdvertisingToStop;
@@ -63,9 +65,9 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     return [self.configuredServices allValues];
 }
 
-- (void)startAdvertising:(NSString*)__name afterStart:(BlueCapPeripheralManagerStartedAdvertising)__startedAdvertisingCallback {
+- (void)startAdvertising:(NSString*)__name afterStart:(BlueCapPeripheralManagerCallback)__startedAdvertisingCallback {
     if ([self.services count] > 0) {
-        self.startedAdvertisingCallback = __startedAdvertisingCallback;
+        self.afterStartedAdvertisingCallback = __startedAdvertisingCallback;
         [self.cbPeripheralManager startAdvertising:@{CBAdvertisementDataLocalNameKey:__name,
                                                      CBAdvertisementDataServiceUUIDsKey:[self.configuredServices allKeys]}];
     } else {
@@ -73,8 +75,8 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     }
 }
 
-- (void)stopAdvertising:(BlueCapPeripheralManagerStoppedAdvertising)__stoppedAdvertisingCallback {
-    self.stoppedAdvertisingCallback = __stoppedAdvertisingCallback;
+- (void)stopAdvertising:(BlueCapPeripheralManagerCallback)__stoppedAdvertisingCallback {
+    self.afterStoppedAdvertisingCallback = __stoppedAdvertisingCallback;
     [self.cbPeripheralManager stopAdvertising];
     [self waitForAdvertisingToStop];
 }
@@ -95,6 +97,20 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     [self.cbPeripheralManager removeAllServices];
 }
 
+#pragma mark - Power On
+
+- (void)powerOn:(BlueCapPeripheralManagerCallback)__afterPowerOnCallback {
+    self.afterPowerOnCallback = __afterPowerOnCallback;
+    [self syncMain:^{
+    }];
+}
+
+- (void)powerOn:(BlueCapPeripheralManagerCallback)__onPowerOnCallback afterPowerOff:(BlueCapPeripheralManagerCallback)__afterPowerOffCallback {
+    self.afterPowerOffCallback = __afterPowerOffCallback;
+    [self powerOn:__onPowerOnCallback];
+}
+
+
 #pragma mark - Private
 
 - (void)waitForAdvertisingToStop {
@@ -106,7 +122,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     } else {
         [self asyncCallback:^{
             DLog(@"Peripheral Manager did stop advertising");
-            self.stoppedAdvertisingCallback(self);
+            self.afterStoppedAdvertisingCallback();
         }];
     }
 }
@@ -127,7 +143,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager*)peripheral error:(NSError*)error {
     DLog(@"Peripheral Manager did start advertising");
     [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
-        self.startedAdvertisingCallback(self);
+        self.afterStartedAdvertisingCallback();
     }];
 }
 
