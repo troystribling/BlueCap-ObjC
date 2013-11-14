@@ -158,9 +158,11 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 			break;
 		}
 		case CBCentralManagerStateUnauthorized: {
+            DLog(@"CBCentralManager Unauthorized");
 			break;
 		}
 		case CBCentralManagerStateUnknown: {
+            DLog(@"CBCentralManager Unknown");
 			break;
 		}
 		case CBCentralManagerStatePoweredOn: {
@@ -174,9 +176,11 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 			break;
 		}
 		case CBCentralManagerStateResetting: {
+            DLog(@"CBCentralManager Resetting");
 			break;
 		}
         case CBCentralManagerStateUnsupported: {
+            DLog(@"CBCentralManager Unsupported");
         }
 	}
 }

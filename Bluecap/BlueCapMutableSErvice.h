@@ -17,8 +17,9 @@
 @property(nonatomic, readonly) BOOL                         isPrimary;
 @property(nonatomic, readonly) NSString*                    name;
 @property(nonatomic, readonly) BlueCapServiceProfile*       profile;
-@property(nonatomic, retain)   NSArray*                     characteristics;
+@property(nonatomic, readonly) NSArray*                     characteristics;
 
 + (BlueCapMutableService*)withProfile:(BlueCapServiceProfile*)__serviceProfile;
+- (void)setCharacteristics:(NSArray*)__characteristics;
 
 @end

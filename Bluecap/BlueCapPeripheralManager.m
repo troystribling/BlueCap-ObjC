@@ -139,6 +139,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager*)peripheral {
     switch (self.state) {
         case CBPeripheralManagerStatePoweredOn: {
+            DLog(@"CBPeripheralManager PoweredOn");
             self.poweredOn = YES;
             if (self.afterPowerOnCallback) {
                 [self asyncCallback:^{

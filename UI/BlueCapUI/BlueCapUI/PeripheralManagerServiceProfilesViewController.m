@@ -61,7 +61,7 @@
     [[BlueCapPeripheralManager sharedInstance] addService:[BlueCapMutableService withProfile:serviceProfile]
                                          whenCompleteCall:^(BlueCapMutableService* service, NSError* error) {
                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                 service.characteristics = [BlueCapMutableCharacteristic withProfiles:serviceProfile.characteristicProfiles];
+                                                 [service setCharacteristics:[BlueCapMutableCharacteristic withProfiles:serviceProfile.characteristicProfiles]];
                                                  [self.navigationController popViewControllerAnimated:YES];
                                              });
                                          }];

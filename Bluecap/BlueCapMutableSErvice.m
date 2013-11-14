@@ -8,6 +8,7 @@
 
 #import "BlueCapMutableService.h"
 #import "BlueCapServiceProfile+Friend.h"
+#import "BlueCapMutableCharacteristic+Friend.h"
 
 @interface BlueCapMutableService ()
 
@@ -48,6 +49,16 @@
 
 - (NSString*)name {
     return self.profile.name;
+}
+
+- (void)setCharacteristics:(NSArray*)__characteristics {
+    _characteristics = __characteristics;
+    NSMutableArray* cbCharacteristics = [NSMutableArray array];
+    for (BlueCapMutableCharacteristic* bcCharacteristic in __characteristics) {
+        [cbCharacteristics addObject:bcCharacteristic.cbCharacteristic];
+    }
+    self.cbService.characteristics = cbCharacteristics;
+    DLog(@"Added %d characteristics to service %@", [self.cbService.characteristics count], self.name);
 }
 
 @end

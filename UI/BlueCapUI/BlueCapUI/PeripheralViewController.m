@@ -60,7 +60,9 @@
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         [self.peripheral connect:^(BlueCapPeripheral* __peripheral, NSError* __error) {
-            [self setConnectButtonLabel];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setConnectButtonLabel];
+            });
         }];
     }
 }
