@@ -24,6 +24,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 @property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterPowerOnCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterPowerOffCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerAfterServiceAdded    afterServiceAddedCallback;
+@property(nonatomic, assign) BOOL                                       poweredOn;
 
 - (void)waitForAdvertisingToStop;
 
@@ -49,6 +50,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
         self.callbackQueue = dispatch_queue_create("com.gnos.us.perpheral.callback", DISPATCH_QUEUE_SERIAL);
         self.cbPeripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.configuredServices = [NSMutableDictionary dictionary];
+        self.poweredOn = NO;
     }
     return self;
 }
@@ -102,6 +104,11 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 - (void)powerOn:(BlueCapPeripheralManagerCallback)__afterPowerOnCallback {
     self.afterPowerOnCallback = __afterPowerOnCallback;
     [self syncMain:^{
+        if (self.poweredOn && self.afterPowerOnCallback) {
+            [self asyncCallback:^{
+                self.afterPowerOnCallback();
+            }];
+        }
     }];
 }
 
@@ -130,6 +137,38 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 #pragma mark - BlueCapPeripheralManagerDelegate
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager*)peripheral {
+    switch (self.state) {
+        case CBPeripheralManagerStatePoweredOn: {
+            self.poweredOn = YES;
+            if (self.afterPowerOnCallback) {
+                [self asyncCallback:^{
+                    self.afterPowerOnCallback();
+                }];
+            }
+            break;
+        }
+        case CBPeripheralManagerStatePoweredOff: {
+            self.poweredOn = NO;
+            if (self.afterPowerOffCallback) {
+                [self asyncCallback:^{
+                    self.afterPowerOffCallback();
+                }];
+            }
+            break;
+        }
+        case CBPeripheralManagerStateResetting: {
+            break;
+        }
+        case CBPeripheralManagerStateUnsupported: {
+            break;
+        }
+        case CBPeripheralManagerStateUnauthorized: {
+            break;
+        }
+        case CBPeripheralManagerStateUnknown: {
+            break;
+        }
+    }
 }
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral didAddService:(CBService*)service error:(NSError*)error {

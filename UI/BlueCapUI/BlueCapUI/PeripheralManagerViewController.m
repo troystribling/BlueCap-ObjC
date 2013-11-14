@@ -32,7 +32,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setAdvertiseButtonLabel];
+    [[BlueCapPeripheralManager sharedInstance] powerOn:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self setAdvertiseButtonLabel];
+        });
+    } afterPowerOff:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self setAdvertiseButtonLabel];
+        });
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -86,7 +86,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback {
     self.afterPowerOnCallback = __afterPowerOnCallback;
     [self syncMain:^{
-        if (self.poweredOn) {
+        if (self.poweredOn && self.afterPowerOnCallback) {
             [self asyncCallback:^{
                 self.afterPowerOnCallback();
             }];
@@ -149,7 +149,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 	switch ([central state]) {
 		case CBCentralManagerStatePoweredOff: {
             DLog(@"CBCentralManager Powered OFF");
-            if (self.afterPowerOffCallback != nil) {
+            if (self.afterPowerOffCallback) {
                 self.poweredOn = NO;
                 [self asyncCallback:^{
                     self.afterPowerOffCallback();
@@ -177,7 +177,6 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 			break;
 		}
         case CBCentralManagerStateUnsupported: {
-            
         }
 	}
 }

@@ -12,8 +12,9 @@
 
 @interface PeripheralViewController ()
 
-- (IBAction)disconnect:(id)sender;
+- (IBAction)toggleConnection:(id)sender;
 - (void)updateUSSI;
+- (void)setConnectButtonLabel;
 
 @end
 
@@ -37,6 +38,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self setConnectButtonLabel];
     [self.peripheral recieveRSSIUpdates:^(BlueCapPeripheral* periheral, NSError* error) {
         [self updateUSSI];
     }];
@@ -50,15 +52,33 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)disconnect:(id)sender {
-    [self.peripheral disconnect];
-    [self.navigationController popViewControllerAnimated:YES];
+#pragma mark - Private
+
+- (IBAction)toggleConnection:(id)sender {
+    if (self.peripheral.state == CBPeripheralStateConnected) {
+        [self.peripheral disconnect];
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self.peripheral connect:^(BlueCapPeripheral* __peripheral, NSError* __error) {
+            [self setConnectButtonLabel];
+        }];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"PeripheralServices"]) {
         PeripheralServicesViewController* viewController = segue.destinationViewController;
         viewController.peripheral = self.peripheral;
+    }
+}
+
+- (void)setConnectButtonLabel {
+    if (self.peripheral.state == CBPeripheralStateConnected) {
+        [self.connectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
+        [self.connectButton setTitleColor:[UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
+    } else {
+        [self.connectButton setTitle:@"Connect" forState:UIControlStateNormal];
+        [self.connectButton setTitleColor:[UIColor colorWithRed:0.1 green:0.7 blue:0.1 alpha:1.0] forState:UIControlStateNormal];
     }
 }
 

@@ -31,7 +31,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="disconnect:" destination="XKG-l0-TPz" eventType="touchUpInside" id="lhl-L2-cOz"/>
+                                                        <action selector="toggleConnection:" destination="XKG-l0-TPz" eventType="touchUpInside" id="Bia-jj-Ep5"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -121,7 +121,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Name" id="meN-Xl-hWE"/>
                     <connections>
-                        <outlet property="disconnectButton" destination="iKQ-5y-l2T" id="voK-vW-pau"/>
+                        <outlet property="connectButton" destination="iKQ-5y-l2T" id="fPo-Vk-xSB"/>
                         <outlet property="rssiLabel" destination="q4d-zx-jkB" id="wYN-NU-crN"/>
                         <outlet property="uuidLabel" destination="Fuu-e0-HWI" id="dyO-0Q-jlO"/>
                     </connections>
