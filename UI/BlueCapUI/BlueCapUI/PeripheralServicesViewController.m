@@ -59,16 +59,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PeripheralServiceCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PeripheralServiceCell" forIndexPath:indexPath];
     BlueCapService* service = [self.peripheral.services objectAtIndex:indexPath.row];
-    if ([service hasProfile]) {
-        cell.nameLabel.text = service.profile.name;
-    } else {
-        cell.nameLabel.text = service.UUID.stringValue;
-    }
-    if (service.isPrimary) {
-        cell.serviceTypeLabel.text = @"Primary";
-    } else {
-        cell.serviceTypeLabel.text = @"Secondary";
-    }
+    cell.nameLabel.text = service.name;
+    cell.UUIDLabel.text = [service.UUID stringValue];
     return cell;
 }
 

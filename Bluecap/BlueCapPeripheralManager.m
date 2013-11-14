@@ -8,6 +8,7 @@
 
 #import "BlueCapPeripheralManager+Friend.h"
 #import "BlueCapMutableService+Friend.h"
+#import "CBUUID+StringValue.h"
 
 #define WAIT_FOR_ADVERTISING_TO_STOP_POLLING_INTERVAL   0.25
 
@@ -174,7 +175,10 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral didAddService:(CBService*)service error:(NSError*)error {
     BlueCapMutableService* bcService = [self.configuredServices objectForKey:service.UUID];
-    DLog(@"Peripheral Manager did add sevice: %@", bcService.name);
+    DLog(@"Peripheral Manager did add sevice: %@:%@", bcService.name, [service.UUID stringValue]);
+    for (CBCharacteristic* characteristic in service.characteristics) {
+        DLog(@"Peripheral Manager did add characteristic: %@", [characteristic.UUID stringValue]);
+    }
     [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
         self.afterServiceAddedCallback(bcService, error);
     }];

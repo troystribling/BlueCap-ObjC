@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import "BlueCap.h"
 #import "BlueCapPeripheralManager+Friend.h"
 #import "BlueCapMutableCharacteristic.h"
 #import "BlueCapCharacteristicProfile+Friend.h"

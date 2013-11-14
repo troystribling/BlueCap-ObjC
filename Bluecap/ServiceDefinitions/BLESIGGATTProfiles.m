@@ -91,7 +91,7 @@
                                                 name:@"Manufacturer Name"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_SOFTWARE_REVISION:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
+                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_MANUFACTURER_NAME:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;

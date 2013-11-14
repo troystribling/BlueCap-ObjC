@@ -11,6 +11,6 @@
 @interface PeripheralServiceCell : UITableViewCell
 
 @property(nonatomic, retain) IBOutlet UILabel*  nameLabel;
-@property(nonatomic, retain) IBOutlet UILabel*  serviceTypeLabel;
+@property(nonatomic, retain) IBOutlet UILabel*  UUIDLabel;
 
 @end

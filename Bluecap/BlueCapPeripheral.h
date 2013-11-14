@@ -35,6 +35,7 @@ typedef enum {
 - (void)dropRSSIUpdates;
 
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect;
+- (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect afterPeripheralDisconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect;
 - (void)disconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect;
 - (void)connect;
 - (void)disconnect;

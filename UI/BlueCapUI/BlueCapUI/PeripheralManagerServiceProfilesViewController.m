@@ -58,10 +58,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BlueCapServiceProfile* serviceProfile = [[BlueCapProfileManager sharedInstance].services objectAtIndex:indexPath.row];
-    [[BlueCapPeripheralManager sharedInstance] addService:[BlueCapMutableService withProfile:serviceProfile]
+    BlueCapMutableService* service = [BlueCapMutableService withProfile:serviceProfile];
+    [service setCharacteristics:[BlueCapMutableCharacteristic withProfiles:serviceProfile.characteristicProfiles]];
+    [[BlueCapPeripheralManager sharedInstance] addService:service
                                          whenCompleteCall:^(BlueCapMutableService* service, NSError* error) {
                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                 [service setCharacteristics:[BlueCapMutableCharacteristic withProfiles:serviceProfile.characteristicProfiles]];
                                                  [self.navigationController popViewControllerAnimated:YES];
                                              });
                                          }];

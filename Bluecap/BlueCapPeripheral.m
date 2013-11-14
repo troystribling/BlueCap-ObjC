@@ -130,6 +130,11 @@
     }
 }
 
+- (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect afterPeripheralDisconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect {
+    self.afterPeriperialDisconnectCallback = __afterPeripheralDisconnect;
+    [self connect:__afterPeripheralConnect];
+}
+
 - (void)connect {
     [self connect:nil];
 }
