@@ -30,4 +30,6 @@
 
 - (NSError*)error;
 
+- (void)timeoutConnection;
+
 @end

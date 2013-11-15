@@ -36,8 +36,9 @@ typedef enum {
 
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect;
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect afterPeripheralDisconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect;
-- (void)disconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect;
+- (void)connectAndReconnectOnDisconnect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect;
 - (void)connect;
+- (void)disconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect;
 - (void)disconnect;
 
 @end

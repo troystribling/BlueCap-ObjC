@@ -59,7 +59,7 @@
         [self.peripheral disconnect];
         [self.navigationController popViewControllerAnimated:YES];
     } else {
-        [self.peripheral connect:^(BlueCapPeripheral* __peripheral, NSError* __error) {
+        [self.peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* __peripheral, NSError* __error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setConnectButtonLabel];
             });

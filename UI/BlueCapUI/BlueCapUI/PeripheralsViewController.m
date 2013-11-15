@@ -105,7 +105,7 @@
     PeripheralCell* cell = (PeripheralCell*)[tableView cellForRowAtIndexPath:indexPath];
     [cell.connectingActivityIndicator startAnimating];
     if (peripheral.state == CBPeripheralStateDisconnected) {
-        [peripheral connect:^(BlueCapPeripheral* __peripheral, NSError* __error) {
+        [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* __peripheral, NSError* __error) {
             [self reloadTableData];
         }];
     } else {
