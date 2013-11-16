@@ -9,6 +9,7 @@
 #import "BlueCapMutableService.h"
 #import "BlueCapServiceProfile+Friend.h"
 #import "BlueCapMutableCharacteristic+Friend.h"
+#import "BlueCapPeripheralManager+Friend.h"
 
 @interface BlueCapMutableService ()
 
@@ -20,7 +21,8 @@
 
 @implementation BlueCapMutableService
 
-@synthesize profile = _profile;
+@synthesize profile         = _profile;
+@synthesize characteristics = _characteristics;
 
 + (BlueCapMutableService*)withProfile:(BlueCapServiceProfile*)__profile {
     return [[BlueCapMutableService alloc] initWithProfile:__profile];
@@ -31,6 +33,7 @@
     if (self) {
         _profile = __profile;
         self.cbService = [[CBMutableService alloc] initWithType:_profile.UUID primary:YES];
+        _characteristics = [NSArray array];
     }
     return self;
 }
@@ -51,11 +54,16 @@
     return self.profile.name;
 }
 
+- (NSArray*)characteristics {
+    return _characteristics;
+}
+
 - (void)setCharacteristics:(NSArray*)__characteristics {
     _characteristics = __characteristics;
     NSMutableArray* cbCharacteristics = [NSMutableArray array];
     for (BlueCapMutableCharacteristic* bcCharacteristic in __characteristics) {
         [cbCharacteristics addObject:bcCharacteristic.cbCharacteristic];
+        [[BlueCapPeripheralManager sharedInstance].configuredCharacteristics setObject:bcCharacteristic forKey:bcCharacteristic.cbCharacteristic];
     }
     self.cbService.characteristics = cbCharacteristics;
     DLog(@"Added %d characteristics to service %@", [self.cbService.characteristics count], self.name);

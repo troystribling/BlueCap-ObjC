@@ -20,6 +20,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 @property(nonatomic, retain) dispatch_queue_t                           mainQueue;
 @property(nonatomic, retain) dispatch_queue_t                           callbackQueue;
 @property(nonatomic, retain) NSMutableDictionary*                       configuredServices;
+@property(nonatomic, retain) NSMapTable*                                configuredCharacteristics;
 @property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterStartedAdvertisingCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterStoppedAdvertisingCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterPowerOnCallback;
@@ -52,6 +53,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
         self.cbPeripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:self.mainQueue];
         self.configuredServices = [NSMutableDictionary dictionary];
         self.poweredOn = NO;
+        self.configuredCharacteristics = [NSMapTable weakToWeakObjectsMapTable];
     }
     return self;
 }

@@ -13,6 +13,8 @@
 @property(nonatomic, retain) CBPeripheralManager*           cbPeripheralManager;
 @property(nonatomic, retain) dispatch_queue_t               mainQueue;
 @property(nonatomic, retain) dispatch_queue_t               callbackQueue;
+@property(nonatomic, retain) NSMapTable*                    configuredCharacteristics;
+
 
 - (void)syncMain:(dispatch_block_t)__syncBlock;
 - (void)asyncMain:(dispatch_block_t)__asyncBlock;

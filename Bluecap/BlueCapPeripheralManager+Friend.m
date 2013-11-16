@@ -13,6 +13,7 @@
 @dynamic cbPeripheralManager;
 @dynamic mainQueue;
 @dynamic callbackQueue;
+@dynamic configuredCharacteristics;
 
 - (void)syncMain:(dispatch_block_t)__syncBlock {
     dispatch_sync([BlueCapPeripheralManager sharedInstance].mainQueue, __syncBlock);
