@@ -8,6 +8,8 @@
 
 #import "BlueCapPeripheralManager+Friend.h"
 #import "BlueCapMutableService+Friend.h"
+#import "BlueCapMutableCharacteristic+Friend.h"
+#import "BlueCapCharacteristicProfile+Friend.h"
 #import "CBUUID+StringValue.h"
 
 #define WAIT_FOR_ADVERTISING_TO_STOP_POLLING_INTERVAL   0.25
@@ -203,9 +205,29 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 }
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral didReceiveReadRequest:(CBATTRequest*)request {
+    DLog(@"Characteristic %@ did recieve read request", [request.characteristic.UUID stringValue]);
+    BlueCapMutableCharacteristic* characteristic = [self.configuredCharacteristics objectForKey:request.characteristic];
+    if (characteristic != nil) {
+        request.value = [characteristic dataValue];
+        [self.cbPeripheralManager respondToRequest:request withResult:CBATTErrorSuccess];
+    } else {
+        DLog(@"characteristic not found");
+    }
 }
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral didReceiveWriteRequests:(NSArray*)requests {
+    for (CBATTRequest* request in requests) {
+        DLog(@"Characteristic %@ did receive write request", [request.characteristic.UUID stringValue]);
+        BlueCapMutableCharacteristic* characteristic = [self.configuredCharacteristics objectForKey:request.characteristic];
+        if (characteristic) {
+            characteristic.cbCharacteristic.value = request.value;
+            if (characteristic.processWriteCallback) {
+                characteristic.processWriteCallback(characteristic);
+            }
+        } else {
+            DLog(@"characteristic not found");
+        }
+    }
 }
 
 @end

@@ -10,6 +10,7 @@
 
 @interface BlueCapMutableCharacteristic (Friend)
 
-@property(nonatomic, retain) CBMutableCharacteristic*   cbCharacteristic;
+@property(nonatomic, retain) CBMutableCharacteristic*           cbCharacteristic;
+@property(nonatomic, copy) BlueCapMutableCharacteristicCallback processWriteCallback;
 
 @end

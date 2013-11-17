@@ -218,12 +218,12 @@
 }
 
 - (void)writeValueString:(NSString*)__value afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
-    NSData* serilaiizedValue = [BlueCapCharacteristicProfile fromStringValue:__value usingProfile:self.profile];
+    NSData* serilaiizedValue = [BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:self.profile];
     [self writeData:serilaiizedValue afterWriteCall:__afterWriteCallback];
 }
 
 - (void)writeValueString:(NSString*)__value {
-    NSData* serilaiizedValue = [BlueCapCharacteristicProfile fromStringValue:__value usingProfile:self.profile];
+    NSData* serilaiizedValue = [BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:self.profile];
     [self writeData:serilaiizedValue];
 }
 

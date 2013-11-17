@@ -16,7 +16,7 @@
 @dynamic valueNames;
 @dynamic serializeNamedObjectCallback;
 @dynamic serializeObjectCallback;
-@dynamic fromStringValueCallback;
+@dynamic serializeStringValueCallback;
 @dynamic deserializeDataCallback;
 @dynamic stringValueCallback;
 @dynamic afterDiscoveredCallback;
@@ -78,10 +78,10 @@
     return serializedValue;
 }
 
-+ (NSData*)fromStringValue:(NSString*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile {
++ (NSData*)serializeStringValue:(NSString*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile {
     NSData* serializedValue = nil;
     if (__profile) {
-        BlueCapCharacteristicProfileSerializeObjectCallback serializeBlock = __profile.fromStringValueCallback;
+        BlueCapCharacteristicProfileSerializeStringCallback serializeBlock = __profile.serializeStringValueCallback;
         if (serializeBlock) {
             serializedValue = serializeBlock(__value);
         } else {

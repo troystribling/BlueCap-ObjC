@@ -11,5 +11,6 @@
 @implementation BlueCapMutableCharacteristic (Friend)
 
 @dynamic cbCharacteristic;
+@dynamic processWriteCallback;
 
 @end

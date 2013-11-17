@@ -16,7 +16,7 @@
 @property(nonatomic, retain) NSDictionary*                                              valueNames;
 @property(nonatomic, copy) BlueCapCharacteristicProfileSerializeNamedObjectCallback     serializeNamedObjectCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileSerializeObjectCallback          serializeObjectCallback;
-@property(nonatomic, copy) BlueCapCharacteristicProfileFromStringCallback               fromStringValueCallback;
+@property(nonatomic, copy) BlueCapCharacteristicProfileSerializeStringCallback          serializeStringValueCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileDeserializeDataCallback          deserializeDataCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileStringValueCallback              stringValueCallback;
 @property(nonatomic, copy) BlueCapCharacteristicProfileAfterDiscoveredCallback          afterDiscoveredCallback;
@@ -66,8 +66,8 @@
     self.serializeObjectCallback = __serializeBlock;
 }
 
-- (void)fromStringValue:(BlueCapCharacteristicProfileFromStringCallback)__serializeBlock {
-    self.fromStringValueCallback = __serializeBlock;
+- (void)serializeStringValue:(BlueCapCharacteristicProfileSerializeStringCallback)__serializeBlock {
+    self.serializeStringValueCallback = __serializeBlock;
 }
 
 - (void)deserializeData:(BlueCapCharacteristicProfileDeserializeDataCallback)__deserializeCallback {

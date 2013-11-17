@@ -24,7 +24,7 @@
 - (void)setValue:(id)__objectValue named:(NSString*)__valueName;
 - (void)serializeNamedObject:(BlueCapCharacteristicProfileSerializeNamedObjectCallback)__serializeBlock;
 - (void)serializeObject:(BlueCapCharacteristicProfileSerializeObjectCallback)__serializeBlock;
-- (void)fromStringValue:(BlueCapCharacteristicProfileFromStringCallback)__serializeBlock;
+- (void)serializeStringValue:(BlueCapCharacteristicProfileSerializeStringCallback)__serializeBlock;
 
 - (void)deserializeData:(BlueCapCharacteristicProfileDeserializeDataCallback)__deserializeCallback;
 - (void)stringValue:(BlueCapCharacteristicProfileStringValueCallback)__stringValueCallback;
