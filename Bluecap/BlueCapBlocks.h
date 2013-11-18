@@ -42,7 +42,7 @@ typedef void(^BlueCapCharacteristicProfileBlock)(BlueCapCharacteristicProfile* _
 typedef void(^BlueCapCharacteristicProfileAfterDiscoveredCallback)(BlueCapCharacteristic* __characteristic);
 typedef NSData*(^BlueCapCharacteristicProfileSerializeNamedObjectCallback)(NSString* __objectName, id __data);
 typedef NSData*(^BlueCapCharacteristicProfileSerializeObjectCallback)(id __data);
-typedef NSData*(^BlueCapCharacteristicProfileSerializeStringCallback)(NSString* __stringValue);
+typedef NSData*(^BlueCapCharacteristicProfileSerializeStringCallback)(NSDictionary* __stringValue);
 
 typedef NSDictionary*(^BlueCapCharacteristicProfileDeserializeDataCallback)(NSData* __data);
 typedef NSDictionary*(^BlueCapCharacteristicProfileStringValueCallback)(NSDictionary* __data);

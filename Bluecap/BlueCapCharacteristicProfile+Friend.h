@@ -30,6 +30,6 @@
 
 + (NSData*)serializeObject:(id)__value usingProfile:(BlueCapCharacteristicProfile*)__profile;
 + (NSData*)serializeNamedValue:(NSString*)__name usingProfile:(BlueCapCharacteristicProfile*)__profile;
-+ (NSData*)serializeStringValue:(NSString*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile;
++ (NSData*)serializeStringValue:(NSDictionary*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile;
 
 @end

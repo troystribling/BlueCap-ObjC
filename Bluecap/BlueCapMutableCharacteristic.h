@@ -23,7 +23,7 @@
 
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andObject:(id)__value;
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value;
-+ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andString:(NSString*)__value;
++ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andString:(NSDictionary*)__value;
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andNamedValue:(NSString*)__name;
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile;
 
@@ -40,7 +40,7 @@
 - (NSDictionary*)stringValue;
 
 - (void)updateValueObject:(id)__value;
-- (void)updateValueString:(NSString*)__value;
+- (void)updateValueString:(NSDictionary*)__value;
 - (void)updateValueData:(NSData*)__value;
 - (void)updateValueNamed:(NSString*)__name;
 

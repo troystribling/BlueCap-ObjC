@@ -217,14 +217,14 @@
     [self writeData:serializedValue];
 }
 
-- (void)writeValueString:(NSString*)__value afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
-    NSData* serilaiizedValue = [BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:self.profile];
-    [self writeData:serilaiizedValue afterWriteCall:__afterWriteCallback];
+- (void)writeValueString:(NSDictionary*)__value afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
+    NSData* serializedValue = [BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:self.profile];
+    [self writeData:serializedValue afterWriteCall:__afterWriteCallback];
 }
 
-- (void)writeValueString:(NSString*)__value {
-    NSData* serilaiizedValue = [BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:self.profile];
-    [self writeData:serilaiizedValue];
+- (void)writeValueString:(NSDictionary*)__value {
+    NSData* serializedValue = [BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:self.profile];
+    [self writeData:serializedValue];
 }
 
 #pragma mark - Discover Descriptors

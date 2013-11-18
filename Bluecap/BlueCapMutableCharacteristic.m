@@ -32,7 +32,7 @@
     return [[BlueCapMutableCharacteristic alloc] initWithProfile:__profile andData:__value];
 }
 
-+ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andString:(NSString*)__value {
++ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andString:(NSDictionary*)__value {
     return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:__profile]];
 }
 
@@ -136,7 +136,7 @@
                                                           onSubscribedCentrals:nil];
 }
 
-- (void)updateValueString:(NSString*)__value {
+- (void)updateValueString:(NSDictionary*)__value {
     [[BlueCapPeripheralManager sharedInstance].cbPeripheralManager updateValue:[BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:self.profile]
                                                              forCharacteristic:self.cbCharacteristic
                                                           onSubscribedCentrals:nil];

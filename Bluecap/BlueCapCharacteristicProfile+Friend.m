@@ -78,7 +78,7 @@
     return serializedValue;
 }
 
-+ (NSData*)serializeStringValue:(NSString*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile {
++ (NSData*)serializeStringValue:(NSDictionary*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile {
     NSData* serializedValue = nil;
     if (__profile) {
         BlueCapCharacteristicProfileSerializeStringCallback serializeBlock = __profile.serializeStringValueCallback;
