@@ -46,6 +46,8 @@
 		059769D117CB121600BDE5B5 /* PeripheralServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769D017CB121600BDE5B5 /* PeripheralServiceCell.m */; };
 		059769E517CF1CED00BDE5B5 /* ServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769E417CF1CED00BDE5B5 /* ServiceViewController.m */; };
 		05A261071816C9FC00232014 /* CharacteristicDiscreteValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A261061816C9FC00232014 /* CharacteristicDiscreteValueViewController.m */; };
+		05A2D4C31839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A2D4C21839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.m */; };
+		05A2D4C71839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A2D4C61839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.m */; };
 		05D6460017C341F4008A251D /* PeripheralServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D645FF17C341F4008A251D /* PeripheralServicesViewController.m */; };
 		05D6460517C5A73E008A251D /* PeripheralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6460417C5A73E008A251D /* PeripheralCell.m */; };
 		05D6E51817BFD3BA0019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */; };
@@ -155,6 +157,10 @@
 		059769E417CF1CED00BDE5B5 /* ServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
 		05A261051816C9FC00232014 /* CharacteristicDiscreteValueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicDiscreteValueViewController.h; sourceTree = "<group>"; };
 		05A261061816C9FC00232014 /* CharacteristicDiscreteValueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicDiscreteValueViewController.m; sourceTree = "<group>"; };
+		05A2D4C11839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralManagerCharacteristicViewController.h; sourceTree = "<group>"; };
+		05A2D4C21839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralManagerCharacteristicViewController.m; sourceTree = "<group>"; };
+		05A2D4C51839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralManagerCharacteristicValuesViewController.h; sourceTree = "<group>"; };
+		05A2D4C61839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralManagerCharacteristicValuesViewController.m; sourceTree = "<group>"; };
 		05D645FE17C341F4008A251D /* PeripheralServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralServicesViewController.h; sourceTree = "<group>"; };
 		05D645FF17C341F4008A251D /* PeripheralServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralServicesViewController.m; sourceTree = "<group>"; };
 		05D6460317C5A73E008A251D /* PeripheralCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralCell.h; sourceTree = "<group>"; };
@@ -315,6 +321,10 @@
 				0540FFFE1830255E001B3735 /* PeripheralManagerCharacteristiceFreeFormValueViewController.m */,
 				0540FFF1182FF9EB001B3735 /* PeripheralManagerCharacteristicsViewController.h */,
 				0540FFF2182FF9EC001B3735 /* PeripheralManagerCharacteristicsViewController.m */,
+				05A2D4C51839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.h */,
+				05A2D4C61839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.m */,
+				05A2D4C11839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.h */,
+				05A2D4C21839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.m */,
 				0540FFEB182FF815001B3735 /* PeripheralManagerServiceCell.h */,
 				0540FFEC182FF815001B3735 /* PeripheralManagerServiceCell.m */,
 				0540FFEE182FF839001B3735 /* PeripheralManagerServiceProfileCell.h */,
@@ -503,8 +513,10 @@
 				05D6460017C341F4008A251D /* PeripheralServicesViewController.m in Sources */,
 				0504D1001820A18400A5C607 /* ServiceProfilesViewController.m in Sources */,
 				0540FFFC182FFDBC001B3735 /* PeriphaeralManagerCharscteristicValueCell.m in Sources */,
+				05A2D4C31839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.m in Sources */,
 				05FE6C19182BF64000941EB0 /* PeripheralManagerViewController.m in Sources */,
 				0536D3DC17D52DB200BA1165 /* CharacteristicViewController.m in Sources */,
+				05A2D4C71839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.m in Sources */,
 				0540FFF3182FF9EC001B3735 /* PeripheralManagerCharacteristicsViewController.m in Sources */,
 				0540FFDC182F05AC001B3735 /* PeripheralManagerServiceProfilesViewController.m in Sources */,
 				0540FFF0182FF839001B3735 /* PeripheralManagerServiceProfileCell.m in Sources */,
