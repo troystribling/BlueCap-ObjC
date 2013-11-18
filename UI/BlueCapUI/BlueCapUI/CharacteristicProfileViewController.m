@@ -32,6 +32,8 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationItem.title = self.characteristicProfile.name;
     
+    self.uuidLabel.text = [self.characteristicProfile.UUID stringValue];
+    
     self.permissionRead.text = [self permissionEnabledStringValue:CBAttributePermissionsReadable];
     self.permissionWrite.text = [self permissionEnabledStringValue:CBAttributePermissionsWriteable];
     self.permissionReadEncryption.text = [self permissionEnabledStringValue:CBAttributePermissionsReadEncryptionRequired];
@@ -77,12 +79,5 @@
 #pragma mark - Table view data source
 
 #pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
-    if (indexPath.section == 0 && indexPath.row == 0 && ![self.characteristicProfile hasValues]) {
-        cell.textLabel.textColor = [UIColor lightGrayColor];
-        cell.userInteractionEnabled = NO;
-    }
-}
 
 @end

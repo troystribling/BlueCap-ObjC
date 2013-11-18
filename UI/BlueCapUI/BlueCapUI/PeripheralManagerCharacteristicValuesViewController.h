@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class BlueCapMutableCharacteristic;
+
 @interface PeripheralManagerCharacteristicValuesViewController : UITableViewController
+
+@property(nonatomic, retain) BlueCapMutableCharacteristic* characteristic;
 
 @end

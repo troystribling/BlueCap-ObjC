@@ -14,6 +14,8 @@
 
 @property(nonatomic, retain) BlueCapCharacteristicProfile*  characteristicProfile;
 
+@property(nonatomic, retain) IBOutlet UILabel*  uuidLabel;
+
 @property(nonatomic, retain) IBOutlet UILabel*  permissionRead;
 @property(nonatomic, retain) IBOutlet UILabel*  permissionWrite;
 @property(nonatomic, retain) IBOutlet UILabel*  permissionReadEncryption;

@@ -8,6 +8,7 @@
 
 #import <BlueCap/BlueCap.h>
 #import "PeripheralManagerCharacteristicsViewController.h"
+#import "PeripheralManagerCharacteristicViewController.h"
 #import "PeripheralManagerCharacteristicCell.h"
 
 @interface PeripheralManagerCharacteristicsViewController ()
@@ -36,7 +37,12 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+    if ([segue.identifier isEqualToString:@"PeripheralManagerCharacteristic"]) {
+        NSIndexPath* indexPath = [self.tableView indexPathForCell:sender];
+        BlueCapMutableCharacteristic* characteristic = [self.service.characteristics objectAtIndex:indexPath.row];
+        PeripheralManagerCharacteristicViewController* viewController = segue.destinationViewController;
+        viewController.characteristic = characteristic;
+    }
 }
 
 #pragma mark - Table view data source

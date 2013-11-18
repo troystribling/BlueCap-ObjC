@@ -345,7 +345,7 @@
                                   andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                       
                                   [serviceProfile createCharacteristicWithUUID:@"f000aa21-0451-4000-b000-000000000000"
-                                                                          name:@"Hygrometer"
+                                                                          name:@"Hygrometer Data"
                                                                     andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                                                         [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                                                                             NSNumber* tempNumber = blueCapUnsignedInt16LittleFromData(data, NSMakeRange(0, 2));

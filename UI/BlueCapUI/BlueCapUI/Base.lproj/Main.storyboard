@@ -407,6 +407,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="nUi-RC-SAK" kind="push" identifier="PeripheralManagerCharacteristicValues" id="h84-FH-dX6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -440,7 +443,7 @@
                             </tableViewSection>
                             <tableViewSection id="9YH-qp-2rV">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="pLd-Je-GWu" style="IBUITableViewCellStyleDefault" id="I6A-Tg-vGX">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="pLd-Je-GWu" style="IBUITableViewCellStyleDefault" id="I6A-Tg-vGX">
                                         <rect key="frame" x="0.0" y="227" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I6A-Tg-vGX" id="6Hf-8A-9Cg">
@@ -451,7 +454,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -810,6 +813,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="CWa-iC-5Y4"/>
+                    <connections>
+                        <outlet property="permissionRead" destination="Vc5-wX-GSF" id="oSN-u9-iHn"/>
+                        <outlet property="permissionReadEncryption" destination="Eq4-jB-JLk" id="9al-Tx-MOg"/>
+                        <outlet property="permissionWrite" destination="OX7-xd-36A" id="U6h-eg-Fm7"/>
+                        <outlet property="permissionWriteEncryption" destination="Cyj-Cj-jlO" id="ZbY-SA-4YP"/>
+                        <outlet property="propertyAuthenticatedSignedWrites" destination="E5v-nb-JCa" id="A4F-VR-uJL"/>
+                        <outlet property="propertyBroadcast" destination="WEa-eN-7es" id="Ucj-TT-i2U"/>
+                        <outlet property="propertyExtendedProperties" destination="fnY-Zd-o8a" id="zfi-WL-dib"/>
+                        <outlet property="propertyIndicate" destination="qy2-kz-X7h" id="B9m-fT-1gb"/>
+                        <outlet property="propertyIndicateEncryptionRequired" destination="5lG-fh-L6v" id="Bbr-o7-T2c"/>
+                        <outlet property="propertyNotify" destination="Ifq-6N-Dgp" id="hcc-6e-PIs"/>
+                        <outlet property="propertyNotifyEncryptionRequired" destination="zW5-Vf-pJw" id="COP-vy-Bnh"/>
+                        <outlet property="propertyRead" destination="cZU-Ll-PeQ" id="ltr-Me-i25"/>
+                        <outlet property="propertyWrite" destination="y6f-bT-LWN" id="3W0-LS-gtl"/>
+                        <outlet property="propertyWriteWithoutResponse" destination="g0Z-ch-XeR" id="1sM-8r-Tfh"/>
+                        <outlet property="uuidLabel" destination="p8X-D3-Jg9" id="DkT-Wh-aZd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JkI-3u-CN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -825,7 +845,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dc4-EZ-z20">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dc4-EZ-z20" id="9Ji-tb-4Sj">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -838,6 +858,7 @@
                             <outlet property="delegate" destination="nUi-RC-SAK" id="Yk8-vc-TfK"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="hm2-Zh-4r9"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1G6-7f-gW8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
