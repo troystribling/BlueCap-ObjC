@@ -8,6 +8,7 @@
 
 #import <BlueCap/BlueCap.h>
 #import "PeripheralManagerCharacteristicViewController.h"
+#import "PeripheralManagerCharacteristicValuesViewController.h"
 
 @interface PeripheralManagerCharacteristicViewController ()
 
@@ -53,6 +54,13 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PeripheralManagerCharacteristicValues"]) {
+        PeripheralManagerCharacteristicValuesViewController* viewController = segue.destinationViewController;
+        viewController.characteristic = self.characteristic;
+    }
 }
 
 #pragma mark - CharacteristicProfileViewController Private

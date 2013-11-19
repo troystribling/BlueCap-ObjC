@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import <BlueCap/BlueCap.h>
 #import "PeripheralManagerCharacteristicValuesViewController.h"
+#import "PeripheralManagerCharacteristicValueCell.h"
 
 @interface PeripheralManagerCharacteristicValuesViewController ()
 
@@ -36,12 +38,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return[[self.characteristic stringValue] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"PeripheralManagerCharacteristicValue";
+    PeripheralManagerCharacteristicValueCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSDictionary* values = [self.characteristic stringValue];
+    NSString* valueName = [[values allKeys] objectAtIndex:indexPath.row];
+    cell.nameLabel.text = valueName;
+    cell.valuelabel.text = [values objectForKey:valueName];
     return cell;
 }
 
