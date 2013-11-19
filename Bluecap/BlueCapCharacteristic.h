@@ -43,10 +43,10 @@
 - (void)writeData:(NSData*)__data;
 - (void)writeObject:(id)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
 - (void)writeObject:(id)__data;
-- (void)writeValueNamed:(NSString*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
-- (void)writeValueNamed:(NSString*)__data;
-- (void)writeValueString:(NSString*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
-- (void)writeValueString:(NSString*)__data;
+- (void)writeValueObject:(NSString*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
+- (void)writeValueObject:(NSString*)__data;
+- (void)writeString:(NSDictionary*)__data afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback;
+- (void)writeString:(NSDictionary*)__data;
 
 - (void)discoverAllDescriptors:(BlueCapDescriptorsDicoveredCallback)__onDiscriptorsDicoveredCallback;
 

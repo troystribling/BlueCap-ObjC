@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-#import "BlueCapCharacteristicProfile.h"
+#import "BlueCapCharacteristicProfile+Friend.h"
 
 @interface BlueCapCharacteristicProfile ()
 
@@ -53,6 +53,20 @@
     return self.permissions & __permission;
 }
 
+- (NSData*)valueFromObject:(id)__value {
+    return [self.class serializeObject:__value usingProfile:self];
+}
+
+- (NSData*)valueFromNamedObject:(NSString*)__name {
+    return [self.class serializeNamedObject:__name usingProfile:self];
+}
+
+- (NSData*)valueFromString:(NSDictionary*)__value {
+    return [self.class serializeString:__value usingProfile:self];
+}
+
+#pragma mark - Configure
+
 - (void)setValue:(id)__objectValue named:(NSString*)__valueName {
     [self.valueObjects setValue:__objectValue forKey:__valueName];
     [self.valueNames setValue:__valueName forKey:__objectValue];
@@ -66,7 +80,7 @@
     self.serializeObjectCallback = __serializeBlock;
 }
 
-- (void)serializeStringValue:(BlueCapCharacteristicProfileSerializeStringCallback)__serializeBlock {
+- (void)serializeString:(BlueCapCharacteristicProfileSerializeStringCallback)__serializeBlock {
     self.serializeStringValueCallback = __serializeBlock;
 }
 

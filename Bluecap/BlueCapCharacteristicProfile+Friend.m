@@ -39,6 +39,7 @@
         self.UUID = [CBUUID UUIDWithString:__uuidString];
         self.valueObjects = [NSMutableDictionary dictionary];
         self.valueNames = [NSMutableDictionary dictionary];
+        self.initialValue = nil;
     }
     return self;
 }
@@ -58,7 +59,7 @@
     return serializedValue;
 }
 
-+ (NSData*)serializeNamedValue:(NSString*)__name usingProfile:(BlueCapCharacteristicProfile*)__profile {
++ (NSData*)serializeNamedObject:(NSString*)__name usingProfile:(BlueCapCharacteristicProfile*)__profile {
     NSData* serializedValue = nil;
     if (__profile) {
         id objectValue = [__profile.valueObjects objectForKey:__name];
@@ -78,7 +79,7 @@
     return serializedValue;
 }
 
-+ (NSData*)serializeStringValue:(NSDictionary*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile {
++ (NSData*)serializeString:(NSDictionary*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile {
     NSData* serializedValue = nil;
     if (__profile) {
         BlueCapCharacteristicProfileSerializeStringCallback serializeBlock = __profile.serializeStringValueCallback;

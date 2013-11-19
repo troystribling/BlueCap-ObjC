@@ -61,7 +61,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self.characteristic writeValueNamed:cell.textLabel.text afterWriteCall:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
+    [self.characteristic writeValueObject:cell.textLabel.text afterWriteCall:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });

@@ -198,13 +198,13 @@
     }
 }
 
-- (void)writeValueNamed:(NSString*)__objectName afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
-    NSData* serializedValue = [BlueCapCharacteristicProfile serializeNamedValue:__objectName usingProfile:self.profile];
+- (void)writeValueObject:(NSString*)__objectName afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
+    NSData* serializedValue = [BlueCapCharacteristicProfile serializeNamedObject:__objectName usingProfile:self.profile];
     [self writeData:serializedValue afterWriteCall:__afterWriteCallback];
 }
 
-- (void)writeValueNamed:(NSString*)__objectName {
-    NSData* serializedValue = [BlueCapCharacteristicProfile serializeNamedValue:__objectName usingProfile:self.profile];
+- (void)writeValueObject:(NSString*)__objectName {
+    NSData* serializedValue = [BlueCapCharacteristicProfile serializeNamedObject:__objectName usingProfile:self.profile];
     [self writeData:serializedValue];
 }
 - (void)writeObject:(id)__object afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
@@ -217,13 +217,13 @@
     [self writeData:serializedValue];
 }
 
-- (void)writeValueString:(NSDictionary*)__value afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
-    NSData* serializedValue = [BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:self.profile];
+- (void)writeString:(NSDictionary*)__value afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
+    NSData* serializedValue = [BlueCapCharacteristicProfile serializeString:__value usingProfile:self.profile];
     [self writeData:serializedValue afterWriteCall:__afterWriteCallback];
 }
 
-- (void)writeValueString:(NSDictionary*)__value {
-    NSData* serializedValue = [BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:self.profile];
+- (void)writeString:(NSDictionary*)__value {
+    NSData* serializedValue = [BlueCapCharacteristicProfile serializeString:__value usingProfile:self.profile];
     [self writeData:serializedValue];
 }
 

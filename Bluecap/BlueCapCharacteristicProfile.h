@@ -10,8 +10,9 @@
 
 @interface BlueCapCharacteristicProfile : NSObject
 
-@property(nonatomic, assign) CBAttributePermissions     permissions;
-@property(nonatomic, assign) CBCharacteristicProperties properties;
+@property(nonatomic, assign) CBAttributePermissions         permissions;
+@property(nonatomic, assign) CBCharacteristicProperties     properties;
+@property(nonatomic, retain) NSData*                        initialValue;
 
 - (CBUUID*)UUID;
 - (NSString*)name;
@@ -24,10 +25,14 @@
 - (void)setValue:(id)__objectValue named:(NSString*)__valueName;
 - (void)serializeNamedObject:(BlueCapCharacteristicProfileSerializeNamedObjectCallback)__serializeBlock;
 - (void)serializeObject:(BlueCapCharacteristicProfileSerializeObjectCallback)__serializeBlock;
-- (void)serializeStringValue:(BlueCapCharacteristicProfileSerializeStringCallback)__serializeBlock;
+- (void)serializeString:(BlueCapCharacteristicProfileSerializeStringCallback)__serializeBlock;
 
 - (void)deserializeData:(BlueCapCharacteristicProfileDeserializeDataCallback)__deserializeCallback;
 - (void)stringValue:(BlueCapCharacteristicProfileStringValueCallback)__stringValueCallback;
 - (void)afterDiscovered:(BlueCapCharacteristicProfileAfterDiscoveredCallback)__afterDiscoveredCallback;
+
+- (NSData*)valueFromObject:(id)__value;
+- (NSData*)valueFromNamedObject:(NSString*)__name;
+- (NSData*)valueFromString:(NSDictionary*)__value;
 
 @end

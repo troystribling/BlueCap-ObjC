@@ -29,7 +29,7 @@
 - (NSDictionary*)deserializeDataValues:(NSData*)__dataValue;
 
 + (NSData*)serializeObject:(id)__value usingProfile:(BlueCapCharacteristicProfile*)__profile;
-+ (NSData*)serializeNamedValue:(NSString*)__name usingProfile:(BlueCapCharacteristicProfile*)__profile;
-+ (NSData*)serializeStringValue:(NSDictionary*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile;
++ (NSData*)serializeNamedObject:(NSString*)__name usingProfile:(BlueCapCharacteristicProfile*)__profile;
++ (NSData*)serializeString:(NSDictionary*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile;
 
 @end

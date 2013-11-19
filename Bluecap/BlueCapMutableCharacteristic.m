@@ -33,15 +33,15 @@
 }
 
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andString:(NSDictionary*)__value {
-    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:__profile]];
+    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeString:__value usingProfile:__profile]];
 }
 
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andNamedValue:(NSString*)__name {
-    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeNamedValue:__name usingProfile:__profile]];
+    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeNamedObject:__name usingProfile:__profile]];
 }
 
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile {
-    return [self withProfile:__profile andData:nil];
+    return [self withProfile:__profile andData:__profile.initialValue];
 }
 
 + (NSArray*)withProfiles:(NSArray*)__profiles {
@@ -137,7 +137,7 @@
 }
 
 - (void)updateValueString:(NSDictionary*)__value {
-    [[BlueCapPeripheralManager sharedInstance].cbPeripheralManager updateValue:[BlueCapCharacteristicProfile serializeStringValue:__value usingProfile:self.profile]
+    [[BlueCapPeripheralManager sharedInstance].cbPeripheralManager updateValue:[BlueCapCharacteristicProfile serializeString:__value usingProfile:self.profile]
                                                              forCharacteristic:self.cbCharacteristic
                                                           onSubscribedCentrals:nil];
 }
@@ -150,7 +150,7 @@
 }
 
 - (void)updateValueNamed:(NSString*)__name {
-    [[BlueCapPeripheralManager sharedInstance].cbPeripheralManager updateValue:[BlueCapCharacteristicProfile serializeNamedValue:__name usingProfile:self.profile]
+    [[BlueCapPeripheralManager sharedInstance].cbPeripheralManager updateValue:[BlueCapCharacteristicProfile serializeNamedObject:__name usingProfile:self.profile]
                                                              forCharacteristic:self.cbCharacteristic
                                                           onSubscribedCentrals:nil];
 }
