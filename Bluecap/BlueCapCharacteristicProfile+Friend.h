@@ -26,10 +26,13 @@
 
 -(id)initWithUUID:(NSString*)__uuidString andName:(NSString*)__name;
 
-- (NSDictionary*)deserializeDataValues:(NSData*)__dataValue;
+- (NSDictionary*)deserializeValueObjects:(NSData*)__dataValue;
 
 + (NSData*)serializeObject:(id)__value usingProfile:(BlueCapCharacteristicProfile*)__profile;
 + (NSData*)serializeNamedObject:(NSString*)__name usingProfile:(BlueCapCharacteristicProfile*)__profile;
 + (NSData*)serializeString:(NSDictionary*)__value usingProfile:(BlueCapCharacteristicProfile*)__profile;
+
++ (NSDictionary*)deserializeData:(NSData *)__dataValue usingProfile:(BlueCapCharacteristicProfile*)__profile;
++ (NSDictionary*)stringValue:(NSDictionary*)__dataValue usingProfile:(BlueCapCharacteristicProfile*)__profile;
 
 @end

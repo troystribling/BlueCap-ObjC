@@ -101,23 +101,11 @@
 }
 
 - (NSDictionary*)value {
-    NSDictionary* deserializedVals = [NSDictionary dictionary];
-    if (self.profile.deserializeDataCallback) {
-        deserializedVals = self.profile.deserializeDataCallback([self dataValue]);
-    } else if ([self hasValues]) {
-        deserializedVals = [self.profile deserializeDataValues:[self dataValue]];
-    }
-    return deserializedVals;
+    return [BlueCapCharacteristicProfile deserializeData:[self dataValue] usingProfile:self.profile];
 }
 
 - (NSDictionary*)stringValue {
-    NSDictionary* stringVals = [NSDictionary dictionary];
-    if (self.profile.stringValueCallback) {
-        stringVals = self.profile.stringValueCallback([self value]);
-    } else if ([self hasValues]) {
-        stringVals =[self value];
-    }
-    return stringVals;
+    return [BlueCapCharacteristicProfile stringValue:[self value] usingProfile:self.profile];
 }
 
 - (NSArray*)allValues {

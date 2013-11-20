@@ -94,7 +94,31 @@
     return serializedValue;
 }
 
-- (NSDictionary*)deserializeDataValues:(NSData*)__dataValue {
++ (NSDictionary*)deserializeData:(NSData *)__dataValue usingProfile:(BlueCapCharacteristicProfile*)__profile {
+    NSDictionary* deserializedVals = [NSDictionary dictionary];
+    if (__profile.deserializeDataCallback) {
+        deserializedVals = __profile.deserializeDataCallback(__dataValue);
+    } else if ([__profile hasValues]) {
+        deserializedVals = [__profile deserializeValueObjects:__dataValue];
+    } else {
+        [NSException raise:@"Must provide deserialization block" format:@"deserialization block is nil"];
+    }
+    return deserializedVals;
+}
+
++ (NSDictionary*)stringValue:(NSDictionary*)__dataValue usingProfile:(BlueCapCharacteristicProfile*)__profile {
+    NSDictionary* stringVals = [NSDictionary dictionary];
+    if (__profile.stringValueCallback) {
+        stringVals = __profile.stringValueCallback(__dataValue);
+    } else if ([__profile hasValues]) {
+        stringVals = __dataValue;
+    } else {
+        [NSException raise:@"Must provide deserialization block" format:@"deserialization block is nil"];
+    }
+    return stringVals;
+}
+
+- (NSDictionary*)deserializeValueObjects:(NSData*)__dataValue {
     NSDictionary* deserializedVals = [NSDictionary dictionary];
     for(id objectValue in [self.valueObjects allValues]) {
         if ([objectValue isKindOfClass:[NSData class]]) {
