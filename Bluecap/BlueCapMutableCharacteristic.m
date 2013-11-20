@@ -41,7 +41,7 @@
 }
 
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile {
-    return [self withProfile:__profile andData:__profile.initialValue];
+    return [self withProfile:__profile andData:nil];
 }
 
 + (NSArray*)withProfiles:(NSArray*)__profiles {

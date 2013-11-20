@@ -56,6 +56,7 @@
     } else {
         [NSException raise:@"Must provide profile" format:@"profile is nil"];
     }
+    DLog(@"Serialized Object of length: %d", [serializedValue length]);
     return serializedValue;
 }
 
@@ -76,6 +77,7 @@
     } else {
         [NSException raise:@"Must provide profile" format:@"profile is nil"];
     }
+    DLog(@"Serialized Named Object of length: %d", [serializedValue length]);
     return serializedValue;
 }
 
@@ -91,6 +93,7 @@
     } else {
         [NSException raise:@"Must provide profile" format:@"profile is nil"];
     }
+    DLog(@"Serialized String of length: %d", [serializedValue length]);
     return serializedValue;
 }
 

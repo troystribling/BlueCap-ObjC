@@ -374,6 +374,7 @@
                                                                     andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                                                         [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_HYGROMETER_ON_VALUE) named:TISENSOR_TAG_HYGROMETER_ON];
                                                                         [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_HYGROMETER_OFF_VALUE) named:TISENSOR_TAG_HYGROMETER_OFF];
+                                                                        characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_HYGROMETER_OFF];
                                                                         [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                                             [characteristic writeValueObject:TISENSOR_TAG_HYGROMETER_ON afterWriteCall:nil];
                                                                         }];
