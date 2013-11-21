@@ -182,8 +182,10 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     DLog(@"Peripheral Manager did add sevice: %@:%@", bcService.name, [service.UUID stringValue]);
     for (CBMutableCharacteristic* characteristic in service.characteristics) {
         DLog(@"Peripheral Manager did add characteristic: %@", [characteristic.UUID stringValue]);
-        uint8_t val = 0x01;
-        [peripheral updateValue:[NSData dataWithBytes:&val length:1] forCharacteristic:characteristic onSubscribedCentrals:nil];
+        BlueCapMutableCharacteristic* bcCharacteristic = [self.configuredCharacteristics objectForKey:characteristic];
+        if (bcCharacteristic) {
+            characteristic.value = bcCharacteristic.profile.initialValue;
+        }
     }
     [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
         self.afterServiceAddedCallback(bcService, error);

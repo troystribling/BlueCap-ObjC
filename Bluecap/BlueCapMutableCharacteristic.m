@@ -24,24 +24,8 @@
 
 #pragma mark - BlueCapCharacteristic
 
-+ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andObject:(id)__value {
-    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeObject:__value usingProfile:__profile]];
-}
-
-+ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value {
-    return [[BlueCapMutableCharacteristic alloc] initWithProfile:__profile andData:__value];
-}
-
-+ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andString:(NSDictionary*)__value {
-    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeString:__value usingProfile:__profile]];
-}
-
-+ (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile andNamedValue:(NSString*)__name {
-    return [self withProfile:__profile andData:[BlueCapCharacteristicProfile serializeNamedObject:__name usingProfile:__profile]];
-}
-
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile {
-    return [self withProfile:__profile andData:nil];
+    return [[BlueCapMutableCharacteristic alloc] initWithProfile:__profile andData:nil];
 }
 
 + (NSArray*)withProfiles:(NSArray*)__profiles {
