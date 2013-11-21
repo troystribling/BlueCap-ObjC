@@ -9,6 +9,8 @@
 #import <BlueCap/BlueCap.h>
 #import "PeripheralManagerCharacteristicValuesViewController.h"
 #import "PeripheralManagerCharacteristicValueCell.h"
+#import "PeripheralManagerCharacteristicDiscreteValueViewController.h"
+#import "PeripheralManagerCharacteristiceFreeFormValueViewController.h"
 
 @interface PeripheralManagerCharacteristicValuesViewController ()
 
@@ -29,6 +31,30 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PeripheralManagerCharacteristicDiscreteValue"]) {
+        PeripheralManagerCharacteristicDiscreteValueViewController* viewController = segue.destinationViewController;
+        viewController.characteristic = self.characteristic;
+    } else if ([segue.identifier isEqualToString:@"PeripheralManagerCharacteristiceFreeFormValue"]) {
+        PeripheralManagerCharacteristiceFreeFormValueViewController* viewController = segue.destinationViewController;
+        PeripheralManagerCharacteristicValueCell *cell = (PeripheralManagerCharacteristicValueCell*)sender;
+        viewController.characteristic = self.characteristic;
+        viewController.valueName = cell.nameLabel.text;
+    }
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] || [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
+        if ([self.characteristic hasValues]) {
+            [self performSegueWithIdentifier:@"PeripheralManagerCharacteristicDiscreteValue" sender:self];
+        } else {
+            [self performSegueWithIdentifier:@"PeripheralManagerCharacteristiceFreeFormValue" sender:self];
+        }
+    }
 }
 
 #pragma mark - Table view data source

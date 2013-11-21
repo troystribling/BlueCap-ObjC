@@ -878,6 +878,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="hm2-Zh-4r9"/>
+                    <connections>
+                        <segue destination="F6T-V4-TwS" kind="push" identifier="PeripheralManagerCharacteristicDiscreteValue" id="XMD-7l-oha"/>
+                        <segue destination="eJp-Hv-1Y9" kind="push" identifier="PeripheralManagerCharacteristiceFreeFormValue" id="TUC-8V-UHz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1G6-7f-gW8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -892,8 +896,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PeripheralManagerCharacteristicDiscreteValue" textLabel="o44-Xh-qlL" style="IBUITableViewCellStyleDefault" id="jMp-Kt-R2h">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PeripheralManagerCharacteristicDiscreteValueCell" textLabel="o44-Xh-qlL" style="IBUITableViewCellStyleDefault" id="jMp-Kt-R2h">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jMp-Kt-R2h" id="A02-7b-Kak">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -919,7 +923,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eU7-2O-wXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3673" y="1648"/>
+            <point key="canvasLocation" x="3735" y="1648"/>
         </scene>
         <!--Peripheral Services View Controller - Services-->
         <scene sceneID="WVo-G7-hTg">
@@ -1533,7 +1537,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J6D-MW-7oK">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Characteristic Value" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J6D-MW-7oK">
                                 <rect key="frame" x="20" y="95" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1798,10 +1802,10 @@
             </objects>
             <point key="canvasLocation" x="1737" y="3071"/>
         </scene>
-        <!--Peripheral Manager Characteristic Free Form Value View Controller-->
+        <!--Peripheral Manager Characteristice Free Form Value View Controller-->
         <scene sceneID="DhK-0q-Uwg">
             <objects>
-                <viewController id="eJp-Hv-1Y9" customClass="PeripheralManagerCharacteristicFreeFormValueViewController" sceneMemberID="viewController">
+                <viewController id="eJp-Hv-1Y9" customClass="PeripheralManagerCharacteristiceFreeFormValueViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ruG-Vz-IfW"/>
                         <viewControllerLayoutGuide type="bottom" id="G1G-MO-gXV"/>
@@ -1815,15 +1819,21 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="eJp-Hv-1Y9" id="I3c-gl-Gaw"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="eSn-HE-Z6h"/>
+                    <connections>
+                        <outlet property="valueTextField" destination="Udk-V1-rmr" id="E7B-1Z-c44"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fNd-tQ-Yl8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3673" y="2333"/>
+            <point key="canvasLocation" x="3735" y="2335"/>
         </scene>
         <!--Characteristic Profile View Controller-->
         <scene sceneID="1E2-Dk-o9c">

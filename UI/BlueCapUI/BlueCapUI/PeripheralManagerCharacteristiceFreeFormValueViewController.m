@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
+#import <BlueCap/BlueCap.h>
 #import "PeripheralManagerCharacteristiceFreeFormValueViewController.h"
 
 @interface PeripheralManagerCharacteristiceFreeFormValueViewController ()
@@ -27,6 +28,15 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField {
+    NSString* value = self.valueTextField.text;
+    if (value) {
+    }
+    return YES;
 }
 
 @end

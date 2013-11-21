@@ -25,6 +25,8 @@
 + (NSArray*)withProfiles:(NSArray*)__profiles;
 
 - (BOOL)hasValues;
+- (NSArray*)allValues;
+
 - (BOOL)propertyEnabled:(CBCharacteristicProperties)__property;
 - (BOOL)permissionEnabled:(CBAttributePermissions)__permission;
 

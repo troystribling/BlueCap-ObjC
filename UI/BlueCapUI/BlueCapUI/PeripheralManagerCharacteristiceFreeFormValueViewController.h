@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeripheralManagerCharacteristiceFreeFormValueViewController : UIViewController
+@class BlueCapMutableCharacteristic;
+
+@interface PeripheralManagerCharacteristiceFreeFormValueViewController : UIViewController <UITextFieldDelegate>
+
+@property(nonatomic, retain) IBOutlet UITextField*          valueTextField;
+@property(nonatomic, retain) BlueCapMutableCharacteristic*  characteristic;
+@property(nonatomic, retain) NSString*                      valueName;
 
 @end

@@ -72,6 +72,10 @@
     return [self.profile hasValues];
 }
 
+- (NSArray*)allValues {
+    return [self.profile allValues];
+}
+
 - (void)processWriteRequest:(BlueCapMutableCharacteristicCallback)__processWriteCallback {
     self.processWriteCallback = __processWriteCallback;
 }
@@ -90,14 +94,6 @@
 
 - (NSDictionary*)stringValue {
     return [BlueCapCharacteristicProfile stringValue:[self value] usingProfile:self.profile];
-}
-
-- (NSArray*)allValues {
-    NSArray* valueNames = [NSArray array];
-    if ([self hasValues]) {
-        valueNames = [self.profile allValues];
-    }
-    return valueNames;
 }
 
 #pragma mark - I/O
