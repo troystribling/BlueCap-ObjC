@@ -278,6 +278,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addServiceButton" destination="e36-P8-iS5" id="Gzl-8i-lBm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K3T-ZN-CLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

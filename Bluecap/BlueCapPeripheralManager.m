@@ -90,27 +90,39 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 }
 
 - (void)addService:(BlueCapMutableService*)__service whenCompleteCall:(BlueCapPeripheralManagerAfterServiceAdded)__afterServiceAddedCallback {
-    self.afterServiceAddedCallback = __afterServiceAddedCallback;
-    [self.configuredServices setObject:__service forKey:__service.UUID];
-    [self.cbPeripheralManager addService:__service.cbService];
+    if (!self.isAdvertising) {
+        self.afterServiceAddedCallback = __afterServiceAddedCallback;
+        [self.configuredServices setObject:__service forKey:__service.UUID];
+        [self.cbPeripheralManager addService:__service.cbService];
+    } else {
+        [NSException raise:@"Peripheral Manager is advertising" format:@"cannot add service"];
+    }
 }
 
 - (void)removeService:(BlueCapMutableService*)__service afterRemoved:(BlueCapPeripheralManagerCallback)__afterServiceRemovedCallback {
-    self.afterServiceRemovedCallback = __afterServiceRemovedCallback;
-    [self.configuredServices removeObjectForKey:__service.UUID];
-    [self.cbPeripheralManager removeService:__service.cbService];
-    [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
-        self.afterServiceRemovedCallback();
-    }];
+    if (!self.isAdvertising) {
+        self.afterServiceRemovedCallback = __afterServiceRemovedCallback;
+        [self.configuredServices removeObjectForKey:__service.UUID];
+        [self.cbPeripheralManager removeService:__service.cbService];
+        [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
+            self.afterServiceRemovedCallback();
+        }];
+    } else {
+        [NSException raise:@"Peripheral Manager is advertising" format:@"cannot remove service"];
+    }
 }
 
 - (void)removeAllServices:(BlueCapPeripheralManagerCallback)__afterServiceRemovedCallback {
-    self.afterServiceRemovedCallback = __afterServiceRemovedCallback;
-    [self.configuredServices removeAllObjects];
-    [self.cbPeripheralManager removeAllServices];
-    [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
-        self.afterServiceRemovedCallback();
-    }];
+    if (!self.isAdvertising) {
+        self.afterServiceRemovedCallback = __afterServiceRemovedCallback;
+        [self.configuredServices removeAllObjects];
+        [self.cbPeripheralManager removeAllServices];
+        [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
+            self.afterServiceRemovedCallback();
+        }];
+    } else {
+        [NSException raise:@"Peripheral Manager is advertising" format:@"cannot remove service"];
+    }
 }
 
 #pragma mark - Power On

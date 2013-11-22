@@ -10,4 +10,6 @@
 
 @interface PeripheralManagerServicesViewController : UITableViewController
 
+@property(nonatomic, retain) IBOutlet UIBarButtonItem*  addServiceButton;
+
 @end

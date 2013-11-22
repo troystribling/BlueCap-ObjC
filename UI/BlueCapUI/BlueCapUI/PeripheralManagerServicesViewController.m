@@ -32,6 +32,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.addServiceButton.enabled = ![BlueCapPeripheralManager sharedInstance].isAdvertising;
     [self.tableView reloadData];
 }
 
@@ -69,7 +70,11 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    if ([BlueCapPeripheralManager sharedInstance].isAdvertising) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -77,7 +82,7 @@
         BlueCapMutableService* service = [[BlueCapPeripheralManager sharedInstance].services objectAtIndex:indexPath.row];
         [[BlueCapPeripheralManager sharedInstance] removeService:service afterRemoved:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade]; 
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             });
         }];
     }
