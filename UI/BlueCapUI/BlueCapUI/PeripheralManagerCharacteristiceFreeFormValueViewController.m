@@ -23,6 +23,7 @@
 }
 
 - (void)viewDidLoad {
+    self.navigationItem.title = self.valueName;
     [super viewDidLoad];
 }
 

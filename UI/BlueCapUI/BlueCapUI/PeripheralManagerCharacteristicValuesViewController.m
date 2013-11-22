@@ -14,6 +14,8 @@
 
 @interface PeripheralManagerCharacteristicValuesViewController ()
 
+@property(nonatomic, retain) NSIndexPath*   selectedIndexPath;
+
 @end
 
 @implementation PeripheralManagerCharacteristicValuesViewController
@@ -26,6 +28,8 @@
 }
 
 - (void)viewDidLoad {
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    self.navigationItem.title = self.characteristic.name;
     [super viewDidLoad];
 }
 
@@ -39,7 +43,7 @@
         viewController.characteristic = self.characteristic;
     } else if ([segue.identifier isEqualToString:@"PeripheralManagerCharacteristiceFreeFormValue"]) {
         PeripheralManagerCharacteristiceFreeFormValueViewController* viewController = segue.destinationViewController;
-        PeripheralManagerCharacteristicValueCell *cell = (PeripheralManagerCharacteristicValueCell*)sender;
+        PeripheralManagerCharacteristicValueCell* cell = (PeripheralManagerCharacteristicValueCell*)[self.tableView cellForRowAtIndexPath:self.selectedIndexPath];
         viewController.characteristic = self.characteristic;
         viewController.valueName = cell.nameLabel.text;
     }
@@ -48,6 +52,7 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+    self.selectedIndexPath = indexPath;
     if ([self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] || [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
         if ([self.characteristic hasValues]) {
             [self performSegueWithIdentifier:@"PeripheralManagerCharacteristicDiscreteValue" sender:self];

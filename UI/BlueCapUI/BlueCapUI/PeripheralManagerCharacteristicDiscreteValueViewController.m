@@ -25,6 +25,7 @@
 }
 
 - (void)viewDidLoad {
+    self.navigationItem.title = self.characteristic.name;
     [super viewDidLoad];
 }
 
