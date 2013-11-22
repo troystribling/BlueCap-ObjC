@@ -25,7 +25,7 @@
 - (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback afterPowerOff:(BlueCapCentralManagerCallback)__afterPowerOffCallback;
 
 - (void)addService:(BlueCapMutableService*)__service whenCompleteCall:(BlueCapPeripheralManagerAfterServiceAdded)__afterServiceAddedCallback;
-- (void)removeService:(BlueCapMutableService*)__service;
-- (void)removeAllServices;
+- (void)removeService:(BlueCapMutableService*)__service afterRemoved:(BlueCapPeripheralManagerCallback)__afterServiceRemovedCallback;
+- (void)removeAllServices:(BlueCapPeripheralManagerCallback)__afterServiceRemovedCallback;
 
 @end

@@ -28,6 +28,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 @property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterPowerOnCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterPowerOffCallback;
 @property(nonatomic, copy) BlueCapPeripheralManagerAfterServiceAdded    afterServiceAddedCallback;
+@property(nonatomic, copy) BlueCapPeripheralManagerCallback             afterServiceRemovedCallback;
 @property(nonatomic, assign) BOOL                                       poweredOn;
 
 - (void)waitForAdvertisingToStop;
@@ -94,14 +95,22 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     [self.cbPeripheralManager addService:__service.cbService];
 }
 
-- (void)removeService:(BlueCapMutableService*)__service {
+- (void)removeService:(BlueCapMutableService*)__service afterRemoved:(BlueCapPeripheralManagerCallback)__afterServiceRemovedCallback {
+    self.afterServiceRemovedCallback = __afterServiceRemovedCallback;
     [self.configuredServices removeObjectForKey:__service.UUID];
     [self.cbPeripheralManager removeService:__service.cbService];
+    [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
+        self.afterServiceRemovedCallback();
+    }];
 }
 
-- (void)removeAllServices {
+- (void)removeAllServices:(BlueCapPeripheralManagerCallback)__afterServiceRemovedCallback {
+    self.afterServiceRemovedCallback = __afterServiceRemovedCallback;
     [self.configuredServices removeAllObjects];
     [self.cbPeripheralManager removeAllServices];
+    [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
+        self.afterServiceRemovedCallback();
+    }];
 }
 
 #pragma mark - Power On

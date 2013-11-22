@@ -74,8 +74,13 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+        BlueCapMutableService* service = [[BlueCapPeripheralManager sharedInstance].services objectAtIndex:indexPath.row];
+        [[BlueCapPeripheralManager sharedInstance] removeService:service afterRemoved:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade]; 
+            });
+        }];
+    }
 }
 
 @end
