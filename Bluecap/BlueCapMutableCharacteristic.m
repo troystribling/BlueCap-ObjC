@@ -99,28 +99,23 @@
 #pragma mark - I/O
 
 - (void)updateValueObject:(id)__value {
-    [[BlueCapPeripheralManager sharedInstance].cbPeripheralManager updateValue:[BlueCapCharacteristicProfile serializeObject:__value usingProfile:self.profile]
-                                                             forCharacteristic:self.cbCharacteristic
-                                                          onSubscribedCentrals:nil];
+    [self updateValueData:[BlueCapCharacteristicProfile serializeObject:__value usingProfile:self.profile]];
 }
 
 - (void)updateValueString:(NSDictionary*)__value {
-    [[BlueCapPeripheralManager sharedInstance].cbPeripheralManager updateValue:[BlueCapCharacteristicProfile serializeString:__value usingProfile:self.profile]
-                                                             forCharacteristic:self.cbCharacteristic
-                                                          onSubscribedCentrals:nil];
+    [self updateValueData:[BlueCapCharacteristicProfile serializeString:__value usingProfile:self.profile]];
+}
+
+- (void)updateValueNamed:(NSString*)__name {
+    [self updateValueData:[BlueCapCharacteristicProfile serializeNamedObject:__name usingProfile:self.profile]];
 }
 
 - (void)updateValueData:(NSData*)__value {
+    self.cbCharacteristic.value = __value;
     [[BlueCapPeripheralManager sharedInstance].cbPeripheralManager updateValue:__value
                                                              forCharacteristic:self.cbCharacteristic
                                                           onSubscribedCentrals:nil];
     
-}
-
-- (void)updateValueNamed:(NSString*)__name {
-    [[BlueCapPeripheralManager sharedInstance].cbPeripheralManager updateValue:[BlueCapCharacteristicProfile serializeNamedObject:__name usingProfile:self.profile]
-                                                             forCharacteristic:self.cbCharacteristic
-                                                          onSubscribedCentrals:nil];
 }
 
 #pragma mark - Private

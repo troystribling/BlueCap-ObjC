@@ -31,6 +31,8 @@
 
 NSNumber* blueCapUnsignedInt16LittleFromData(NSData* data, NSRange range);
 NSNumber* blueCapUnsignedInt16BigFromData(NSData* data, NSRange range);
+NSData* blueCapLittleFromUnsignedInt16Array(uint16_t* hostVals, int length);
+NSData* blueCapBigFromUnsignedInt16Array(uint16_t* hostVals, int length);
 
 NSNumber* blueCapInt16LittleFromData(NSData* data, NSRange range);
 NSNumber* blueCapInt16BigFromData(NSData* data, NSRange range);

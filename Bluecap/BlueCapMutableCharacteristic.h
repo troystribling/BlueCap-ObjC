@@ -38,7 +38,7 @@
 
 - (void)updateValueObject:(id)__value;
 - (void)updateValueString:(NSDictionary*)__value;
-- (void)updateValueData:(NSData*)__value;
 - (void)updateValueNamed:(NSString*)__name;
+- (void)updateValueData:(NSData*)__value;
 
 @end

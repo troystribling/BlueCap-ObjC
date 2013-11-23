@@ -205,7 +205,9 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
         DLog(@"Peripheral Manager did add characteristic: %@", [characteristic.UUID stringValue]);
         BlueCapMutableCharacteristic* bcCharacteristic = [self.configuredCharacteristics objectForKey:characteristic];
         if (bcCharacteristic) {
-            characteristic.value = bcCharacteristic.profile.initialValue;
+            if (bcCharacteristic.profile.initialValue) {
+                bcCharacteristic.cbCharacteristic.value = bcCharacteristic.profile.initialValue;
+            }
         }
     }
     [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
@@ -221,20 +223,25 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 }
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral central:(CBCentral*)central didSubscribeToCharacteristic:(CBCharacteristic*)characteristic {
+    DLog(@"Central %@ did subscribe to chracteristic %@", [central.identifier UUIDString], [characteristic.UUID stringValue]);
 }
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral central:(CBCentral*)central didUnsubscribeFromCharacteristic:(CBCharacteristic*)characteristic {
+    DLog(@"Central %@ did unsubscribe from chracteristic %@", [central.identifier UUIDString], [characteristic.UUID stringValue]);
 }
 
 - (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager*)peripheral {
+    DLog(@"Pripheral Manager is ready to update subscribers");
 }
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral didReceiveReadRequest:(CBATTRequest*)request {
     DLog(@"Characteristic %@ did recieve read request", [request.characteristic.UUID stringValue]);
     BlueCapMutableCharacteristic* characteristic = [self.configuredCharacteristics objectForKey:request.characteristic];
     if (characteristic != nil) {
-        request.value = [characteristic dataValue];
-        [self.cbPeripheralManager respondToRequest:request withResult:CBATTErrorSuccess];
+        DLog(@"Responding with Data %@");
+//        DLog(@"Responding with Data %@", [characteristic stringValue]);
+//        request.value = [characteristic dataValue];
+//        [self.cbPeripheralManager respondToRequest:request withResult:CBATTErrorSuccess];
     } else {
         DLog(@"characteristic not found");
     }
