@@ -49,6 +49,8 @@
 		05A2D4C31839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A2D4C21839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.m */; };
 		05A2D4C71839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A2D4C61839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.m */; };
 		05A2D4CA183BC3680047DB0C /* PeripheralManagerValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A2D4C9183BC3680047DB0C /* PeripheralManagerValueCell.m */; };
+		05A4DD1818418EB400F948DE /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A4DD1718418EB400F948DE /* ProgressView.m */; };
+		05A4DD1C18418F7C00F948DE /* TextBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A4DD1B18418F7C00F948DE /* TextBoxView.m */; };
 		05D6460017C341F4008A251D /* PeripheralServicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D645FF17C341F4008A251D /* PeripheralServicesViewController.m */; };
 		05D6460517C5A73E008A251D /* PeripheralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D6460417C5A73E008A251D /* PeripheralCell.m */; };
 		05D6E51817BFD3BA0019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51717BFD3BA0019B575 /* CoreBluetooth.framework */; };
@@ -164,6 +166,10 @@
 		05A2D4C61839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralManagerCharacteristicValuesViewController.m; sourceTree = "<group>"; };
 		05A2D4C8183BC3680047DB0C /* PeripheralManagerValueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralManagerValueCell.h; sourceTree = "<group>"; };
 		05A2D4C9183BC3680047DB0C /* PeripheralManagerValueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralManagerValueCell.m; sourceTree = "<group>"; };
+		05A4DD1618418EB400F948DE /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
+		05A4DD1718418EB400F948DE /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
+		05A4DD1A18418F7C00F948DE /* TextBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBoxView.h; sourceTree = "<group>"; };
+		05A4DD1B18418F7C00F948DE /* TextBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBoxView.m; sourceTree = "<group>"; };
 		05D645FE17C341F4008A251D /* PeripheralServicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralServicesViewController.h; sourceTree = "<group>"; };
 		05D645FF17C341F4008A251D /* PeripheralServicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralServicesViewController.m; sourceTree = "<group>"; };
 		05D6460317C5A73E008A251D /* PeripheralCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralCell.h; sourceTree = "<group>"; };
@@ -238,11 +244,15 @@
 			isa = PBXGroup;
 			children = (
 				052A002517BB2CD4006D7AB3 /* AppDelegate.h */,
+				05A4DD1618418EB400F948DE /* ProgressView.h */,
 				052A002617BB2CD4006D7AB3 /* AppDelegate.m */,
+				05A4DD1718418EB400F948DE /* ProgressView.m */,
 				052A002E17BB2CD4006D7AB3 /* Images.xcassets */,
 				05D6460217C3BCAF008A251D /* Controllers */,
 				052A002817BB2CD4006D7AB3 /* Main.storyboard */,
 				052A001D17BB2CD4006D7AB3 /* Supporting Files */,
+				05A4DD1A18418F7C00F948DE /* TextBoxView.h */,
+				05A4DD1B18418F7C00F948DE /* TextBoxView.m */,
 			);
 			path = BlueCapUI;
 			sourceTree = "<group>";
@@ -535,6 +545,8 @@
 				054766C91803AF6F005C4125 /* CharacteristicValueCell.m in Sources */,
 				054000081830361D001B3735 /* CharacteristicCell.m in Sources */,
 				0540FFD9182F0482001B3735 /* PeripheralManagerServicesViewController.m in Sources */,
+				05A4DD1C18418F7C00F948DE /* TextBoxView.m in Sources */,
+				05A4DD1818418EB400F948DE /* ProgressView.m in Sources */,
 				05D6460517C5A73E008A251D /* PeripheralCell.m in Sources */,
 				0536D3E917D5615700BA1165 /* CharacteristicDescriptorsViewController.m in Sources */,
 				050C73281825C651002BF77F /* CharacteristicProfileCell.m in Sources */,
