@@ -19,6 +19,7 @@
 - (IBAction)refeshValues:(id)sender;
 - (void)readData;
 - (void)loadData:(NSDictionary*)__data;
+- (BOOL)canEdit;
 
 @end
 
@@ -93,10 +94,14 @@
     });
 }
 
+- (BOOL)canEdit {
+    return [self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] || [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse];
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] || [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
+    if ([self canEdit]) {
         if ([self.characteristic hasValues]) {
             [self performSegueWithIdentifier:@"CharacteristicDiscreteValue" sender:self];
         } else {
@@ -119,8 +124,7 @@
     static NSString *CellIdentifier = @"CharacteristicValueCell";
     CharacteristicValueCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSArray* valueNames = [self.values allKeys];
-    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] ||
-        [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
+    if ([self canEdit]) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;

@@ -10,4 +10,7 @@
 
 @interface PeripheralsViewController : UITableViewController
 
+@property(nonatomic, retain) IBOutlet UIBarButtonItem*  startScanBarButtonItem;
+@property(nonatomic, retain) IBOutlet UIBarButtonItem*  stopScanBarButtonItem;
+
 @end

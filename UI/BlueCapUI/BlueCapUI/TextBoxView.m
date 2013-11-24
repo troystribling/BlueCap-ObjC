@@ -44,7 +44,7 @@
 }
 
 - (id)initWithText:(NSString*)__text {
-    CGSize textSize = [__text sizeWithFont:[UIFont systemFontOfSize:TEXTBOX_FONTSIZE]];
+    CGSize textSize = [__text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:TEXTBOX_FONTSIZE]}];
     self = [super initWithFrame:[self.class viewRectForMessageSize:textSize]];
     if (self) {
         [self addViewsWithText:__text ofSize:textSize];
@@ -83,10 +83,11 @@
 }
 
 + (CGSize)textViewSizeForMessage:(NSString*)__text constrainedToWidth:(float)__width {
-    return [__text sizeWithFont:[UIFont systemFontOfSize:21.0]
-              constrainedToSize:CGSizeMake(__width, [[UIScreen mainScreen] bounds].size.height)
-                  lineBreakMode:NSLineBreakByWordWrapping];
-    
+    CGRect textRect = [__text boundingRectWithSize:CGSizeMake(__width, [[UIScreen mainScreen] bounds].size.height)
+                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:21.0]}
+                                           context:nil];
+    return textRect.size;
 }
 
 + (CGRect)textViewRectForSize:(CGSize)__messageSize {

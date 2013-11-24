@@ -10,7 +10,8 @@
 
 @interface BlueCapCentralManager : NSObject <CBCentralManagerDelegate>
 
-@property(nonatomic, readonly) NSArray*                 periphreals;
+@property(nonatomic, readonly) NSArray*     periphreals;
+@property(nonatomic, readonly) BOOL         isScanning;
 
 + (BlueCapCentralManager*)sharedInstance;
 

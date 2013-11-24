@@ -14,6 +14,7 @@
 @interface PeripheralsViewController () {
 }
 
+- (IBAction)toggelScan;
 - (void)reloadTableData;
 
 @end
@@ -31,17 +32,7 @@
 
 - (void)viewDidLoad {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    BlueCapCentralManager* blueCapCentralManager = [BlueCapCentralManager sharedInstance];
-    [blueCapCentralManager powerOn:^{
-        [blueCapCentralManager startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
-            [peripheral connect:^(BlueCapPeripheral* connectPeripheral, NSError* error) {
-                [self reloadTableData];
-            }];
-            [self reloadTableData];
-        }];
-    } afterPowerOff:^{
-        [self reloadTableData];
-    }];
+    [self toggelScan];
     [super viewDidLoad];
 }
 
@@ -70,6 +61,24 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
+}
+
+- (IBAction)toggelScan {
+    BlueCapCentralManager* central = [BlueCapCentralManager sharedInstance];
+    if (central.isScanning) {
+        [central stopScanning];
+    } else {
+        [central powerOn:^{
+            [central startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
+                [peripheral connect:^(BlueCapPeripheral* connectPeripheral, NSError* error) {
+                    [self reloadTableData];
+                }];
+                [self reloadTableData];
+            }];
+        } afterPowerOff:^{
+            [self reloadTableData];
+        }];
+    }
 }
 
 #pragma mark - UITableViewDataSource

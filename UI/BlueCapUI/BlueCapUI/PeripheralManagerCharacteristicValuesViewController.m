@@ -16,6 +16,8 @@
 
 @property(nonatomic, retain) NSIndexPath*   selectedIndexPath;
 
+- (BOOL)canEdit;
+
 @end
 
 @implementation PeripheralManagerCharacteristicValuesViewController
@@ -49,11 +51,19 @@
     }
 }
 
+#pragma mark - Private
+
+- (BOOL)canEdit {
+    return ([self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] ||
+            [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) &&
+            [self.characteristic propertyEnabled:CBCharacteristicPropertyNotify];
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     self.selectedIndexPath = indexPath;
-    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] || [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
+    if ([self canEdit]) {
         if ([self.characteristic hasValues]) {
             [self performSegueWithIdentifier:@"PeripheralManagerCharacteristicDiscreteValue" sender:self];
         } else {
@@ -79,6 +89,11 @@
     NSString* valueName = [[values allKeys] objectAtIndex:indexPath.row];
     cell.nameLabel.text = valueName;
     cell.valuelabel.text = [values objectForKey:valueName];
+    if ([self canEdit]) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
 

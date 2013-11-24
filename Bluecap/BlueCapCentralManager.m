@@ -50,6 +50,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
         self.poweredOn = NO;
         self.connecting = NO;
+        _isScanning = NO;
 	}
     return self;
 }
@@ -65,20 +66,25 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 #pragma mark - Scan for Periherals
 
 - (void)startScanning:(BlueCapPeripheralDiscoveredCallback)__afterPeripheralDiscoveredCallback {
-    DLog(@"Start Scanning");
-    self.afterPeripheralDiscoveredCallback = __afterPeripheralDiscoveredCallback;
-    [self.centralManager scanForPeripheralsWithServices:nil options:nil];
+    [self startScanningForPeripheralsWithServiceUUIDs:nil afterDiscovery:__afterPeripheralDiscoveredCallback];
 }
 
 - (void)startScanningForPeripheralsWithServiceUUIDs:(NSArray*)__uuids afterDiscovery:(BlueCapPeripheralDiscoveredCallback)__afterPeripheralDiscoveredCallback {
-	NSDictionary* options = @{CBCentralManagerScanOptionAllowDuplicatesKey:[NSNumber numberWithBool:NO]};
-    self.afterPeripheralDiscoveredCallback = __afterPeripheralDiscoveredCallback;
-    [self.discoveredPeripherals removeAllObjects];
-	[self.centralManager scanForPeripheralsWithServices:__uuids options:options];
+    if (!_isScanning) {
+        _isScanning = YES;
+        DLog(@"Start Scanning");
+        NSDictionary* options = @{CBCentralManagerScanOptionAllowDuplicatesKey:[NSNumber numberWithBool:NO]};
+        self.afterPeripheralDiscoveredCallback = __afterPeripheralDiscoveredCallback;
+        [self.discoveredPeripherals removeAllObjects];
+        [self.centralManager scanForPeripheralsWithServices:__uuids options:options];
+    }
 }
 
 - (void)stopScanning {
-	[self.centralManager stopScan];
+    if (_isScanning) {
+        _isScanning = NO;
+        [self.centralManager stopScan];
+    }
 }
 
 - (void)disconnectAllPeripherals {
