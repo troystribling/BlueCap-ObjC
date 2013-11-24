@@ -36,6 +36,11 @@
 - (BOOL)textFieldShouldReturn:(UITextField*)textField {
     NSString* value = self.valueTextField.text;
     if (value) {
+        NSMutableDictionary* values = [[self.characteristic stringValue] mutableCopy];
+        DLog(@"%@", values);
+        [values setValue:value forKey:self.valueName];
+        [self.characteristic updateValueString:values];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     return YES;
 }

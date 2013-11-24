@@ -70,7 +70,9 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-//    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self.characteristic updateValueNamed:cell.textLabel.text];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
