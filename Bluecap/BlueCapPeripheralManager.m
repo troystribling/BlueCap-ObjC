@@ -203,12 +203,6 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     DLog(@"Peripheral Manager did add sevice: %@:%@", bcService.name, [service.UUID stringValue]);
     for (CBMutableCharacteristic* characteristic in service.characteristics) {
         DLog(@"Peripheral Manager did add characteristic: %@", [characteristic.UUID stringValue]);
-        BlueCapMutableCharacteristic* bcCharacteristic = [self.configuredCharacteristics objectForKey:characteristic];
-        if (bcCharacteristic) {
-            if (bcCharacteristic.profile.initialValue) {
-                bcCharacteristic.cbCharacteristic.value = bcCharacteristic.profile.initialValue;
-            }
-        }
     }
     [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
         self.afterServiceAddedCallback(bcService, error);
@@ -238,10 +232,9 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     DLog(@"Characteristic %@ did recieve read request", [request.characteristic.UUID stringValue]);
     BlueCapMutableCharacteristic* characteristic = [self.configuredCharacteristics objectForKey:request.characteristic];
     if (characteristic != nil) {
-        DLog(@"Responding with Data %@");
-//        DLog(@"Responding with Data %@", [characteristic stringValue]);
-//        request.value = [characteristic dataValue];
-//        [self.cbPeripheralManager respondToRequest:request withResult:CBATTErrorSuccess];
+        DLog(@"Responding with Data %@", [characteristic stringValue]);
+        request.value = characteristic.dataValue;
+        [self.cbPeripheralManager respondToRequest:request withResult:CBATTErrorSuccess];
     } else {
         DLog(@"characteristic not found");
     }
@@ -252,7 +245,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
         DLog(@"Characteristic %@ did receive write request", [request.characteristic.UUID stringValue]);
         BlueCapMutableCharacteristic* characteristic = [self.configuredCharacteristics objectForKey:request.characteristic];
         if (characteristic) {
-            characteristic.cbCharacteristic.value = request.value;
+            characteristic.dataValue = request.value;
             if (characteristic.processWriteCallback) {
                 characteristic.processWriteCallback(characteristic);
             }

@@ -16,7 +16,7 @@
 @property(nonatomic, retain) CBMutableCharacteristic*           cbCharacteristic;
 @property(nonatomic, copy) BlueCapMutableCharacteristicCallback processWriteCallback;
 
-- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value;
+- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile;
 
 @end
 
@@ -25,7 +25,7 @@
 #pragma mark - BlueCapCharacteristic
 
 + (BlueCapMutableCharacteristic*)withProfile:(BlueCapCharacteristicProfile*)__profile {
-    return [[BlueCapMutableCharacteristic alloc] initWithProfile:__profile andData:nil];
+    return [[BlueCapMutableCharacteristic alloc] initWithProfile:__profile];
 }
 
 + (NSArray*)withProfiles:(NSArray*)__profiles {
@@ -80,16 +80,8 @@
     self.processWriteCallback = __processWriteCallback;
 }
 
-- (NSData*)dataValue {
-    __block NSData* __value = [NSData data];
-    [[BlueCapPeripheralManager sharedInstance] syncMain:^{
-        __value = self.cbCharacteristic.value;
-    }];
-    return __value;
-}
-
 - (NSDictionary*)value {
-    return [BlueCapCharacteristicProfile deserializeData:[self dataValue] usingProfile:self.profile];
+    return [BlueCapCharacteristicProfile deserializeData:self.dataValue usingProfile:self.profile];
 }
 
 - (NSDictionary*)stringValue {
@@ -111,7 +103,7 @@
 }
 
 - (void)updateValueData:(NSData*)__value {
-    self.cbCharacteristic.value = __value;
+    self.dataValue = __value;
     [[BlueCapPeripheralManager sharedInstance].cbPeripheralManager updateValue:__value
                                                              forCharacteristic:self.cbCharacteristic
                                                           onSubscribedCentrals:nil];
@@ -120,13 +112,14 @@
 
 #pragma mark - Private
 
-- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile andData:(NSData*)__value  {
+- (id)initWithProfile:(BlueCapCharacteristicProfile*)__profile  {
     self = [super init];
     if (self) {
         _profile = __profile;
+        self.dataValue = __profile.initialValue;
         self.cbCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_profile.UUID
                                                                    properties:_profile.properties
-                                                                        value:__value
+                                                                        value:nil
                                                                   permissions:_profile.permissions];
     }
     return self;

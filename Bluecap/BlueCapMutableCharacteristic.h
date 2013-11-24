@@ -18,6 +18,7 @@
 @property(nonatomic, readonly) CBCharacteristicProperties               properties;
 @property(nonatomic, readonly) CBUUID*                                  UUID;
 @property(nonatomic, readonly) NSString*                                name;
+@property(nonatomic, retain) NSData*                                    dataValue;
 
 @property(nonatomic, retain, readonly) BlueCapCharacteristicProfile*    profile;
 
