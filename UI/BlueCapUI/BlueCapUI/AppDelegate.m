@@ -18,6 +18,9 @@
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application {
+    BlueCapCentralManager* central = [BlueCapCentralManager sharedInstance];
+    [central stopScanning];
+    [central disconnectAllPeripherals];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {

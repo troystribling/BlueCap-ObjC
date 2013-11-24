@@ -81,6 +81,12 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 	[self.centralManager stopScan];
 }
 
+- (void)disconnectAllPeripherals {
+    for (BlueCapPeripheral* peripheral in [self.discoveredPeripherals allValues]) {
+        [peripheral disconnect];
+    }
+}
+
 #pragma mark - Power On
 
 - (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback {

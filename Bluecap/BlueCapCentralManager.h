@@ -17,6 +17,7 @@
 - (void)startScanning:(BlueCapPeripheralDiscoveredCallback)__afterPeripheralDiscoveredCallback;
 - (void)startScanningForPeripheralsWithServiceUUIDs:(NSArray*)__uuids afterDiscovery:(BlueCapPeripheralDiscoveredCallback)__afterPeripheralDiscoveredCallback;
 - (void)stopScanning;
+- (void)disconnectAllPeripherals;
 
 - (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback;
 - (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback afterPowerOff:(BlueCapCentralManagerCallback)__afterPowerOffCallback;
