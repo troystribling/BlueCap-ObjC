@@ -1701,9 +1701,7 @@
                             <outlet property="delegate" destination="Iax-qU-br4" id="1kw-Jv-geA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Peripherals" id="Coa-7w-9IN">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="uW3-tI-ZBW"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Peripherals" id="Coa-7w-9IN"/>
                     <connections>
                         <outlet property="view" destination="QuF-dc-4mj" id="QyH-z3-2vz"/>
                     </connections>

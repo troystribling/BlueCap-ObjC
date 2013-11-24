@@ -11,11 +11,14 @@
 #import "PeripheralViewController.h"
 #import "PeripheralCell.h"
 
-@interface PeripheralsViewController () {
-}
+@interface PeripheralsViewController ()
+
+@property(nonatomic, retain) UIBarButtonItem*  startScanBarButtonItem;
+@property(nonatomic, retain) UIBarButtonItem*  stopScanBarButtonItem;
 
 - (IBAction)toggelScan;
 - (void)reloadTableData;
+- (void)setScanButton;
 
 @end
 
@@ -32,7 +35,10 @@
 
 - (void)viewDidLoad {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    [self toggelScan];
+    self.startScanBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(toggelScan)];
+    self.stopScanBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(toggelScan)];
+    [self reloadTableData];
+    [self setScanButton];
     [super viewDidLoad];
 }
 
@@ -55,7 +61,7 @@
     }
 }
 
-#pragma mark - PeripheralsViewController PrivateAPI
+#pragma mark - Private
 
 - (void)reloadTableData {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -67,17 +73,32 @@
     BlueCapCentralManager* central = [BlueCapCentralManager sharedInstance];
     if (central.isScanning) {
         [central stopScanning];
+        [self reloadTableData];
+        [self setScanButton];
     } else {
         [central powerOn:^{
+            [central disconnectAllPeripherals];
             [central startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
                 [peripheral connect:^(BlueCapPeripheral* connectPeripheral, NSError* error) {
                     [self reloadTableData];
                 }];
                 [self reloadTableData];
             }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self setScanButton];
+            });
         } afterPowerOff:^{
             [self reloadTableData];
         }];
+    }
+}
+
+- (void)setScanButton {
+    if ([BlueCapCentralManager sharedInstance].isScanning) {
+        [self.navigationItem setRightBarButtonItem:self.stopScanBarButtonItem animated:NO];
+    } else {
+        [self.navigationItem setRightBarButtonItem:self.startScanBarButtonItem animated:NO];
     }
 }
 
