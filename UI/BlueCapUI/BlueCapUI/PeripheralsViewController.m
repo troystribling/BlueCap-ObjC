@@ -19,6 +19,7 @@
 - (IBAction)toggelScan;
 - (void)reloadTableData;
 - (void)setScanButton;
+- (void)enterForground;
 
 @end
 
@@ -39,6 +40,7 @@
     self.stopScanBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(toggelScan)];
     [self reloadTableData];
     [self setScanButton];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterForground) name:UIApplicationWillEnterForegroundNotification object:nil];
     [super viewDidLoad];
 }
 
@@ -100,6 +102,11 @@
     } else {
         [self.navigationItem setRightBarButtonItem:self.startScanBarButtonItem animated:NO];
     }
+}
+
+- (void)enterForground {
+    [self setScanButton];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
