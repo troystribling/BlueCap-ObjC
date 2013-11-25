@@ -17,6 +17,7 @@
 #import "CBUUID+StringValue.h"
 
 #define RSSI_UPDATE_PERIOD_SEC          0.5
+#define MAX_FAILED_RECONNECTS           10
 
 @interface BlueCapPeripheral ()
 
@@ -31,6 +32,7 @@
 @property(nonatomic, copy) BlueCapPeripheralRSSICallback        afterRSSIUpdateCallback;
 
 @property(nonatomic, assign) BLueCapPeripheralConnectionError   currentError;
+@property(nonatomic, assign) NSInteger                          connectionSequenceNumber;
 
 - (void)clearServices;
 - (void)clearCharacteristics:(BlueCapService*)__service;
@@ -114,9 +116,11 @@
 
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
     if (self.cbPeripheral.state != CBPeripheralStateConnected) {
+        
         self.afterPeripheralConnectCallback = __afterPeripheralConnect;
         [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:self.cbPeripheral options:nil];
-        [self timeoutConnection];
+        self.connectionSequenceNumber = 0;
+        [self timeoutConnection:self.connectionSequenceNumber];
     }
 }
 
@@ -126,11 +130,18 @@
 }
 
 - (void)connectAndReconnectOnDisconnect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
-    self.afterPeriperialDisconnectCallback = ^(BlueCapPeripheral* peripheral) {
-        [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:peripheral.cbPeripheral options:nil];
-        [peripheral timeoutConnection];
-    };
-    [self connect:__afterPeripheralConnect];
+    if (self.cbPeripheral.state != CBPeripheralStateConnected) {
+        self.afterPeriperialDisconnectCallback = ^(BlueCapPeripheral* peripheral) {
+            [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:peripheral.cbPeripheral options:nil];
+            [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+                peripheral.connectionSequenceNumber++;
+                if (peripheral.connectionSequenceNumber < MAX_FAILED_RECONNECTS) {
+                    [peripheral timeoutConnection:peripheral.connectionSequenceNumber];
+                }
+            }];
+        };
+        [self connect:__afterPeripheralConnect];
+    }
 }
 
 - (void)connect {

@@ -22,6 +22,7 @@
 @dynamic afterPeripheralConnectCallback;
 
 @dynamic currentError;
+@dynamic connectionSequenceNumber;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral {
     return [[BlueCapPeripheral alloc] initWithCBPeripheral:__cbPeripheral];
@@ -55,6 +56,9 @@
 }
 
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral {
+    [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+        self.connectionSequenceNumber = 0;
+    }];
     if (self.afterPeripheralConnectCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.afterPeripheralConnectCallback(__peripheral, nil);
@@ -82,10 +86,10 @@
     return errorObj;
 }
 
-- (void)timeoutConnection {
+- (void)timeoutConnection:(NSInteger)__sequenceNumber {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(PERIPHERAL_CONNECTION_TIMEOUT * NSEC_PER_SEC));
     dispatch_after(popTime, [BlueCapCentralManager sharedInstance].callbackQueue, ^(void) {
-        if (self.state != CBPeripheralStateConnected) {
+        if (self.state != CBPeripheralStateConnected && __sequenceNumber == self.connectionSequenceNumber) {
             DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
             self.currentError = BLueCapPeripheralConnectionErrorTimeout;
             [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];

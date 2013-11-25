@@ -21,6 +21,7 @@
 @property(nonatomic, copy) BlueCapPeripheralConnectCallback         afterPeripheralConnectCallback;
 
 @property(nonatomic, assign) BLueCapPeripheralConnectionError   currentError;
+@property(nonatomic, assign) NSInteger                          connectionSequenceNumber;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral;
 - (id)initWithCBPeripheral:(CBPeripheral*)__cbPeripheral;
@@ -30,6 +31,6 @@
 
 - (NSError*)error;
 
-- (void)timeoutConnection;
+- (void)timeoutConnection:(NSInteger)__sequenceNumber;
 
 @end
