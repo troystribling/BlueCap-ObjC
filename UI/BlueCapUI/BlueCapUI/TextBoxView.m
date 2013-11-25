@@ -13,7 +13,7 @@
 #define DISPLAY_MESSAGE_YOFFEST     10.0
 #define TEXTBOX_FONTSIZE            21.0f
 #define TEXTBOX_ALPHA               0.5f
-#define TEXTBOX_BORDER_WIDTH        1.0f
+#define TEXTBOX_BORDER_WIDTH        0.0f
 
 @interface TextBoxView ()
 

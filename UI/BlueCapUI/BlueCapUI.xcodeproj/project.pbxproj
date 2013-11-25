@@ -244,15 +244,12 @@
 			isa = PBXGroup;
 			children = (
 				052A002517BB2CD4006D7AB3 /* AppDelegate.h */,
-				05A4DD1618418EB400F948DE /* ProgressView.h */,
 				052A002617BB2CD4006D7AB3 /* AppDelegate.m */,
-				05A4DD1718418EB400F948DE /* ProgressView.m */,
 				052A002E17BB2CD4006D7AB3 /* Images.xcassets */,
 				05D6460217C3BCAF008A251D /* Controllers */,
+				05A4DD1D1842D59600F948DE /* Library */,
 				052A002817BB2CD4006D7AB3 /* Main.storyboard */,
 				052A001D17BB2CD4006D7AB3 /* Supporting Files */,
-				05A4DD1A18418F7C00F948DE /* TextBoxView.h */,
-				05A4DD1B18418F7C00F948DE /* TextBoxView.m */,
 			);
 			path = BlueCapUI;
 			sourceTree = "<group>";
@@ -371,6 +368,17 @@
 				0504D0FF1820A18400A5C607 /* ServiceProfilesViewController.m */,
 			);
 			name = Profiles;
+			sourceTree = "<group>";
+		};
+		05A4DD1D1842D59600F948DE /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				05A4DD1618418EB400F948DE /* ProgressView.h */,
+				05A4DD1718418EB400F948DE /* ProgressView.m */,
+				05A4DD1A18418F7C00F948DE /* TextBoxView.h */,
+				05A4DD1B18418F7C00F948DE /* TextBoxView.m */,
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 		05D6460217C3BCAF008A251D /* Controllers */ = {

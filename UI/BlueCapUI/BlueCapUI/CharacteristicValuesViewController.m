@@ -11,12 +11,14 @@
 #import "CharacteristicValueCell.h"
 #import "CharacteristicFreeFormValueViewController.h"
 #import "CharacteristicDiscreteValueViewController.h"
+#import "ProgressView.h"
 
 @interface CharacteristicValuesViewController ()
 
-@property(nonatomic, retain) NSDictionary* values;
+@property(nonatomic, retain) ProgressView*  progressView;
+@property(nonatomic, retain) NSDictionary*  values;
 
-- (IBAction)refeshValues:(id)sender;
+- (IBAction)refeshValues;
 - (void)readData;
 - (void)loadData:(NSDictionary*)__data;
 - (BOOL)canEdit;
@@ -35,11 +37,12 @@
 - (void)viewDidLoad {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationItem.title = self.characteristic.profile.name;
+    self.progressView = [ProgressView progressView];
     self.values = [NSDictionary dictionary];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self readData];
+    [self refeshValues];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -64,7 +67,8 @@
 
 #pragma mark - Private
 
-- (IBAction)refeshValues:(id)sender {
+- (IBAction)refeshValues {
+    [self.progressView progressWithMessage:@"Updating" inView:[[UIApplication sharedApplication] keyWindow]];
     [self readData];
 }
 
@@ -90,6 +94,7 @@
 - (void)loadData:(NSDictionary*)__data {
     dispatch_sync(dispatch_get_main_queue(), ^{
         self.values = __data;
+        [self.progressView remove];
         [self.tableView reloadData];
     });
 }

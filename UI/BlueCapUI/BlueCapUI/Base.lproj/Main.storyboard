@@ -1514,7 +1514,7 @@
                     <navigationItem key="navigationItem" title="Values" id="kKL-KP-SaW">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Ujk-4y-jRa">
                             <connections>
-                                <action selector="refeshValues:" destination="ljK-JQ-Agv" id="aeG-Ec-tUA"/>
+                                <action selector="refeshValues" destination="ljK-JQ-Agv" id="OFI-Qz-Fsg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
