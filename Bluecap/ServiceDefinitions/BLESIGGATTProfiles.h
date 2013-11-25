@@ -20,6 +20,10 @@
 #define BLESIG_GATT_DEVICE_INFORMATION_CERTIFICATION_DATA       @"Certification Data"
 #define BLESIG_GATT_DEVICE_INFORMATION_PNP_ID                   @"PnP ID"
 
+#define BLESIG_GATT_BATTERY_LEVEL                               @"Battery Level"
+
+#define BLESIG_GATT_CURRENT_TIME                                @"Battery Level"
+
 @interface BLESIGGATTProfiles : NSObject
 
 + (void)create;

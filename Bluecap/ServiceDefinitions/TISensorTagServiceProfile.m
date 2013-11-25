@@ -367,10 +367,10 @@
                                                                                      TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY:
                                                                                          [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] integerValue]]};
                                                                         }];
-                                                                        [characteristicProfile serializeString:^NSData*(NSDictionary* _data) {
+                                                                        [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                                             uint16_t intData[2];
-                                                                            intData[0] = [[_data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE] integerValue];
-                                                                            intData[1] = [[_data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] integerValue];
+                                                                            intData[0] = [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE] integerValue];
+                                                                            intData[1] = [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] integerValue];
                                                                             return blueCapLittleFromUnsignedInt16Array(intData, 2);
                                                                         }];
                                                                         characteristicProfile.initialValue = [characteristicProfile valueFromString:@{TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE:[NSString stringWithFormat:@"%d", 26000],

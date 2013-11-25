@@ -58,9 +58,8 @@
 #pragma mark - Private
 
 - (BOOL)canEdit {
-    return ([self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] ||
-            [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) &&
-            [self.characteristic propertyEnabled:CBCharacteristicPropertyNotify];
+    return [self.characteristic propertyEnabled:CBCharacteristicPropertyRead] ||
+           [self.characteristic propertyEnabled:CBCharacteristicPropertyNotify];
 }
 
 #pragma mark - Table view delegate

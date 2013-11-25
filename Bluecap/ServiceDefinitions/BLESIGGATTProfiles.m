@@ -121,6 +121,31 @@
                                           }];
 
         }];
+    
+    [profileManager createServiceWithUUID:@"180f"
+                                     name:@"Battery"
+                               andProfile:^(BlueCapServiceProfile* serviceProfile) {
+        
+        [serviceProfile createCharacteristicWithUUID:@"2a19"
+                                                name:@"Battery Level"
+                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                              characteristicProfile.properties = CBCharacteristicPropertyNotify | CBCharacteristicPropertyRead;
+                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                                                  return @{BLESIG_GATT_BATTERY_LEVEL:[NSNumber numberWithInt:[blueCapUnsignedCharFromData(data) integerValue]]};
+                                              }];
+                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                  return @{BLESIG_GATT_BATTERY_LEVEL:[[data objectForKey:BLESIG_GATT_BATTERY_LEVEL] stringValue]};
+                                              }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  uint8_t value = (uint8_t)[[data objectForKey:BLESIG_GATT_BATTERY_LEVEL] integerValue];
+                                                  return blueCapUnsignedCharToData(value);
+                                              }];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromString:@{BLESIG_GATT_BATTERY_LEVEL:@"100"}];
+                                          }];
+    }];
+
+    [profileManager createServiceWithUUID:@"1805" name:@"Current Time" andProfile:^(BlueCapServiceProfile* serviceProfile) {
+    }];
 }
 
 @end
