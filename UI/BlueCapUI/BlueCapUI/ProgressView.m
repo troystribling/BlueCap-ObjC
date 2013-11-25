@@ -15,6 +15,8 @@
 
 @interface ProgressView ()
 
+@property(nonatomic, assign) BOOL displayed;
+
 @end
 
 @implementation ProgressView
@@ -24,22 +26,28 @@
 }
 
 - (void)progressWithMessage:(NSString*)__progressMessage inView:(UIView*)_containerView {
-    self.textBoxView = [TextBoxView withText:__progressMessage andWidth:DISPLAY_MESSAGE_WIDTH];
-    self.textBoxView.center = CGPointMake(self.center.x, self.center.y - TEXTBOX_YOFFSET);
-    [self addSubview:self.textBoxView];
-    [_containerView addSubview:self];
+    if (!self.displayed) {
+        self.textBoxView = [TextBoxView withText:__progressMessage andWidth:DISPLAY_MESSAGE_WIDTH];
+        self.textBoxView.center = CGPointMake(self.center.x, self.center.y - TEXTBOX_YOFFSET);
+        self.displayed = YES;
+        [self addSubview:self.textBoxView];
+        [_containerView addSubview:self];
+    }
 }
 
 - (void)remove {
-    [UIView animateWithDuration:DISPLAY_REMOVE_DURATION
-                     animations:^{
-                         self.alpha = 0.0;
-                     }
-                     completion:^(BOOL _finished) {
-                         [self removeFromSuperview];
-                         self.alpha = 1.0;
-                     }
-     ];
+    if (self.displayed) {
+        self.displayed = NO;
+        [UIView animateWithDuration:DISPLAY_REMOVE_DURATION
+                         animations:^{
+                             self.alpha = 0.0;
+                         }
+                         completion:^(BOOL _finished) {
+                             [self removeFromSuperview];
+                             self.alpha = 1.0;
+                         }
+         ];
+    }
 }
 
 - (id)initWithFrame:(CGRect)_frame {
@@ -47,7 +55,7 @@
     if (self) {
         self.backgroundView = [[UIView alloc] initWithFrame:_frame];
         self.backgroundView.backgroundColor = [UIColor blackColor];
-        self.backgroundView.alpha = 0.6;
+        self.backgroundView.alpha = 0.4;
         [self addSubview:self.backgroundView];
     }
     return self;

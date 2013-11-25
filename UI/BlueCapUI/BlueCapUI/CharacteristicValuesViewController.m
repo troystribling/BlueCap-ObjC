@@ -12,6 +12,9 @@
 #import "CharacteristicFreeFormValueViewController.h"
 #import "CharacteristicDiscreteValueViewController.h"
 #import "ProgressView.h"
+#import "UIAlertView+Extensions.h"
+
+#define CHARACTERISTIC_UPDATE_TIMEOUT   10.0
 
 @interface CharacteristicValuesViewController ()
 
@@ -22,6 +25,7 @@
 - (void)readData;
 - (void)loadData:(NSDictionary*)__data;
 - (BOOL)canEdit;
+- (void)timeoutUpdate;
 
 @end
 
@@ -70,6 +74,7 @@
 - (IBAction)refeshValues {
     [self.progressView progressWithMessage:@"Updating" inView:[[UIApplication sharedApplication] keyWindow]];
     [self readData];
+    [self timeoutUpdate];
 }
 
 - (void)readData {
@@ -101,6 +106,15 @@
 
 - (BOOL)canEdit {
     return [self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] || [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse];
+}
+
+- (void)timeoutUpdate {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHARACTERISTIC_UPDATE_TIMEOUT * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+        [self.progressView remove];
+        [self.tableView reloadData];
+        [UIAlertView showMessage:@"Update Timeout"];
+    });
 }
 
 #pragma mark - Table view delegate
