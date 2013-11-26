@@ -89,6 +89,7 @@
 - (void)timeoutConnection:(NSInteger)__sequenceNumber {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(PERIPHERAL_CONNECTION_TIMEOUT * NSEC_PER_SEC));
     dispatch_after(popTime, [BlueCapCentralManager sharedInstance].callbackQueue, ^(void) {
+        DLog(@"Sequence Number:%d, this sequence number: %d, state: %d", self.connectionSequenceNumber, __sequenceNumber, self.state);
         if (self.state != CBPeripheralStateConnected && __sequenceNumber == self.connectionSequenceNumber) {
             DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
             self.currentError = BLueCapPeripheralConnectionErrorTimeout;

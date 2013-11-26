@@ -116,7 +116,6 @@
 
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
     if (self.cbPeripheral.state != CBPeripheralStateConnected) {
-        
         self.afterPeripheralConnectCallback = __afterPeripheralConnect;
         [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:self.cbPeripheral options:nil];
         self.connectionSequenceNumber = 0;
@@ -132,13 +131,14 @@
 - (void)connectAndReconnectOnDisconnect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
     if (self.cbPeripheral.state != CBPeripheralStateConnected) {
         self.afterPeriperialDisconnectCallback = ^(BlueCapPeripheral* peripheral) {
-            [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:peripheral.cbPeripheral options:nil];
-            [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-                peripheral.connectionSequenceNumber++;
-                if (peripheral.connectionSequenceNumber < MAX_FAILED_RECONNECTS) {
-                    [peripheral timeoutConnection:peripheral.connectionSequenceNumber];
-                }
-            }];
+            DLog(@"Attempting reconnect sequence number: %d", peripheral.connectionSequenceNumber);
+            if (peripheral.connectionSequenceNumber < MAX_FAILED_RECONNECTS) {
+                [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:peripheral.cbPeripheral options:nil];
+                [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+                    peripheral.connectionSequenceNumber++;
+                        [peripheral timeoutConnection:peripheral.connectionSequenceNumber];
+                }];
+            }
         };
         [self connect:__afterPeripheralConnect];
     }

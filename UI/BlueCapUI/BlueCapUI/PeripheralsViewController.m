@@ -81,7 +81,7 @@
         [central powerOn:^{
             [central disconnectAllPeripherals];
             [central startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
-                [peripheral connect:^(BlueCapPeripheral* connectPeripheral, NSError* error) {
+                [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* connectPeripheral, NSError* error) {
                     [self reloadTableData];
                 }];
                 [self reloadTableData];
