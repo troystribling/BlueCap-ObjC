@@ -23,6 +23,7 @@
 
 @dynamic currentError;
 @dynamic connectionSequenceNumber;
+@dynamic autoReconnect;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral {
     return [[BlueCapPeripheral alloc] initWithCBPeripheral:__cbPeripheral];
@@ -37,6 +38,7 @@
         self.discoveredObjects = [NSMapTable weakToWeakObjectsMapTable];
         self.currentError = BLueCapPeripheralConnectionErrorDisconnected;
         self.advertisement = [NSDictionary dictionary];
+        self.autoReconnect = NO;
     }
     return self;
 }
@@ -47,6 +49,13 @@
             self.afterPeriperialDisconnectCallback(__peripheral);
         }
     } else {
+        if (self.autoReconnect) {
+            if (self.afterPeriperialDisconnectCallback != nil) {
+                [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+                    self.afterPeriperialDisconnectCallback(__peripheral);
+                }];
+            }
+        }
         if (self.afterPeripheralConnectCallback != nil) {
             [[BlueCapCentralManager sharedInstance] asyncCallback:^{
                 self.afterPeripheralConnectCallback(__peripheral, [self error]);

@@ -33,6 +33,7 @@
 
 @property(nonatomic, assign) BLueCapPeripheralConnectionError   currentError;
 @property(nonatomic, assign) NSInteger                          connectionSequenceNumber;
+@property(nonatomic, assign) BOOL                               autoReconnect;
 
 - (void)clearServices;
 - (void)clearCharacteristics:(BlueCapService*)__service;
@@ -130,15 +131,18 @@
 
 - (void)connectAndReconnectOnDisconnect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
     if (self.cbPeripheral.state != CBPeripheralStateConnected) {
+        self.autoReconnect = YES;
         self.afterPeriperialDisconnectCallback = ^(BlueCapPeripheral* peripheral) {
-            DLog(@"Attempting reconnect sequence number: %d", peripheral.connectionSequenceNumber);
-            if (peripheral.connectionSequenceNumber < MAX_FAILED_RECONNECTS) {
-                [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:peripheral.cbPeripheral options:nil];
-                [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-                    peripheral.connectionSequenceNumber++;
+            [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+                if (peripheral.connectionSequenceNumber < MAX_FAILED_RECONNECTS) {
+                    DLog(@"Attempting reconnect sequence number: %d", peripheral.connectionSequenceNumber);
+                    [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:peripheral.cbPeripheral options:nil];
+                        peripheral.connectionSequenceNumber++;
                         [peripheral timeoutConnection:peripheral.connectionSequenceNumber];
-                }];
-            }
+                } else {
+                    DLog(@"Maximum reconnections exceeded for sequence number: %d", peripheral.connectionSequenceNumber);
+                }
+            }];
         };
         [self connect:__afterPeripheralConnect];
     }
@@ -150,6 +154,7 @@
 
 - (void)disconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect {
     if (self.cbPeripheral.state == CBPeripheralStateConnected) {
+        self.autoReconnect = NO;
         self.currentError = BLueCapPeripheralConnectionErrorNone;
         self.afterPeriperialDisconnectCallback = __afterPeripheralDisconnect;
         [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
