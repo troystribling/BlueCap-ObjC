@@ -17,8 +17,10 @@
 
 - (void)syncMain:(dispatch_block_t)__syncBlock;
 - (void)asyncMain:(dispatch_block_t)__asyncBlock;
+- (void)delayMain:(float)__delay withBlock:(dispatch_block_t)__delayBlock;
 
 - (void)syncCallback:(dispatch_block_t)__syncBlock;
 - (void)asyncCallback:(dispatch_block_t)__asyncBlock;
+- (void)delayCallback:(float)__delay withBlock:(dispatch_block_t)__delayBlock;
 
 @end

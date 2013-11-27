@@ -16,7 +16,8 @@
 #import "BlueCapProfileManager+Friend.h"
 #import "CBUUID+StringValue.h"
 
-#define RSSI_UPDATE_PERIOD_SEC          0.5
+#define RSSI_UPDATE_PERIOD_SEC          0.5f
+#define RECONNECT_DELAY                 1.0f
 #define MAX_FAILED_RECONNECTS           10
 
 @interface BlueCapPeripheral ()
@@ -133,7 +134,7 @@
     if (self.cbPeripheral.state != CBPeripheralStateConnected) {
         self.autoReconnect = YES;
         self.afterPeriperialDisconnectCallback = ^(BlueCapPeripheral* peripheral) {
-            [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+            [[BlueCapCentralManager sharedInstance] delayCallback:RECONNECT_DELAY withBlock:^{
                 if (peripheral.connectionSequenceNumber < MAX_FAILED_RECONNECTS) {
                     DLog(@"Attempting reconnect sequence number: %d", peripheral.connectionSequenceNumber);
                     [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:peripheral.cbPeripheral options:nil];
@@ -197,12 +198,11 @@
 - (void)readRSSI {
     if (self.state == CBPeripheralStateConnected) {
         [self.cbPeripheral readRSSI];
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RSSI_UPDATE_PERIOD_SEC * NSEC_PER_SEC));
-        dispatch_after(popTime, [BlueCapCentralManager sharedInstance].callbackQueue, ^(void) {
+        [[BlueCapCentralManager sharedInstance] delayCallback:RSSI_UPDATE_PERIOD_SEC withBlock:^{
             if (self.afterRSSIUpdateCallback) {
                 [self readRSSI];
             }
-        });
+        }];
     }
 }
 

@@ -24,12 +24,22 @@
     dispatch_async([BlueCapCentralManager sharedInstance].mainQueue, __asyncBlock);
 }
 
+- (void)delayMain:(float)__delay withBlock:(dispatch_block_t)__delayBlock {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(__delay * NSEC_PER_SEC));
+    dispatch_after(popTime, [BlueCapCentralManager sharedInstance].mainQueue, __delayBlock);
+}
+
 - (void)syncCallback:(dispatch_block_t)__syncBlock {
     dispatch_sync([BlueCapCentralManager sharedInstance].callbackQueue, __syncBlock);
 }
 
 - (void)asyncCallback:(dispatch_block_t)__asyncBlock {
     dispatch_async([BlueCapCentralManager sharedInstance].callbackQueue, __asyncBlock);
+}
+
+- (void)delayCallback:(float)__delay withBlock:(dispatch_block_t)__delayBlock {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(__delay * NSEC_PER_SEC));
+    dispatch_after(popTime, [BlueCapCentralManager sharedInstance].callbackQueue, __delayBlock);
 }
 
 @end

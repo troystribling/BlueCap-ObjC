@@ -9,7 +9,7 @@
 #import "BlueCapPeripheral+Friend.h"
 #import "BlueCapCentralManager+Friend.h"
 
-#define PERIPHERAL_CONNECTION_TIMEOUT   10
+#define PERIPHERAL_CONNECTION_TIMEOUT   10.0f
 
 @implementation BlueCapPeripheral (Friend)
 
@@ -96,15 +96,14 @@
 }
 
 - (void)timeoutConnection:(NSInteger)__sequenceNumber {
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(PERIPHERAL_CONNECTION_TIMEOUT * NSEC_PER_SEC));
-    dispatch_after(popTime, [BlueCapCentralManager sharedInstance].callbackQueue, ^(void) {
+    [[BlueCapCentralManager sharedInstance] delayCallback:PERIPHERAL_CONNECTION_TIMEOUT withBlock:^{
         DLog(@"Sequence Number:%d, this sequence number: %d, state: %d", self.connectionSequenceNumber, __sequenceNumber, self.state);
         if (self.state != CBPeripheralStateConnected && __sequenceNumber == self.connectionSequenceNumber) {
             DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
             self.currentError = BLueCapPeripheralConnectionErrorTimeout;
             [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
         }
-    });
+    }];
 }
 
 @end
