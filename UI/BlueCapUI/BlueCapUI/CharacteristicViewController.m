@@ -76,7 +76,10 @@
 #pragma mark - Private
 
 - (IBAction)toggleNotifications {
+    [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0] forState:UIControlStateNormal];
+    self.notifiyButton.enabled = NO;
     if (self.characteristic.isNotifying) {
+        [self.notifiyButton setTitle:@"Unsubscribing" forState:UIControlStateNormal];
         [self.characteristic stopNotifications:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setNotifiyButtonLabel];
@@ -84,6 +87,7 @@
             });
         }];
     } else {
+        [self.notifiyButton setTitle:@"Subscribing" forState:UIControlStateNormal];
         [self.characteristic startNotifications:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setNotifiyButtonLabel];
@@ -94,6 +98,7 @@
 }
 
 - (void)setNotifiyButtonLabel {
+    self.notifiyButton.enabled = YES;
     if (self.characteristic.isNotifying) {
         [self.notifiyButton setTitle:@"Stop Notifications" forState:UIControlStateNormal];
         [self.notifiyButton setTitleColor:[UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:1.0] forState:UIControlStateNormal];

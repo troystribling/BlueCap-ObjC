@@ -126,10 +126,10 @@
     BlueCapPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
     [cell.connectingActivityIndicator stopAnimating];
     cell.peripheral = peripheral;
-    if (peripheral.state == CBPeripheralStateDisconnected) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    } else {
+    if (peripheral.state == CBPeripheralStateConnected) {
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     cell.nameLabel.text = peripheral.name;
     return cell;

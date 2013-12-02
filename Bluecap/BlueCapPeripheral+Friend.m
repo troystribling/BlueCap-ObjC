@@ -9,7 +9,7 @@
 #import "BlueCapPeripheral+Friend.h"
 #import "BlueCapCentralManager+Friend.h"
 
-#define PERIPHERAL_CONNECTION_TIMEOUT   10.0f
+#define PERIPHERAL_CONNECTION_TIMEOUT   5.0f
 
 @implementation BlueCapPeripheral (Friend)
 
