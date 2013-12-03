@@ -125,9 +125,12 @@
     PeripheralCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     BlueCapPeripheral* peripheral = [[BlueCapCentralManager sharedInstance].periphreals objectAtIndex:indexPath.row];
     [cell.connectingActivityIndicator stopAnimating];
+    cell.accessoryType = UITableViewCellAccessoryNone;
     cell.peripheral = peripheral;
     if (peripheral.state == CBPeripheralStateConnected) {
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    } else if (peripheral.state == CBPeripheralStateConnecting) {
+        [cell.connectingActivityIndicator startAnimating];
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
