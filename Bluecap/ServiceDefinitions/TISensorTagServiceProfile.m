@@ -296,10 +296,19 @@
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return @{TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE:
-                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE] floatValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE] integerValue]],
                                                            TISENSOR_TAG_BAROMETER_RAW_PRESSURE:
-                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_PRESSURE] floatValue]]};
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_PRESSURE] integerValue]]};
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  int16_t intVals[2];
+                                                  intVals[0] = [[data objectForKey: TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE] integerValue];
+                                                  intVals[1] = [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_PRESSURE] integerValue];
+                                                  return blueCapLittleFromInt16Array(intVals, 2);
+                                              }];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromString:
+                                                                                            @{TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE:[NSString stringWithFormat:@"-2343"],
+                                                                                              TISENSOR_TAG_BAROMETER_RAW_PRESSURE:[NSString stringWithFormat:@"33995"]}];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa42-0451-4000-b000-000000000000"
@@ -308,6 +317,7 @@
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_BAROMETER_ON_VALUE) named:TISENSOR_TAG_BAROMETER_ON];
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_BAROMETER_OFF_VALUE) named:TISENSOR_TAG_BAROMETER_OFF];
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_BAROMETER_READ_CALIBRATION_VALUE) named:TISENSOR_TAG_BAROMETER_READ_CALIBRATION];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_BAROMETER_OFF];
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeValueObject:TISENSOR_TAG_BAROMETER_ON afterWriteCall:^(BlueCapCharacteristic* characteristic, NSError* error) {
                                                       [characteristic writeValueObject:TISENSOR_TAG_BAROMETER_READ_CALIBRATION afterWriteCall:nil];
@@ -335,6 +345,30 @@
                                                   }
                                                   return stringValues;
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  uint16_t uintVals[4];
+                                                  uintVals[0] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C1] integerValue];
+                                                  uintVals[1] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C2] integerValue];
+                                                  uintVals[2] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C3] integerValue];
+                                                  uintVals[3] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C4] integerValue];
+                                                  NSMutableData* uintData = [blueCapLittleFromUnsignedInt16Array(uintVals, 4) mutableCopy];
+                                                  int16_t intVals[4];
+                                                  intVals[0] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C5] integerValue];
+                                                  intVals[1] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C6] integerValue];
+                                                  intVals[2] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C7] integerValue];
+                                                  intVals[3] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C8] integerValue];
+                                                  [uintData appendData:blueCapLittleFromInt16Array(intVals, 4)];
+                                                  return uintData;
+                                              }];
+                                              characteristicProfile.initialValue =
+                                                [characteristicProfile valueFromString:@{TISENSOR_TAG_BAROMETER_CALIBRATION_C1:[NSString stringWithFormat:@"%d", 7001],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C2:[NSString stringWithFormat:@"%d", 5542],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C3:[NSString stringWithFormat:@"%d", 48894],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C4:[NSString stringWithFormat:@"%d", 1990],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C5:[NSString stringWithFormat:@"%d", 45697],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C6:[NSString stringWithFormat:@"%d", 36147],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C7:[NSString stringWithFormat:@"%d", -2369],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C8:[NSString stringWithFormat:@"%d", 25592]}];
                                           }];
     }];
 
@@ -368,10 +402,10 @@
                                                                                          [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] integerValue]]};
                                                                         }];
                                                                         [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
-                                                                            uint16_t intData[2];
-                                                                            intData[0] = [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE] integerValue];
-                                                                            intData[1] = [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] integerValue];
-                                                                            return blueCapLittleFromUnsignedInt16Array(intData, 2);
+                                                                            uint16_t intVals[2];
+                                                                            intVals[0] = [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE] integerValue];
+                                                                            intVals[1] = [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] integerValue];
+                                                                            return blueCapLittleFromUnsignedInt16Array(intVals, 2);
                                                                         }];
                                                                         characteristicProfile.initialValue = [characteristicProfile valueFromString:@{TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE:[NSString stringWithFormat:@"%d", 26000],
                                                                                                                                                       TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY:[NSString stringWithFormat:@"%d", 35000]}];
