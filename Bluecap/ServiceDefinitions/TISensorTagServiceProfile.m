@@ -361,14 +361,14 @@
                                                   return uintData;
                                               }];
                                               characteristicProfile.initialValue =
-                                                [characteristicProfile valueFromString:@{TISENSOR_TAG_BAROMETER_CALIBRATION_C1:[NSString stringWithFormat:@"%d", 7001],
-                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C2:[NSString stringWithFormat:@"%d", 5542],
+                                                [characteristicProfile valueFromString:@{TISENSOR_TAG_BAROMETER_CALIBRATION_C1:[NSString stringWithFormat:@"%d", 45697],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C2:[NSString stringWithFormat:@"%d", 25592],
                                                                                          TISENSOR_TAG_BAROMETER_CALIBRATION_C3:[NSString stringWithFormat:@"%d", 48894],
-                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C4:[NSString stringWithFormat:@"%d", 1990],
-                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C5:[NSString stringWithFormat:@"%d", 45697],
-                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C6:[NSString stringWithFormat:@"%d", 36147],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C4:[NSString stringWithFormat:@"%d", 36147],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C5:[NSString stringWithFormat:@"%d", 7001],
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C6:[NSString stringWithFormat:@"%d", 1990],
                                                                                          TISENSOR_TAG_BAROMETER_CALIBRATION_C7:[NSString stringWithFormat:@"%d", -2369],
-                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C8:[NSString stringWithFormat:@"%d", 25592]}];
+                                                                                         TISENSOR_TAG_BAROMETER_CALIBRATION_C8:[NSString stringWithFormat:@"%d", 5542]}];
                                           }];
     }];
 
