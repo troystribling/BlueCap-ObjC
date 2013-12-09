@@ -46,12 +46,23 @@
                                                            TISENSOR_TAG_ACCELEROMTER_Z_COMPONENT:
                                                                [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_Z_COMPONENT] floatValue]],
                                                            TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT:
-                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT] floatValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT] integerValue]],
                                                            TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT:
-                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT] floatValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT] integerValue]],
                                                            TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT:
-                                                               [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT] floatValue]]};
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT] integerValue]]};
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  int8_t intVals[3];
+                                                  intVals[0] = [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT] intValue];
+                                                  intVals[1] = [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT] intValue];
+                                                  intVals[2] = [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT] intValue];
+                                                  return blueCapCharArrayToData(intVals, 3);
+                                              }];
+                                              characteristicProfile.initialValue =
+                                              [characteristicProfile valueFromString:@{TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT:[NSString stringWithFormat:@"%d", -2],
+                                                                                       TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT:[NSString stringWithFormat:@"%d", 6],
+                                                                                       TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT:[NSString stringWithFormat:@"%d", 69]}];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa12-0451-4000-b000-000000000000"
@@ -61,6 +72,7 @@
                                                                         named:TISENSOR_TAG_ACCELEROMETER_ON];
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_ACCELEROMETER_OFF_VALUE)
                                                                         named:TISENSOR_TAG_ACCELEROMETER_OFF];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_ACCELEROMETER_OFF];
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeValueObject:TISENSOR_TAG_ACCELEROMETER_ON afterWriteCall:nil];
                                               }];
@@ -83,6 +95,11 @@
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return @{TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD:[[data objectForKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD] stringValue]};
+                                              }];
+                                              characteristicProfile.initialValue = blueCapUnsignedCharToData(0x64);
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  uint8_t intVal = [[data objectForKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD] intValue]/10;
+                                                  return blueCapUnsignedCharToData(intVal);
                                               }];
                                           }];
                                    
@@ -347,16 +364,16 @@
                                               }];
                                               [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                   uint16_t uintVals[4];
-                                                  uintVals[0] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C1] integerValue];
-                                                  uintVals[1] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C2] integerValue];
-                                                  uintVals[2] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C3] integerValue];
+                                                  uintVals[0] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C1] intValue];
+                                                  uintVals[1] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C2] intValue];
+                                                  uintVals[2] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C3] intValue];
                                                   uintVals[3] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C4] integerValue];
                                                   NSMutableData* uintData = [blueCapLittleFromUnsignedInt16Array(uintVals, 4) mutableCopy];
                                                   int16_t intVals[4];
-                                                  intVals[0] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C5] integerValue];
-                                                  intVals[1] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C6] integerValue];
-                                                  intVals[2] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C7] integerValue];
-                                                  intVals[3] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C8] integerValue];
+                                                  intVals[0] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C5] intValue];
+                                                  intVals[1] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C6] intValue];
+                                                  intVals[2] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C7] intValue];
+                                                  intVals[3] = [[data objectForKey:TISENSOR_TAG_BAROMETER_CALIBRATION_C8] intValue];
                                                   [uintData appendData:blueCapLittleFromInt16Array(intVals, 4)];
                                                   return uintData;
                                               }];
@@ -403,8 +420,8 @@
                                                                         }];
                                                                         [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                                             uint16_t intVals[2];
-                                                                            intVals[0] = [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE] integerValue];
-                                                                            intVals[1] = [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] integerValue];
+                                                                            intVals[0] = [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE] intValue];
+                                                                            intVals[1] = [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] intValue];
                                                                             return blueCapLittleFromUnsignedInt16Array(intVals, 2);
                                                                         }];
                                                                         characteristicProfile.initialValue = [characteristicProfile valueFromString:@{TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE:[NSString stringWithFormat:@"%d", 26000],

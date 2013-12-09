@@ -85,6 +85,12 @@ NSNumber* blueCapCharFromData(NSData* data, NSRange range) {
     return [NSNumber numberWithChar:val];
 }
 
+NSData* blueCapCharArrayToData(int8_t* data, int length) {
+    return [NSData dataWithBytes:data length:length];
+}
+
+#pragma mark - Unsigned Char
+
 NSNumber* blueCapUnsignedCharFromData(NSData* data) {
     int8_t val;
     [data getBytes:&val length:1];
@@ -94,3 +100,8 @@ NSNumber* blueCapUnsignedCharFromData(NSData* data) {
 NSData* blueCapUnsignedCharToData(uint8_t data) {
     return [NSData dataWithBytes:&data length:1];
 }
+
+NSData* blueCapUnsignedCharArrayToData(uint8_t* data, int length) {
+    return [NSData dataWithBytes:data length:length];
+}
+

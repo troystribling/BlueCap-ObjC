@@ -40,5 +40,8 @@ NSNumber* blueCapInt16LittleFromData(NSData* data, NSRange range);
 NSNumber* blueCapInt16BigFromData(NSData* data, NSRange range);
 
 NSNumber* blueCapCharFromData(NSData* data, NSRange range);
+NSData* blueCapCharArrayToData(int8_t* data, int length);
+
 NSNumber* blueCapUnsignedCharFromData(NSData* data);
 NSData* blueCapUnsignedCharToData(uint8_t data);
+NSData* blueCapUnsignedCharArrayToData(uint8_t* data, int length);
