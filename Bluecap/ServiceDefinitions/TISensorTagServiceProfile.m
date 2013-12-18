@@ -60,9 +60,9 @@
                                                   return blueCapCharArrayToData(intVals, 3);
                                               }];
                                               characteristicProfile.initialValue =
-                                              [characteristicProfile valueFromString:@{TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT:[NSString stringWithFormat:@"%d", -2],
-                                                                                       TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT:[NSString stringWithFormat:@"%d", 6],
-                                                                                       TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT:[NSString stringWithFormat:@"%d", 69]}];
+                                                  [characteristicProfile valueFromString:@{TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT:[NSString stringWithFormat:@"%d", -2],
+                                                                                           TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT:[NSString stringWithFormat:@"%d", 6],
+                                                                                           TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT:[NSString stringWithFormat:@"%d", 69]}];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa12-0451-4000-b000-000000000000"
@@ -142,6 +142,17 @@
                                                            TISENSOR_TAG_MAGNETOMETER_RAW_Z_COMPONENT:
                                                                [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_Z_COMPONENT] integerValue]]};
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  int16_t intVals[3];
+                                                  intVals[0] = [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_X_COMPONENT] intValue];
+                                                  intVals[1] = [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_Y_COMPONENT] intValue];
+                                                  intVals[2] = [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_Z_COMPONENT] intValue];
+                                                  return blueCapLittleFromInt16Array(intVals, 3);
+                                              }];
+                                              characteristicProfile.initialValue =
+                                                  [characteristicProfile valueFromString:@{TISENSOR_TAG_MAGNETOMETER_RAW_X_COMPONENT:[NSString stringWithFormat:@"%d", -2183],
+                                                                                           TISENSOR_TAG_MAGNETOMETER_RAW_Y_COMPONENT:[NSString stringWithFormat:@"%d", 1916],
+                                                                                           TISENSOR_TAG_MAGNETOMETER_RAW_Z_COMPONENT:[NSString stringWithFormat:@"%d", 1255]}];
                                           }];
       
         [serviceProfile createCharacteristicWithUUID:@"f000aa32-0451-4000-b000-000000000000"
@@ -149,6 +160,7 @@
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_MAGNETOMETER_ON_VALUE) named:TISENSOR_TAG_MAGNETOMETER_ON];
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_MAGNETOMETER_OFF_VALUE) named:TISENSOR_TAG_MAGNETOMETER_OFF];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_MAGNETOMETER_OFF];
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeValueObject:TISENSOR_TAG_MAGNETOMETER_ON afterWriteCall:nil];
                                               }];
@@ -171,6 +183,11 @@
                                             }];
                                             [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                 return @{TISENSOR_TAG_MAGNETOMETER_UPDATE_PERIOD:[[data objectForKey:TISENSOR_TAG_MAGNETOMETER_UPDATE_PERIOD] stringValue]};
+                                            }];
+                                            characteristicProfile.initialValue = blueCapUnsignedCharToData(0x64);
+                                            [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                uint8_t intVal = [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_UPDATE_PERIOD] intValue]/10;
+                                                return blueCapUnsignedCharToData(intVal);
                                             }];
                                         }];
                                    
