@@ -21,6 +21,7 @@
                                      name:@"TI Accelerometer"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                    
+        // units are in g
         [serviceProfile createCharacteristicWithUUID:@"f000aa11-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
@@ -78,6 +79,7 @@
                                               }];
                                           }];
             
+        // units are ms
         [serviceProfile createCharacteristicWithUUID:@"f000aa13-0451-4000-b000-000000000000"
                                                 name:@"Accelerometer Update Period"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
@@ -110,7 +112,7 @@
     [profileManager createServiceWithUUID:@"F000AA30-0451-4000-B000-000000000000"
                                      name:@"TI Magnetometer"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
-                                   
+        // units are uT
         [serviceProfile createCharacteristicWithUUID:@"f000aa31-0451-4000-b000-000000000000"
                                                 name:@"Magnetometer Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
@@ -166,6 +168,7 @@
                                               }];
                                           }];
 
+        // units are ms
         [serviceProfile createCharacteristicWithUUID:@"f000aa33-0451-4000-b000-000000000000"
                                               name:@"Magnetometer Update Period"
                                         andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
