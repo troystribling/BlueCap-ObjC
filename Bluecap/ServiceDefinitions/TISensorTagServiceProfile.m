@@ -73,10 +73,10 @@
                                                                         named:TISENSOR_TAG_ACCELEROMETER_ON];
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_ACCELEROMETER_OFF_VALUE)
                                                                         named:TISENSOR_TAG_ACCELEROMETER_OFF];
-                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_ACCELEROMETER_OFF];
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeValueObject:TISENSOR_TAG_ACCELEROMETER_ON afterWriteCall:nil];
                                               }];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_ACCELEROMETER_OFF];
                                           }];
             
         // units are ms
@@ -98,11 +98,11 @@
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return @{TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD:[[data objectForKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD] stringValue]};
                                               }];
-                                              characteristicProfile.initialValue = blueCapUnsignedCharToData(0x64);
                                               [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                   uint8_t intVal = [[data objectForKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD] intValue]/10;
                                                   return blueCapUnsignedCharToData(intVal);
                                               }];
+                                              characteristicProfile.initialValue = blueCapUnsignedCharToData(0x64);
                                           }];
                                    
     }];
@@ -162,10 +162,10 @@
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_MAGNETOMETER_ON_VALUE) named:TISENSOR_TAG_MAGNETOMETER_ON];
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_MAGNETOMETER_OFF_VALUE) named:TISENSOR_TAG_MAGNETOMETER_OFF];
-                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_MAGNETOMETER_OFF];
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeValueObject:TISENSOR_TAG_MAGNETOMETER_ON afterWriteCall:nil];
                                               }];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_MAGNETOMETER_OFF];
                                           }];
 
         // units are ms
@@ -187,11 +187,11 @@
                                             [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                 return @{TISENSOR_TAG_MAGNETOMETER_UPDATE_PERIOD:[[data objectForKey:TISENSOR_TAG_MAGNETOMETER_UPDATE_PERIOD] stringValue]};
                                             }];
-                                            characteristicProfile.initialValue = blueCapUnsignedCharToData(0x64);
                                             [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                 uint8_t intVal = [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_UPDATE_PERIOD] intValue]/10;
                                                 return blueCapUnsignedCharToData(intVal);
                                             }];
+                                            characteristicProfile.initialValue = blueCapUnsignedCharToData(0x64);
                                         }];
                                    
     }];
@@ -201,7 +201,7 @@
     [profileManager createServiceWithUUID:@"F000AA50-0451-4000-B000-000000000000"
                                      name:@"TI Gyroscope"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
-
+        // units are degrees
         [serviceProfile createCharacteristicWithUUID:@"f000aa51-0451-4000-b000-000000000000"
                                                 name:@"Gyroscope Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
@@ -233,6 +233,16 @@
                                                            TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT:
                                                                [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT] integerValue]]};
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  int16_t intVals[3];
+                                                  intVals[0] = [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_X_COMPONENT] intValue];
+                                                  intVals[1] = [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_Y_COMPONENT] intValue];
+                                                  intVals[2] = [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT] intValue];
+                                                  return blueCapLittleFromInt16Array(intVals, 3);
+                                              }];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromString:@{TISENSOR_TAG_GYROSCOPE_RAW_X_COMPONENT:[NSString stringWithFormat:@"%d", -247],
+                                                                                                                            TISENSOR_TAG_GYROSCOPE_RAW_Y_COMPONENT:[NSString stringWithFormat:@"%d", -219],
+                                                                                                                            TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT:[NSString stringWithFormat:@"%d", -23]}];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa52-0451-4000-b000-000000000000"
@@ -249,6 +259,7 @@
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeValueObject:TISENSOR_TAG_GYROSCOPE_XYZ_AXIS_ON afterWriteCall:nil];
                                               }];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_GYROSCOPE_OFF];
                                           }];
                                    
     }];
@@ -258,7 +269,7 @@
     [profileManager createServiceWithUUID:@"F000AA00-0451-4000-B000-000000000000"
                                      name:@"TI IR Temperature Sensor"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
-
+        // units are Celsius
         [serviceProfile createCharacteristicWithUUID:@"f000aa01-0451-4000-b000-000000000000"
                                                 name:@"Temperature Data"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
@@ -295,6 +306,14 @@
                                                            TISENSOR_TAG_RAW_TEMPERATURE_OBJECT:
                                                                 [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_OBJECT] integerValue]]};
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  int16_t intVals[2];
+                                                  intVals[0] = [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT] intValue];
+                                                  intVals[1] = [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_OBJECT] intValue];
+                                                  return blueCapLittleFromInt16Array(intVals, 2);
+                                              }];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromString:@{TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT:[NSString stringWithFormat:@"%d", 3100],
+                                                                                                                            TISENSOR_TAG_RAW_TEMPERATURE_OBJECT:[NSString stringWithFormat:@"%d", -138]}];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa02-0451-4000-b000-000000000000"
@@ -305,6 +324,7 @@
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeValueObject:TISENSOR_TAG_TEMPERATURE_ON afterWriteCall:nil];
                                               }];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_TEMPERATURE_OFF];
                                           }];
     }];
 
@@ -354,12 +374,12 @@
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_BAROMETER_ON_VALUE) named:TISENSOR_TAG_BAROMETER_ON];
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_BAROMETER_OFF_VALUE) named:TISENSOR_TAG_BAROMETER_OFF];
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_BAROMETER_READ_CALIBRATION_VALUE) named:TISENSOR_TAG_BAROMETER_READ_CALIBRATION];
-                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_BAROMETER_OFF];
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                   [characteristic writeValueObject:TISENSOR_TAG_BAROMETER_ON afterWriteCall:^(BlueCapCharacteristic* characteristic, NSError* error) {
                                                       [characteristic writeValueObject:TISENSOR_TAG_BAROMETER_READ_CALIBRATION afterWriteCall:nil];
                                                   }];
                                               }];
+                                              characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_BAROMETER_OFF];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa43-0451-4000-b000-000000000000"
@@ -453,10 +473,10 @@
                                                                     andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                                                         [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_HYGROMETER_ON_VALUE) named:TISENSOR_TAG_HYGROMETER_ON];
                                                                         [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_HYGROMETER_OFF_VALUE) named:TISENSOR_TAG_HYGROMETER_OFF];
-                                                                        characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_HYGROMETER_OFF];
                                                                         [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {
                                                                             [characteristic writeValueObject:TISENSOR_TAG_HYGROMETER_ON afterWriteCall:nil];
                                                                         }];
+                                                                        characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_HYGROMETER_OFF];
                                                                     }];
                                       
                                   }];
@@ -501,6 +521,26 @@
                                                 }
                                                 return stringResults;
                                             }];
+                                            [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                uint8_t intVal1 = ([[data objectForKey:TISENSOR_TAG_TEST_1_RESULT] intValue] >> 0);
+                                                uint8_t intVal2 = ([[data objectForKey:TISENSOR_TAG_TEST_2_RESULT] intValue] >> 1);
+                                                uint8_t intVal3 = ([[data objectForKey:TISENSOR_TAG_TEST_3_RESULT] intValue] >> 2);
+                                                uint8_t intVal4 = ([[data objectForKey:TISENSOR_TAG_TEST_4_RESULT] intValue] >> 3);
+                                                uint8_t intVal5 = ([[data objectForKey:TISENSOR_TAG_TEST_5_RESULT] intValue] >> 4);
+                                                uint8_t intVal6 = ([[data objectForKey:TISENSOR_TAG_TEST_6_RESULT] intValue] >> 5);
+                                                uint8_t intVal7 = ([[data objectForKey:TISENSOR_TAG_TEST_7_RESULT] intValue] >> 6);
+                                                uint8_t intVal8 = ([[data objectForKey:TISENSOR_TAG_TEST_8_RESULT] intValue] >> 7);
+                                                uint8_t intVal = intVal1 | intVal2 | intVal3 | intVal4 | intVal5 | intVal6 | intVal7 | intVal8;
+                                                return blueCapUnsignedCharToData(intVal);
+                                            }];
+                                            characteristicProfile.initialValue = [characteristicProfile valueFromString:@{TISENSOR_TAG_TEST_1_RESULT:[NSString stringWithFormat:@"%d", 1],
+                                                                                                                          TISENSOR_TAG_TEST_2_RESULT:[NSString stringWithFormat:@"%d", 0],
+                                                                                                                          TISENSOR_TAG_TEST_3_RESULT:[NSString stringWithFormat:@"%d", 1],
+                                                                                                                          TISENSOR_TAG_TEST_4_RESULT:[NSString stringWithFormat:@"%d", 0],
+                                                                                                                          TISENSOR_TAG_TEST_5_RESULT:[NSString stringWithFormat:@"%d", 1],
+                                                                                                                          TISENSOR_TAG_TEST_6_RESULT:[NSString stringWithFormat:@"%d", 0],
+                                                                                                                          TISENSOR_TAG_TEST_7_RESULT:[NSString stringWithFormat:@"%d", 1],
+                                                                                                                          TISENSOR_TAG_TEST_8_RESULT:[NSString stringWithFormat:@"%d", 0]}];
                                         }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa62-0451-4000-b000-000000000000"
@@ -508,6 +548,7 @@
                                         andProfile:^(BlueCapCharacteristicProfile* characteristicProfile ) {
                                             [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_TEST_ON_VALUE) named:TISENSOR_TAG_TEST_ON];
                                             [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_TEST_OFF_VALUE) named:TISENSOR_TAG_TEST_OFF];
+                                            characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:TISENSOR_TAG_TEST_OFF];
                                         }];
 
 
@@ -531,6 +572,11 @@
                                                                          [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                                              return @{TISENSOR_TAG_KEY_PRESSED:[NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_KEY_PRESSED] integerValue]]};
                                                                          }];
+                                                                         [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                                             uint8_t intVal = [[data objectForKey:TISENSOR_TAG_KEY_PRESSED] intValue];
+                                                                             return blueCapUnsignedCharToData(intVal);
+                                                                         }];
+                                                                         characteristicProfile.initialValue = blueCapUnsignedCharToData(0x01);
                                                                      }];
     }];
 }
