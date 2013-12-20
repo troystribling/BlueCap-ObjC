@@ -308,8 +308,8 @@
                                               }];
                                               [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                   int16_t intVals[2];
-                                                  intVals[0] = [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT] intValue];
-                                                  intVals[1] = [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_OBJECT] intValue];
+                                                  intVals[0] = [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_OBJECT] intValue];
+                                                  intVals[1] = [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT] intValue];
                                                   return blueCapLittleFromInt16Array(intVals, 2);
                                               }];
                                               characteristicProfile.initialValue = [characteristicProfile valueFromString:@{TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT:[NSString stringWithFormat:@"%d", 3100],
@@ -522,25 +522,29 @@
                                                 return stringResults;
                                             }];
                                             [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
-                                                uint8_t intVal1 = ([[data objectForKey:TISENSOR_TAG_TEST_1_RESULT] intValue] >> 0);
-                                                uint8_t intVal2 = ([[data objectForKey:TISENSOR_TAG_TEST_2_RESULT] intValue] >> 1);
-                                                uint8_t intVal3 = ([[data objectForKey:TISENSOR_TAG_TEST_3_RESULT] intValue] >> 2);
-                                                uint8_t intVal4 = ([[data objectForKey:TISENSOR_TAG_TEST_4_RESULT] intValue] >> 3);
-                                                uint8_t intVal5 = ([[data objectForKey:TISENSOR_TAG_TEST_5_RESULT] intValue] >> 4);
-                                                uint8_t intVal6 = ([[data objectForKey:TISENSOR_TAG_TEST_6_RESULT] intValue] >> 5);
-                                                uint8_t intVal7 = ([[data objectForKey:TISENSOR_TAG_TEST_7_RESULT] intValue] >> 6);
-                                                uint8_t intVal8 = ([[data objectForKey:TISENSOR_TAG_TEST_8_RESULT] intValue] >> 7);
-                                                uint8_t intVal = intVal1 | intVal2 | intVal3 | intVal4 | intVal5 | intVal6 | intVal7 | intVal8;
+                                                uint8_t testVal;
+                                                uint8_t intVal = 0;
+                                                NSArray* names = [data allKeys];
+                                                for (int i = 0; i < 8; i++) {
+                                                    NSString* name = [names objectAtIndex:i];
+                                                    NSString* result = [data objectForKey:name];
+                                                    if ([result isEqualToString:@"PASSED"]) {
+                                                        testVal = (1 << i);
+                                                    } else {
+                                                        testVal = 0;
+                                                    }
+                                                    intVal = intVal | testVal;
+                                                }
                                                 return blueCapUnsignedCharToData(intVal);
                                             }];
-                                            characteristicProfile.initialValue = [characteristicProfile valueFromString:@{TISENSOR_TAG_TEST_1_RESULT:[NSString stringWithFormat:@"%d", 1],
-                                                                                                                          TISENSOR_TAG_TEST_2_RESULT:[NSString stringWithFormat:@"%d", 0],
-                                                                                                                          TISENSOR_TAG_TEST_3_RESULT:[NSString stringWithFormat:@"%d", 1],
-                                                                                                                          TISENSOR_TAG_TEST_4_RESULT:[NSString stringWithFormat:@"%d", 0],
-                                                                                                                          TISENSOR_TAG_TEST_5_RESULT:[NSString stringWithFormat:@"%d", 1],
-                                                                                                                          TISENSOR_TAG_TEST_6_RESULT:[NSString stringWithFormat:@"%d", 0],
-                                                                                                                          TISENSOR_TAG_TEST_7_RESULT:[NSString stringWithFormat:@"%d", 1],
-                                                                                                                          TISENSOR_TAG_TEST_8_RESULT:[NSString stringWithFormat:@"%d", 0]}];
+                                            characteristicProfile.initialValue = [characteristicProfile valueFromString:@{TISENSOR_TAG_TEST_1_RESULT:@"PASSED",
+                                                                                                                          TISENSOR_TAG_TEST_2_RESULT:@"FAILED",
+                                                                                                                          TISENSOR_TAG_TEST_3_RESULT:@"PASSED",
+                                                                                                                          TISENSOR_TAG_TEST_4_RESULT:@"FAILED",
+                                                                                                                          TISENSOR_TAG_TEST_5_RESULT:@"PASSED",
+                                                                                                                          TISENSOR_TAG_TEST_6_RESULT:@"FAILED",
+                                                                                                                          TISENSOR_TAG_TEST_7_RESULT:@"PASSED",
+                                                                                                                          TISENSOR_TAG_TEST_8_RESULT:@"FAILED"}];
                                         }];
 
         [serviceProfile createCharacteristicWithUUID:@"f000aa62-0451-4000-b000-000000000000"
