@@ -21,17 +21,6 @@
                                      name:@"Device Information"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                   
-        [serviceProfile createCharacteristicWithUUID:@"2a23"
-                                                name:@"System ID"
-                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_SYSTEM_ID:@"Coming Soon"};
-                                              }];
-                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_SYSTEM_ID:@"Coming Soon"};
-                                              }];
-                                          }];
-
         [serviceProfile createCharacteristicWithUUID:@"2a24"
                                                 name:@"Model Number"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
@@ -41,6 +30,10 @@
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  return [[data objectForKey:BLESIG_GATT_DEVICE_INFORMATION_MODEL_NUMBER] dataUsingEncoding:NSUTF8StringEncoding];
+                                              }];
+                                              characteristicProfile.initialValue = [@"Model Number" dataUsingEncoding:NSUTF8StringEncoding];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a25"
@@ -52,6 +45,10 @@
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  return [[data objectForKey:BLESIG_GATT_DEVICE_INFORMATION_SERIAL_NUMBER] dataUsingEncoding:NSUTF8StringEncoding];
+                                              }];
+                                              characteristicProfile.initialValue = [@"Serial Number" dataUsingEncoding:NSUTF8StringEncoding];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a26"
@@ -63,6 +60,10 @@
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  return [[data objectForKey:BLESIG_GATT_DEVICE_INFORMATION_FIRMWARE_REVISION] dataUsingEncoding:NSUTF8StringEncoding];
+                                              }];
+                                              characteristicProfile.initialValue = [@"Firmware Revision" dataUsingEncoding:NSUTF8StringEncoding];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a27"
@@ -74,6 +75,10 @@
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  return [[data objectForKey:BLESIG_GATT_DEVICE_INFORMATION_HARDWARE_REVISION] dataUsingEncoding:NSUTF8StringEncoding];
+                                              }];
+                                              characteristicProfile.initialValue = [@"Hardware Revision" dataUsingEncoding:NSUTF8StringEncoding];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a28"
@@ -85,6 +90,10 @@
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
                                               }];
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  return [[data objectForKey:BLESIG_GATT_DEVICE_INFORMATION_SOFTWARE_REVISION] dataUsingEncoding:NSUTF8StringEncoding];
+                                              }];
+                                              characteristicProfile.initialValue = [@"Software Revision" dataUsingEncoding:NSUTF8StringEncoding];
                                           }];
 
         [serviceProfile createCharacteristicWithUUID:@"2a29"
@@ -96,28 +105,10 @@
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return data;
                                               }];
-                                          }];
-
-        [serviceProfile createCharacteristicWithUUID:@"2a2a"
-                                                name:@"Certification Data"
-                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_MANUFACTURER_NAME:@"Coming Soon"};
+                                              [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                  return [[data objectForKey:BLESIG_GATT_DEVICE_INFORMATION_MANUFACTURER_NAME] dataUsingEncoding:NSUTF8StringEncoding];
                                               }];
-                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                                                  return data;
-                                              }];
-                                          }];
-
-        [serviceProfile createCharacteristicWithUUID:@"2a50"
-                                                name:@"PnP ID"
-                                          andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-                                              [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLESIG_GATT_DEVICE_INFORMATION_PNP_ID:@"Coming Soon"};
-                                              }];
-                                              [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                                                  return data;
-                                              }];
+                                              characteristicProfile.initialValue = [@"gnos.us" dataUsingEncoding:NSUTF8StringEncoding];
                                           }];
 
         }];
