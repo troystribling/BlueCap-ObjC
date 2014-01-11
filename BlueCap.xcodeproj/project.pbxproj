@@ -32,10 +32,10 @@
 		0565A0AD17C1ED6100BFB1C0 /* BlueCap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E6897617C1E0890013246A /* BlueCap.h */; };
 		0565A0AE17C1ED6100BFB1C0 /* BlueCapCentralManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05E6897717C1E0890013246A /* BlueCapCentralManager.h */; };
 		0565A0B017C1F30900BFB1C0 /* DebugLog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0565A0AF17C1F0D200BFB1C0 /* DebugLog.h */; };
-		059329D017F0989500D514F1 /* TISensorTagServiceProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 059329CF17F0989500D514F1 /* TISensorTagServiceProfile.m */; };
+		059329D017F0989500D514F1 /* TISensorTagProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 059329CF17F0989500D514F1 /* TISensorTagProfiles.m */; };
 		059329D917F1327D00D514F1 /* BlueCapCharacteristicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 059329D817F1327D00D514F1 /* BlueCapCharacteristicProfile.m */; };
 		059329DA17F1350100D514F1 /* BlueCapCharacteristicProfile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059329D717F1327D00D514F1 /* BlueCapCharacteristicProfile.h */; };
-		059329E017F13BC900D514F1 /* TISensorTagServiceProfile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059329CE17F0989500D514F1 /* TISensorTagServiceProfile.h */; };
+		059329E017F13BC900D514F1 /* TISensorTagProfiles.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059329CE17F0989500D514F1 /* TISensorTagProfiles.h */; };
 		059329E217F3DE4700D514F1 /* BlueCapBlocks.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059329E117F3DBB800D514F1 /* BlueCapBlocks.h */; };
 		059563EA17C1A57B00A5E84F /* libBluecap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA669517B868F90019AC3C /* libBluecap.a */; };
 		059769D417CC472000BDE5B5 /* BlueCapService+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769D317CC472000BDE5B5 /* BlueCapService+Friend.m */; };
@@ -46,6 +46,8 @@
 		059769DF17CC4A0C00BDE5B5 /* BlueCapDescriptor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 059769DB17CC490400BDE5B5 /* BlueCapDescriptor.h */; };
 		059769E217CDA13000BDE5B5 /* BlueCapPeripheral+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769E117CDA13000BDE5B5 /* BlueCapPeripheral+Friend.m */; };
 		059769E817D271ED00BDE5B5 /* BlueCapDescriptor+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769E717D271ED00BDE5B5 /* BlueCapDescriptor+Friend.m */; };
+		05A06FEE1881B9AE00BDAA66 /* GnosusProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A06FED1881B9AE00BDAA66 /* GnosusProfiles.m */; };
+		05A06FEF1882048F00BDAA66 /* GnosusProfiles.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05A06FEC1881B9AE00BDAA66 /* GnosusProfiles.h */; };
 		05A0F11A17F68A650046B47C /* BlueCapCharacteristicProfile+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A0F11917F68A650046B47C /* BlueCapCharacteristicProfile+Friend.m */; };
 		05A5D00E1827029B003FB93C /* BlueCapPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A5D00D1827029B003FB93C /* BlueCapPeripheralManager.m */; };
 		05A5D00F18270C07003FB93C /* BlueCapPeripheralManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05A5D00C1827029B003FB93C /* BlueCapPeripheralManager.h */; };
@@ -79,6 +81,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				05A06FEF1882048F00BDAA66 /* GnosusProfiles.h in CopyFiles */,
 				0540000218302909001B3735 /* BlueCapMutableCharacteristic.h in CopyFiles */,
 				05400001183028F9001B3735 /* BlueCapMutableDescriptor.h in CopyFiles */,
 				05400000183028EE001B3735 /* BlueCapMutableService.h in CopyFiles */,
@@ -87,7 +90,7 @@
 				050B2ACA18240BAF00DE5792 /* BlueCapServiceProfile.h in CopyFiles */,
 				054766C617FFB845005C4125 /* BLESIGGATTProfiles.h in CopyFiles */,
 				059329E217F3DE4700D514F1 /* BlueCapBlocks.h in CopyFiles */,
-				059329E017F13BC900D514F1 /* TISensorTagServiceProfile.h in CopyFiles */,
+				059329E017F13BC900D514F1 /* TISensorTagProfiles.h in CopyFiles */,
 				059329DA17F1350100D514F1 /* BlueCapCharacteristicProfile.h in CopyFiles */,
 				059769DE17CC4A0C00BDE5B5 /* BlueCapCharacteristic.h in CopyFiles */,
 				059769DF17CC4A0C00BDE5B5 /* BlueCapDescriptor.h in CopyFiles */,
@@ -129,8 +132,8 @@
 		055FAAD51834A3B300F9128D /* BlueCapMutableCharacteristic+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapMutableCharacteristic+Friend.m"; sourceTree = "<group>"; };
 		0565A0AB17C1EA7F00BFB1C0 /* BlueCap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCap.m; sourceTree = "<group>"; };
 		0565A0AF17C1F0D200BFB1C0 /* DebugLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
-		059329CE17F0989500D514F1 /* TISensorTagServiceProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISensorTagServiceProfile.h; sourceTree = "<group>"; };
-		059329CF17F0989500D514F1 /* TISensorTagServiceProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TISensorTagServiceProfile.m; sourceTree = "<group>"; };
+		059329CE17F0989500D514F1 /* TISensorTagProfiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TISensorTagProfiles.h; sourceTree = "<group>"; };
+		059329CF17F0989500D514F1 /* TISensorTagProfiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TISensorTagProfiles.m; sourceTree = "<group>"; };
 		059329D717F1327D00D514F1 /* BlueCapCharacteristicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCapCharacteristicProfile.h; sourceTree = "<group>"; };
 		059329D817F1327D00D514F1 /* BlueCapCharacteristicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueCapCharacteristicProfile.m; sourceTree = "<group>"; };
 		059329DD17F136CB00D514F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -147,6 +150,8 @@
 		059769E117CDA13000BDE5B5 /* BlueCapPeripheral+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapPeripheral+Friend.m"; sourceTree = "<group>"; };
 		059769E617D271ED00BDE5B5 /* BlueCapDescriptor+Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlueCapDescriptor+Friend.h"; sourceTree = "<group>"; };
 		059769E717D271ED00BDE5B5 /* BlueCapDescriptor+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapDescriptor+Friend.m"; sourceTree = "<group>"; };
+		05A06FEC1881B9AE00BDAA66 /* GnosusProfiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnosusProfiles.h; sourceTree = "<group>"; };
+		05A06FED1881B9AE00BDAA66 /* GnosusProfiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GnosusProfiles.m; sourceTree = "<group>"; };
 		05A0F11817F68A650046B47C /* BlueCapCharacteristicProfile+Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlueCapCharacteristicProfile+Friend.h"; sourceTree = "<group>"; };
 		05A0F11917F68A650046B47C /* BlueCapCharacteristicProfile+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlueCapCharacteristicProfile+Friend.m"; sourceTree = "<group>"; };
 		05A5D00C1827029B003FB93C /* BlueCapPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueCapPeripheralManager.h; sourceTree = "<group>"; };
@@ -210,10 +215,12 @@
 		059329CD17F0986600D514F1 /* ServiceProfiles */ = {
 			isa = PBXGroup;
 			children = (
-				059329CE17F0989500D514F1 /* TISensorTagServiceProfile.h */,
-				059329CF17F0989500D514F1 /* TISensorTagServiceProfile.m */,
+				059329CE17F0989500D514F1 /* TISensorTagProfiles.h */,
+				059329CF17F0989500D514F1 /* TISensorTagProfiles.m */,
 				054766BD17FFB09B005C4125 /* BLESIGGATTProfiles.h */,
 				054766BE17FFB09B005C4125 /* BLESIGGATTProfiles.m */,
+				05A06FEC1881B9AE00BDAA66 /* GnosusProfiles.h */,
+				05A06FED1881B9AE00BDAA66 /* GnosusProfiles.m */,
 			);
 			name = ServiceProfiles;
 			path = ServiceDefinitions;
@@ -465,6 +472,7 @@
 			files = (
 				05A5D013182877A1003FB93C /* BlueCapMutableCharacteristic.m in Sources */,
 				0543815217C9775D0071AC73 /* BlueCapService.m in Sources */,
+				05A06FEE1881B9AE00BDAA66 /* GnosusProfiles.m in Sources */,
 				05A5D016182877BA003FB93C /* BlueCapMutableService.m in Sources */,
 				055FAAD61834A3B300F9128D /* BlueCapMutableCharacteristic+Friend.m in Sources */,
 				05A0F11A17F68A650046B47C /* BlueCapCharacteristicProfile+Friend.m in Sources */,
@@ -488,7 +496,7 @@
 				0540FFE9182F17B4001B3735 /* BlueCapProfileManager+Friend.m in Sources */,
 				0540000B18305FFE001B3735 /* BlueCapPeripheralManager+Friend.m in Sources */,
 				054766C417FFB3C5005C4125 /* BlueCapServiceProfile.m in Sources */,
-				059329D017F0989500D514F1 /* TISensorTagServiceProfile.m in Sources */,
+				059329D017F0989500D514F1 /* TISensorTagProfiles.m in Sources */,
 				0540FFE3182F1173001B3735 /* BlueCapProfileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

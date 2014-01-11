@@ -12,8 +12,9 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [TISensorTagServiceProfile create];
+    [TISensorTagProfiles create];
     [BLESIGGATTProfiles create];
+    [GnosusProfiles create];
     return YES;
 }
 							

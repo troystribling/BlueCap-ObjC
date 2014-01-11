@@ -128,7 +128,7 @@
                                                   return @{BLESIG_GATT_BATTERY_LEVEL:[[data objectForKey:BLESIG_GATT_BATTERY_LEVEL] stringValue]};
                                               }];
                                               [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
-                                                  uint8_t value = (uint8_t)[[data objectForKey:BLESIG_GATT_BATTERY_LEVEL] integerValue];
+                                                  uint8_t value = (uint8_t)[[data objectForKey:BLESIG_GATT_BATTERY_LEVEL] intValue];
                                                   return blueCapUnsignedCharToData(value);
                                               }];
                                               characteristicProfile.initialValue = [characteristicProfile valueFromString:@{BLESIG_GATT_BATTERY_LEVEL:@"100"}];
@@ -136,6 +136,24 @@
     }];
 
     [profileManager createServiceWithUUID:@"1805" name:@"Current Time" andProfile:^(BlueCapServiceProfile* serviceProfile) {
+    }];
+    
+    [profileManager createServiceWithUUID:@"1804" name:@"Tx Power" andProfile:^(BlueCapServiceProfile* serviceProfile) {
+        [serviceProfile createCharacteristicWithUUID:@"2a07" name:@"Tx Power Level" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+            characteristicProfile.properties = CBCharacteristicPropertyRead;
+            [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                int value = [blueCapCharFromData(data, NSMakeRange(0,1)) intValue];
+                return @{BLESIG_GATT_TX_POWER_LEVEL: [NSNumber numberWithInt:value]};
+            }];
+            [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                return @{BLESIG_GATT_TX_POWER_LEVEL:[[data objectForKey:BLESIG_GATT_TX_POWER_LEVEL] stringValue]};
+            }];
+            [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                int8_t value = (int8_t)[[data objectForKey:BLESIG_GATT_TX_POWER_LEVEL] intValue];
+                return blueCapCharToData(value);
+            }];
+            characteristicProfile.initialValue = [characteristicProfile valueFromString:@{BLESIG_GATT_TX_POWER_LEVEL:[NSString stringWithFormat:@"%d", -40]}];
+        }];
     }];
 }
 

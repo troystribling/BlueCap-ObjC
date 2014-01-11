@@ -1,5 +1,5 @@
 //
-//  TISensorTagServiceProfile.m
+//  TISensorTagProfiles.m
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/23/13.
@@ -7,9 +7,9 @@
 //
 
 #import "BlueCap.h"
-#import "TISensorTagServiceProfile.h"
+#import "TISensorTagProfiles.h"
 
-@implementation TISensorTagServiceProfile
+@implementation TISensorTagProfiles
 
 + (void)create {
     

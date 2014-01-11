@@ -1,5 +1,5 @@
 //
-//  TISensorTagServiceProfile.h
+//  TISensorTagProfiles.h
 //  BlueCap
 //
 //  Created by Troy Stribling on 9/23/13.
@@ -131,7 +131,7 @@
 
 #define TISENSOR_TAG_KEY_PRESSED            @"Key"
 
-@interface TISensorTagServiceProfile : NSObject
+@interface TISensorTagProfiles : NSObject
 
 + (void)create;
 

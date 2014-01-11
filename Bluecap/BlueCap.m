@@ -89,6 +89,10 @@ NSData* blueCapCharArrayToData(int8_t* data, int length) {
     return [NSData dataWithBytes:data length:length];
 }
 
+NSData* blueCapCharToData(int8_t data) {
+    return [NSData dataWithBytes:&data length:1];
+}
+
 #pragma mark - Unsigned Char
 
 NSNumber* blueCapUnsignedCharFromData(NSData* data) {

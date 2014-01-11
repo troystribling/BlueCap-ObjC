@@ -26,8 +26,9 @@
 #import "BlueCapServiceProfile.h"
 #import "BlueCapCharacteristicProfile.h"
 
-#import "TISensorTagServiceProfile.h"
+#import "TISensorTagProfiles.h"
 #import "BLESIGGATTProfiles.h"
+#import "GnosusProfiles.h"
 
 NSNumber* blueCapUnsignedInt16LittleFromData(NSData* data, NSRange range);
 NSNumber* blueCapUnsignedInt16BigFromData(NSData* data, NSRange range);
@@ -41,6 +42,7 @@ NSNumber* blueCapInt16BigFromData(NSData* data, NSRange range);
 
 NSNumber* blueCapCharFromData(NSData* data, NSRange range);
 NSData* blueCapCharArrayToData(int8_t* data, int length);
+NSData* blueCapCharToData(int8_t data);
 
 NSNumber* blueCapUnsignedCharFromData(NSData* data);
 NSData* blueCapUnsignedCharToData(uint8_t data);

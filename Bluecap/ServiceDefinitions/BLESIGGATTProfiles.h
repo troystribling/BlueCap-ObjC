@@ -22,7 +22,9 @@
 
 #define BLESIG_GATT_BATTERY_LEVEL                               @"Battery Level"
 
-#define BLESIG_GATT_CURRENT_TIME                                @"Battery Level"
+#define BLESIG_GATT_CURRENT_TIME                                @"Current Time"
+
+#define BLESIG_GATT_TX_POWER_LEVEL                              @"Tx Power level"
 
 @interface BLESIGGATTProfiles : NSObject
 
