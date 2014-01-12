@@ -19,6 +19,7 @@
     
     [profileManager createServiceWithUUID:@"2f0a0000-69aa-f316-3e78-4194989a6c1a" name:@"Hello World" andProfile:^(BlueCapServiceProfile* serviceProfile) {
         [serviceProfile createCharacteristicWithUUID:@"2f0a0001-69aa-f316-3e78-4194989a6c1a" name:@"Greeting" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+            characteristicProfile.properties = CBCharacteristicPropertyRead;
             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                 return @{GNOSUS_HELLO_WORLD_GREETING:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
             }];
@@ -31,6 +32,7 @@
             characteristicProfile.initialValue = [@"Hello" dataUsingEncoding:NSUTF8StringEncoding];
         }];
         [serviceProfile createCharacteristicWithUUID:@"2f0a0002-69aa-f316-3e78-4194989a6c1a" name:@"Count" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+            characteristicProfile.properties = CBCharacteristicPropertyRead;
             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                 int value = [blueCapUnsignedCharFromData(data) intValue];
                 return @{GNOSUS_HELLO_WORLD_COUNT:[NSNumber numberWithInt:value]};
