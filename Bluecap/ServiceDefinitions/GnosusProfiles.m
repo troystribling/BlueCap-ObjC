@@ -33,6 +33,13 @@
         }];
         [serviceProfile createCharacteristicWithUUID:@"2f0a0002-69aa-f316-3e78-4194989a6c1a" name:@"Count" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
             characteristicProfile.properties = CBCharacteristicPropertyRead;
+            [characteristicProfile serializeObject:^NSData*(id data) {
+                uint8_t value = (uint8_t)[data intValue];
+                if (value > 9) {
+                    value = 9;
+                }
+                return blueCapUnsignedCharToData(value);
+            }];
             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                 int value = [blueCapUnsignedCharFromData(data) intValue];
                 return @{GNOSUS_HELLO_WORLD_COUNT:[NSNumber numberWithInt:value]};
@@ -42,6 +49,9 @@
             }];
             [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                 uint8_t value = (uint8_t)[[data objectForKey:GNOSUS_HELLO_WORLD_COUNT] intValue];
+                if (value > 9) {
+                    value = 9;
+                }
                 return blueCapUnsignedCharToData(value);
             }];
             characteristicProfile.initialValue = blueCapUnsignedCharToData(0x01);

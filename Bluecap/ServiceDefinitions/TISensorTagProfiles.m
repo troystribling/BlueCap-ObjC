@@ -84,12 +84,11 @@
                                                 name:@"Accelerometer Update Period"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               [characteristicProfile serializeObject:^NSData*(id data) {
-                                                  int intValue = [data intValue]/10;
-                                                  uint8_t value = (uint8_t)(intValue);
-                                                  if (value < 0x0a) {
-                                                      value = 0x0a;
+                                                  uint8_t intVal = [data intValue]/10;
+                                                  if (intVal < 0x0a) {
+                                                      intVal = 0x0a;
                                                   }
-                                                  return [NSData dataWithBytes:&value length:1];
+                                                  return blueCapUnsignedCharToData(intVal);
                                               }];
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                                                   int unscaledValue = 10*[blueCapUnsignedCharFromData(data) integerValue];
@@ -100,6 +99,9 @@
                                               }];
                                               [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                   uint8_t intVal = [[data objectForKey:TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD] intValue]/10;
+                                                  if (intVal < 0x0a) {
+                                                      intVal = 0x0a;
+                                                  }
                                                   return blueCapUnsignedCharToData(intVal);
                                               }];
                                               characteristicProfile.initialValue = blueCapUnsignedCharToData(0x64);
