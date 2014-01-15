@@ -9,6 +9,8 @@
 #import "GnosusProfiles.h"
 #import "BlueCap.h"
 
+#define MAX_HELLO_WORLD_COUNT   10
+
 @implementation GnosusProfiles
 
 + (void)create {
@@ -32,13 +34,16 @@
             characteristicProfile.initialValue = [@"Hello" dataUsingEncoding:NSUTF8StringEncoding];
         }];
         [serviceProfile createCharacteristicWithUUID:@"2f0a0002-69aa-f316-3e78-4194989a6c1a" name:@"Count" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+            NSData* (^serializeUINT8)(uint8_t) = ^(uint8_t value) {
+                if (value > MAX_HELLO_WORLD_COUNT) {
+                    value = MAX_HELLO_WORLD_COUNT;
+                }
+                return blueCapUnsignedCharToData(value);
+            };
             characteristicProfile.properties = CBCharacteristicPropertyRead;
             [characteristicProfile serializeObject:^NSData*(id data) {
                 uint8_t value = (uint8_t)[data intValue];
-                if (value > 9) {
-                    value = 9;
-                }
-                return blueCapUnsignedCharToData(value);
+                return serializeUINT8(value);
             }];
             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                 int value = [blueCapUnsignedCharFromData(data) intValue];
@@ -49,10 +54,7 @@
             }];
             [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                 uint8_t value = (uint8_t)[[data objectForKey:GNOSUS_HELLO_WORLD_COUNT] intValue];
-                if (value > 9) {
-                    value = 9;
-                }
-                return blueCapUnsignedCharToData(value);
+                return serializeUINT8(value);
             }];
             characteristicProfile.initialValue = blueCapUnsignedCharToData(0x01);
         }];
