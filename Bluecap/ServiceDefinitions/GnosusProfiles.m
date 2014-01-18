@@ -35,7 +35,7 @@
             characteristicProfile.properties = CBCharacteristicPropertyRead;
             [characteristicProfile serializeObject:^NSData*(id data) {
                 uint16_t value = (uint16_t)[data intValue];
-                return blueCapLittleFromUnsignedInt16(value);
+                return blueCapBigFromUnsignedInt16(value);
             }];
             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                 int value = [blueCapUnsignedInt16BigFromData(data, NSMakeRange(0, 2)) intValue];
@@ -46,7 +46,7 @@
             }];
             [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                 uint16_t value = (uint16_t)[[data objectForKey:GNOSUS_HELLO_WORLD_UPDATE_PERIOD] intValue];
-                return blueCapLittleFromUnsignedInt16(value);
+                return blueCapBigFromUnsignedInt16(value);
             }];
             characteristicProfile.initialValue = blueCapUnsignedCharToData(0x01);
         }];
