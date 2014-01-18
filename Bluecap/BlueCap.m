@@ -34,7 +34,7 @@ NSNumber* blueCapUnsignedInt16BigFromData(NSData* data, NSRange range) {
 NSData* blueCapLittleFromUnsignedInt16Array(uint16_t* hostVals, int length) {
     int16_t littleVals[length];
     for (int i = 0; i < length; i++) {
-        littleVals[i] = CFSwapInt16LittleToHost(hostVals[i]);
+        littleVals[i] = CFSwapInt16HostToLittle(hostVals[i]);
     }
     return [NSData dataWithBytes:littleVals length:2*length];
 }
@@ -42,15 +42,27 @@ NSData* blueCapLittleFromUnsignedInt16Array(uint16_t* hostVals, int length) {
 NSData* blueCapBigFromUnsignedInt16Array(uint16_t* hostVals, int length) {
     int16_t bigVals[length];
     for (int i = 0; i < length; i++) {
-        bigVals[i] = CFSwapInt16BigToHost(hostVals[i]);
+        bigVals[i] = CFSwapInt16HostToBig(hostVals[i]);
     }
     return [NSData dataWithBytes:bigVals length:2*length];
 }
 
+NSData* blueCapLittleFromUnsignedInt16(uint16_t hostVal) {
+    uint16_t littleVal = CFSwapInt16HostToLittle(hostVal);
+    return [NSData dataWithBytes:&littleVal length:2];
+}
+
+NSData* blueCapBigFromUnsignedInt16(uint16_t hostVal) {
+    uint16_t bigVal = CFSwapInt16HostToBig(hostVal);
+    return [NSData dataWithBytes:&bigVal length:2];
+}
+
+#pragma mark - Int16
+
 NSData* blueCapLittleFromInt16Array(int16_t* hostVals, int length) {
     int16_t littleVals[length];
     for (int i = 0; i < length; i++) {
-        littleVals[i] = CFSwapInt16LittleToHost(hostVals[i]);
+        littleVals[i] = CFSwapInt16HostToLittle(hostVals[i]);
     }
     return [NSData dataWithBytes:littleVals length:2*length];
 }
@@ -58,12 +70,10 @@ NSData* blueCapLittleFromInt16Array(int16_t* hostVals, int length) {
 NSData* blueCapBigFromInt16Array(int16_t* hostVals, int length) {
     int16_t bigVals[length];
     for (int i = 0; i < length; i++) {
-        bigVals[i] = CFSwapInt16BigToHost(hostVals[i]);
+        bigVals[i] = CFSwapInt16HostToBig(hostVals[i]);
     }
     return [NSData dataWithBytes:bigVals length:2*length];
 }
-
-#pragma mark - Int16
 
 NSNumber* blueCapInt16LittleFromData(NSData* data, NSRange range) {
     int16_t val;

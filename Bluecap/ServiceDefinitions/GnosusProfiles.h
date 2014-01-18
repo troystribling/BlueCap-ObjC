@@ -10,8 +10,8 @@
 
 #pragma mark - Hello World
 
-#define GNOSUS_HELLO_WORLD_GREETING     @"Greeting"
-#define GNOSUS_HELLO_WORLD_COUNT        @"Count"
+#define GNOSUS_HELLO_WORLD_GREETING         @"Greeting"
+#define GNOSUS_HELLO_WORLD_UPDATE_PERIOD    @"Update Period"
 
 @interface GnosusProfiles : NSObject
 

@@ -9,8 +9,6 @@
 #import "GnosusProfiles.h"
 #import "BlueCap.h"
 
-#define MAX_HELLO_WORLD_COUNT   10
-
 @implementation GnosusProfiles
 
 + (void)create {
@@ -33,28 +31,22 @@
             }];
             characteristicProfile.initialValue = [@"Hello" dataUsingEncoding:NSUTF8StringEncoding];
         }];
-        [serviceProfile createCharacteristicWithUUID:@"2f0a0002-69aa-f316-3e78-4194989a6c1a" name:@"Count" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-            NSData* (^serializeUINT8)(uint8_t) = ^(uint8_t value) {
-                if (value > MAX_HELLO_WORLD_COUNT) {
-                    value = MAX_HELLO_WORLD_COUNT;
-                }
-                return blueCapUnsignedCharToData(value);
-            };
+        [serviceProfile createCharacteristicWithUUID:@"2f0a0002-69aa-f316-3e78-4194989a6c1a" name:@"Update Period" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
             characteristicProfile.properties = CBCharacteristicPropertyRead;
             [characteristicProfile serializeObject:^NSData*(id data) {
-                uint8_t value = (uint8_t)[data intValue];
-                return serializeUINT8(value);
+                uint16_t value = (uint16_t)[data intValue];
+                return blueCapLittleFromUnsignedInt16(value);
             }];
             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                int value = [blueCapUnsignedCharFromData(data) intValue];
-                return @{GNOSUS_HELLO_WORLD_COUNT:[NSNumber numberWithInt:value]};
+                int value = [blueCapUnsignedInt16BigFromData(data, NSMakeRange(0, 2)) intValue];
+                return @{GNOSUS_HELLO_WORLD_UPDATE_PERIOD:[NSNumber numberWithInt:value]};
             }];
             [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                return @{GNOSUS_HELLO_WORLD_COUNT:[[data objectForKey:GNOSUS_HELLO_WORLD_COUNT] stringValue]};
+                return @{GNOSUS_HELLO_WORLD_UPDATE_PERIOD:[[data objectForKey:GNOSUS_HELLO_WORLD_UPDATE_PERIOD] stringValue]};
             }];
             [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
-                uint8_t value = (uint8_t)[[data objectForKey:GNOSUS_HELLO_WORLD_COUNT] intValue];
-                return serializeUINT8(value);
+                uint16_t value = (uint16_t)[[data objectForKey:GNOSUS_HELLO_WORLD_UPDATE_PERIOD] intValue];
+                return blueCapLittleFromUnsignedInt16(value);
             }];
             characteristicProfile.initialValue = blueCapUnsignedCharToData(0x01);
         }];
