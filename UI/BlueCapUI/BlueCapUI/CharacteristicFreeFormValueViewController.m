@@ -8,6 +8,7 @@
 
 #import <BlueCap/BlueCap.h>
 #import "CharacteristicFreeFormValueViewController.h"
+#import "UIAlertView+Extensions.h"
 
 @interface CharacteristicFreeFormValueViewController ()
 
@@ -39,6 +40,9 @@
     if (value) {
         [self.characteristic writeObject:value afterWriteCall:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                if (__error) {
+                    [UIAlertView showMessage:@"Unknown Error Occured"];
+                }
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }];
