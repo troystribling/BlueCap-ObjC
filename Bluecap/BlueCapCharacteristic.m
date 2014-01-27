@@ -13,6 +13,8 @@
 #import "BlueCapCharacteristic.h"
 #import "CBUUID+StringValue.h"
 
+#define CHARACTERISTIC_UPDATE_TIMEOUT   10.0
+
 @interface BlueCapCharacteristic () {
 }
 
@@ -20,12 +22,16 @@
 @property(nonatomic, retain) NSMutableArray*                      discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*                      service;
 @property(nonatomic, retain) BlueCapCharacteristicProfile*        profile;
-
+@property(nonatomic, assign) NSInteger                            updateSequenceNumber;
+@property(nonatomic, assign) BOOL                                 updateReceived;
 
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterReadCallback;
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterWriteCallback;
 @property(nonatomic, copy) BlueCapDescriptorsDicoveredCallback              afterDescriptorsDiscoveredCallback;
 @property(nonatomic, copy) BlueCapCharacteristicNotificationStateDidChange  notificationStateDidChangeCallback;
+
+
+- (void)timeoutUpdate:(NSInteger)__sequenceNumber;
 
 @end
 
@@ -218,5 +224,14 @@
 }
 
 #pragma mark - BlueCapCharacteristic PrivateAPI
+
+- (void)timeoutUpdate:(NSInteger)__sequenceNumber {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHARACTERISTIC_UPDATE_TIMEOUT * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+        DLog(@"Sequence Number:%d, this sequence number: %d", self.updateSequenceNumber, __sequenceNumber);
+        if (self.updateSequenceNumber == __sequenceNumber && !self.updateReceived) {
+        }
+    });
+}
 
 @end

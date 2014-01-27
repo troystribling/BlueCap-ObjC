@@ -14,20 +14,15 @@
 #import "ProgressView.h"
 #import "UIAlertView+Extensions.h"
 
-#define CHARACTERISTIC_UPDATE_TIMEOUT   10.0
-
 @interface CharacteristicValuesViewController ()
 
 @property(nonatomic, retain) ProgressView*  progressView;
 @property(nonatomic, retain) NSDictionary*  values;
-@property(nonatomic, assign) NSInteger      updateSequenceNumber;
-@property(nonatomic, assign) BOOL           updateReceived;
 
 - (IBAction)refeshValues;
 - (void)readData;
 - (void)loadData:(NSDictionary*)__data;
 - (BOOL)canEdit;
-- (void)timeoutUpdate:(NSInteger)__sequenceNumber;
 
 @end
 
@@ -44,8 +39,6 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationItem.title = self.characteristic.profile.name;
     self.progressView = [ProgressView progressView];
-    self.updateSequenceNumber = 0;
-    self.updateReceived = NO;
     self.values = [NSDictionary dictionary];
 }
 
@@ -78,9 +71,6 @@
 - (IBAction)refeshValues {
     [self.progressView progressWithMessage:@"Updating" inView:[[UIApplication sharedApplication] keyWindow]];
     [self readData];
-    self.updateReceived = NO;
-    self.updateSequenceNumber++;
-    [self timeoutUpdate:self.updateSequenceNumber];
 }
 
 - (void)readData {
@@ -105,7 +95,6 @@
 - (void)loadData:(NSDictionary*)__data {
     dispatch_sync(dispatch_get_main_queue(), ^{
         self.values = __data;
-        self.updateReceived = YES;
         [self.progressView remove];
         [self.tableView reloadData];
     });
@@ -113,18 +102,6 @@
 
 - (BOOL)canEdit {
     return [self.characteristic propertyEnabled:CBCharacteristicPropertyWrite] || [self.characteristic propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse];
-}
-
-- (void)timeoutUpdate:(NSInteger)__sequenceNumber {
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHARACTERISTIC_UPDATE_TIMEOUT * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
-        DLog(@"Sequence Number:%d, this sequence number: %d", self.updateSequenceNumber, __sequenceNumber);
-        if (self.updateSequenceNumber == __sequenceNumber && !self.updateReceived) {
-            [self.progressView remove];
-            [self.tableView reloadData];
-            [UIAlertView showMessage:@"Update Timeout"];
-        }
-    });
 }
 
 #pragma mark - Table view delegate

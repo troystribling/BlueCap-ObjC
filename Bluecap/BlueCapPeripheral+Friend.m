@@ -9,8 +9,6 @@
 #import "BlueCapPeripheral+Friend.h"
 #import "BlueCapCentralManager+Friend.h"
 
-#define PERIPHERAL_CONNECTION_TIMEOUT   5.0f
-
 @implementation BlueCapPeripheral (Friend)
 
 @dynamic cbPeripheral;
@@ -93,17 +91,6 @@
     }
     self.currentError = BLueCapPeripheralConnectionErrorDisconnected;
     return errorObj;
-}
-
-- (void)timeoutConnection:(NSInteger)__sequenceNumber {
-    [[BlueCapCentralManager sharedInstance] delayCallback:PERIPHERAL_CONNECTION_TIMEOUT withBlock:^{
-        DLog(@"Sequence Number:%d, this sequence number: %d, state: %d", self.connectionSequenceNumber, __sequenceNumber, self.state);
-        if (self.state != CBPeripheralStateConnected && __sequenceNumber == self.connectionSequenceNumber) {
-            DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
-            self.currentError = BLueCapPeripheralConnectionErrorTimeout;
-            [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
-        }
-    }];
 }
 
 @end

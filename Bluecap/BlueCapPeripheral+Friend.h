@@ -32,6 +32,4 @@
 
 - (NSError*)error;
 
-- (void)timeoutConnection:(NSInteger)__sequenceNumber;
-
 @end

@@ -19,6 +19,7 @@
 #define RSSI_UPDATE_PERIOD_SEC          0.5f
 #define RECONNECT_DELAY                 1.0f
 #define MAX_FAILED_RECONNECTS           10
+#define PERIPHERAL_CONNECTION_TIMEOUT   5.0f
 
 @interface BlueCapPeripheral ()
 
@@ -41,6 +42,7 @@
 - (void)clearDescriptors:(BlueCapCharacteristic*)__chraracteristics;
 
 - (void)readRSSI;
+- (void)timeoutConnection:(NSInteger)__sequenceNumber;
 
 @end
 
@@ -204,6 +206,17 @@
             }
         }];
     }
+}
+
+- (void)timeoutConnection:(NSInteger)__sequenceNumber {
+    [[BlueCapCentralManager sharedInstance] delayCallback:PERIPHERAL_CONNECTION_TIMEOUT withBlock:^{
+        DLog(@"Sequence Number:%d, this sequence number: %d, state: %d", self.connectionSequenceNumber, __sequenceNumber, self.state);
+        if (self.state != CBPeripheralStateConnected && __sequenceNumber == self.connectionSequenceNumber) {
+            DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
+            self.currentError = BLueCapPeripheralConnectionErrorTimeout;
+            [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
+        }
+    }];
 }
 
 #pragma mark - CBPeripheralDelegate

@@ -21,6 +21,7 @@
 @dynamic afterReadCallback;
 @dynamic afterDescriptorsDiscoveredCallback;
 @dynamic notificationStateDidChangeCallback;
+@dynamic updateSequenceNumber;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
     return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andService:__service];
@@ -32,6 +33,7 @@
         self.cbCharacteristic = __cbCharacteristic;
         self.service = __service;
         self.discoveredDiscriptors = [NSMutableArray array];
+        self.updateSequenceNumber = 0;
     }
     return self;
 }
