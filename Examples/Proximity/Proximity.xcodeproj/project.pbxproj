@@ -31,6 +31,20 @@
 			remoteGlobalIDString = 05AC72ED189AB3E80060D03F;
 			remoteInfo = Proximity;
 		};
+		05AC732B189AB4010060D03F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05AC7326189AB4010060D03F /* BlueCap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 05AA669517B868F90019AC3C;
+			remoteInfo = Bluecap;
+		};
+		05AC732D189AB4010060D03F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05AC7326189AB4010060D03F /* BlueCap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 05AA66A517B868F90019AC3C;
+			remoteInfo = BluecapTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +67,7 @@
 		05AC7318189AB3E80060D03F /* ProximityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ProximityTests-Info.plist"; sourceTree = "<group>"; };
 		05AC731A189AB3E80060D03F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05AC731C189AB3E80060D03F /* ProximityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProximityTests.m; sourceTree = "<group>"; };
+		05AC7326189AB4010060D03F /* BlueCap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueCap.xcodeproj; path = ../../BlueCap.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +97,7 @@
 		05AC72E5189AB3E80060D03F = {
 			isa = PBXGroup;
 			children = (
+				05AC7326189AB4010060D03F /* BlueCap.xcodeproj */,
 				05AC72F7189AB3E80060D03F /* Proximity */,
 				05AC7316189AB3E80060D03F /* ProximityTests */,
 				05AC72F0189AB3E80060D03F /* Frameworks */,
@@ -152,6 +168,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		05AC7327189AB4010060D03F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05AC732C189AB4010060D03F /* libBluecap.a */,
+				05AC732E189AB4010060D03F /* BluecapTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -216,6 +241,12 @@
 			mainGroup = 05AC72E5189AB3E80060D03F;
 			productRefGroup = 05AC72EF189AB3E80060D03F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 05AC7327189AB4010060D03F /* Products */;
+					ProjectRef = 05AC7326189AB4010060D03F /* BlueCap.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				05AC72ED189AB3E80060D03F /* Proximity */,
@@ -223,6 +254,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		05AC732C189AB4010060D03F /* libBluecap.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBluecap.a;
+			remoteRef = 05AC732B189AB4010060D03F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		05AC732E189AB4010060D03F /* BluecapTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BluecapTests.xctest;
+			remoteRef = 05AC732D189AB4010060D03F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		05AC72EC189AB3E80060D03F /* Resources */ = {
