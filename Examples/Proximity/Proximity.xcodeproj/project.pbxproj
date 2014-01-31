@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0522D722189B538200517552 /* libBluecap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AC732C189AB4010060D03F /* libBluecap.a */; };
+		0522D724189B539A00517552 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0522D723189B539A00517552 /* CoreBluetooth.framework */; };
 		05AC72F2189AB3E80060D03F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AC72F1189AB3E80060D03F /* Foundation.framework */; };
 		05AC72F4189AB3E80060D03F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AC72F3189AB3E80060D03F /* CoreGraphics.framework */; };
 		05AC72F6189AB3E80060D03F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AC72F5189AB3E80060D03F /* UIKit.framework */; };
@@ -45,9 +47,17 @@
 			remoteGlobalIDString = 05AA66A517B868F90019AC3C;
 			remoteInfo = BluecapTests;
 		};
+		05DD5CEC189B7510006625BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05AC7326189AB4010060D03F /* BlueCap.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 05AA669417B868F90019AC3C;
+			remoteInfo = Bluecap;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0522D723189B539A00517552 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		05AC72EE189AB3E80060D03F /* Proximity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Proximity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AC72F1189AB3E80060D03F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05AC72F3189AB3E80060D03F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -75,6 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0522D722189B538200517552 /* libBluecap.a in Frameworks */,
+				0522D724189B539A00517552 /* CoreBluetooth.framework in Frameworks */,
 				05AC72F4189AB3E80060D03F /* CoreGraphics.framework in Frameworks */,
 				05AC72F6189AB3E80060D03F /* UIKit.framework in Frameworks */,
 				05AC72F2189AB3E80060D03F /* Foundation.framework in Frameworks */,
@@ -117,6 +129,7 @@
 		05AC72F0189AB3E80060D03F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0522D723189B539A00517552 /* CoreBluetooth.framework */,
 				05AC72F1189AB3E80060D03F /* Foundation.framework */,
 				05AC72F3189AB3E80060D03F /* CoreGraphics.framework */,
 				05AC72F5189AB3E80060D03F /* UIKit.framework */,
@@ -191,6 +204,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				05DD5CED189B7510006625BC /* PBXTargetDependency */,
 			);
 			name = Proximity;
 			productName = Proximity;
@@ -320,6 +334,11 @@
 			target = 05AC72ED189AB3E80060D03F /* Proximity */;
 			targetProxy = 05AC7314189AB3E80060D03F /* PBXContainerItemProxy */;
 		};
+		05DD5CED189B7510006625BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Bluecap;
+			targetProxy = 05DD5CEC189B7510006625BC /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -425,11 +444,13 @@
 		05AC7321189AB3E80060D03F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Proximity/Proximity-Prefix.pch";
 				INFOPLIST_FILE = "Proximity/Proximity-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -438,11 +459,13 @@
 		05AC7322189AB3E80060D03F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Proximity/Proximity-Prefix.pch";
 				INFOPLIST_FILE = "Proximity/Proximity-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -509,6 +532,7 @@
 				05AC7322189AB3E80060D03F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05AC7323189AB3E80060D03F /* Build configuration list for PBXNativeTarget "ProximityTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +541,7 @@
 				05AC7325189AB3E80060D03F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
