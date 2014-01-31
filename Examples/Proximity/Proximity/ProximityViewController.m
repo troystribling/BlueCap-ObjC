@@ -6,9 +6,12 @@
 //  Copyright (c) 2014 gnos.us. All rights reserved.
 //
 
+#import <BlueCap/BlueCap.h>
 #import "ProximityViewController.h"
 
 @interface ProximityViewController ()
+
+- (void)toggelScan;
 
 @end
 
@@ -20,6 +23,20 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma Private
+
+- (void)toggelScan {
+    BlueCapCentralManager* central = [BlueCapCentralManager sharedInstance];
+    if (central.isScanning) {
+        
+    } else {
+        [central powerOn:^{
+            [central disconnectAllPeripherals];
+        } afterPowerOff:^{
+        }];
+    }
 }
 
 @end
