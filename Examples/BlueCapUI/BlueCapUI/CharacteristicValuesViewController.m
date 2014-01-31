@@ -38,12 +38,12 @@
 - (void)viewDidLoad {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationItem.title = self.characteristic.profile.name;
-//    self.progressView = [ProgressView progressView];
+    self.progressView = [ProgressView progressView];
     self.values = [NSDictionary dictionary];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//    [self refeshValues];
+    [self refeshValues];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -69,7 +69,7 @@
 #pragma mark - Private
 
 - (IBAction)refeshValues {
-//    [self.progressView progressWithMessage:@"Updating" inView:[[UIApplication sharedApplication] keyWindow]];
+    [self.progressView progressWithMessage:@"Updating" inView:[[UIApplication sharedApplication] keyWindow]];
     [self readData];
 }
 
@@ -95,7 +95,7 @@
 - (void)loadData:(NSDictionary*)__data {
     dispatch_sync(dispatch_get_main_queue(), ^{
         self.values = __data;
-//        [self.progressView remove];
+        [self.progressView remove];
         [self.tableView reloadData];
     });
 }

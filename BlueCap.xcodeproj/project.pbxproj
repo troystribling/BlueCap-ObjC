@@ -600,6 +600,7 @@
 		05AA66B917B868F90019AC3C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/Bluecap.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -614,6 +615,7 @@
 		05AA66BA17B868F90019AC3C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/Bluecap.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

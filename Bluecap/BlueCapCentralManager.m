@@ -73,10 +73,10 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     if (!_isScanning) {
         _isScanning = YES;
         DLog(@"Start Scanning");
-//        NSDictionary* options = @{CBCentralManagerScanOptionAllowDuplicatesKey:[NSNumber numberWithBool:NO]};
+        NSDictionary* options = @{CBCentralManagerScanOptionAllowDuplicatesKey:[NSNumber numberWithBool:NO]};
         self.afterPeripheralDiscoveredCallback = __afterPeripheralDiscoveredCallback;
         [self.discoveredPeripherals removeAllObjects];
-        [self.centralManager scanForPeripheralsWithServices:__uuids options:@{}];
+        [self.centralManager scanForPeripheralsWithServices:__uuids options:options];
     }
 }
 
