@@ -11,6 +11,7 @@
 
 @interface ProximityViewController ()
 
+- (void)powerOn;
 - (void)startScan;
 - (void)connectPeripheral:(BlueCapPeripheral*)peripheral;
 - (void)getServices:(BlueCapPeripheral*)peripheral;
@@ -32,16 +33,21 @@
 
 #pragma Private
 
-- (void)startScan {
+- (void)powerOn {
     BlueCapCentralManager* central = [BlueCapCentralManager sharedInstance];
     if (!central.isScanning) {
         [central powerOn:^{
-            [central startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
-                [self connectPeripheral:peripheral];
-            }];
+            [self startScan];
         } afterPowerOff:^{
         }];
     }
+}
+
+- (void)startScan {
+    BlueCapCentralManager* central = [BlueCapCentralManager sharedInstance];
+    [central startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
+        [self connectPeripheral:peripheral];
+    }];
 }
 
 - (void)connectPeripheral:(BlueCapPeripheral*)peripheral {
