@@ -66,10 +66,16 @@
 
 - (void)getCharacteritics:(BlueCapService*)service {
     [service discoverAllCharacteritics:^(NSArray* charcteristics) {
+        for (BlueCapCharacteristic* characteristic in charcteristics) {
+            [self getCharacteristicValues:characteristic];
+        }
     }];
 }
 
 - (void)getCharacteristicValues:(BlueCapCharacteristic*)characteristic {
+    [characteristic readData:^(BlueCapCharacteristic* rCharacteristic, NSError* error) {
+        DLog(@"Characteristic value: %@", [rCharacteristic stringValue]);
+    }];
 }
 
 @end
