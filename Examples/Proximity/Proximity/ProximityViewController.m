@@ -11,7 +11,11 @@
 
 @interface ProximityViewController ()
 
-- (void)toggelScan;
+- (void)startScan;
+- (void)connectPeripheral:(BlueCapPeripheral*)peripheral;
+- (void)getServices:(BlueCapPeripheral*)peripheral;
+- (void)getCharacteritics:(BlueCapService*)service;
+- (void)getCharacteristicValues:(BlueCapCharacteristic*)characteristic;
 
 @end
 
@@ -19,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self startScan];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,16 +32,38 @@
 
 #pragma Private
 
-- (void)toggelScan {
+- (void)startScan {
     BlueCapCentralManager* central = [BlueCapCentralManager sharedInstance];
-    if (central.isScanning) {
-        
-    } else {
+    if (!central.isScanning) {
         [central powerOn:^{
-            [central disconnectAllPeripherals];
+            [central startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
+                [self connectPeripheral:peripheral];
+            }];
         } afterPowerOff:^{
         }];
     }
+}
+
+- (void)connectPeripheral:(BlueCapPeripheral*)peripheral {
+    [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* cPeripheral, NSError* __error) {
+        [self getServices:cPeripheral];
+    }];
+}
+
+- (void)getServices:(BlueCapPeripheral*)peripheral {
+    [peripheral discoverAllServices:^(NSArray* services) {
+        for (BlueCapService* service in services) {
+            [self getCharacteritics:service];
+        }
+    }];
+}
+
+- (void)getCharacteritics:(BlueCapService*)service {
+    [service discoverAllCharacteritics:^(NSArray* charcteristics) {
+    }];
+}
+
+- (void)getCharacteristicValues:(BlueCapCharacteristic*)characteristic {
 }
 
 @end
