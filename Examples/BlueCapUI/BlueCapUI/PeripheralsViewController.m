@@ -20,7 +20,6 @@
 - (void)reloadTableData;
 - (void)setScanButton;
 - (void)enterForground;
-- (void)discoverPeripheral:(BlueCapPeripheral*)discoveredPeripheral;
 
 @end
 
@@ -82,8 +81,8 @@
         [central powerOn:^{
             [central disconnectAllPeripherals];
             [central startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
-                [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* connectPeripheral, NSError* error) {
-                    [self discoverPeripheral:connectPeripheral];
+                [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* __peripheral, NSError* error) {
+                    [peripheral discoverAllServicesAndCharacteristics:nil];
                     [self reloadTableData];
                 }];
                 [self reloadTableData];
@@ -109,22 +108,6 @@
 - (void)enterForground {
     [self setScanButton];
     [self.tableView reloadData];
-}
-
-- (void)discoverPeripheral:(BlueCapPeripheral*)discoveredPeripheral {
-    [discoveredPeripheral discoverAllServices:^(NSArray* discoveredServices) {
-        for (BlueCapService* service in discoveredServices) {
-            [service discoverAllCharacteritics:^(NSArray* discoveredCharacteristics) {
-                for (BlueCapCharacteristic* characteristic in discoveredCharacteristics) {
-                    if ([characteristic propertyEnabled:CBCharacteristicPropertyRead]) {
-                        [characteristic readData:^(BlueCapCharacteristic* readCharacteristic, NSError* error) {
-                            DLog(@"Characteristic Value: %@", [readCharacteristic stringValue]);
-                        }];
-                    }
-                }
-            }];
-        }
-    }];
 }
 
 #pragma mark - UITableViewDataSource

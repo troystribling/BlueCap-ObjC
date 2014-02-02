@@ -28,10 +28,11 @@
 @property(nonatomic, retain) NSMapTable*        discoveredObjects;
 @property(nonatomic, retain) NSDictionary*      advertisement;
 
-@property(nonatomic, copy) BlueCapPeripheralDisconnectCallback  afterPeriperialDisconnectCallback;
-@property(nonatomic, copy) BlueCapPeripheralConnectCallback     afterPeripheralConnectCallback;
-@property(nonatomic, copy) BlueCapServicesDiscoveredCallback    afterServicesDiscoveredCallback;
-@property(nonatomic, copy) BlueCapPeripheralRSSICallback        afterRSSIUpdateCallback;
+@property(nonatomic, copy) BlueCapPeripheralDisconnectCallback                          afterPeriperialDisconnectCallback;
+@property(nonatomic, copy) BlueCapPeripheralConnectCallback                             afterPeripheralConnectCallback;
+@property(nonatomic, copy) BlueCapServicesDiscoveredCallback                            afterServicesDiscoveredCallback;
+@property(nonatomic, copy) BlueCapPeripheralRSSICallback                                afterRSSIUpdateCallback;
+@property(nonatomic, copy) BlueCapPeripheralServiceAndCharacteristicDiscoveryCallback   afterServicesAndCharacteristicsDiscoveredCallback;
 
 @property(nonatomic, assign) BLueCapPeripheralConnectionError   currentError;
 @property(nonatomic, assign) NSInteger                          connectionSequenceNumber;
@@ -97,6 +98,29 @@
 - (void)discoverServices:(NSArray*)__services afterDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscoveredCallback {
     self.afterServicesDiscoveredCallback = __afterServicesDiscoveredCallback;
     [self.cbPeripheral discoverServices:__services];
+}
+
+- (void)discoverAllServicesAndCharacteristics:(BlueCapPeripheralServiceAndCharacteristicDiscoveryCallback)__afterDiscoveryCallback {
+    [self discoverAllServices:^(NSArray* discoveredServices) {
+        for (BlueCapService* service in discoveredServices) {
+            [service discoverAllCharacteritics:^(NSArray* discoveredCharacteristics) {
+                for (BlueCapCharacteristic* characteristic in discoveredCharacteristics) {
+                    if ([characteristic propertyEnabled:CBCharacteristicPropertyRead]) {
+                        [characteristic readData:^(BlueCapCharacteristic* __characteristic, NSError* error) {
+                            if (__afterDiscoveryCallback) {
+                                [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+                                    __afterDiscoveryCallback(self, error);
+                                }];
+                            }
+                        }];
+                    }
+                }
+            }];
+        }
+    }];
+}
+
+- (void)discoverServices:(NSArray*)__services andCharacteristics:(NSArray*)__characteristics afterDiscoveryCall:(BlueCapPeripheralServiceAndCharacteristicDiscoveryCallback)__afterDiscoveryCallback {
 }
 
 #pragma mark - RSSI Updates
@@ -209,14 +233,14 @@
 }
 
 - (void)timeoutConnection:(NSInteger)__sequenceNumber {
-    [[BlueCapCentralManager sharedInstance] delayCallback:PERIPHERAL_CONNECTION_TIMEOUT withBlock:^{
-        DLog(@"Sequence Number:%d, this sequence number: %d, state: %d", self.connectionSequenceNumber, __sequenceNumber, self.state);
-        if (self.state != CBPeripheralStateConnected && __sequenceNumber == self.connectionSequenceNumber) {
-            DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
-            self.currentError = BLueCapPeripheralConnectionErrorTimeout;
-            [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
-        }
-    }];
+//    [[BlueCapCentralManager sharedInstance] delayCallback:PERIPHERAL_CONNECTION_TIMEOUT withBlock:^{
+//        DLog(@"Sequence Number:%d, this sequence number: %d, state: %d", self.connectionSequenceNumber, __sequenceNumber, self.state);
+//        if (self.state == CBPeripheralStateDisconnected && __sequenceNumber == self.connectionSequenceNumber) {
+//            DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
+//            self.currentError = BLueCapPeripheralConnectionErrorTimeout;
+//            [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
+//        }
+//    }];
 }
 
 #pragma mark - CBPeripheralDelegate

@@ -34,6 +34,7 @@ typedef void(^BlueCapCharacteristicsDiscoveredCallback)(NSArray* __characteristi
 typedef void(^BlueCapDescriptorsDicoveredCallback)(NSArray* __descriptors);
 typedef void(^BlueCapPeripheralConnectCallback)(BlueCapPeripheral* __peripheral, NSError* __error);
 typedef void(^BlueCapPeripheralDisconnectCallback)(BlueCapPeripheral* __peripheral);
+typedef void(^BlueCapPeripheralServiceAndCharacteristicDiscoveryCallback)(BlueCapPeripheral* __peripheral, NSError* __error);
 
 #pragma mark - Profile
 typedef void(^BlueCapServiceProfileBlock)(BlueCapServiceProfile* __serviceProfile);

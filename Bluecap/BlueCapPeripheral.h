@@ -31,6 +31,9 @@ typedef enum {
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
 - (void)discoverServices:(NSArray*)__services afterDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
 
+- (void)discoverAllServicesAndCharacteristics:(BlueCapPeripheralServiceAndCharacteristicDiscoveryCallback)__afterDiscoveryCallback;
+- (void)discoverServices:(NSArray*)__services andCharacteristics:(NSArray*)__characteristics afterDiscoveryCall:(BlueCapPeripheralServiceAndCharacteristicDiscoveryCallback)__afterDiscoveryCallback;
+
 - (void)recieveRSSIUpdates:(BlueCapPeripheralRSSICallback)__afterRSSIUpdate;
 - (void)dropRSSIUpdates;
 

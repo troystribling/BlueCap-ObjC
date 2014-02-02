@@ -44,7 +44,9 @@
 - (void)didDisconnectPeripheral:(BlueCapPeripheral*)__peripheral {
     if (self.currentError == BLueCapPeripheralConnectionErrorNone) {
         if (self.afterPeriperialDisconnectCallback != nil) {
-            self.afterPeriperialDisconnectCallback(__peripheral);
+            [[BlueCapCentralManager sharedInstance] asyncCallback:^{
+                self.afterPeriperialDisconnectCallback(__peripheral);
+            }];
         }
     } else {
         if (self.autoReconnect) {
