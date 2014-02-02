@@ -8,7 +8,7 @@
 
 #import "BlueCapBlocks.h"
 
-@interface BlueCapCentralManager : NSObject <CBCentralManagerDelegate>
+@interface BlueCapCentralManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 @property(nonatomic, readonly) NSArray*     periphreals;
 @property(nonatomic, readonly) BOOL         isScanning;

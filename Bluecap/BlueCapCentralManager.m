@@ -24,6 +24,11 @@
 @property(nonatomic, copy) BlueCapCentralManagerCallback        afterPowerOnCallback;
 @property(nonatomic, copy) BlueCapPeripheralDiscoveredCallback  afterPeripheralDiscoveredCallback;
 
+// DEBUG
+@property(nonatomic, strong) CBPeripheral* cbPeripheral;
+- (void)connect:(CBPeripheral*)__peripheral;
+
+
 @end
 
 static BlueCapCentralManager* thisBlueCapCentralManager = nil;
@@ -46,7 +51,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
     if (self) {
         self.mainQueue = dispatch_queue_create("com.gnos.us.central.main", DISPATCH_QUEUE_SERIAL);
         self.callbackQueue = dispatch_queue_create("com.gnos.us.centrail.callback", DISPATCH_QUEUE_SERIAL);
-		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:self.mainQueue];
+		self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         self.discoveredPeripherals = [NSMutableDictionary dictionary];
         self.poweredOn = NO;
         self.connecting = NO;
@@ -115,38 +120,86 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 #pragma mark - CBCentralManagerDelegate
 
 - (void)centralManager:(CBCentralManager*)central didConnectPeripheral:(CBPeripheral*)peripheral {
-    BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
-    if (bcPeripheral != nil) {
-        DLog(@"Peripheral Connected: %@", peripheral.name);
-        [bcPeripheral didConnectPeripheral:bcPeripheral];
-    } else {
-        DLog(@"Peripheral '%@' not found", peripheral.name);
-    }
+// DEBUG
+//    BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
+//    if (bcPeripheral != nil) {
+//        DLog(@"Peripheral Connected: %@", peripheral.name);
+//        [bcPeripheral didConnectPeripheral:bcPeripheral];
+//    } else {
+//        DLog(@"Peripheral '%@' not found", peripheral.name);
+//    }
+    DLog(@"Peripheral connected: %@", peripheral.name);
+    [self.cbPeripheral discoverServices:nil];
+
+// END DEBUG
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
-    BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
-    if (bcPeripheral != nil) {
-        DLog(@"Peripheral Disconnected: %@", peripheral.name);
-        [bcPeripheral didDisconnectPeripheral:bcPeripheral];
-    } else {
-        DLog(@"Peripheral '%@' not found", peripheral.name);
-    }
+// DEBUG
+//    BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
+//    if (bcPeripheral != nil) {
+//        DLog(@"Peripheral Disconnected: %@", peripheral.name);
+//        [bcPeripheral didDisconnectPeripheral:bcPeripheral];
+//    } else {
+//        DLog(@"Peripheral '%@' not found", peripheral.name);
+//    }
+    DLog(@"Peripheral disconnected: %@", peripheral.name);
+    [self connect:peripheral];
+
+// END DEBUG
 }
 
 - (void)centralManager:(CBCentralManager*)central didDiscoverPeripheral:(CBPeripheral*)peripheral advertisementData:(NSDictionary*)advertisements RSSI:(NSNumber*)RSSI {
-    if ([self.discoveredPeripherals objectForKey:peripheral] == nil) {
-        BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
-        bcperipheral.advertisement = advertisements;
-        DLog(@"Periphreal Discovered: %@, %@\n%@", bcperipheral.name, [peripheral.identifier UUIDString], bcperipheral.advertisement);
-        [self.discoveredPeripherals setObject:bcperipheral forKey:peripheral];
-        if (self.afterPeripheralDiscoveredCallback != nil) {
-            [self asyncCallback:^{
-                self.afterPeripheralDiscoveredCallback(bcperipheral, RSSI);
-            }];
-        }
+// DEBUG
+//    if ([self.discoveredPeripherals objectForKey:peripheral] == nil) {
+//        BlueCapPeripheral* bcperipheral = [BlueCapPeripheral withCBPeripheral:peripheral];
+//        bcperipheral.advertisement = advertisements;
+//        DLog(@"Periphreal Discovered: %@, %@\n%@", bcperipheral.name, [peripheral.identifier UUIDString], bcperipheral.advertisement);
+//        [self.discoveredPeripherals setObject:bcperipheral forKey:peripheral];
+//        if (self.afterPeripheralDiscoveredCallback != nil) {
+//            [self asyncCallback:^{
+//                self.afterPeripheralDiscoveredCallback(bcperipheral, RSSI);
+//            }];
+//        }
+//    }
+    DLog(@"Periphreal discovered: %@, %@\n%@", peripheral.name, [peripheral.identifier UUIDString], advertisements);
+    [self connect:peripheral];
+// END DEBUG
+}
+
+// DEBUG
+- (void)connect:(CBPeripheral*)__peripheral {
+    self.cbPeripheral = __peripheral;
+    self.cbPeripheral.delegate = self;
+    [self.centralManager connectPeripheral:self.cbPeripheral options:nil];
+}
+
+- (void)peripheral:(CBPeripheral*)peripheral didDiscoverServices:(NSError*)error {
+    for (CBService* service in peripheral.services) {
+        NSLog(@"Discovered Service: %@", [service.UUID stringValue]);
+        [self.cbPeripheral discoverCharacteristics:nil forService:service];
     }
 }
+
+- (void)peripheral:(CBPeripheral*)peripheral didDiscoverIncludedServicesForService:(CBService*)service error:(NSError*)error {
+    DLog(@"Discovered %lu Included Services", (unsigned long)[service.includedServices count]);
+}
+
+- (void)peripheral:(CBPeripheral*)peripheral didDiscoverCharacteristicsForService:(CBService*)service error:(NSError*)error {
+    for (CBCharacteristic* characteritc in service.characteristics) {
+        NSLog(@"Discovered chracteristic: %@", [characteritc.UUID stringValue]);
+        [self.cbPeripheral readValueForCharacteristic:characteritc];
+    }
+}
+
+- (void)peripheral:(CBPeripheral*)peripheral didUpdateValueForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {
+    if (error) {
+        DLog(@"Error: %@", [error localizedDescription]);
+    } else {
+        DLog(@"Update value for characteristic: %@", [characteristic.UUID stringValue]);
+    }
+}
+// END DEBUG
 
 - (void)centralManager:(CBCentralManager*)central didFailToConnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
 }
@@ -179,12 +232,16 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 		}
 		case CBCentralManagerStatePoweredOn: {
             DLog(@"CBCentralManager Powered ON");
-            self.poweredOn = YES;
-            if (self.afterPowerOnCallback) {
-                [self asyncCallback:^{
-                    self.afterPowerOnCallback();
-                }];
-            }
+// DEBUG
+//            self.poweredOn = YES;
+//            if (self.afterPowerOnCallback) {
+//                [self asyncCallback:^{
+//                    self.afterPowerOnCallback();
+//                }];
+//            }
+            [self.centralManager scanForPeripheralsWithServices:nil options:nil];
+// END DEBUG
+
 			break;
 		}
 		case CBCentralManagerStateResetting: {
