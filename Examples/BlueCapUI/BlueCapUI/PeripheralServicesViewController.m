@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    [self.peripheral discoverAllServices:^(NSArray* __services) {
+    [self.peripheral discoverAllServices:^(NSArray* discoveredServices) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
