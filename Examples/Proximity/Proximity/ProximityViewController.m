@@ -52,7 +52,7 @@
 
 - (void)connectPeripheral:(BlueCapPeripheral*)peripheral {
     [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* cPeripheral, NSError* __error) {
-//        [self getServices:cPeripheral];
+        [self getServices:cPeripheral];
     }];
 }
 
@@ -74,7 +74,11 @@
 
 - (void)getCharacteristicValues:(BlueCapCharacteristic*)characteristic {
     [characteristic readData:^(BlueCapCharacteristic* rCharacteristic, NSError* error) {
-        DLog(@"Characteristic value: %@", [rCharacteristic stringValue]);
+        if (error) {
+            DLog(@"Characteristic value error: %@", [error localizedDescription]);
+        } else {
+            DLog(@"Characteristic value: %@", [rCharacteristic stringValue]);
+        }
     }];
 }
 

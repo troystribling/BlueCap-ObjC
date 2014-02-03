@@ -146,8 +146,8 @@
     if (self.cbPeripheral.state != CBPeripheralStateConnected) {
         self.afterPeripheralConnectCallback = __afterPeripheralConnect;
         [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:self.cbPeripheral options:nil];
-//        self.connectionSequenceNumber = 0;
-//        [self timeoutConnection:self.connectionSequenceNumber];
+        self.connectionSequenceNumber = 0;
+        [self timeoutConnection:self.connectionSequenceNumber];
     }
 }
 

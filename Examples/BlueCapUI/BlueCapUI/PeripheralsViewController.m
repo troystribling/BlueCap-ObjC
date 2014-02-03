@@ -82,7 +82,6 @@
             [central disconnectAllPeripherals];
             [central startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
                 [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* __peripheral, NSError* error) {
-                    [peripheral discoverAllServicesAndCharacteristics:nil];
                     [self reloadTableData];
                 }];
                 [self reloadTableData];
