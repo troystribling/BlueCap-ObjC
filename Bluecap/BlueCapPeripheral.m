@@ -28,7 +28,7 @@
 @property(nonatomic, retain) NSMapTable*        discoveredObjects;
 @property(nonatomic, retain) NSDictionary*      advertisement;
 
-@property(nonatomic, copy) BlueCapPeripheralDisconnectCallback                          afterPeriperialDisconnectCallback;
+@property(nonatomic, copy) BlueCapPeripheralDisconnectCallback                          afterPeripherialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralConnectCallback                             afterPeripheralConnectCallback;
 @property(nonatomic, copy) BlueCapServicesDiscoveredCallback                            afterServicesDiscoveredCallback;
 @property(nonatomic, copy) BlueCapPeripheralRSSICallback                                afterRSSIUpdateCallback;
@@ -120,7 +120,9 @@
     }];
 }
 
-- (void)discoverServices:(NSArray*)__services andCharacteristics:(NSArray*)__characteristics afterDiscoveryCall:(BlueCapPeripheralServiceAndCharacteristicDiscoveryCallback)__afterDiscoveryCallback {
+- (void)discoverServices:(NSArray*)__services
+      andCharacteristics:(NSArray*)__characteristics
+      afterDiscoveryCall:(BlueCapPeripheralServiceAndCharacteristicDiscoveryCallback)__afterDiscoveryCallback {
 }
 
 #pragma mark - RSSI Updates
@@ -146,20 +148,20 @@
     if (self.cbPeripheral.state != CBPeripheralStateConnected) {
         self.afterPeripheralConnectCallback = __afterPeripheralConnect;
         [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:self.cbPeripheral options:nil];
-        self.connectionSequenceNumber = 0;
+        self.connectionSequenceNumber++;
         [self timeoutConnection:self.connectionSequenceNumber];
     }
 }
 
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect afterPeripheralDisconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect {
-    self.afterPeriperialDisconnectCallback = __afterPeripheralDisconnect;
+    self.afterPeripherialDisconnectCallback = __afterPeripheralDisconnect;
     [self connect:__afterPeripheralConnect];
 }
 
 - (void)connectAndReconnectOnDisconnect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
     if (self.cbPeripheral.state != CBPeripheralStateConnected) {
         self.autoReconnect = YES;
-        self.afterPeriperialDisconnectCallback = ^(BlueCapPeripheral* peripheral) {
+        self.afterPeripherialDisconnectCallback = ^(BlueCapPeripheral* peripheral) {
             [[BlueCapCentralManager sharedInstance] delayCallback:RECONNECT_DELAY withBlock:^{
                 if (peripheral.connectionSequenceNumber < MAX_FAILED_RECONNECTS) {
                     DLog(@"Attempting reconnect sequence number: %d", peripheral.connectionSequenceNumber);
@@ -183,7 +185,7 @@
     if (self.cbPeripheral.state == CBPeripheralStateConnected) {
         self.autoReconnect = NO;
         self.currentError = BLueCapPeripheralConnectionErrorNone;
-        self.afterPeriperialDisconnectCallback = __afterPeripheralDisconnect;
+        self.afterPeripherialDisconnectCallback = __afterPeripheralDisconnect;
         [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
     }
 }
@@ -235,7 +237,7 @@
 - (void)timeoutConnection:(NSInteger)__sequenceNumber {
     [[BlueCapCentralManager sharedInstance] delayCallback:PERIPHERAL_CONNECTION_TIMEOUT withBlock:^{
         DLog(@"Sequence Number:%d, this sequence number: %d, state: %d", self.connectionSequenceNumber, __sequenceNumber, self.state);
-        if (self.state == CBPeripheralStateDisconnected && __sequenceNumber == self.connectionSequenceNumber) {
+        if (self.state != CBPeripheralStateConnected && __sequenceNumber == self.connectionSequenceNumber) {
             DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
             self.currentError = BLueCapPeripheralConnectionErrorTimeout;
             [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];

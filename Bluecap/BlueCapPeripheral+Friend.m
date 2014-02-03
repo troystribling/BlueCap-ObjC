@@ -65,9 +65,7 @@
 }
 
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral {
-    [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-        self.connectionSequenceNumber = 0;
-    }];
+    self.connectionSequenceNumber = 0;
     if (self.afterPeripheralConnectCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.afterPeripheralConnectCallback(__peripheral, nil);
@@ -79,14 +77,14 @@
     NSError* errorObj = nil;
     switch (self.currentError) {
         case BLueCapPeripheralConnectionErrorDisconnected:
-            [NSError errorWithDomain:@"BlueCap"
-                                code:500
-                            userInfo:@{NSLocalizedDescriptionKey: @"Disconnected"}];
+            errorObj = [NSError errorWithDomain:@"BlueCap"
+                                           code:500
+                                       userInfo:@{NSLocalizedDescriptionKey: @"Disconnected"}];
             break;
         case BLueCapPeripheralConnectionErrorTimeout:
-            [NSError errorWithDomain:@"BlueCap"
-                                code:408
-                            userInfo:@{NSLocalizedDescriptionKey: @"Connection Timeout"}];
+            errorObj = [NSError errorWithDomain:@"BlueCap"
+                                           code:408
+                                       userInfo:@{NSLocalizedDescriptionKey: @"Connection Timeout"}];
             break;
         default:
             break;
