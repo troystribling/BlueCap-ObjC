@@ -18,12 +18,13 @@
 @interface BlueCapCharacteristic () {
 }
 
-@property(nonatomic, retain) CBCharacteristic*                     cbCharacteristic;
+@property(nonatomic, retain) CBCharacteristic*                    cbCharacteristic;
 @property(nonatomic, retain) NSMutableArray*                      discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*                      service;
 @property(nonatomic, retain) BlueCapCharacteristicProfile*        profile;
-@property(nonatomic, assign) NSInteger                            updateSequenceNumber;
+@property(nonatomic, assign) NSInteger                            timeoutSequenceNumber;
 @property(nonatomic, assign) BOOL                                 updateReceived;
+@property(nonatomic, assign) BOOL                                 writeReceived;
 
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterReadCallback;
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterWriteCallback;
@@ -31,7 +32,7 @@
 @property(nonatomic, copy) BlueCapCharacteristicNotificationStateDidChange  notificationStateDidChangeCallback;
 
 
-- (void)timeoutUpdate:(NSInteger)__sequenceNumber;
+- (void)timeout:(NSInteger)__sequenceNumber check:(BOOL)__readOrWrite;
 
 @end
 
@@ -165,6 +166,9 @@
     if ([self propertyEnabled:CBCharacteristicPropertyRead]) {
         self.afterReadCallback = __afterReadCallback;
         [self.service.peripheral.cbPeripheral readValueForCharacteristic:self.cbCharacteristic];
+        self.updateReceived = NO;
+        self.timeoutSequenceNumber++;
+        [self timeout:self.timeoutSequenceNumber check:YES];
     } else {
         [NSException raise:@"Read not supported" format:@"characteristic %@ does not support read", [self.UUID stringValue]];
     }
@@ -174,6 +178,8 @@
     if ([self propertyEnabled:CBCharacteristicPropertyWrite]) {
         self.afterWriteCallback = __afterWriteCallback;
         [self.service.peripheral.cbPeripheral writeValue:__data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithResponse];
+        self.timeoutSequenceNumber++;
+        [self timeout:self.timeoutSequenceNumber check:NO];
     } else {
         [NSException raise:@"Write with response not supported" format:@"characteristic %@ does not support write with response", [self.UUID stringValue]];
     }
@@ -182,6 +188,7 @@
 - (void)writeData:(NSData*)__data {
     if ([self propertyEnabled:CBCharacteristicPropertyWriteWithoutResponse]) {
         [self.service.peripheral.cbPeripheral writeValue:__data forCharacteristic:self.cbCharacteristic type:CBCharacteristicWriteWithoutResponse];
+        self.writeReceived = NO;
     } else {
         [NSException raise:@"Write without response not supported" format:@"characteristic %@ does not support write without response", [self.UUID stringValue]];
     }
@@ -225,11 +232,20 @@
 
 #pragma mark - BlueCapCharacteristic PrivateAPI
 
-- (void)timeoutUpdate:(NSInteger)__sequenceNumber {
+- (void)timeout:(NSInteger)__sequenceNumber check:(BOOL)__readOrWrite {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHARACTERISTIC_UPDATE_TIMEOUT * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
-        DLog(@"Sequence Number:%d, this sequence number: %d", self.updateSequenceNumber, __sequenceNumber);
-        if (self.updateSequenceNumber == __sequenceNumber && !self.updateReceived) {
+        DLog(@"Sequence Number:%d, this sequence number: %d", self.timeoutSequenceNumber, __sequenceNumber);
+        if (__readOrWrite) {
+            if (self.timeoutSequenceNumber == __sequenceNumber && !self.updateReceived) {
+                DLog(@"Read timeout");
+                [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.service.peripheral.cbPeripheral];
+            }
+        } else {
+            if (self.timeoutSequenceNumber == __sequenceNumber && !self.writeReceived) {
+                DLog(@"Write timeout");
+                [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.service.peripheral.cbPeripheral];
+            }
         }
     });
 }

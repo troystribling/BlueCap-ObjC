@@ -21,7 +21,9 @@
 @dynamic afterReadCallback;
 @dynamic afterDescriptorsDiscoveredCallback;
 @dynamic notificationStateDidChangeCallback;
-@dynamic updateSequenceNumber;
+@dynamic timeoutSequenceNumber;
+@dynamic updateReceived;
+@dynamic writeReceived;
 
 + (BlueCapCharacteristic*)withCBCharacteristic:(CBCharacteristic*)__cbCharacteristics  andService:(BlueCapService*)__service {
     return [[BlueCapCharacteristic alloc] initWithCBCharacteristic:__cbCharacteristics andService:__service];
@@ -33,7 +35,9 @@
         self.cbCharacteristic = __cbCharacteristic;
         self.service = __service;
         self.discoveredDiscriptors = [NSMutableArray array];
-        self.updateSequenceNumber = 0;
+        self.timeoutSequenceNumber = 0;
+        self.updateReceived = NO;
+        self.writeReceived = NO;
     }
     return self;
 }
@@ -68,6 +72,12 @@
             self.afterDescriptorsDiscoveredCallback(__descriptors);
         }];
     }
+}
+
+- (NSError*)error {
+    return [NSError errorWithDomain:@"BlueCap"
+                               code:408
+                           userInfo:@{NSLocalizedDescriptionKey: @"Connection Timeout"}];
 }
 
 @end

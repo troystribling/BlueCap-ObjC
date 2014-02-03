@@ -17,7 +17,9 @@
 @property(nonatomic, retain) NSMutableArray*                    discoveredDiscriptors;
 @property(nonatomic, retain) BlueCapService*                    service;
 @property(nonatomic, retain) BlueCapCharacteristicProfile*      profile;
-@property(nonatomic, assign) NSInteger                          updateSequenceNumber;
+@property(nonatomic, assign) NSInteger                          timeoutSequenceNumber;
+@property(nonatomic, assign) BOOL                               updateReceived;
+@property(nonatomic, assign) BOOL                               writeReceived;
 
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterReadCallback;
 @property(nonatomic, copy) BlueCapCharacteristicDataCallback                afterWriteCallback;
