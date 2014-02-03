@@ -233,14 +233,14 @@
 }
 
 - (void)timeoutConnection:(NSInteger)__sequenceNumber {
-//    [[BlueCapCentralManager sharedInstance] delayCallback:PERIPHERAL_CONNECTION_TIMEOUT withBlock:^{
-//        DLog(@"Sequence Number:%d, this sequence number: %d, state: %d", self.connectionSequenceNumber, __sequenceNumber, self.state);
-//        if (self.state == CBPeripheralStateDisconnected && __sequenceNumber == self.connectionSequenceNumber) {
-//            DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
-//            self.currentError = BLueCapPeripheralConnectionErrorTimeout;
-//            [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
-//        }
-//    }];
+    [[BlueCapCentralManager sharedInstance] delayCallback:PERIPHERAL_CONNECTION_TIMEOUT withBlock:^{
+        DLog(@"Sequence Number:%d, this sequence number: %d, state: %d", self.connectionSequenceNumber, __sequenceNumber, self.state);
+        if (self.state == CBPeripheralStateDisconnected && __sequenceNumber == self.connectionSequenceNumber) {
+            DLog(@"PERIPHERAL '%@' TIMEOUT", self.name);
+            self.currentError = BLueCapPeripheralConnectionErrorTimeout;
+            [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
+        }
+    }];
 }
 
 #pragma mark - CBPeripheralDelegate
