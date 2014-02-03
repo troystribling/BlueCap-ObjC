@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self startScan];
+    [self powerOn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,7 +52,7 @@
 
 - (void)connectPeripheral:(BlueCapPeripheral*)peripheral {
     [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* cPeripheral, NSError* __error) {
-        [self getServices:cPeripheral];
+//        [self getServices:cPeripheral];
     }];
 }
 
