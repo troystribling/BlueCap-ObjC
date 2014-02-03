@@ -98,11 +98,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 - (void)powerOn:(BlueCapCentralManagerCallback)__afterPowerOnCallback {
     self.afterPowerOnCallback = __afterPowerOnCallback;
     [self syncMain:^{
-        if (self.poweredOn && self.afterPowerOnCallback) {
-            [self asyncCallback:^{
-                self.afterPowerOnCallback();
-            }];
-        }
+        ASYNC_CALLBACK(self.poweredOn && self.afterPowerOnCallback, self.afterPowerOnCallback())
     }];
 }
 

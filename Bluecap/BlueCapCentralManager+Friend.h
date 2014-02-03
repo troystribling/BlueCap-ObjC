@@ -8,6 +8,13 @@
 
 #import "BlueCapCentralManager.h"
 
+#define ASYNC_CALLBACK(X, Y) if (X != nil) {                                                 \
+                                 [[BlueCapCentralManager sharedInstance] asyncCallback:^{    \
+                                     Y;                                                      \
+                                 }];                                                         \
+                             }
+
+
 @interface BlueCapCentralManager (Friend)
 
 @property(nonatomic, retain) CBCentralManager*              centralManager;
