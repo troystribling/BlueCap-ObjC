@@ -235,7 +235,7 @@
 
 - (void)timeout:(NSInteger)__sequenceNumber check:(BOOL)__readOrWrite {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHARACTERISTIC_UPDATE_TIMEOUT * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+    [[BlueCapCentralManager sharedInstance] delayCallback:popTime withBlock:^{
         DLog(@"Sequence Number:%d, this sequence number: %d", self.timeoutSequenceNumber, __sequenceNumber);
         if (__readOrWrite) {
             if (self.timeoutSequenceNumber == __sequenceNumber && !self.updateReceived) {
@@ -250,7 +250,7 @@
                 [self didWriteValue:[self error]];
             }
         }
-    });
+    }];
 }
 
 - (NSError*)error {
