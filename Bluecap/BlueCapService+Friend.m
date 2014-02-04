@@ -36,11 +36,7 @@
 }
 
 - (void)didDiscoverCharacterics:(NSArray*)__discoveredCharacteristics {
-    if (self.afterChracteristicsDiscoveredCallback) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterChracteristicsDiscoveredCallback(__discoveredCharacteristics);
-        }];
-    }
+    ASYNC_CALLBACK(self.afterChracteristicsDiscoveredCallback, self.afterChracteristicsDiscoveredCallback(__discoveredCharacteristics))
 }
 
 @end

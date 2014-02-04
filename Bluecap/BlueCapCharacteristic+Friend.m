@@ -44,36 +44,20 @@
 
 - (void)didUpdateValue:(NSError*)error {
     self.updateReceived = YES;
-    if (self.afterReadCallback != nil) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterReadCallback(self, error);
-        }];
-    }
+    ASYNC_CALLBACK(self.afterReadCallback, self.afterReadCallback(self, error))
 }
 
 - (void)didUpdateNotificationState:(NSError*)error {
-    if (self.notificationStateDidChangeCallback) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.notificationStateDidChangeCallback();
-        }];
-    }
+    ASYNC_CALLBACK(self.notificationStateDidChangeCallback, self.notificationStateDidChangeCallback())
 }
 
 - (void)didWriteValue:(NSError*)error{
     self.writeReceived = YES;
-    if (self.afterWriteCallback != nil) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterWriteCallback(self, error);
-        }];
-    }
+    ASYNC_CALLBACK(self.afterWriteCallback, self.afterWriteCallback(self, error))
 }
 
 - (void)didDiscoverDescriptors:(NSArray*)__descriptors {
-    if (self.afterDescriptorsDiscoveredCallback) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterDescriptorsDiscoveredCallback(__descriptors);
-        }];
-    }
+    ASYNC_CALLBACK(self.afterDescriptorsDiscoveredCallback, self.afterDescriptorsDiscoveredCallback(__descriptors))
 }
 
 @end

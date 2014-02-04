@@ -8,6 +8,12 @@
 
 #import "BlueCapPeripheralManager.h"
 
+#define ASYNC_CALLBACK(X, Y) if (X != nil) {                                                    \
+                                 [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{    \
+                                    Y;                                                          \
+                                 }];                                                            \
+                             }
+
 @interface BlueCapPeripheralManager (Friend)
 
 @property(nonatomic, retain) CBPeripheralManager*           cbPeripheralManager;

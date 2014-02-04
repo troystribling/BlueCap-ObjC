@@ -104,9 +104,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
         self.afterServiceRemovedCallback = __afterServiceRemovedCallback;
         [self.configuredServices removeObjectForKey:__service.UUID];
         [self.cbPeripheralManager removeService:__service.cbService];
-        [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
-            self.afterServiceRemovedCallback();
-        }];
+        ASYNC_CALLBACK(self.afterServiceRemovedCallback, self.afterServiceRemovedCallback())
     } else {
         [NSException raise:@"Peripheral Manager is advertising" format:@"cannot remove service"];
     }
@@ -117,9 +115,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
         self.afterServiceRemovedCallback = __afterServiceRemovedCallback;
         [self.configuredServices removeAllObjects];
         [self.cbPeripheralManager removeAllServices];
-        [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
-            self.afterServiceRemovedCallback();
-        }];
+        ASYNC_CALLBACK(self.afterServiceRemovedCallback, self.afterServiceRemovedCallback())
     } else {
         [NSException raise:@"Peripheral Manager is advertising" format:@"cannot remove service"];
     }
@@ -130,11 +126,7 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
 - (void)powerOn:(BlueCapPeripheralManagerCallback)__afterPowerOnCallback {
     self.afterPowerOnCallback = __afterPowerOnCallback;
     [self syncMain:^{
-        if (self.poweredOn && self.afterPowerOnCallback) {
-            [self asyncCallback:^{
-                self.afterPowerOnCallback();
-            }];
-        }
+        ASYNC_CALLBACK(self.poweredOn && self.afterPowerOnCallback, self.afterPowerOnCallback())
     }];
 }
 
@@ -153,10 +145,8 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
             [self waitForAdvertisingToStop];
         });
     } else {
-        [self asyncCallback:^{
-            DLog(@"Peripheral Manager did stop advertising");
-            self.afterStoppedAdvertisingCallback();
-        }];
+        DLog(@"Peripheral Manager did stop advertising");
+        ASYNC_CALLBACK(self.afterStoppedAdvertisingCallback, self.afterStoppedAdvertisingCallback())
     }
 }
 
@@ -167,20 +157,12 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
         case CBPeripheralManagerStatePoweredOn: {
             DLog(@"CBPeripheralManager PoweredOn");
             self.poweredOn = YES;
-            if (self.afterPowerOnCallback) {
-                [self asyncCallback:^{
-                    self.afterPowerOnCallback();
-                }];
-            }
+            ASYNC_CALLBACK(self.afterPowerOnCallback, self.afterPowerOnCallback())
             break;
         }
         case CBPeripheralManagerStatePoweredOff: {
             self.poweredOn = NO;
-            if (self.afterPowerOffCallback) {
-                [self asyncCallback:^{
-                    self.afterPowerOffCallback();
-                }];
-            }
+            ASYNC_CALLBACK(self.afterPowerOffCallback, self.afterPowerOffCallback())
             break;
         }
         case CBPeripheralManagerStateResetting: {
@@ -204,16 +186,12 @@ static BlueCapPeripheralManager* thisBlueCapPeripheralManager = nil;
     for (CBMutableCharacteristic* characteristic in service.characteristics) {
         DLog(@"Peripheral Manager did add characteristic: %@", [characteristic.UUID stringValue]);
     }
-    [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
-        self.afterServiceAddedCallback(bcService, error);
-    }];
+    ASYNC_CALLBACK(self.afterServiceAddedCallback, self.afterServiceAddedCallback(bcService, error))
 }
 
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager*)peripheral error:(NSError*)error {
     DLog(@"Peripheral Manager did start advertising");
-    [[BlueCapPeripheralManager sharedInstance] asyncCallback:^{
-        self.afterStartedAdvertisingCallback();
-    }];
+    ASYNC_CALLBACK(self.afterStartedAdvertisingCallback, self.afterStartedAdvertisingCallback())
 }
 
 - (void)peripheralManager:(CBPeripheralManager*)peripheral central:(CBCentral*)central didSubscribeToCharacteristic:(CBCharacteristic*)characteristic {

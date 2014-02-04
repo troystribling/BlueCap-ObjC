@@ -107,11 +107,7 @@
                 for (BlueCapCharacteristic* characteristic in discoveredCharacteristics) {
                     if ([characteristic propertyEnabled:CBCharacteristicPropertyRead]) {
                         [characteristic readData:^(BlueCapCharacteristic* __characteristic, NSError* error) {
-                            if (__afterDiscoveryCallback) {
-                                [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-                                    __afterDiscoveryCallback(self, error);
-                                }];
-                            }
+                            ASYNC_CALLBACK(__afterDiscoveryCallback, __afterDiscoveryCallback(self, error))
                         }];
                     }
                 }
@@ -261,11 +257,7 @@
             bcService.profile = serviceProfile;
         }
     }
-    if (self.afterServicesDiscoveredCallback) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterServicesDiscoveredCallback(self.discoveredServices);
-        }];
-    }
+    ASYNC_CALLBACK(self.afterServicesDiscoveredCallback, self.afterServicesDiscoveredCallback(self.discoveredServices))
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverIncludedServicesForService:(CBService*)service error:(NSError*)error {
@@ -286,11 +278,7 @@
             if (characteristicProfile) {
                 DLog(@"Characteristic Profile Found: %@", characteristicProfile.name);
                 bcCharacteristic.profile = characteristicProfile;
-                if (characteristicProfile.afterDiscoveredCallback) {
-                    [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-                        bcCharacteristic.profile.afterDiscoveredCallback(bcCharacteristic);
-                    }];
-                }
+                ASYNC_CALLBACK(characteristicProfile.afterDiscoveredCallback, bcCharacteristic.profile.afterDiscoveredCallback(bcCharacteristic))
             }
         }
     }
@@ -343,11 +331,7 @@
 }
 
 - (void)peripheralDidUpdateRSSI:(CBPeripheral*)peripheral error:(NSError*)__error {
-    if (self.afterRSSIUpdateCallback != nil) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterRSSIUpdateCallback(self, __error);
-        }];
-    }
+    ASYNC_CALLBACK(self.afterRSSIUpdateCallback, self.afterRSSIUpdateCallback(self, __error))
 }
 
 @end

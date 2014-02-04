@@ -14,7 +14,6 @@
                                  }];                                                         \
                              }
 
-
 @interface BlueCapCentralManager (Friend)
 
 @property(nonatomic, retain) CBCentralManager*              centralManager;

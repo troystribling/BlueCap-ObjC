@@ -30,19 +30,11 @@
 }
 
 - (void)didUpdateValue:(NSError*)error {
-    if (self.afterReadCallback != nil) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterReadCallback(self, error);
-        }];
-    }
+    ASYNC_CALLBACK(self.afterReadCallback, self.afterReadCallback(self, error))
 }
 
 - (void)didWriteValue:(NSError*)error{
-    if (self.afterWriteCallback != nil) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterWriteCallback(self, error);
-        }];
-    }
+    ASYNC_CALLBACK(self.afterWriteCallback, self.afterWriteCallback(self, error))
 }
 
 @end

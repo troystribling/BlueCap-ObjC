@@ -136,11 +136,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
         bcperipheral.advertisement = advertisements;
         DLog(@"Periphreal Discovered: %@, %@\n%@", bcperipheral.name, [peripheral.identifier UUIDString], bcperipheral.advertisement);
         [self.discoveredPeripherals setObject:bcperipheral forKey:peripheral];
-        if (self.afterPeripheralDiscoveredCallback != nil) {
-            [self asyncCallback:^{
-                self.afterPeripheralDiscoveredCallback(bcperipheral, RSSI);
-            }];
-        }
+        ASYNC_CALLBACK(self.afterPeripheralDiscoveredCallback, self.afterPeripheralDiscoveredCallback(bcperipheral, RSSI))
     }
 }
 
@@ -157,12 +153,8 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 	switch ([central state]) {
 		case CBCentralManagerStatePoweredOff: {
             DLog(@"CBCentralManager Powered OFF");
-            if (self.afterPowerOffCallback) {
-                self.poweredOn = NO;
-                [self asyncCallback:^{
-                    self.afterPowerOffCallback();
-                }];
-            }
+            self.poweredOn = NO;
+            ASYNC_CALLBACK(self.afterPowerOffCallback, self.afterPowerOffCallback())
 			break;
 		}
 		case CBCentralManagerStateUnauthorized: {
@@ -176,11 +168,7 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 		case CBCentralManagerStatePoweredOn: {
             DLog(@"CBCentralManager Powered ON");
             self.poweredOn = YES;
-            if (self.afterPowerOnCallback) {
-                [self asyncCallback:^{
-                    self.afterPowerOnCallback();
-                }];
-            }
+            ASYNC_CALLBACK(self.afterPowerOnCallback, self.afterPowerOnCallback())
 			break;
 		}
 		case CBCentralManagerStateResetting: {

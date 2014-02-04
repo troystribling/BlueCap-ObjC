@@ -43,34 +43,18 @@
 
 - (void)didDisconnectPeripheral:(BlueCapPeripheral*)__peripheral {
     if (self.currentError == BLueCapPeripheralConnectionErrorNone) {
-        if (self.afterPeripherialDisconnectCallback != nil) {
-            [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-                self.afterPeripherialDisconnectCallback(__peripheral);
-            }];
-        }
+        ASYNC_CALLBACK(self.afterPeripherialDisconnectCallback, self.afterPeripherialDisconnectCallback(__peripheral))
     } else {
         if (self.autoReconnect) {
-            if (self.afterPeripherialDisconnectCallback != nil) {
-                [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-                    self.afterPeripherialDisconnectCallback(__peripheral);
-                }];
-            }
+            ASYNC_CALLBACK(self.afterPeripherialDisconnectCallback, self.afterPeripherialDisconnectCallback(__peripheral))
         }
-        if (self.afterPeripheralConnectCallback != nil) {
-            [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-                self.afterPeripheralConnectCallback(__peripheral, [self error]);
-            }];
-        }
+        ASYNC_CALLBACK(self.afterPeripheralConnectCallback, self.afterPeripheralConnectCallback(__peripheral, [self error]))
     }
 }
 
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral {
     self.connectionSequenceNumber = 0;
-    if (self.afterPeripheralConnectCallback != nil) {
-        [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-            self.afterPeripheralConnectCallback(__peripheral, nil);
-        }];
-    }
+    ASYNC_CALLBACK(self.afterPeripheralConnectCallback, self.afterPeripheralConnectCallback(__peripheral, nil))
 }
 
 - (NSError*)error {
