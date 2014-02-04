@@ -41,7 +41,7 @@
         [self.characteristic writeObject:value afterWriteCall:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (__error) {
-                    [UIAlertView showMessage:@"Unknown Error Occured"];
+                    [UIAlertView alertOnError:__error];
                 }
                 [self.navigationController popViewControllerAnimated:YES];
             });

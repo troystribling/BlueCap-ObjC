@@ -17,7 +17,7 @@
 @property(nonatomic, retain) NSMapTable*        discoveredObjects;
 @property(nonatomic, retain) NSDictionary*      advertisement;
 
-@property(nonatomic, copy) BlueCapPeripheralDisconnectCallback      afterPeriperialDisconnectCallback;
+@property(nonatomic, copy) BlueCapPeripheralDisconnectCallback      afterPeripherialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralConnectCallback         afterPeripheralConnectCallback;
 
 @property(nonatomic, assign) BLueCapPeripheralConnectionError   currentError;

@@ -10,7 +10,7 @@
 #import "BlueCapPeripheral+Friend.h"
 #import "BlueCapService+Friend.h"
 #import "BlueCapCharacteristicProfile+Friend.h"
-#import "BlueCapCharacteristic.h"
+#import "BlueCapCharacteristic+Friend.h"
 #import "CBUUID+StringValue.h"
 
 #define CHARACTERISTIC_UPDATE_TIMEOUT   10.0
@@ -33,6 +33,7 @@
 
 
 - (void)timeout:(NSInteger)__sequenceNumber check:(BOOL)__readOrWrite;
+- (NSError*)error;
 
 @end
 
@@ -230,7 +231,7 @@
     [self.service.peripheral.cbPeripheral discoverDescriptorsForCharacteristic:self.cbCharacteristic];
 }
 
-#pragma mark - BlueCapCharacteristic PrivateAPI
+#pragma mark - BlueCapCharacteristic Private
 
 - (void)timeout:(NSInteger)__sequenceNumber check:(BOOL)__readOrWrite {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHARACTERISTIC_UPDATE_TIMEOUT * NSEC_PER_SEC));
@@ -240,14 +241,22 @@
             if (self.timeoutSequenceNumber == __sequenceNumber && !self.updateReceived) {
                 DLog(@"Read timeout");
                 [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.service.peripheral.cbPeripheral];
+                [self didUpdateValue:[self error]];
             }
         } else {
             if (self.timeoutSequenceNumber == __sequenceNumber && !self.writeReceived) {
                 DLog(@"Write timeout");
                 [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.service.peripheral.cbPeripheral];
+                [self didWriteValue:[self error]];
             }
         }
     });
+}
+
+- (NSError*)error {
+    return [NSError errorWithDomain:@"BlueCap"
+                               code:408
+                           userInfo:@{NSLocalizedDescriptionKey: @"Connection Timeout"}];
 }
 
 @end

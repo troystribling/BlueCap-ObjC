@@ -22,6 +22,7 @@
 - (IBAction)refeshValues;
 - (void)readData;
 - (void)loadData:(NSDictionary*)__data;
+- (void)error:(NSError*)__error;
 - (BOOL)canEdit;
 
 @end
@@ -76,7 +77,11 @@
 - (void)readData {
     if ([self.characteristic propertyEnabled:CBCharacteristicPropertyRead]) {
         [self.characteristic readData:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
-            [self loadData:[__characteristic stringValue]];
+            if (__error) {
+                [self error:__error];
+            } else {
+                [self loadData:[__characteristic stringValue]];
+            }
         }];
     } else {
         self.values = [self.characteristic stringValue];
@@ -85,7 +90,11 @@
     if (self.characteristic.isNotifying) {
         self.refreshButton.enabled = NO;
         [self.characteristic receiveUpdates:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
-            [self loadData:[__characteristic stringValue]];
+            if (__error) {
+                [self error:__error];
+            } else {
+                [self loadData:[__characteristic stringValue]];
+            }
         }];
     } else {
         self.refreshButton.enabled = YES;
@@ -97,6 +106,13 @@
         self.values = __data;
         [self.progressView remove];
         [self.tableView reloadData];
+    });
+}
+
+- (void)error:(NSError*)__error {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [UIAlertView alertOnError:__error];
+        [self.progressView remove];
     });
 }
 

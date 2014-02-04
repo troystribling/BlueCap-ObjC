@@ -43,6 +43,7 @@
 }
 
 - (void)didUpdateValue:(NSError*)error {
+    self.updateReceived = YES;
     if (self.afterReadCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.afterReadCallback(self, error);
@@ -59,6 +60,7 @@
 }
 
 - (void)didWriteValue:(NSError*)error{
+    self.writeReceived = YES;
     if (self.afterWriteCallback != nil) {
         [[BlueCapCentralManager sharedInstance] asyncCallback:^{
             self.afterWriteCallback(self, error);
@@ -72,12 +74,6 @@
             self.afterDescriptorsDiscoveredCallback(__descriptors);
         }];
     }
-}
-
-- (NSError*)error {
-    return [NSError errorWithDomain:@"BlueCap"
-                               code:408
-                           userInfo:@{NSLocalizedDescriptionKey: @"Connection Timeout"}];
 }
 
 @end

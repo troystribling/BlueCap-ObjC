@@ -16,7 +16,7 @@
 @dynamic discoveredObjects;
 @dynamic advertisement;
 
-@dynamic afterPeriperialDisconnectCallback;
+@dynamic afterPeripherialDisconnectCallback;
 @dynamic afterPeripheralConnectCallback;
 
 @dynamic currentError;
@@ -43,16 +43,16 @@
 
 - (void)didDisconnectPeripheral:(BlueCapPeripheral*)__peripheral {
     if (self.currentError == BLueCapPeripheralConnectionErrorNone) {
-        if (self.afterPeriperialDisconnectCallback != nil) {
+        if (self.afterPeripherialDisconnectCallback != nil) {
             [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-                self.afterPeriperialDisconnectCallback(__peripheral);
+                self.afterPeripherialDisconnectCallback(__peripheral);
             }];
         }
     } else {
         if (self.autoReconnect) {
-            if (self.afterPeriperialDisconnectCallback != nil) {
+            if (self.afterPeripherialDisconnectCallback != nil) {
                 [[BlueCapCentralManager sharedInstance] asyncCallback:^{
-                    self.afterPeriperialDisconnectCallback(__peripheral);
+                    self.afterPeripherialDisconnectCallback(__peripheral);
                 }];
             }
         }
