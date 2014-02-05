@@ -13,7 +13,7 @@
 #import "BlueCapCharacteristic+Friend.h"
 #import "CBUUID+StringValue.h"
 
-#define CHARACTERISTIC_UPDATE_TIMEOUT   10.0
+#define CHARACTERISTIC_UPDATE_TIMEOUT   20.0
 
 @interface BlueCapCharacteristic () {
 }
