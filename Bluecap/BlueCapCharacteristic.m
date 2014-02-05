@@ -234,8 +234,7 @@
 #pragma mark - BlueCapCharacteristic Private
 
 - (void)timeout:(NSInteger)__sequenceNumber check:(BOOL)__readOrWrite {
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CHARACTERISTIC_UPDATE_TIMEOUT * NSEC_PER_SEC));
-    [[BlueCapCentralManager sharedInstance] delayCallback:popTime withBlock:^{
+    [[BlueCapCentralManager sharedInstance] delayCallback:CHARACTERISTIC_UPDATE_TIMEOUT withBlock:^{
         DLog(@"Sequence Number:%d, this sequence number: %d", self.timeoutSequenceNumber, __sequenceNumber);
         if (__readOrWrite) {
             if (self.timeoutSequenceNumber == __sequenceNumber && !self.updateReceived) {
@@ -256,7 +255,7 @@
 - (NSError*)error {
     return [NSError errorWithDomain:@"BlueCap"
                                code:408
-                           userInfo:@{NSLocalizedDescriptionKey: @"Connection Timeout"}];
+                           userInfo:@{NSLocalizedDescriptionKey: @"Update Timeout"}];
 }
 
 @end

@@ -8,8 +8,12 @@
 
 #import <BlueCap/BlueCap.h>
 #import "CharacteristicDiscreteValueViewController.h"
+#import "UIAlertView+Extensions.h"
+#import "ProgressView.h"
 
 @interface CharacteristicDiscreteValueViewController ()
+
+@property(nonatomic, strong) ProgressView* progressView;
 
 - (NSString*)selectedValue;
 
@@ -26,6 +30,7 @@
 
 - (void)viewDidLoad {
     self.navigationItem.title = self.characteristic.profile.name;
+    self.progressView = [ProgressView progressView];
     [super viewDidLoad];
 }
 
@@ -61,8 +66,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self.progressView progressWithMessage:@"Writing" inView:[[UIApplication sharedApplication] keyWindow]];
     [self.characteristic writeValueObject:cell.textLabel.text afterWriteCall:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (__error) {
+                [UIAlertView alertOnError:__error];
+            }
+            [self.progressView remove];
             [self.navigationController popViewControllerAnimated:YES];
         });
     }];

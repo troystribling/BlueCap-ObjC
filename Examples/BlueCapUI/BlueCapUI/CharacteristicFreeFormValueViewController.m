@@ -9,8 +9,11 @@
 #import <BlueCap/BlueCap.h>
 #import "CharacteristicFreeFormValueViewController.h"
 #import "UIAlertView+Extensions.h"
+#import "ProgressView.h"
 
 @interface CharacteristicFreeFormValueViewController ()
+
+@property(nonatomic, strong) ProgressView* progressView;
 
 @end
 
@@ -26,6 +29,7 @@
 - (void)viewDidLoad {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationItem.title = self.characteristic.profile.name;
+    self.progressView = [ProgressView progressView];
     [super viewDidLoad];
 }
 
@@ -38,11 +42,13 @@
 - (BOOL)textFieldShouldReturn:(UITextField*)textField {
     NSString* value = self.valueTextField.text;
     if (value) {
+        [self.progressView progressWithMessage:@"Writing" inView:[[UIApplication sharedApplication] keyWindow]];
         [self.characteristic writeObject:value afterWriteCall:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (__error) {
                     [UIAlertView alertOnError:__error];
                 }
+                [self.progressView remove];
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }];
