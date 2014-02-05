@@ -104,13 +104,17 @@
     [self discoverAllServices:^(NSArray* discoveredServices) {
         for (BlueCapService* service in discoveredServices) {
             [service discoverAllCharacteritics:^(NSArray* discoveredCharacteristics) {
+                __block NSError* error = nil;
                 for (BlueCapCharacteristic* characteristic in discoveredCharacteristics) {
                     if ([characteristic propertyEnabled:CBCharacteristicPropertyRead]) {
-                        [characteristic readData:^(BlueCapCharacteristic* __characteristic, NSError* error) {
-                            ASYNC_CALLBACK(__afterDiscoveryCallback, __afterDiscoveryCallback(self, error))
+                        [characteristic readData:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
+                            if (__error) {
+                                error = __error;
+                            }
                         }];
                     }
                 }
+                ASYNC_CALLBACK(__afterDiscoveryCallback, __afterDiscoveryCallback(self, error))
             }];
         }
     }];

@@ -14,9 +14,7 @@
 - (void)powerOn;
 - (void)startScan;
 - (void)connectPeripheral:(BlueCapPeripheral*)peripheral;
-- (void)getServices:(BlueCapPeripheral*)peripheral;
-- (void)getCharacteritics:(BlueCapService*)service;
-- (void)getCharacteristicValues:(BlueCapCharacteristic*)characteristic;
+- (void)getServicesAndCharacteristics:(BlueCapPeripheral*)peripheral;
 
 @end
 
@@ -52,34 +50,14 @@
 
 - (void)connectPeripheral:(BlueCapPeripheral*)peripheral {
     [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* cPeripheral, NSError* __error) {
-        [self getServices:cPeripheral];
+        [self getServicesAndCharacteristics:cPeripheral];
     }];
 }
 
-- (void)getServices:(BlueCapPeripheral*)peripheral {
-    [peripheral discoverAllServices:^(NSArray* services) {
-        for (BlueCapService* service in services) {
-            [self getCharacteritics:service];
-        }
+- (void)getServicesAndCharacteristics:(BlueCapPeripheral*)peripheral {
+    [peripheral discoverAllServicesAndCharacteristics:^(BlueCapPeripheral* peripheral, NSError* error) {
     }];
 }
 
-- (void)getCharacteritics:(BlueCapService*)service {
-    [service discoverAllCharacteritics:^(NSArray* charcteristics) {
-        for (BlueCapCharacteristic* characteristic in charcteristics) {
-            [self getCharacteristicValues:characteristic];
-        }
-    }];
-}
-
-- (void)getCharacteristicValues:(BlueCapCharacteristic*)characteristic {
-    [characteristic readData:^(BlueCapCharacteristic* rCharacteristic, NSError* error) {
-        if (error) {
-            DLog(@"Characteristic value error: %@", [error localizedDescription]);
-        } else {
-            DLog(@"Characteristic value: %@", [rCharacteristic stringValue]);
-        }
-    }];
-}
 
 @end
