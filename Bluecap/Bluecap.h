@@ -45,6 +45,9 @@ NSNumber* blueCapInt16BigFromData(NSData* data, NSRange range);
 NSData* blueCapLittleFromInt16Array(int16_t* hostVals, int length);
 NSData* blueCapBigFromInt16Array(int16_t* hostVals, int length);
 
+NSData* blueCapLittleFromInt16(int16_t hostVal);
+NSData* blueCapBigFromUnsInt16(int16_t hostVal);
+
 NSNumber* blueCapCharFromData(NSData* data, NSRange range);
 NSData* blueCapCharArrayToData(int8_t* data, int length);
 NSData* blueCapCharToData(int8_t data);

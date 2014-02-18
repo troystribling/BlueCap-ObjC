@@ -59,6 +59,18 @@ NSData* blueCapBigFromUnsignedInt16(uint16_t hostVal) {
 
 #pragma mark - Int16
 
+NSNumber* blueCapInt16LittleFromData(NSData* data, NSRange range) {
+    int16_t val;
+    [data getBytes:&val range:range];
+    return [NSNumber numberWithShort:CFSwapInt16LittleToHost(val)];
+}
+
+NSNumber* blueCapInt16BigFromData(NSData* data, NSRange range) {
+    int16_t val;
+    [data getBytes:&val range:range];
+    return [NSNumber numberWithShort:CFSwapInt16BigToHost(val)];
+}
+
 NSData* blueCapLittleFromInt16Array(int16_t* hostVals, int length) {
     int16_t littleVals[length];
     for (int i = 0; i < length; i++) {
@@ -75,16 +87,14 @@ NSData* blueCapBigFromInt16Array(int16_t* hostVals, int length) {
     return [NSData dataWithBytes:bigVals length:2*length];
 }
 
-NSNumber* blueCapInt16LittleFromData(NSData* data, NSRange range) {
-    int16_t val;
-    [data getBytes:&val range:range];
-    return [NSNumber numberWithShort:CFSwapInt16LittleToHost(val)];
+NSData* blueCapLittleFromInt16(int16_t hostVal) {
+    int16_t littleVal = CFSwapInt16HostToLittle(hostVal);
+    return [NSData dataWithBytes:&littleVal length:2];
 }
 
-NSNumber* blueCapInt16BigFromData(NSData* data, NSRange range) {
-    int16_t val;
-    [data getBytes:&val range:range];
-    return [NSNumber numberWithShort:CFSwapInt16BigToHost(val)];
+NSData* blueCapBigFromUnsInt16(int16_t hostVal) {
+    int16_t bigVal = CFSwapInt16HostToBig(hostVal);
+    return [NSData dataWithBytes:&bigVal length:2];
 }
 
 #pragma mark - Char
