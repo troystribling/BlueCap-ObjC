@@ -62,6 +62,8 @@
 		05AA66B517B868F90019AC3C /* BluecapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AA66B417B868F90019AC3C /* BluecapTests.m */; };
 		05D6E51B17BFDB220019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51A17BFDB220019B575 /* CoreBluetooth.framework */; };
 		05E6897917C1E09C0013246A /* BlueCapCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E6897817C1E0890013246A /* BlueCapCentralManager.m */; };
+		05EB08F618B659430002B6A9 /* NordicProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EB08F518B659430002B6A9 /* NordicProfiles.m */; };
+		05EB08F718B65AFA0002B6A9 /* NordicProfiles.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EB08F418B659430002B6A9 /* NordicProfiles.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				05EB08F718B65AFA0002B6A9 /* NordicProfiles.h in CopyFiles */,
 				05A06FEF1882048F00BDAA66 /* GnosusProfiles.h in CopyFiles */,
 				0540000218302909001B3735 /* BlueCapMutableCharacteristic.h in CopyFiles */,
 				05400001183028F9001B3735 /* BlueCapMutableDescriptor.h in CopyFiles */,
@@ -175,6 +178,8 @@
 		05E6897617C1E0890013246A /* BlueCap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueCap.h; sourceTree = "<group>"; };
 		05E6897717C1E0890013246A /* BlueCapCentralManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueCapCentralManager.h; sourceTree = "<group>"; };
 		05E6897817C1E0890013246A /* BlueCapCentralManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueCapCentralManager.m; sourceTree = "<group>"; };
+		05EB08F418B659430002B6A9 /* NordicProfiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NordicProfiles.h; sourceTree = "<group>"; };
+		05EB08F518B659430002B6A9 /* NordicProfiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NordicProfiles.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +226,8 @@
 				054766BE17FFB09B005C4125 /* BLESIGGATTProfiles.m */,
 				05A06FEC1881B9AE00BDAA66 /* GnosusProfiles.h */,
 				05A06FED1881B9AE00BDAA66 /* GnosusProfiles.m */,
+				05EB08F418B659430002B6A9 /* NordicProfiles.h */,
+				05EB08F518B659430002B6A9 /* NordicProfiles.m */,
 			);
 			name = ServiceProfiles;
 			path = ServiceDefinitions;
@@ -497,6 +504,7 @@
 				0540000B18305FFE001B3735 /* BlueCapPeripheralManager+Friend.m in Sources */,
 				054766C417FFB3C5005C4125 /* BlueCapServiceProfile.m in Sources */,
 				059329D017F0989500D514F1 /* TISensorTagProfiles.m in Sources */,
+				05EB08F618B659430002B6A9 /* NordicProfiles.m in Sources */,
 				0540FFE3182F1173001B3735 /* BlueCapProfileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

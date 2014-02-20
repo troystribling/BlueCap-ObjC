@@ -92,7 +92,7 @@ NSData* blueCapLittleFromInt16(int16_t hostVal) {
     return [NSData dataWithBytes:&littleVal length:2];
 }
 
-NSData* blueCapBigFromUnsInt16(int16_t hostVal) {
+NSData* blueCapBigFromInt16(int16_t hostVal) {
     int16_t bigVal = CFSwapInt16HostToBig(hostVal);
     return [NSData dataWithBytes:&bigVal length:2];
 }

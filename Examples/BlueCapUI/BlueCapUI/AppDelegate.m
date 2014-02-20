@@ -15,6 +15,7 @@
     [TISensorTagProfiles create];
     [BLESIGGATTProfiles create];
     [GnosusProfiles create];
+    [NordicProfiles create];
     return YES;
 }
 							

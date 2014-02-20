@@ -51,23 +51,6 @@
         }];
     }];
     
-    [profileManager createServiceWithUUID:@"2f0a0003-69aa-f316-3e78-4194989a6c1a" name:@"Device Temperature" andProfile:^(BlueCapServiceProfile* serviceProfile) {
-        [serviceProfile createCharacteristicWithUUID:@"2f0a0004-69aa-f316-3e78-4194989a6c1a" name:@"Temperature" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-            characteristicProfile.properties = CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify;
-            [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                return @{GNOSUS_DEVICE_TEMPERATURE:blueCapInt16BigFromData(data, NSMakeRange(0, 2))};
-            }];
-            [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                return @{GNOSUS_DEVICE_TEMPERATURE:[[data objectForKey:GNOSUS_DEVICE_TEMPERATURE] stringValue]};
-            }];
-            [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
-                int16_t value = (int16_t)[[data objectForKey:GNOSUS_DEVICE_TEMPERATURE] intValue];
-                return blueCapBigFromUnsInt16(value);
-            }];
-            characteristicProfile.initialValue = [characteristicProfile valueFromString:@{GNOSUS_DEVICE_TEMPERATURE:[NSString stringWithFormat:@"%d", 100]}];
-        }];
-    }];
-    
 }
 
 @end
