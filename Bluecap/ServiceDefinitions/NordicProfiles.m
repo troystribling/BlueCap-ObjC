@@ -26,7 +26,7 @@
                 return @{NORDIC_DEVICE_TEMPERATURE:[[data objectForKey:NORDIC_DEVICE_TEMPERATURE] stringValue]};
             }];
             [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
-                int16_t value = (int16_t)[[data objectForKey:NORDIC_DEVICE_TEMPERATURE] intValue];
+                int16_t value = 4*(int16_t)[[data objectForKey:NORDIC_DEVICE_TEMPERATURE] intValue];
                 return blueCapBigFromInt16(value);
             }];
             characteristicProfile.initialValue = [characteristicProfile valueFromString:@{NORDIC_DEVICE_TEMPERATURE:[NSString stringWithFormat:@"%d", 100]}];
