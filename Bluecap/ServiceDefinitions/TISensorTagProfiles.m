@@ -91,7 +91,7 @@
                                                   return blueCapUnsignedCharToData(intVal);
                                               }];
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  int unscaledValue = 10*[blueCapUnsignedCharFromData(data) integerValue];
+                                                  int unscaledValue = 10*[blueCapUnsignedCharFromData(data, NSMakeRange(0, 1)) integerValue];
                                                   return @{TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD:[NSNumber numberWithInt:unscaledValue]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
@@ -183,7 +183,7 @@
                                                 return [NSData dataWithBytes:&value length:1];
                                             }];
                                             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                int unscaledValue = 10*[blueCapUnsignedCharFromData(data) integerValue];
+                                                int unscaledValue = 10*[blueCapUnsignedCharFromData(data, NSMakeRange(0, 1)) integerValue];
                                                 return @{TISENSOR_TAG_MAGNETOMETER_UPDATE_PERIOD:[NSNumber numberWithInt:unscaledValue]};
                                             }];
                                             [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
@@ -493,7 +493,7 @@
                                               name:@"Test Data"
                                         andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                uint8_t testResults = [blueCapUnsignedCharFromData(data) unsignedCharValue];
+                                                uint8_t testResults = [blueCapUnsignedCharFromData(data, NSMakeRange(0, 1)) unsignedCharValue];
                                                 uint8_t test1Result = testResults & (1 << 0);
                                                 uint8_t test2Result = testResults & (1 << 1);
                                                 uint8_t test3Result = testResults & (1 << 2);
@@ -570,7 +570,7 @@
                                                                      andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                                                          [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                                                                              if (data.length > 0) {
-                                                                                 return @{TISENSOR_TAG_KEY_PRESSED:blueCapUnsignedCharFromData(data)};
+                                                                                 return @{TISENSOR_TAG_KEY_PRESSED:blueCapUnsignedCharFromData(data, NSMakeRange(0, 1))};
                                                                              } else {
                                                                                  return @{TISENSOR_TAG_KEY_PRESSED:[NSNumber numberWithInt:0]};
                                                                              }

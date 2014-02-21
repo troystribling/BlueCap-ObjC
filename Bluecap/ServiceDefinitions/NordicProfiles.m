@@ -33,7 +33,33 @@
         }];
     }];
     
-    
+    [profileManager createServiceWithUUID:@"2f0a0005-69aa-f316-3e78-4194989a6c1a" name:@"BLE Address" andProfile:^(BlueCapServiceProfile* serviceProfile) {
+        [serviceProfile createCharacteristicWithUUID:@"2f0a0006-69aa-f316-3e78-4194989a6c1a" name:@"Address" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+            characteristicProfile.properties = CBCharacteristicPropertyRead;
+            [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                NSNumber* addr6 = blueCapUnsignedCharFromData(data, NSMakeRange(0, 1));
+                NSNumber* addr5 = blueCapUnsignedCharFromData(data, NSMakeRange(1, 1));
+                NSNumber* addr4 = blueCapUnsignedCharFromData(data, NSMakeRange(2, 1));
+                NSNumber* addr3 = blueCapUnsignedCharFromData(data, NSMakeRange(3, 1));
+                NSNumber* addr2 = blueCapUnsignedCharFromData(data, NSMakeRange(4, 1));
+                NSNumber* addr1 = blueCapUnsignedCharFromData(data, NSMakeRange(5, 1));
+                return @{NORDIC_BLE_ADDRESS_1:addr1,
+                         NORDIC_BLE_ADDRESS_2:addr2,
+                         NORDIC_BLE_ADDRESS_3:addr3,
+                         NORDIC_BLE_ADDRESS_4:addr4,
+                         NORDIC_BLE_ADDRESS_5:addr5,
+                         NORDIC_BLE_ADDRESS_6:addr6};
+            }];
+        }];
+        [serviceProfile createCharacteristicWithUUID:@"2f0a0007-69aa-f316-3e78-4194989a6c1a" name:@"Address Type" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+            characteristicProfile.properties = CBCharacteristicPropertyRead;
+            [characteristicProfile setValue:blueCapUnsignedCharToData(NORDIC_BLE_ADDRESS_TYPE_PUBLIC_VALUE) named:NORDIC_BLE_ADDRESS_TYPE_PUBLIC];
+            [characteristicProfile setValue:blueCapUnsignedCharToData(NORDIC_BLE_ADDRESS_TYPE_RANDOM_STATIC_VALUE) named:NORDIC_BLE_ADDRESS_TYPE_RANDOM_STATIC];
+            [characteristicProfile setValue:blueCapUnsignedCharToData(NORDIC_BLE_ADDRESS_TYPE_RANDOM_PRIVATE_RESOLVABLE_VALUE) named:NORDIC_BLE_ADDRESS_TYPE_RANDOM_PRIVATE_RESOLVABLE];
+            [characteristicProfile setValue:blueCapUnsignedCharToData(NORDIC_BLE_ADDRESS_TYPE_RANDOM_PRIVATE_UNRESOLVABLE_VALUE) named:NORDIC_BLE_ADDRESS_TYPE_RANDOM_PRIVATE_UNRESOLVABLE];
+            characteristicProfile.initialValue = [characteristicProfile valueFromNamedObject:NORDIC_BLE_ADDRESS_TYPE_PUBLIC];
+        }];
+    }];
 }
 
 @end

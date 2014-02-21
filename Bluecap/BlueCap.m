@@ -115,9 +115,9 @@ NSData* blueCapCharToData(int8_t data) {
 
 #pragma mark - Unsigned Char
 
-NSNumber* blueCapUnsignedCharFromData(NSData* data) {
+NSNumber* blueCapUnsignedCharFromData(NSData* data, NSRange range) {
     int8_t val;
-    [data getBytes:&val length:1];
+    [data getBytes:&val range:range];
     return [NSNumber numberWithUnsignedChar:val];
 }
 
