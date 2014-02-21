@@ -15,7 +15,7 @@
 
     BlueCapProfileManager* profileManager = [BlueCapProfileManager sharedInstance];
 
-    [profileManager createServiceWithUUID:@"2f0a0003-69aa-f316-3e78-4194989a6c1a" name:@"Device Temperature" andProfile:^(BlueCapServiceProfile* serviceProfile) {
+    [profileManager createServiceWithUUID:@"2f0a0003-69aa-f316-3e78-4194989a6c1a" name:@"Nordic Device Temperature" andProfile:^(BlueCapServiceProfile* serviceProfile) {
         [serviceProfile createCharacteristicWithUUID:@"2f0a0004-69aa-f316-3e78-4194989a6c1a" name:@"Temperature" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
             characteristicProfile.properties = CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify;
             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
@@ -33,7 +33,7 @@
         }];
     }];
     
-    [profileManager createServiceWithUUID:@"2f0a0005-69aa-f316-3e78-4194989a6c1a" name:@"BLE Address" andProfile:^(BlueCapServiceProfile* serviceProfile) {
+    [profileManager createServiceWithUUID:@"2f0a0005-69aa-f316-3e78-4194989a6c1a" name:@"Nordic BLE Address" andProfile:^(BlueCapServiceProfile* serviceProfile) {
         [serviceProfile createCharacteristicWithUUID:@"2f0a0006-69aa-f316-3e78-4194989a6c1a" name:@"Address" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
             characteristicProfile.properties = CBCharacteristicPropertyRead;
             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
@@ -50,9 +50,34 @@
                          NORDIC_BLE_ADDRESS_5:addr5,
                          NORDIC_BLE_ADDRESS_6:addr6};
             }];
+            [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                return @{NORDIC_BLE_ADDRESS_1:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_1] integerValue]],
+                         NORDIC_BLE_ADDRESS_2:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_2] integerValue]],
+                         NORDIC_BLE_ADDRESS_3:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_3] integerValue]],
+                         NORDIC_BLE_ADDRESS_4:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_4] integerValue]],
+                         NORDIC_BLE_ADDRESS_5:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_5] integerValue]],
+                         NORDIC_BLE_ADDRESS_6:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_6] integerValue]]};
+            }];
+            [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                uint8_t vals[6];
+                vals[0] = [[data objectForKey:NORDIC_BLE_ADDRESS_6] intValue];
+                vals[1] = [[data objectForKey:NORDIC_BLE_ADDRESS_5] intValue];
+                vals[2] = [[data objectForKey:NORDIC_BLE_ADDRESS_4] intValue];
+                vals[3] = [[data objectForKey:NORDIC_BLE_ADDRESS_3] intValue];
+                vals[4] = [[data objectForKey:NORDIC_BLE_ADDRESS_2] intValue];
+                vals[5] = [[data objectForKey:NORDIC_BLE_ADDRESS_1] intValue];
+                return blueCapUnsignedCharArrayToData(vals, 6);
+            }];
+            characteristicProfile.initialValue = [characteristicProfile valueFromString:@{NORDIC_BLE_ADDRESS_1:[NSString stringWithFormat:@"%d", 10],
+                                                                                          NORDIC_BLE_ADDRESS_2:[NSString stringWithFormat:@"%d", 11],
+                                                                                          NORDIC_BLE_ADDRESS_3:[NSString stringWithFormat:@"%d", 12],
+                                                                                          NORDIC_BLE_ADDRESS_4:[NSString stringWithFormat:@"%d", 13],
+                                                                                          NORDIC_BLE_ADDRESS_5:[NSString stringWithFormat:@"%d", 14],
+                                                                                          NORDIC_BLE_ADDRESS_6:[NSString stringWithFormat:@"%d", 15]}];
         }];
         [serviceProfile createCharacteristicWithUUID:@"2f0a0007-69aa-f316-3e78-4194989a6c1a" name:@"Address Type" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
             characteristicProfile.properties = CBCharacteristicPropertyRead;
+            [characteristicProfile setValue:blueCapUnsignedCharToData(NORDIC_BLE_ADDRESS_TYPE_UNKNOWN_VALUE) named:NORDIC_BLE_ADDRESS_TYPE_UNKNOWN];
             [characteristicProfile setValue:blueCapUnsignedCharToData(NORDIC_BLE_ADDRESS_TYPE_PUBLIC_VALUE) named:NORDIC_BLE_ADDRESS_TYPE_PUBLIC];
             [characteristicProfile setValue:blueCapUnsignedCharToData(NORDIC_BLE_ADDRESS_TYPE_RANDOM_STATIC_VALUE) named:NORDIC_BLE_ADDRESS_TYPE_RANDOM_STATIC];
             [characteristicProfile setValue:blueCapUnsignedCharToData(NORDIC_BLE_ADDRESS_TYPE_RANDOM_PRIVATE_RESOLVABLE_VALUE) named:NORDIC_BLE_ADDRESS_TYPE_RANDOM_PRIVATE_RESOLVABLE];

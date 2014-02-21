@@ -17,6 +17,8 @@
 #define NORDIC_BLE_ADDRESS_5                                          @"Address-5"
 #define NORDIC_BLE_ADDRESS_6                                          @"Address-6"
 
+#define NORDIC_BLE_ADDRESS_TYPE_UNKNOWN                             @"Unknown"
+#define NORDIC_BLE_ADDRESS_TYPE_UNKNOWN_VALUE                       0x00
 #define NORDIC_BLE_ADDRESS_TYPE_PUBLIC                              @"Public"
 #define NORDIC_BLE_ADDRESS_TYPE_PUBLIC_VALUE                        0x01
 #define NORDIC_BLE_ADDRESS_TYPE_RANDOM_STATIC                       @"Random Static"
