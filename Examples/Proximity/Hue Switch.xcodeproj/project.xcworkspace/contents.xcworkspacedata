@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Proximity.xcodeproj">
+      location = "self:Hue Switch.xcodeproj">
    </FileRef>
 </Workspace>

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "05AC72ED189AB3E80060D03F"
-               BuildableName = "Proximity.app"
-               BlueprintName = "Proximity"
-               ReferencedContainer = "container:Proximity.xcodeproj">
+               BuildableName = "Hue Switch.app"
+               BlueprintName = "Hue Switch"
+               ReferencedContainer = "container:Hue Switch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "05AC730E189AB3E80060D03F"
-               BuildableName = "ProximityTests.xctest"
-               BlueprintName = "ProximityTests"
-               ReferencedContainer = "container:Proximity.xcodeproj">
+               BuildableName = "Hue SwitchTests.xctest"
+               BlueprintName = "Hue SwitchTests"
+               ReferencedContainer = "container:Hue Switch.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05AC72ED189AB3E80060D03F"
-            BuildableName = "Proximity.app"
-            BlueprintName = "Proximity"
-            ReferencedContainer = "container:Proximity.xcodeproj">
+            BuildableName = "Hue Switch.app"
+            BlueprintName = "Hue Switch"
+            ReferencedContainer = "container:Hue Switch.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05AC72ED189AB3E80060D03F"
-            BuildableName = "Proximity.app"
-            BlueprintName = "Proximity"
-            ReferencedContainer = "container:Proximity.xcodeproj">
+            BuildableName = "Hue Switch.app"
+            BlueprintName = "Hue Switch"
+            ReferencedContainer = "container:Hue Switch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05AC72ED189AB3E80060D03F"
-            BuildableName = "Proximity.app"
-            BlueprintName = "Proximity"
-            ReferencedContainer = "container:Proximity.xcodeproj">
+            BuildableName = "Hue Switch.app"
+            BlueprintName = "Hue Switch"
+            ReferencedContainer = "container:Hue Switch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -58,23 +58,23 @@
 
 /* Begin PBXFileReference section */
 		0522D723189B539A00517552 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		05AC72EE189AB3E80060D03F /* Proximity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Proximity.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05AC72EE189AB3E80060D03F /* Hue Switch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hue Switch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AC72F1189AB3E80060D03F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05AC72F3189AB3E80060D03F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		05AC72F5189AB3E80060D03F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		05AC72F9189AB3E80060D03F /* Proximity-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Proximity-Info.plist"; sourceTree = "<group>"; };
+		05AC72F9189AB3E80060D03F /* Hue Switch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hue Switch-Info.plist"; sourceTree = "<group>"; };
 		05AC72FB189AB3E80060D03F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05AC72FD189AB3E80060D03F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		05AC72FF189AB3E80060D03F /* Proximity-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Proximity-Prefix.pch"; sourceTree = "<group>"; };
+		05AC72FF189AB3E80060D03F /* Hue Switch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hue Switch-Prefix.pch"; sourceTree = "<group>"; };
 		05AC7300189AB3E80060D03F /* ProximityAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProximityAppDelegate.h; sourceTree = "<group>"; };
 		05AC7301189AB3E80060D03F /* ProximityAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProximityAppDelegate.m; sourceTree = "<group>"; };
 		05AC7304189AB3E80060D03F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05AC7306189AB3E80060D03F /* ProximityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProximityViewController.h; sourceTree = "<group>"; };
 		05AC7307189AB3E80060D03F /* ProximityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProximityViewController.m; sourceTree = "<group>"; };
 		05AC7309189AB3E80060D03F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		05AC730F189AB3E80060D03F /* ProximityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProximityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05AC730F189AB3E80060D03F /* Hue SwitchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hue SwitchTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AC7310189AB3E80060D03F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		05AC7318189AB3E80060D03F /* ProximityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ProximityTests-Info.plist"; sourceTree = "<group>"; };
+		05AC7318189AB3E80060D03F /* Hue SwitchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hue SwitchTests-Info.plist"; sourceTree = "<group>"; };
 		05AC731A189AB3E80060D03F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05AC731C189AB3E80060D03F /* ProximityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProximityTests.m; sourceTree = "<group>"; };
 		05AC7326189AB4010060D03F /* BlueCap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueCap.xcodeproj; path = ../../BlueCap.xcodeproj; sourceTree = "<group>"; };
@@ -120,8 +120,8 @@
 		05AC72EF189AB3E80060D03F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				05AC72EE189AB3E80060D03F /* Proximity.app */,
-				05AC730F189AB3E80060D03F /* ProximityTests.xctest */,
+				05AC72EE189AB3E80060D03F /* Hue Switch.app */,
+				05AC730F189AB3E80060D03F /* Hue SwitchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,10 +155,10 @@
 		05AC72F8189AB3E80060D03F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				05AC72F9189AB3E80060D03F /* Proximity-Info.plist */,
+				05AC72F9189AB3E80060D03F /* Hue Switch-Info.plist */,
 				05AC72FA189AB3E80060D03F /* InfoPlist.strings */,
 				05AC72FD189AB3E80060D03F /* main.m */,
-				05AC72FF189AB3E80060D03F /* Proximity-Prefix.pch */,
+				05AC72FF189AB3E80060D03F /* Hue Switch-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -175,7 +175,7 @@
 		05AC7317189AB3E80060D03F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				05AC7318189AB3E80060D03F /* ProximityTests-Info.plist */,
+				05AC7318189AB3E80060D03F /* Hue SwitchTests-Info.plist */,
 				05AC7319189AB3E80060D03F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -193,9 +193,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		05AC72ED189AB3E80060D03F /* Proximity */ = {
+		05AC72ED189AB3E80060D03F /* Hue Switch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05AC7320189AB3E80060D03F /* Build configuration list for PBXNativeTarget "Proximity" */;
+			buildConfigurationList = 05AC7320189AB3E80060D03F /* Build configuration list for PBXNativeTarget "Hue Switch" */;
 			buildPhases = (
 				05AC72EA189AB3E80060D03F /* Sources */,
 				05AC72EB189AB3E80060D03F /* Frameworks */,
@@ -206,14 +206,14 @@
 			dependencies = (
 				05DD5CED189B7510006625BC /* PBXTargetDependency */,
 			);
-			name = Proximity;
+			name = "Hue Switch";
 			productName = Proximity;
-			productReference = 05AC72EE189AB3E80060D03F /* Proximity.app */;
+			productReference = 05AC72EE189AB3E80060D03F /* Hue Switch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		05AC730E189AB3E80060D03F /* ProximityTests */ = {
+		05AC730E189AB3E80060D03F /* Hue SwitchTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05AC7323189AB3E80060D03F /* Build configuration list for PBXNativeTarget "ProximityTests" */;
+			buildConfigurationList = 05AC7323189AB3E80060D03F /* Build configuration list for PBXNativeTarget "Hue SwitchTests" */;
 			buildPhases = (
 				05AC730B189AB3E80060D03F /* Sources */,
 				05AC730C189AB3E80060D03F /* Frameworks */,
@@ -224,9 +224,9 @@
 			dependencies = (
 				05AC7315189AB3E80060D03F /* PBXTargetDependency */,
 			);
-			name = ProximityTests;
+			name = "Hue SwitchTests";
 			productName = ProximityTests;
-			productReference = 05AC730F189AB3E80060D03F /* ProximityTests.xctest */;
+			productReference = 05AC730F189AB3E80060D03F /* Hue SwitchTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -247,7 +247,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 05AC72E9189AB3E80060D03F /* Build configuration list for PBXProject "Proximity" */;
+			buildConfigurationList = 05AC72E9189AB3E80060D03F /* Build configuration list for PBXProject "Hue Switch" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -266,8 +266,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				05AC72ED189AB3E80060D03F /* Proximity */,
-				05AC730E189AB3E80060D03F /* ProximityTests */,
+				05AC72ED189AB3E80060D03F /* Hue Switch */,
+				05AC730E189AB3E80060D03F /* Hue SwitchTests */,
 			);
 		};
 /* End PBXProject section */
@@ -334,7 +334,7 @@
 /* Begin PBXTargetDependency section */
 		05AC7315189AB3E80060D03F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 05AC72ED189AB3E80060D03F /* Proximity */;
+			target = 05AC72ED189AB3E80060D03F /* Hue Switch */;
 			targetProxy = 05AC7314189AB3E80060D03F /* PBXContainerItemProxy */;
 		};
 		05DD5CED189B7510006625BC /* PBXTargetDependency */ = {
@@ -453,10 +453,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Proximity/Proximity-Prefix.pch";
-				INFOPLIST_FILE = "Proximity/Proximity-Info.plist";
+				GCC_PREFIX_HEADER = "Proximity/Hue Switch-Prefix.pch";
+				INFOPLIST_FILE = "Proximity/Hue Switch-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Hue Switch";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -471,10 +471,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Proximity/Proximity-Prefix.pch";
-				INFOPLIST_FILE = "Proximity/Proximity-Info.plist";
+				GCC_PREFIX_HEADER = "Proximity/Hue Switch-Prefix.pch";
+				INFOPLIST_FILE = "Proximity/Hue Switch-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Hue Switch";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -496,8 +496,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ProximityTests/ProximityTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ProximityTests/Hue SwitchTests-Info.plist";
+				PRODUCT_NAME = "Hue SwitchTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -515,8 +515,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Proximity/Proximity-Prefix.pch";
-				INFOPLIST_FILE = "ProximityTests/ProximityTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ProximityTests/Hue SwitchTests-Info.plist";
+				PRODUCT_NAME = "Hue SwitchTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -525,7 +525,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		05AC72E9189AB3E80060D03F /* Build configuration list for PBXProject "Proximity" */ = {
+		05AC72E9189AB3E80060D03F /* Build configuration list for PBXProject "Hue Switch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05AC731E189AB3E80060D03F /* Debug */,
@@ -534,7 +534,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05AC7320189AB3E80060D03F /* Build configuration list for PBXNativeTarget "Proximity" */ = {
+		05AC7320189AB3E80060D03F /* Build configuration list for PBXNativeTarget "Hue Switch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05AC7321189AB3E80060D03F /* Debug */,
@@ -543,7 +543,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05AC7323189AB3E80060D03F /* Build configuration list for PBXNativeTarget "ProximityTests" */ = {
+		05AC7323189AB3E80060D03F /* Build configuration list for PBXNativeTarget "Hue SwitchTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05AC7324189AB3E80060D03F /* Debug */,
