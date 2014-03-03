@@ -54,7 +54,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"COUNT: %d", [self.service.characteristics count]);
+    NSLog(@"COUNT: %ld", [self.service.characteristics count]);
     return [self.service.characteristics count];
 }
 
