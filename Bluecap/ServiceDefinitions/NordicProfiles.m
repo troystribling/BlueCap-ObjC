@@ -51,12 +51,12 @@
                          NORDIC_BLE_ADDRESS_6:addr6};
             }];
             [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                return @{NORDIC_BLE_ADDRESS_1:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_1] integerValue]],
-                         NORDIC_BLE_ADDRESS_2:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_2] integerValue]],
-                         NORDIC_BLE_ADDRESS_3:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_3] integerValue]],
-                         NORDIC_BLE_ADDRESS_4:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_4] integerValue]],
-                         NORDIC_BLE_ADDRESS_5:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_5] integerValue]],
-                         NORDIC_BLE_ADDRESS_6:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_6] integerValue]]};
+                return @{NORDIC_BLE_ADDRESS_1:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_1] intValue]],
+                         NORDIC_BLE_ADDRESS_2:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_2] intValue]],
+                         NORDIC_BLE_ADDRESS_3:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_3] intValue]],
+                         NORDIC_BLE_ADDRESS_4:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_4] intValue]],
+                         NORDIC_BLE_ADDRESS_5:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_5] intValue]],
+                         NORDIC_BLE_ADDRESS_6:[NSString stringWithFormat:@"%d", [[data objectForKey:NORDIC_BLE_ADDRESS_6] intValue]]};
             }];
             [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                 uint8_t vals[6];

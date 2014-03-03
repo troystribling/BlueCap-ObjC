@@ -122,7 +122,7 @@
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                               characteristicProfile.properties = CBCharacteristicPropertyNotify | CBCharacteristicPropertyRead;
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  return @{BLESIG_GATT_BATTERY_LEVEL:[NSNumber numberWithInt:[blueCapUnsignedCharFromData(data, NSMakeRange(0, 1)) integerValue]]};
+                                                  return @{BLESIG_GATT_BATTERY_LEVEL:[NSNumber numberWithInt:[blueCapUnsignedCharFromData(data, NSMakeRange(0, 1)) intValue]]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return @{BLESIG_GATT_BATTERY_LEVEL:[[data objectForKey:BLESIG_GATT_BATTERY_LEVEL] stringValue]};

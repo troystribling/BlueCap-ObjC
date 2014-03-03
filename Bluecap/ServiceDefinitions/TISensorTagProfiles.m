@@ -47,11 +47,11 @@
                                                            TISENSOR_TAG_ACCELEROMTER_Z_COMPONENT:
                                                                [NSString stringWithFormat:@"%.02f", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_Z_COMPONENT] floatValue]],
                                                            TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT] integerValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_X_COMPONENT] intValue]],
                                                            TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT] integerValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_Y_COMPONENT] intValue]],
                                                            TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT] integerValue]]};
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_ACCELEROMTER_RAW_Z_COMPONENT] intValue]]};
                                               }];
                                               [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                   int8_t intVals[3];
@@ -91,7 +91,7 @@
                                                   return blueCapUnsignedCharToData(intVal);
                                               }];
                                               [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                  int unscaledValue = 10*[blueCapUnsignedCharFromData(data, NSMakeRange(0, 1)) integerValue];
+                                                  int unscaledValue = 10*[blueCapUnsignedCharFromData(data, NSMakeRange(0, 1)) intValue];
                                                   return @{TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD:[NSNumber numberWithInt:unscaledValue]};
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
@@ -140,11 +140,11 @@
                                                            TISENSOR_TAG_MAGNETOMETER_Z_COMPONENT:
                                                                [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_Z_COMPONENT] floatValue]],
                                                            TISENSOR_TAG_MAGNETOMETER_RAW_X_COMPONENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_X_COMPONENT] integerValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_X_COMPONENT] intValue]],
                                                            TISENSOR_TAG_MAGNETOMETER_RAW_Y_COMPONENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_Y_COMPONENT] integerValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_Y_COMPONENT] intValue]],
                                                            TISENSOR_TAG_MAGNETOMETER_RAW_Z_COMPONENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_Z_COMPONENT] integerValue]]};
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_MAGNETOMETER_RAW_Z_COMPONENT] intValue]]};
                                               }];
                                               [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                   int16_t intVals[3];
@@ -183,7 +183,7 @@
                                                 return [NSData dataWithBytes:&value length:1];
                                             }];
                                             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
-                                                int unscaledValue = 10*[blueCapUnsignedCharFromData(data, NSMakeRange(0, 1)) integerValue];
+                                                int unscaledValue = 10*[blueCapUnsignedCharFromData(data, NSMakeRange(0, 1)) intValue];
                                                 return @{TISENSOR_TAG_MAGNETOMETER_UPDATE_PERIOD:[NSNumber numberWithInt:unscaledValue]};
                                             }];
                                             [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
@@ -229,11 +229,11 @@
                                                            TISENSOR_TAG_GYROSCOPE_Z_COMPONENT:
                                                                [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_Z_COMPONENT] floatValue]],
                                                            TISENSOR_TAG_GYROSCOPE_RAW_X_COMPONENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_X_COMPONENT] integerValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_X_COMPONENT] intValue]],
                                                            TISENSOR_TAG_GYROSCOPE_RAW_Y_COMPONENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_Y_COMPONENT] integerValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_Y_COMPONENT] intValue]],
                                                            TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT] integerValue]]};
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT] intValue]]};
                                               }];
                                               [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                   int16_t intVals[3];
@@ -304,9 +304,9 @@
                                                            TISENSOR_TAG_TEMPERATURE_OBJECT:
                                                                [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_TEMPERATURE_OBJECT] floatValue]],
                                                            TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT] integerValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT] intValue]],
                                                            TISENSOR_TAG_RAW_TEMPERATURE_OBJECT:
-                                                                [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_OBJECT] integerValue]]};
+                                                                [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_RAW_TEMPERATURE_OBJECT] intValue]]};
                                               }];
                                               [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                   int16_t intVals[2];
@@ -355,9 +355,9 @@
                                               }];
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   return @{TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE] integerValue]],
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_TEMPERATURE] intValue]],
                                                            TISENSOR_TAG_BAROMETER_RAW_PRESSURE:
-                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_PRESSURE] integerValue]]};
+                                                               [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_BAROMETER_RAW_PRESSURE] intValue]]};
                                               }];
                                               [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                   int16_t intVals[2];
@@ -400,7 +400,7 @@
                                               [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                   NSMutableDictionary* stringValues = [NSMutableDictionary dictionary];
                                                   for(NSString* key in [data allKeys]) {
-                                                      [stringValues setObject:[NSString stringWithFormat:@"%d", [[data objectForKey:key] integerValue]] forKey:key];
+                                                      [stringValues setObject:[NSString stringWithFormat:@"%d", [[data objectForKey:key] intValue]] forKey:key];
                                                   }
                                                   return stringValues;
                                               }];
@@ -456,9 +456,9 @@
                                                                                      TISENSOR_TAG_HYGROMETER_HUMIDITY:
                                                                                          [NSString stringWithFormat:@"%.01f", [[data objectForKey:TISENSOR_TAG_HYGROMETER_HUMIDITY] floatValue]],
                                                                                      TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE:
-                                                                                         [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE] integerValue]],
+                                                                                         [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE] intValue]],
                                                                                      TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY:
-                                                                                         [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] integerValue]]};
+                                                                                         [NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY] intValue]]};
                                                                         }];
                                                                         [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                                             uint16_t intVals[2];
@@ -514,7 +514,7 @@
                                             [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
                                                 NSMutableDictionary* stringResults = [NSMutableDictionary dictionary];
                                                 for (NSString* resultName in [data allKeys]) {
-                                                    int result = [[data valueForKey:resultName] integerValue];
+                                                    int result = [[data valueForKey:resultName] intValue];
                                                     if (result == 0) {
                                                         [stringResults setObject:@"FAILED" forKey:resultName];
                                                     } else {
@@ -576,7 +576,7 @@
                                                                              }
                                                                          }];
                                                                          [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
-                                                                             return @{TISENSOR_TAG_KEY_PRESSED:[NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_KEY_PRESSED] integerValue]]};
+                                                                             return @{TISENSOR_TAG_KEY_PRESSED:[NSString stringWithFormat:@"%d", [[data objectForKey:TISENSOR_TAG_KEY_PRESSED] intValue]]};
                                                                          }];
                                                                          [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
                                                                              uint8_t intVal = [[data objectForKey:TISENSOR_TAG_KEY_PRESSED] intValue];
