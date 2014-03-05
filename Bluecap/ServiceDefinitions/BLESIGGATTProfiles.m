@@ -17,7 +17,7 @@
 
 #pragma mark - Device Information
 
-    [profileManager createServiceWithUUID:@"180a"
+    [profileManager createServiceWithUUID:BLESIG_GATT_DEVICE_INFORMATION_SERVICE_UUID
                                      name:@"Device Information"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                   
@@ -113,7 +113,7 @@
 
         }];
     
-    [profileManager createServiceWithUUID:@"180f"
+    [profileManager createServiceWithUUID:BLESIG_GATT_BATTERY_LEVEL_SERVICE_UUID
                                      name:@"Battery"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
         
@@ -135,10 +135,10 @@
                                           }];
     }];
 
-    [profileManager createServiceWithUUID:@"1805" name:@"Current Time" andProfile:^(BlueCapServiceProfile* serviceProfile) {
+    [profileManager createServiceWithUUID:BLESIG_GATT_CURRENT_TIME_SERVICE_UUID name:@"Current Time" andProfile:^(BlueCapServiceProfile* serviceProfile) {
     }];
     
-    [profileManager createServiceWithUUID:@"1804" name:@"Tx Power" andProfile:^(BlueCapServiceProfile* serviceProfile) {
+    [profileManager createServiceWithUUID:BLESIG_GATT_CURRENT_TX_POWER_LEVEL_UUID name:@"Tx Power" andProfile:^(BlueCapServiceProfile* serviceProfile) {
         [serviceProfile createCharacteristicWithUUID:@"2a07" name:@"Tx Power Level" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
             characteristicProfile.properties = CBCharacteristicPropertyRead;
             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {

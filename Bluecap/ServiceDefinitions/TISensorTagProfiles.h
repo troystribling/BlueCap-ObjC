@@ -8,7 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma mark - Accelerometer
+#pragma mark - Service UUIDs -
+
+#define TISENSOR_TAG_ACCELEROMETER_SERVICE_UUID     @"F000AA10-0451-4000-B000-000000000000"
+#define TISENSOR_TAG_MAGNETOMETER_SERVICE_UUID      @"F000AA30-0451-4000-B000-000000000000"
+#define TISENSOR_TAG_GYROSCOPE_SERVICE_UUID         @"F000AA50-0451-4000-B000-000000000000"
+#define TISENSOR_TAG_TEMPERATURE_SERVICE_UUID       @"F000AA00-0451-4000-B000-000000000000"
+#define TISENSOR_TAG_BAROMETER_SERVICE_UUID         @"F000AA40-0451-4000-B000-000000000000"
+#define TISENSOR_TAG_HYGROMETER_SERVICE_UUID        @"F000AA20-0451-4000-B000-000000000000"
+#define TISENSOR_TAG_TEST_SERVICE_UUID              @"F000AA60-0451-4000-B000-000000000000"
+#define TISENSOR_TAG_KEY_PRESSED_SERVICE_UUID       @"ffe0"
+
+#pragma mark - Accelerometer -
 
 #define TISENSOR_TAG_ACCELEROMETER_ON               @"Yes"
 #define TISENSOR_TAG_ACCELEROMETER_ON_VALUE         0x01
@@ -24,7 +35,7 @@
 
 #define TISENSOR_TAG_ACCELEROMETER_UPDATE_PERIOD    @"Update Period"
 
-#pragma mark - Barometer
+#pragma mark - Barometer -
 
 #define TISENSOR_TAG_BAROMETER_ON                       @"Yes"
 #define TISENSOR_TAG_BAROMETER_ON_VALUE                 0x01
@@ -47,7 +58,7 @@
 #define TISENSOR_TAG_BAROMETER_TEMPERATURE              @"Temperature"
 #define TISENSOR_TAG_BAROMETER_PRESSURE                 @"Pressure"
 
-#pragma mark - Temperature
+#pragma mark - Temperature -
 
 #define TISENSOR_TAG_TEMPERATURE_ON                     @"Yes"
 #define TISENSOR_TAG_TEMPERATURE_ON_VALUE               0x01
@@ -59,7 +70,7 @@
 #define TISENSOR_TAG_RAW_TEMPERATURE_OBJECT             @"Raw Object Temperature"
 #define TISENSOR_TAG_RAW_TEMPERATURE_AMBIENT            @"Raw Ambient Temperature"
 
-#pragma mark - Gyrosope
+#pragma mark - Gyrosope -
 
 #define TISENSOR_TAG_GYROSCOPE_X_AXIS_ON            @"X-Axis Enables"
 #define TISENSOR_TAG_GYROSCOPE_X_AXIS_ON_VALUE      0x01
@@ -85,7 +96,7 @@
 #define TISENSOR_TAG_GYROSCOPE_RAW_Y_COMPONENT      @"Raw Y Component"
 #define TISENSOR_TAG_GYROSCOPE_RAW_Z_COMPONENT      @"Raw Z Component"
 
-#pragma mark - Magnetometer
+#pragma mark - Magnetometer -
 
 #define TISENSOR_TAG_MAGNETOMETER_ON                @"Yes"
 #define TISENSOR_TAG_MAGNETOMETER_ON_VALUE          0x01
@@ -101,7 +112,7 @@
 
 #define TISENSOR_TAG_MAGNETOMETER_UPDATE_PERIOD         @"Update Period"
 
-#pragma mark - Hygrometer
+#pragma mark - Hygrometer -
 
 #define TISENSOR_TAG_HYGROMETER_ON                @"Yes"
 #define TISENSOR_TAG_HYGROMETER_ON_VALUE          0x01
@@ -113,7 +124,7 @@
 #define TISENSOR_TAG_HYGROMETER_RAW_TEMPERATURE     @"Raw Temperature"
 #define TISENSOR_TAG_HYGROMETER_RAW_HUMIDITY        @"Raw Humidity"
 
-#pragma mark - Device Test
+#pragma mark - Device Test -
 
 #define TISENSOR_TAG_TEST_ON                @"YES"
 #define TISENSOR_TAG_TEST_ON_VALUE          0x81

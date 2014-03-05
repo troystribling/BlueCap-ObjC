@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark - Service UUIDs -
+
+#define BLESIG_GATT_DEVICE_INFORMATION_SERVICE_UUID     @"180a"
+#define BLESIG_GATT_BATTERY_LEVEL_SERVICE_UUID          @"180f"
+#define BLESIG_GATT_CURRENT_TIME_SERVICE_UUID           @"1805"
+#define BLESIG_GATT_CURRENT_TX_POWER_LEVEL_UUID         @"1804"
+
 #pragma mark - Device Information
 
 #define BLESIG_GATT_DEVICE_INFORMATION_SYSTEM_ID                @"System ID"

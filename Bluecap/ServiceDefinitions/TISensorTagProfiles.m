@@ -17,7 +17,7 @@
     
 #pragma mark - Accelerometer
 
-    [profileManager createServiceWithUUID:@"F000AA10-0451-4000-B000-000000000000"
+    [profileManager createServiceWithUUID:TISENSOR_TAG_ACCELEROMETER_SERVICE_UUID
                                      name:@"TI Accelerometer"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                    
@@ -111,7 +111,7 @@
 
 #pragma mark - Magnetometer
 
-    [profileManager createServiceWithUUID:@"F000AA30-0451-4000-B000-000000000000"
+    [profileManager createServiceWithUUID:TISENSOR_TAG_MAGNETOMETER_SERVICE_UUID
                                      name:@"TI Magnetometer"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
         // units are uT
@@ -200,7 +200,7 @@
 
 #pragma mark - Gyroscope
 
-    [profileManager createServiceWithUUID:@"F000AA50-0451-4000-B000-000000000000"
+    [profileManager createServiceWithUUID:TISENSOR_TAG_GYROSCOPE_SERVICE_UUID
                                      name:@"TI Gyroscope"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
         // units are degrees
@@ -268,7 +268,7 @@
 
 #pragma mark - Temperature
 
-    [profileManager createServiceWithUUID:@"F000AA00-0451-4000-B000-000000000000"
+    [profileManager createServiceWithUUID:TISENSOR_TAG_TEMPERATURE_SERVICE_UUID
                                      name:@"TI IR Temperature Sensor"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
         // units are Celsius
@@ -342,7 +342,7 @@
     T = C2/2^10 + C1*TR/2^24
 */
 
-    [profileManager createServiceWithUUID:@"F000AA40-0451-4000-B000-000000000000"
+    [profileManager createServiceWithUUID:TISENSOR_TAG_BAROMETER_SERVICE_UUID
                                      name:@"TI Barometer"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                 
@@ -433,7 +433,7 @@
 
 #pragma mark - Hygrometer
 
-    [profileManager createServiceWithUUID:@"F000AA20-0451-4000-B000-000000000000"
+    [profileManager createServiceWithUUID:TISENSOR_TAG_HYGROMETER_SERVICE_UUID
                                         name:@"TI Hygrometer"
                                   andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                       
@@ -485,7 +485,7 @@
 
 #pragma mark - Sensor Tag Test
     
-    [profileManager createServiceWithUUID:@"F000AA60-0451-4000-B000-000000000000"
+    [profileManager createServiceWithUUID:TISENSOR_TAG_TEST_SERVICE_UUID
                                      name:@"TI Sensor Tag Test"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                       
@@ -562,7 +562,7 @@
 
 #pragma mark - Key Pressed
     
-    [profileManager createServiceWithUUID:@"ffe0"
+    [profileManager createServiceWithUUID:TISENSOR_TAG_KEY_PRESSED_SERVICE_UUID
                                      name:@"TI Key Pressed"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                    [serviceProfile createCharacteristicWithUUID:@"ffe1"
