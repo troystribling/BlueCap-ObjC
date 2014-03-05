@@ -57,12 +57,32 @@
                                      name:@"Location"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                    [serviceProfile createCharacteristicWithUUID:(NSString *)@"2f0a0017-69aa-f316-3e78-4194989a6c1a"
-                                                                           name:@"Latitude"
+                                                                           name:@"Latitude and Longitude"
                                                                      andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
-                                                                     }];
-                                   [serviceProfile createCharacteristicWithUUID:(NSString *)@"2f0a0018-69aa-f316-3e78-4194989a6c1a"
-                                                                           name:@"Longitude"
-                                                                     andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                                                         characteristicProfile.properties = CBCharacteristicPropertyRead | CBCharacteristicPropertyWrite;
+                                                                         [characteristicProfile serializeObject:^NSData*(id data) {
+                                                                             NSNumber* latitude = [data objectForKey:GNOSUS_LOCATION_LATITUDE];
+                                                                             NSNumber* longitude = [data objectForKey:GNOSUS_LOCATION_LATITUDE];
+                                                                             int16_t location[2];
+                                                                             location[0] = (int16_t)(100.0*[latitude floatValue]);
+                                                                             location[1] = (int16_t)(100.0*[longitude floatValue]);
+                                                                             return blueCapBigFromInt16Array(location, 2);
+                                                                         }];
+                                                                         [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                                                                             float latitude = [blueCapInt16BigFromData(data, NSMakeRange(0, 2)) floatValue] / 100.0;
+                                                                             float longitude = [blueCapInt16BigFromData(data, NSMakeRange(2, 2)) floatValue] / 100.0;
+                                                                             return @{GNOSUS_LOCATION_LATITUDE:[NSNumber numberWithFloat:latitude],
+                                                                                      GNOSUS_LOCATION_LONGITUDE:[NSNumber numberWithFloat:longitude]};
+                                                                         }];
+                                                                         [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                                             return @{GNOSUS_LOCATION_LATITUDE:[[data objectForKey:GNOSUS_LOCATION_LATITUDE] stringValue],
+                                                                                      GNOSUS_LOCATION_LONGITUDE:[[data objectForKey:GNOSUS_LOCATION_LONGITUDE] stringValue]};
+                                                                         }];
+                                                                         [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                                             return nil;
+                                                                         }];
+                                                                         characteristicProfile.initialValue = [characteristicProfile valueFromString:@{GNOSUS_LOCATION_LATITUDE:[NSString stringWithFormat:@"%d", 3776],
+                                                                                                                                                       GNOSUS_LOCATION_LONGITUDE:[NSString stringWithFormat:@"%d", -12242]}];
                                                                      }];
                                }];
      

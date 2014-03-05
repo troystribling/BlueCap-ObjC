@@ -18,6 +18,11 @@
 #define GNOSUS_HELLO_WORLD_GREETING         @"Greeting"
 #define GNOSUS_HELLO_WORLD_UPDATE_PERIOD    @"Update Period"
 
+#pragma - mark - Location -
+
+#define GNOSUS_LOCATION_LATITUDE            @"Latitude"
+#define GNOSUS_LOCATION_LONGITUDE           @"Longitude"
+
 @interface GnosusProfiles : NSObject
 
 + (void)create;
