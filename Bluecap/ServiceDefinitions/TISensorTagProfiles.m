@@ -162,6 +162,7 @@
         [serviceProfile createCharacteristicWithUUID:@"f000aa32-0451-4000-b000-000000000000"
                                                 name:@"Magnetometer Enabled"
                                           andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                              characteristicProfile.properties = CBCharacteristicPropertyRead | CBCharacteristicPropertyWrite;
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_MAGNETOMETER_ON_VALUE) named:TISENSOR_TAG_MAGNETOMETER_ON];
                                               [characteristicProfile setValue:blueCapUnsignedCharToData(TISENSOR_TAG_MAGNETOMETER_OFF_VALUE) named:TISENSOR_TAG_MAGNETOMETER_OFF];
                                               [characteristicProfile afterDiscovered:^(BlueCapCharacteristic* characteristic) {

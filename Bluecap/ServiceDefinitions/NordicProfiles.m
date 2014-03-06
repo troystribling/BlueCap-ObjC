@@ -34,6 +34,7 @@
     }];
     
     [profileManager createServiceWithUUID:@"2f0a0005-69aa-f316-3e78-4194989a6c1a" name:@"Nordic BLE Address" andProfile:^(BlueCapServiceProfile* serviceProfile) {
+        
         [serviceProfile createCharacteristicWithUUID:@"2f0a0006-69aa-f316-3e78-4194989a6c1a" name:@"Address" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
             characteristicProfile.properties = CBCharacteristicPropertyRead;
             [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
@@ -75,6 +76,7 @@
                                                                                           NORDIC_BLE_ADDRESS_5:[NSString stringWithFormat:@"%d", 14],
                                                                                           NORDIC_BLE_ADDRESS_6:[NSString stringWithFormat:@"%d", 15]}];
         }];
+        
         [serviceProfile createCharacteristicWithUUID:@"2f0a0007-69aa-f316-3e78-4194989a6c1a" name:@"Address Type" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
             characteristicProfile.properties = CBCharacteristicPropertyRead;
             [characteristicProfile setValue:blueCapUnsignedCharToData(NORDIC_BLE_ADDRESS_TYPE_UNKNOWN_VALUE) named:NORDIC_BLE_ADDRESS_TYPE_UNKNOWN];
