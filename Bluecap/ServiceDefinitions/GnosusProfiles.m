@@ -79,8 +79,8 @@
                                                                                       GNOSUS_LOCATION_LONGITUDE:[[data objectForKey:GNOSUS_LOCATION_LONGITUDE] stringValue]};
                                                                          }];
                                                                          [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
-                                                                             return [characteristicProfile valueFromObject:@{GNOSUS_LOCATION_LATITUDE:[[data objectForKey:GNOSUS_LOCATION_LATITUDE] numberValue],
-                                                                                                                             GNOSUS_LOCATION_LATITUDE:[[data objectForKey:GNOSUS_LOCATION_LATITUDE] numberValue]}];
+                                                                             return [characteristicProfile valueFromObject:@{GNOSUS_LOCATION_LATITUDE:[NSNumber numberWithInt:[[data objectForKey:GNOSUS_LOCATION_LATITUDE] floatValue]],
+                                                                                                                             GNOSUS_LOCATION_LONGITUDE:[NSNumber numberWithInt:[[data objectForKey:GNOSUS_LOCATION_LONGITUDE] floatValue]]}];
                                                                          }];
                                                                          characteristicProfile.initialValue = [characteristicProfile valueFromString:@{GNOSUS_LOCATION_LATITUDE:[NSString stringWithFormat:@"%d", 3776],
                                                                                                                                                        GNOSUS_LOCATION_LONGITUDE:[NSString stringWithFormat:@"%d", -12242]}];
