@@ -1,4 +1,5 @@
 *.xcuserstate
 *.xcscheme
 *.xcbkptlist
+BlueCap.xcodeproj/xcuserdata/*
 .DS_Store
