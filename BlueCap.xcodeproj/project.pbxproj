@@ -440,7 +440,7 @@
 		05AA668D17B868F90019AC3C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = gnos.us;
 			};
 			buildConfigurationList = 05AA669017B868F90019AC3C /* Build configuration list for PBXProject "BlueCap" */;
@@ -608,7 +608,6 @@
 		05AA66B917B868F90019AC3C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/Bluecap.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -623,7 +622,6 @@
 		05AA66BA17B868F90019AC3C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/Bluecap.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

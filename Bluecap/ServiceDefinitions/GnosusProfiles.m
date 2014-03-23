@@ -56,7 +56,7 @@
     [profileManager createServiceWithUUID:GNOSUS_LOCATION_SERVICE_UUID
                                      name:@"Location"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
-                                   [serviceProfile createCharacteristicWithUUID:(NSString *)@"2f0a0017-69aa-f316-3e78-4194989a6c1a"
+                                   [serviceProfile createCharacteristicWithUUID:@"2f0a0017-69aa-f316-3e78-4194989a6c1a"
                                                                            name:@"Latitude and Longitude"
                                                                      andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                                                          characteristicProfile.properties = CBCharacteristicPropertyRead | CBCharacteristicPropertyWrite;
@@ -86,8 +86,30 @@
                                                                                                                                                        GNOSUS_LOCATION_LONGITUDE:[NSString stringWithFormat:@"%d", -12242]}];
                                                                      }];
                                }];
-     
-    
+    [profileManager createServiceWithUUID:GNOSUS_EPOC_TIME_UUID
+                                     name:@"Epoc Time"
+                               andProfile:^(BlueCapServiceProfile* serviceProfile) {
+                                   [serviceProfile createCharacteristicWithUUID:@"2f0a0026-69aa-f316-3e78-4194989a6c1a"
+                                                                           name:@"Time"
+                                                                     andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                                                         characteristicProfile.properties = CBCharacteristicPropertyRead | CBCharacteristicPropertyWrite | CBCharacteristicPropertyNotify;
+                                                                         [characteristicProfile serializeObject:^NSData*(id data) {
+                                                                             uint16_t time = [data intValue];
+                                                                             return blueCapBigFromInt16(time);
+                                                                         }];
+                                                                         [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
+                                                                             return @{GNOSUS_EPOC_TIME_TIME:blueCapUnsignedInt16BigFromData(data, NSMakeRange(0, 2))};
+                                                                         }];
+                                                                         [characteristicProfile stringValue:^NSDictionary*(NSDictionary* data) {
+                                                                             return @{GNOSUS_EPOC_TIME_TIME:[[data objectForKey:GNOSUS_EPOC_TIME_TIME] stringValue]};
+                                                                         }];
+                                                                         [characteristicProfile serializeString:^NSData*(NSDictionary* data) {
+                                                                             return [characteristicProfile valueFromObject:[NSNumber numberWithInt:[[data objectForKey:GNOSUS_EPOC_TIME_TIME] intValue]]];
+                                                                         }];
+                                                                         characteristicProfile.initialValue = [characteristicProfile valueFromString:@{GNOSUS_EPOC_TIME_TIME:[NSString stringWithFormat:@"%d", 1395597813]}];
+                                                                     }];
+                               }];
+
 }
 
 @end
