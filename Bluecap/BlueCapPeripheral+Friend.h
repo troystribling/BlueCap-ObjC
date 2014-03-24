@@ -22,13 +22,13 @@
 
 @property(nonatomic, assign) BLueCapPeripheralConnectionError   currentError;
 @property(nonatomic, assign) NSInteger                          connectionSequenceNumber;
-@property(nonatomic, assign) BOOL                               autoReconnect;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral;
 - (id)initWithCBPeripheral:(CBPeripheral*)__cbPeripheral;
 
 - (void)didDisconnectPeripheral:(BlueCapPeripheral*)__peripheral;
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral;
+- (void)didFailToConnectPeripheral:(BlueCapPeripheral*)__peripheral withError:(NSError*)error;
 
 - (NSError*)error;
 

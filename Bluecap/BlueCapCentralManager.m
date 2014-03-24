@@ -141,6 +141,13 @@ static BlueCapCentralManager* thisBlueCapCentralManager = nil;
 }
 
 - (void)centralManager:(CBCentralManager*)central didFailToConnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error {
+    BlueCapPeripheral* bcPeripheral = [self.discoveredPeripherals objectForKey:peripheral];
+    if (bcPeripheral != nil) {
+        DLog(@"Peripheral Failed to Connect: %@", peripheral.name);
+        [bcPeripheral didFailToConnectPeripheral:bcPeripheral withError:error];
+    } else {
+        DLog(@"Peripheral '%@' not found", peripheral.name);
+    }
 }
 
 - (void)centralManager:(CBCentralManager*)central didRetrieveConnectedPeripherals:(NSArray*)peripherals {

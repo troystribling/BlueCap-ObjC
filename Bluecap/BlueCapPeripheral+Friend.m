@@ -21,7 +21,6 @@
 
 @dynamic currentError;
 @dynamic connectionSequenceNumber;
-@dynamic autoReconnect;
 
 + (BlueCapPeripheral*)withCBPeripheral:(CBPeripheral*)__cbPeripheral {
     return [[BlueCapPeripheral alloc] initWithCBPeripheral:__cbPeripheral];
@@ -34,27 +33,23 @@
         self.cbPeripheral.delegate = self;
         self.discoveredServices = [NSMutableArray array];
         self.discoveredObjects = [NSMapTable weakToWeakObjectsMapTable];
-        self.currentError = BLueCapPeripheralConnectionErrorDisconnected;
+        self.currentError = BLueCapPeripheralConnectionErrorNone;
         self.advertisement = [NSDictionary dictionary];
-        self.autoReconnect = NO;
     }
     return self;
 }
 
 - (void)didDisconnectPeripheral:(BlueCapPeripheral*)__peripheral {
-    if (self.currentError == BLueCapPeripheralConnectionErrorNone) {
-        ASYNC_CALLBACK(self.afterPeripherialDisconnectCallback, self.afterPeripherialDisconnectCallback(__peripheral))
-    } else {
-        if (self.autoReconnect) {
-            ASYNC_CALLBACK(self.afterPeripherialDisconnectCallback, self.afterPeripherialDisconnectCallback(__peripheral))
-        }
-        ASYNC_CALLBACK(self.afterPeripheralConnectCallback, self.afterPeripheralConnectCallback(__peripheral, [self error]))
-    }
+    ASYNC_CALLBACK(self.afterPeripherialDisconnectCallback, self.afterPeripherialDisconnectCallback(__peripheral))
 }
 
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral {
     self.connectionSequenceNumber = 0;
     ASYNC_CALLBACK(self.afterPeripheralConnectCallback, self.afterPeripheralConnectCallback(__peripheral, nil))
+}
+
+- (void)didFailToConnectPeripheral:(BlueCapPeripheral *)__peripheral withError:(NSError *)error {
+    ASYNC_CALLBACK(self.afterPeripheralConnectCallback, self.afterPeripheralConnectCallback(__peripheral, error));
 }
 
 - (NSError*)error {
@@ -73,7 +68,7 @@
         default:
             break;
     }
-    self.currentError = BLueCapPeripheralConnectionErrorDisconnected;
+    self.currentError = BLueCapPeripheralConnectionErrorNone;
     return errorObj;
 }
 

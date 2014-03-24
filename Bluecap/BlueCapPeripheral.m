@@ -36,7 +36,6 @@
 
 @property(nonatomic, assign) BLueCapPeripheralConnectionError   currentError;
 @property(nonatomic, assign) NSInteger                          connectionSequenceNumber;
-@property(nonatomic, assign) BOOL                               autoReconnect;
 
 - (void)clearServices;
 - (void)clearCharacteristics:(BlueCapService*)__service;
@@ -160,7 +159,6 @@
 
 - (void)connectAndReconnectOnDisconnect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
     if (self.cbPeripheral.state != CBPeripheralStateConnected) {
-        self.autoReconnect = YES;
         self.afterPeripherialDisconnectCallback = ^(BlueCapPeripheral* peripheral) {
             [[BlueCapCentralManager sharedInstance] delayCallback:RECONNECT_DELAY withBlock:^{
                 if (peripheral.connectionSequenceNumber < MAX_FAILED_RECONNECTS) {
@@ -183,7 +181,6 @@
 
 - (void)disconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect {
     if (self.cbPeripheral.state == CBPeripheralStateConnected) {
-        self.autoReconnect = NO;
         self.currentError = BLueCapPeripheralConnectionErrorNone;
         self.afterPeripherialDisconnectCallback = __afterPeripheralDisconnect;
         [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
