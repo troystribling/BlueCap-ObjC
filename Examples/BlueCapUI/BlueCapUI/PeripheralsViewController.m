@@ -11,15 +11,24 @@
 #import "PeripheralViewController.h"
 #import "PeripheralCell.h"
 
+#define RECONNECT_DELAY         2.0f
+#define MAX_FAILED_RECONNECTS   10
+
 @interface PeripheralsViewController ()
 
-@property(nonatomic, retain) UIBarButtonItem*  startScanBarButtonItem;
-@property(nonatomic, retain) UIBarButtonItem*  stopScanBarButtonItem;
+@property(nonatomic, retain) UIBarButtonItem*       startScanBarButtonItem;
+@property(nonatomic, retain) UIBarButtonItem*       stopScanBarButtonItem;
+@property(nonatomic, retain) NSMutableDictionary*   peripheralConnectionSequenceNumbers;
 
 - (IBAction)toggelScan;
 - (void)reloadTableData;
 - (void)setScanButton;
 - (void)enterForground;
+- (void)connectPeripheral:(BlueCapPeripheral*)peripheral;
+- (void)reconnectPeripheral:(BlueCapPeripheral*)peripheral;
+- (void)updatePeripheralConnectionSequenceNumber:(BlueCapPeripheral*)peripheral;
+- (void)resetPeripheralConnectionSequenceNumber:(BlueCapPeripheral*)peripheral;
+- (BOOL)periphralCanReconnect:(BlueCapPeripheral*)peripheral;
 
 @end
 
@@ -46,6 +55,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self reloadTableData];
+    self.peripheralConnectionSequenceNumbers = [NSMutableDictionary dictionary];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -81,9 +91,8 @@
         [central powerOn:^{
             [central disconnectAllPeripherals];
             [central startScanning:^(BlueCapPeripheral* peripheral, NSNumber* RSSI) {
-                [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* __peripheral, NSError* error) {
-                    [self reloadTableData];
-                }];
+                [self resetPeripheralConnectionSequenceNumber:peripheral];
+                [self connectPeripheral:peripheral];
                 [self reloadTableData];
             }];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -107,6 +116,55 @@
 - (void)enterForground {
     [self setScanButton];
     [self.tableView reloadData];
+}
+
+- (void)connectPeripheral:(BlueCapPeripheral*)peripheral {
+    [peripheral connect:^(BlueCapPeripheral* __peripheral, NSError* error) {
+        if (error) {
+            [self reconnectPeripheral:peripheral];
+        } else {
+            [self reloadTableData];
+        }
+    } afterPeripheralDisconnect:^(BlueCapPeripheral* peripheral) {
+        [self reconnectPeripheral:peripheral];
+    }];
+}
+
+- (void)reconnectPeripheral:(BlueCapPeripheral *)peripheral {
+    if ([self periphralCanReconnect:peripheral]) {
+        DLog(@"Peripheal %@ disconnected. Attempting reconnect %@",
+             peripheral.name, [[self.peripheralConnectionSequenceNumbers objectForKey:peripheral.identifier] integerValue]);
+        [self updatePeripheralConnectionSequenceNumber:peripheral];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RECONNECT_DELAY * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^{
+            [self connectPeripheral:peripheral];
+        });
+    } else {
+        DLog(@"Peripheal %@ maximum reconnection attempts exceededt", peripheral.name);
+    }
+}
+
+- (void)updatePeripheralConnectionSequenceNumber:(BlueCapPeripheral*)peripheral {
+    NSNumber* counter = [self.peripheralConnectionSequenceNumbers objectForKey:peripheral.identifier];
+    if (counter) {
+        counter = [NSNumber numberWithInteger:[counter integerValue] + 1];
+    } else {
+        counter = [NSNumber numberWithInteger:0];
+    }
+    [self.peripheralConnectionSequenceNumbers setObject:counter forKey:peripheral.identifier];
+}
+
+- (void)resetPeripheralConnectionSequenceNumber:(BlueCapPeripheral*)peripheral {
+    [self.peripheralConnectionSequenceNumbers setObject:[NSNumber numberWithInteger:0] forKey:peripheral.identifier];
+}
+
+- (BOOL)periphralCanReconnect:(BlueCapPeripheral*)peripheral {
+    BOOL status = NO;
+    NSNumber* counter = [self.peripheralConnectionSequenceNumbers objectForKey:peripheral.identifier];
+    if ([counter integerValue] < MAX_FAILED_RECONNECTS) {
+        status = YES;
+    }
+    return status;
 }
 
 #pragma mark - UITableViewDataSource
@@ -145,9 +203,8 @@
     PeripheralCell* cell = (PeripheralCell*)[tableView cellForRowAtIndexPath:indexPath];
     [cell.connectingActivityIndicator startAnimating];
     if (peripheral.state == CBPeripheralStateDisconnected) {
-        [peripheral connectAndReconnectOnDisconnect:^(BlueCapPeripheral* __peripheral, NSError* __error) {
-            [self reloadTableData];
-        }];
+        [self resetPeripheralConnectionSequenceNumber:peripheral];
+        [self connectPeripheral:peripheral];
     } else {
         [peripheral disconnect:^(BlueCapPeripheral* __peripheral){
             [self reloadTableData];

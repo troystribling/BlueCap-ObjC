@@ -55,11 +55,6 @@
 - (NSError*)error {
     NSError* errorObj = nil;
     switch (self.currentError) {
-        case BLueCapPeripheralConnectionErrorDisconnected:
-            errorObj = [NSError errorWithDomain:@"BlueCap"
-                                           code:500
-                                       userInfo:@{NSLocalizedDescriptionKey: @"Disconnected"}];
-            break;
         case BLueCapPeripheralConnectionErrorTimeout:
             errorObj = [NSError errorWithDomain:@"BlueCap"
                                            code:408

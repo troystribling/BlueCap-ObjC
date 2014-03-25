@@ -18,7 +18,6 @@
 
 #define RSSI_UPDATE_PERIOD_SEC          0.5f
 #define RECONNECT_DELAY                 1.0f
-#define MAX_FAILED_RECONNECTS           10
 #define PERIPHERAL_CONNECTION_TIMEOUT   5.0f
 
 @interface BlueCapPeripheral ()
@@ -155,24 +154,6 @@
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect afterPeripheralDisconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect {
     self.afterPeripherialDisconnectCallback = __afterPeripheralDisconnect;
     [self connect:__afterPeripheralConnect];
-}
-
-- (void)connectAndReconnectOnDisconnect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect {
-    if (self.cbPeripheral.state != CBPeripheralStateConnected) {
-        self.afterPeripherialDisconnectCallback = ^(BlueCapPeripheral* peripheral) {
-            [[BlueCapCentralManager sharedInstance] delayCallback:RECONNECT_DELAY withBlock:^{
-                if (peripheral.connectionSequenceNumber < MAX_FAILED_RECONNECTS) {
-                    DLog(@"Attempting reconnect sequence number: %d", peripheral.connectionSequenceNumber);
-                    [[BlueCapCentralManager sharedInstance].centralManager connectPeripheral:peripheral.cbPeripheral options:nil];
-                        peripheral.connectionSequenceNumber++;
-                        [peripheral timeoutConnection:peripheral.connectionSequenceNumber];
-                } else {
-                    DLog(@"Maximum reconnections exceeded for sequence number: %d", peripheral.connectionSequenceNumber);
-                }
-            }];
-        };
-        [self connect:__afterPeripheralConnect];
-    }
 }
 
 - (void)connect {

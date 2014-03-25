@@ -14,8 +14,7 @@
 
 typedef enum {
     BLueCapPeripheralConnectionErrorNone,
-    BLueCapPeripheralConnectionErrorTimeout,
-    BLueCapPeripheralConnectionErrorDisconnected
+    BLueCapPeripheralConnectionErrorTimeout
 } BLueCapPeripheralConnectionError;
 
 @interface BlueCapPeripheral : NSObject <CBPeripheralDelegate>
@@ -41,7 +40,6 @@ typedef enum {
 
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect;
 - (void)connect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect afterPeripheralDisconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect;
-- (void)connectAndReconnectOnDisconnect:(BlueCapPeripheralConnectCallback)__afterPeripheralConnect;
 - (void)connect;
 - (void)disconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect;
 - (void)disconnect;
