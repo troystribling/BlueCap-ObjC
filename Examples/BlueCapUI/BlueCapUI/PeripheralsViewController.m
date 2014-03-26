@@ -131,8 +131,9 @@
 }
 
 - (void)reconnectPeripheral:(BlueCapPeripheral *)peripheral {
+    [self reloadTableData];
     if ([self periphralCanReconnect:peripheral]) {
-        DLog(@"Peripheal %@ disconnected. Attempting reconnect %@",
+        DLog(@"Peripheal %@ disconnected. Attempting reconnect %d",
              peripheral.name, [[self.peripheralConnectionSequenceNumbers objectForKey:peripheral.identifier] integerValue]);
         [self updatePeripheralConnectionSequenceNumber:peripheral];
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RECONNECT_DELAY * NSEC_PER_SEC));

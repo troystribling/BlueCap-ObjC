@@ -37,7 +37,7 @@
     if ([self.characteristic hasProfile]) {
         self.navigationItem.title = self.characteristic.profile.name;
     } else {
-        self.navigationItem.title = [self.characteristic.UUID stringValue];
+        self.navigationItem.title = [[[self.characteristic.UUID stringValue] componentsSeparatedByString:@"-"] objectAtIndex:0];
     }
     self.uuidLabel.text = self.characteristic.UUID.stringValue;
     self.broadcastingLabel.text = [self booleanStringValue:self.characteristic.isBroadcasted];
