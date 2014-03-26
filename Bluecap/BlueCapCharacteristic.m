@@ -12,6 +12,7 @@
 #import "BlueCapCharacteristicProfile+Friend.h"
 #import "BlueCapCharacteristic+Friend.h"
 #import "CBUUID+StringValue.h"
+#import "NSData+HexStringValue.h"
 
 #define CHARACTERISTIC_UPDATE_TIMEOUT   20.0
 
@@ -114,7 +115,13 @@
 }
 
 - (NSDictionary*)stringValue {
-    return [BlueCapCharacteristicProfile stringValue:[self value] usingProfile:self.profile];
+    if ([self hasProfile]) {
+        return [BlueCapCharacteristicProfile stringValue:[self value] usingProfile:self.profile];
+    } else {
+        return @{@"Hexidecimal":[[self dataValue] hexStringValue],
+                 @"UTF-8":[[NSString alloc] initWithData:[self dataValue] encoding:NSUTF8StringEncoding],
+                 @"Length":[NSString stringWithFormat:@"%lu", (unsigned long)[[self dataValue] length]]};
+    }
 }
 
 - (NSArray*)allValues {

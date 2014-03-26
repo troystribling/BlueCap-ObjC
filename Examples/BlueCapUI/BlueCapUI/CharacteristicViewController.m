@@ -36,6 +36,8 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     if ([self.characteristic hasProfile]) {
         self.navigationItem.title = self.characteristic.profile.name;
+    } else {
+        self.navigationItem.title = [self.characteristic.UUID stringValue];
     }
     self.uuidLabel.text = self.characteristic.UUID.stringValue;
     self.broadcastingLabel.text = [self booleanStringValue:self.characteristic.isBroadcasted];
@@ -50,7 +52,7 @@
     self.propertyExtendedProperties.text = [self propertyEnabledStringValue:CBCharacteristicPropertyExtendedProperties];
     self.propertyNotifyEncryptionRequired.text = [self propertyEnabledStringValue:CBCharacteristicPropertyNotifyEncryptionRequired];
     self.propertyIndicateEncryptionRequired.text = [self propertyEnabledStringValue:CBCharacteristicPropertyIndicateEncryptionRequired];
-    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyNotify] && [self.characteristic hasProfile]) {
+    if ([self.characteristic propertyEnabled:CBCharacteristicPropertyNotify]) {
         self.notifiyButton.enabled = YES;
         [self setNotifiyButtonLabel];
     } else {
@@ -119,12 +121,5 @@
 }
 
 #pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
-    if (![self.characteristic hasProfile] && indexPath.section == 0 && indexPath.row == 0) {
-        cell.textLabel.textColor = [UIColor lightGrayColor];
-        cell.userInteractionEnabled = NO;
-    }
-}
 
 @end
