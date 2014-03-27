@@ -62,6 +62,7 @@
 		05AA66B317B868F90019AC3C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05AA66B117B868F90019AC3C /* InfoPlist.strings */; };
 		05AA66B517B868F90019AC3C /* BluecapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AA66B417B868F90019AC3C /* BluecapTests.m */; };
 		05D6E51B17BFDB220019B575 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D6E51A17BFDB220019B575 /* CoreBluetooth.framework */; };
+		05E5D29918E4750D003C1F95 /* NSString+DataFromHexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E5D29818E4750D003C1F95 /* NSString+DataFromHexString.m */; };
 		05E6897917C1E09C0013246A /* BlueCapCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E6897817C1E0890013246A /* BlueCapCentralManager.m */; };
 		05EB08F618B659430002B6A9 /* NordicProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EB08F518B659430002B6A9 /* NordicProfiles.m */; };
 		05EB08F718B65AFA0002B6A9 /* NordicProfiles.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EB08F418B659430002B6A9 /* NordicProfiles.h */; };
@@ -177,6 +178,8 @@
 		05AA66B217B868F90019AC3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05AA66B417B868F90019AC3C /* BluecapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BluecapTests.m; sourceTree = "<group>"; };
 		05D6E51A17BFDB220019B575 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		05E5D29718E4750D003C1F95 /* NSString+DataFromHexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DataFromHexString.h"; sourceTree = "<group>"; };
+		05E5D29818E4750D003C1F95 /* NSString+DataFromHexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DataFromHexString.m"; sourceTree = "<group>"; };
 		05E6897517C1E0890013246A /* BlueCap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlueCap-Prefix.pch"; sourceTree = "<group>"; };
 		05E6897617C1E0890013246A /* BlueCap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueCap.h; sourceTree = "<group>"; };
 		05E6897717C1E0890013246A /* BlueCapCentralManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueCapCentralManager.h; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 				0543816117CADBC90071AC73 /* CBUUID+StringValue.m */,
 				059BD6EF18E27566005E4C96 /* NSData+HexStringValue.h */,
 				059BD6F018E27566005E4C96 /* NSData+HexStringValue.m */,
+				05E5D29718E4750D003C1F95 /* NSString+DataFromHexString.h */,
+				05E5D29818E4750D003C1F95 /* NSString+DataFromHexString.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -510,6 +515,7 @@
 				059BD6F118E27566005E4C96 /* NSData+HexStringValue.m in Sources */,
 				054766C417FFB3C5005C4125 /* BlueCapServiceProfile.m in Sources */,
 				059329D017F0989500D514F1 /* TISensorTagProfiles.m in Sources */,
+				05E5D29918E4750D003C1F95 /* NSString+DataFromHexString.m in Sources */,
 				05EB08F618B659430002B6A9 /* NordicProfiles.m in Sources */,
 				0540FFE3182F1173001B3735 /* BlueCapProfileManager.m in Sources */,
 			);
