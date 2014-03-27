@@ -12,4 +12,5 @@
 
 @property(nonatomic, retain) IBOutlet UILabel*  valueNameLable;
 @property(nonatomic, retain) IBOutlet UILabel*  valueLable;
+
 @end

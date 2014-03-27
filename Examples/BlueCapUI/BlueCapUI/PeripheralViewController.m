@@ -9,6 +9,7 @@
 #import <BlueCap/BlueCap.h>
 #import "PeripheralViewController.h"
 #import "PeripheralServicesViewController.h"
+#import "PeripheralAdvertisementsViewController.h"
 
 #define RECONNECT_DELAY         2.0f
 #define MAX_FAILED_RECONNECTS   10
@@ -63,6 +64,9 @@
     if ([segue.identifier isEqualToString:@"PeripheralServices"]) {
         PeripheralServicesViewController* viewController = segue.destinationViewController;
         viewController.peripheral = self.peripheral;
+    } else if ([segue.identifier isEqualToString:@"PeripheralAdvertisements"]) {
+        PeripheralAdvertisementsViewController* viewController = segue.destinationViewController;
+        viewController.advertisements = [self.peripheral advertisement];
     }
 }
 

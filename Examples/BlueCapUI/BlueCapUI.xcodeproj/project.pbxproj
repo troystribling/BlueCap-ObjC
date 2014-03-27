@@ -45,7 +45,8 @@
 		059563EC17C1AE6F00A5E84F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 052A002817BB2CD4006D7AB3 /* Main.storyboard */; };
 		059769D117CB121600BDE5B5 /* PeripheralServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769D017CB121600BDE5B5 /* PeripheralServiceCell.m */; };
 		059769E517CF1CED00BDE5B5 /* ServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059769E417CF1CED00BDE5B5 /* ServiceViewController.m */; };
-		059BD6F418E326F3005E4C96 /* PeripheralAdvertisementsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BD6F318E326F3005E4C96 /* PeripheralAdvertisementsTableViewController.m */; };
+		059BD6F418E326F3005E4C96 /* PeripheralAdvertisementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BD6F318E326F3005E4C96 /* PeripheralAdvertisementsViewController.m */; };
+		059BD6F818E3BAFD005E4C96 /* PeripheralAdvertisementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 059BD6F718E3BAFD005E4C96 /* PeripheralAdvertisementCell.m */; };
 		05A261071816C9FC00232014 /* CharacteristicDiscreteValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A261061816C9FC00232014 /* CharacteristicDiscreteValueViewController.m */; };
 		05A2D4C31839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A2D4C21839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.m */; };
 		05A2D4C71839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A2D4C61839A4510047DB0C /* PeripheralManagerCharacteristicValuesViewController.m */; };
@@ -160,8 +161,10 @@
 		059769D017CB121600BDE5B5 /* PeripheralServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralServiceCell.m; sourceTree = "<group>"; };
 		059769E317CF1CED00BDE5B5 /* ServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceViewController.h; sourceTree = "<group>"; };
 		059769E417CF1CED00BDE5B5 /* ServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
-		059BD6F218E326F3005E4C96 /* PeripheralAdvertisementsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralAdvertisementsTableViewController.h; sourceTree = "<group>"; };
-		059BD6F318E326F3005E4C96 /* PeripheralAdvertisementsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralAdvertisementsTableViewController.m; sourceTree = "<group>"; };
+		059BD6F218E326F3005E4C96 /* PeripheralAdvertisementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralAdvertisementsViewController.h; sourceTree = "<group>"; };
+		059BD6F318E326F3005E4C96 /* PeripheralAdvertisementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralAdvertisementsViewController.m; sourceTree = "<group>"; };
+		059BD6F618E3BAFD005E4C96 /* PeripheralAdvertisementCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralAdvertisementCell.h; sourceTree = "<group>"; };
+		059BD6F718E3BAFD005E4C96 /* PeripheralAdvertisementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralAdvertisementCell.m; sourceTree = "<group>"; };
 		05A261051816C9FC00232014 /* CharacteristicDiscreteValueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicDiscreteValueViewController.h; sourceTree = "<group>"; };
 		05A261061816C9FC00232014 /* CharacteristicDiscreteValueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicDiscreteValueViewController.m; sourceTree = "<group>"; };
 		05A2D4C11839A36F0047DB0C /* PeripheralManagerCharacteristicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralManagerCharacteristicViewController.h; sourceTree = "<group>"; };
@@ -308,8 +311,10 @@
 				0536D3DB17D52DB200BA1165 /* CharacteristicViewController.m */,
 				0536D3EA17D8528C00BA1165 /* DescriptorCell.h */,
 				0536D3EB17D8528C00BA1165 /* DescriptorCell.m */,
-				059BD6F218E326F3005E4C96 /* PeripheralAdvertisementsTableViewController.h */,
-				059BD6F318E326F3005E4C96 /* PeripheralAdvertisementsTableViewController.m */,
+				059BD6F618E3BAFD005E4C96 /* PeripheralAdvertisementCell.h */,
+				059BD6F718E3BAFD005E4C96 /* PeripheralAdvertisementCell.m */,
+				059BD6F218E326F3005E4C96 /* PeripheralAdvertisementsViewController.h */,
+				059BD6F318E326F3005E4C96 /* PeripheralAdvertisementsViewController.m */,
 				05D6460317C5A73E008A251D /* PeripheralCell.h */,
 				05D6460417C5A73E008A251D /* PeripheralCell.m */,
 				059769CF17CB121600BDE5B5 /* PeripheralServiceCell.h */,
@@ -557,6 +562,7 @@
 				059769E517CF1CED00BDE5B5 /* ServiceViewController.m in Sources */,
 				05D6E52017BFDEC70019B575 /* PeripheralsViewController.m in Sources */,
 				0504D13F1820A80000A5C607 /* ServiceProfileCell.m in Sources */,
+				059BD6F818E3BAFD005E4C96 /* PeripheralAdvertisementCell.m in Sources */,
 				0540FFFF1830255E001B3735 /* PeripheralManagerCharacteristiceFreeFormValueViewController.m in Sources */,
 				0540FFED182FF815001B3735 /* PeripheralManagerServiceCell.m in Sources */,
 				0540FFF6182FFB1D001B3735 /* PeripheralManagerCharacteristicDiscreteValueViewController.m in Sources */,
@@ -566,7 +572,7 @@
 				05A4DD201843A99400F948DE /* UIAlertView+Extensions.m in Sources */,
 				05A4DD1C18418F7C00F948DE /* TextBoxView.m in Sources */,
 				05A4DD1818418EB400F948DE /* ProgressView.m in Sources */,
-				059BD6F418E326F3005E4C96 /* PeripheralAdvertisementsTableViewController.m in Sources */,
+				059BD6F418E326F3005E4C96 /* PeripheralAdvertisementsViewController.m in Sources */,
 				05D6460517C5A73E008A251D /* PeripheralCell.m in Sources */,
 				0536D3E917D5615700BA1165 /* CharacteristicDescriptorsViewController.m in Sources */,
 				050C73281825C651002BF77F /* CharacteristicProfileCell.m in Sources */,
