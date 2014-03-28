@@ -10,6 +10,6 @@
 
 @interface NSString (DataFromHexString)
 
-- (NSData*)dataValueFromHexString;
+- (NSData*)dataFromHexString;
 
 @end

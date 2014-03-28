@@ -12,5 +12,6 @@
 
 @property(nonatomic, retain) IBOutlet UITextField*      valueTextField;
 @property(nonatomic, retain) BlueCapCharacteristic*     characteristic;
+@property(nonatomic, retain) NSString*                  valueName;
 
 @end

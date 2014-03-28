@@ -13,8 +13,10 @@
 #import "BlueCapCharacteristic+Friend.h"
 #import "CBUUID+StringValue.h"
 #import "NSData+HexStringValue.h"
+#import "NSString+DataFromHexString.h"
 
 #define CHARACTERISTIC_UPDATE_TIMEOUT   20.0
+#define HEX_VALUE_NAME                  @"Hexadecimal"
 
 @interface BlueCapCharacteristic () {
 }
@@ -35,6 +37,7 @@
 
 - (void)timeout:(NSInteger)__sequenceNumber check:(BOOL)__readOrWrite;
 - (NSError*)error;
+- (NSData*)dataFromStringValue:(NSDictionary*)__value;
 
 @end
 
@@ -118,9 +121,7 @@
     if ([self hasProfile]) {
         return [BlueCapCharacteristicProfile stringValue:[self value] usingProfile:self.profile];
     } else {
-        return @{@"Hexidecimal":[[self dataValue] hexStringValue],
-                 @"UTF-8":[[NSString alloc] initWithData:[self dataValue] encoding:NSUTF8StringEncoding],
-                 @"Length":[NSString stringWithFormat:@"%lu", (unsigned long)[[self dataValue] length]]};
+        return @{HEX_VALUE_NAME:[[self dataValue] hexStringValue]};
     }
 }
 
@@ -222,13 +223,11 @@
 }
 
 - (void)writeString:(NSDictionary*)__value afterWriteCall:(BlueCapCharacteristicDataCallback)__afterWriteCallback {
-    NSData* serializedValue = [BlueCapCharacteristicProfile serializeString:__value usingProfile:self.profile];
-    [self writeData:serializedValue afterWriteCall:__afterWriteCallback];
+    [self writeData:[self dataFromStringValue:__value] afterWriteCall:__afterWriteCallback];
 }
 
 - (void)writeString:(NSDictionary*)__value {
-    NSData* serializedValue = [BlueCapCharacteristicProfile serializeString:__value usingProfile:self.profile];
-    [self writeData:serializedValue];
+    [self writeData:[self dataFromStringValue:__value]];
 }
 
 #pragma mark - Discover Descriptors
@@ -263,6 +262,16 @@
     return [NSError errorWithDomain:@"BlueCap"
                                code:408
                            userInfo:@{NSLocalizedDescriptionKey: @"Update Timeout"}];
+}
+
+- (NSData*)dataFromStringValue:(NSDictionary*)__value {
+    NSData* serializedValue = nil;
+    if ([self hasProfile]) {
+        serializedValue = [BlueCapCharacteristicProfile serializeString:__value usingProfile:self.profile];
+    } else {
+        serializedValue = [[__value objectForKey:HEX_VALUE_NAME] dataFromHexString];
+    }
+    return serializedValue;
 }
 
 @end

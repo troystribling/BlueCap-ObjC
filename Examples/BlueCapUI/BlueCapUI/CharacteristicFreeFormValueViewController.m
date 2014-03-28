@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    self.navigationItem.title = self.characteristic.profile.name;
+    self.navigationItem.title = self.valueName;
     self.progressView = [ProgressView progressView];
     [super viewDidLoad];
 }
@@ -43,7 +43,9 @@
     NSString* value = self.valueTextField.text;
     if (value) {
         [self.progressView progressWithMessage:@"Writing" inView:[[UIApplication sharedApplication] keyWindow]];
-        [self.characteristic writeObject:value afterWriteCall:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
+        NSMutableDictionary* values = [[self.characteristic stringValue] mutableCopy];
+        [values setObject:value forKey:self.valueName];
+        [self.characteristic writeString:values afterWriteCall:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (__error) {
                     [UIAlertView alertOnError:__error];

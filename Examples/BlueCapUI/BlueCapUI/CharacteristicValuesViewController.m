@@ -59,7 +59,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"CharacteristicFreeFormValue"]) {
-        CharacteristicValuesViewController* viewController = segue.destinationViewController;
+        NSIndexPath* selectedIndexPath = [self.tableView indexPathForCell:sender];
+        NSArray* valueNames = [self.values allKeys];
+        CharacteristicFreeFormValueViewController* viewController = segue.destinationViewController;
+        viewController.valueName = [valueNames objectAtIndex:selectedIndexPath.row];
         viewController.characteristic = self.characteristic;
     } else if ([[segue identifier] isEqualToString:@"CharacteristicDiscreteValue"]) {
         CharacteristicDiscreteValueViewController* viewController = segue.destinationViewController;

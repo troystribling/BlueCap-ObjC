@@ -10,7 +10,7 @@
 
 @implementation NSString (DataFromHexString)
 
-- (NSData*)dataValueFromHexString {
+- (NSData*)dataFromHexString {
     [self stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSMutableData* dataValue = [[NSMutableData alloc] init];
     unsigned char byte;
