@@ -31,7 +31,7 @@
     if (self) {
         self.cbPeripheral = __cbPeripheral;
         self.cbPeripheral.delegate = self;
-        self.discoveredServices = [NSMutableArray array];
+        self.discoveredServices = [NSMutableDictionary dictionary];
         self.discoveredObjects = [NSMapTable weakToWeakObjectsMapTable];
         self.currentError = BLueCapPeripheralConnectionErrorNone;
         self.advertisement = [NSDictionary dictionary];
@@ -40,7 +40,11 @@
 }
 
 - (void)didDisconnectPeripheral:(BlueCapPeripheral*)__peripheral {
-    ASYNC_CALLBACK(self.afterPeripherialDisconnectCallback, self.afterPeripherialDisconnectCallback(__peripheral))
+    if (self.currentError == BLueCapPeripheralConnectionErrorNone) {
+        ASYNC_CALLBACK(self.afterPeripherialDisconnectCallback, self.afterPeripherialDisconnectCallback(__peripheral))
+    } else {
+        ASYNC_CALLBACK(self.afterPeripheralConnectCallback, self.afterPeripheralConnectCallback(__peripheral, [self error]))
+    }
 }
 
 - (void)didConnectPeripheral:(BlueCapPeripheral*)__peripheral {

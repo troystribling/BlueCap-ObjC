@@ -86,7 +86,7 @@
                                                                                                                                                        GNOSUS_LOCATION_LONGITUDE:[NSString stringWithFormat:@"%d", -12242]}];
                                                                      }];
                                }];
-    [profileManager createServiceWithUUID:GNOSUS_EPOC_TIME_UUID
+    [profileManager createServiceWithUUID:GNOSUS_EPOC_TIME_SERVICE_UUID
                                      name:@"Epoc Time"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
                                    [serviceProfile createCharacteristicWithUUID:@"2f0a0026-69aa-f316-3e78-4194989a6c1a"

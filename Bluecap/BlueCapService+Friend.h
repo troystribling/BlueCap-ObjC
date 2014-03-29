@@ -13,7 +13,7 @@
 @interface BlueCapService (Friend)
 
 @property(nonatomic, retain) CBService*                                 cbService;
-@property(nonatomic, retain) NSMutableArray*                            discoveredCharacteristics;
+@property(nonatomic, retain) NSMutableDictionary*                       discoveredCharacteristics;
 @property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
 @property(nonatomic, retain) BlueCapPeripheral*                         peripheral;
 @property(nonatomic, copy) BlueCapCharacteristicsDiscoveredCallback     afterChracteristicsDiscoveredCallback;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 gnos.us. All rights reserved.
 //
 
-
+#import "BlueCapCentralManager+Friend.h"
 #import "BlueCapPeripheral+Friend.h"
 #import "BlueCapServiceProfile+Friend.h"
 #import "BlueCapService.h"
@@ -15,7 +15,7 @@
 @interface BlueCapService ()
 
 @property(nonatomic, retain) CBService*                                 cbService;
-@property(nonatomic, retain) NSMutableArray*                            discoveredCharacteristics;
+@property(nonatomic, retain) NSMutableDictionary*                       discoveredCharacteristics;
 @property(nonatomic, retain) NSMutableDictionary*                       characteristicProfiles;
 @property(nonatomic, retain) NSMutableArray*                            discoveredIncludedServices;
 @property(nonatomic, retain) BlueCapPeripheral*                         peripheral;
@@ -37,7 +37,11 @@
 }
 
 - (NSArray*)characteristics {
-    return [NSArray arrayWithArray:self.discoveredCharacteristics];
+    __block NSArray* __characteristics = [NSArray array];
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
+        __characteristics = [NSArray arrayWithArray:[self.discoveredCharacteristics allValues]];
+    }];
+    return __characteristics;
 }
 
 - (NSArray*)includedServices {

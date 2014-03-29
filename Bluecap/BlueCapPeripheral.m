@@ -22,10 +22,10 @@
 
 @interface BlueCapPeripheral ()
 
-@property(nonatomic, retain) CBPeripheral*      cbPeripheral;
-@property(nonatomic, retain) NSMutableArray*    discoveredServices;
-@property(nonatomic, retain) NSMapTable*        discoveredObjects;
-@property(nonatomic, retain) NSDictionary*      advertisement;
+@property(nonatomic, retain) CBPeripheral*              cbPeripheral;
+@property(nonatomic, retain) NSMutableDictionary*       discoveredServices;
+@property(nonatomic, retain) NSMapTable*                discoveredObjects;
+@property(nonatomic, retain) NSDictionary*              advertisement;
 
 @property(nonatomic, copy) BlueCapPeripheralDisconnectCallback                          afterPeripherialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralConnectCallback                             afterPeripheralConnectCallback;
@@ -52,9 +52,13 @@
 - (NSArray*)services {
     __block NSArray* __services = [NSArray array];
     [[BlueCapCentralManager sharedInstance] syncMain:^{
-        __services = [NSArray arrayWithArray:self.discoveredServices];
+        __services = [NSArray arrayWithArray:[self.discoveredServices allValues]];
     }];
     return __services;
+}
+
+- (BlueCapService*)serviceWithUUID:(NSString*)serviceUUID {
+    return [self.discoveredServices objectForKey:[CBUUID UUIDWithString:serviceUUID]];
 }
 
 - (NSString*)name {
@@ -99,11 +103,11 @@
 }
 
 - (void)discoverAllServicesAndCharacteristics:(BlueCapPeripheralServiceAndCharacteristicDiscoveryCallback)__afterDiscoveryCallback {
-    [self discoverAllServices:^(NSArray* discoveredServices) {
-        for (BlueCapService* service in discoveredServices) {
-            [service discoverAllCharacteritics:^(NSArray* discoveredCharacteristics) {
+    [self discoverAllServices:^(NSArray* __discoveredServices) {
+        for (BlueCapService* service in __discoveredServices) {
+            [service discoverAllCharacteritics:^(NSArray* __discoveredCharacteristics) {
                 __block NSError* error = nil;
-                for (BlueCapCharacteristic* characteristic in discoveredCharacteristics) {
+                for (BlueCapCharacteristic* characteristic in __discoveredCharacteristics) {
                     if ([characteristic propertyEnabled:CBCharacteristicPropertyRead]) {
                         [characteristic readData:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
                             if (__error) {
@@ -162,7 +166,6 @@
 
 - (void)disconnect:(BlueCapPeripheralDisconnectCallback)__afterPeripheralDisconnect {
     if (self.cbPeripheral.state == CBPeripheralStateConnected) {
-        self.currentError = BLueCapPeripheralConnectionErrorNone;
         self.afterPeripherialDisconnectCallback = __afterPeripheralDisconnect;
         [[BlueCapCentralManager sharedInstance].centralManager cancelPeripheralConnection:self.cbPeripheral];
     }
@@ -176,7 +179,7 @@
 
 - (void)clearServices {
     DLog(@"CLEAR SERVICES BEFORE COUNT: %d", [self.discoveredObjects count]);
-    for (BlueCapService* service in self.discoveredServices) {
+    for (BlueCapService* service in [self.discoveredServices allValues]) {
         [self.discoveredObjects removeObjectForKey:service.cbService];
     }
     [self.discoveredServices removeAllObjects];
@@ -232,14 +235,14 @@
         BlueCapService* bcService = [BlueCapService withCBService:service andPeripheral:self];
         DLog(@"Discovered Service: %@", [bcService.UUID stringValue]);
         [self.discoveredObjects setObject:bcService forKey:service];
-        [self.discoveredServices addObject:bcService];
+        [self.discoveredServices setObject:bcService forKey:bcService.UUID];
         BlueCapServiceProfile* serviceProfile = [[BlueCapProfileManager sharedInstance].configuredServiceProfiles objectForKey:bcService.UUID];
         if (serviceProfile) {
             DLog(@"Service Profile Found: %@", serviceProfile.name);
             bcService.profile = serviceProfile;
         }
     }
-    ASYNC_CALLBACK(self.afterServicesDiscoveredCallback, self.afterServicesDiscoveredCallback(self.discoveredServices))
+    ASYNC_CALLBACK(self.afterServicesDiscoveredCallback, self.afterServicesDiscoveredCallback([self.discoveredServices allValues]))
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverIncludedServicesForService:(CBService*)service error:(NSError*)error {
@@ -254,7 +257,7 @@
         BlueCapCharacteristic* bcCharacteristic = [BlueCapCharacteristic withCBCharacteristic:charateristic andService:bcService];
         DLog(@"Discovered Characteristic: %@", [bcCharacteristic.UUID stringValue]);
         [self.discoveredObjects setObject:bcCharacteristic forKey:charateristic];
-        [bcService.discoveredCharacteristics addObject:bcCharacteristic];
+        [bcService.discoveredCharacteristics setObject:bcCharacteristic forKey:bcCharacteristic.UUID];
         if ([bcService hasProfile]) {
             BlueCapCharacteristicProfile* characteristicProfile = [bcService.profile.characteristicProfilesDictionary objectForKey:bcCharacteristic.UUID];
             if (characteristicProfile) {
@@ -264,7 +267,7 @@
             }
         }
     }
-    [bcService didDiscoverCharacterics:bcService.discoveredCharacteristics];
+    [bcService didDiscoverCharacterics:[bcService.discoveredCharacteristics allValues]];
 }
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error {

@@ -12,10 +12,10 @@
 
 @interface BlueCapPeripheral (Friend)
 
-@property(nonatomic, retain) CBPeripheral*      cbPeripheral;
-@property(nonatomic, retain) NSMutableArray*    discoveredServices;
-@property(nonatomic, retain) NSMapTable*        discoveredObjects;
-@property(nonatomic, retain) NSDictionary*      advertisement;
+@property(nonatomic, retain) CBPeripheral*          cbPeripheral;
+@property(nonatomic, retain) NSMutableDictionary*   discoveredServices;
+@property(nonatomic, retain) NSMapTable*            discoveredObjects;
+@property(nonatomic, retain) NSDictionary*          advertisement;
 
 @property(nonatomic, copy) BlueCapPeripheralDisconnectCallback      afterPeripherialDisconnectCallback;
 @property(nonatomic, copy) BlueCapPeripheralConnectCallback         afterPeripheralConnectCallback;

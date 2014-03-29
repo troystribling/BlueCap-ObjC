@@ -26,6 +26,7 @@ typedef enum {
 @property(nonatomic, readonly)  NSNumber*               RSSI;
 
 - (NSDictionary*)advertisement;
+- (BlueCapService*)serviceWithUUID:(NSString*)serviceUUID;
 
 - (void)discoverAllServices:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;
 - (void)discoverServices:(NSArray*)__services afterDiscovery:(BlueCapServicesDiscoveredCallback)__afterServicesDiscovered;

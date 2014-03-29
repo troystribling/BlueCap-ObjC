@@ -29,7 +29,7 @@
     if (self) {
         self.cbService = __cbService;
         self.peripheral = __periphepral;
-        self.discoveredCharacteristics = [NSMutableArray array];
+        self.discoveredCharacteristics = [NSMutableDictionary dictionary];
         self.discoveredIncludedServices = [NSMutableArray array];
     }
     return self;
