@@ -11,6 +11,7 @@
 @interface UIAlertView (Extensions)
 
 + (void)alertOnError:(NSError*)error;
++ (void)alertOnError:(NSError*)error withDelegate:(id)delegate;
 + (void)showMessage:(NSString*)msg;
 
 

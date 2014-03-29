@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CharacteristicFreeFormValueViewController : UIViewController <UITextFieldDelegate>
+@interface CharacteristicFreeFormValueViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate>
 
 @property(nonatomic, retain) IBOutlet UITextField*      valueTextField;
 @property(nonatomic, retain) BlueCapCharacteristic*     characteristic;

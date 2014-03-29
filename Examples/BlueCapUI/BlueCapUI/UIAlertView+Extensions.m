@@ -10,8 +10,12 @@
 
 @implementation UIAlertView (Extensions)
 
++ (void)alertOnError:(NSError*)error withDelegate:(id)delegate {
+    [[[UIAlertView alloc] initWithTitle:[error localizedDescription] message:[error localizedFailureReason] delegate:delegate cancelButtonTitle:NSLocalizedString(@"OK", @"OK button title") otherButtonTitles:nil] show];
+}
+
 + (void)alertOnError:(NSError*)error {
-    [[[UIAlertView alloc] initWithTitle:[error localizedDescription] message:[error localizedFailureReason] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"OK button title") otherButtonTitles:nil] show];
+    [self alertOnError:error withDelegate:nil];
 }
 
 + (void)showMessage:(NSString*)msg {

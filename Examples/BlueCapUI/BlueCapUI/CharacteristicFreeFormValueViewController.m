@@ -37,7 +37,7 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - UITextFieldDelegate
+#pragma mark - UITextFieldDelegate -
 
 - (BOOL)textFieldShouldReturn:(UITextField*)textField {
     NSString* value = self.valueTextField.text;
@@ -47,15 +47,23 @@
         [values setObject:value forKey:self.valueName];
         [self.characteristic writeString:values afterWriteCall:^(BlueCapCharacteristic* __characteristic, NSError* __error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (__error) {
-                    [UIAlertView alertOnError:__error];
-                }
                 [self.progressView remove];
-                [self.navigationController popViewControllerAnimated:YES];
+                if (__error) {
+                    [UIAlertView alertOnError:__error withDelegate:self];
+                } else {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
             });
         }];
     }
     return YES;
 }
+
+#pragma mark - UIAlertViewDelegate -
+
+- (void)alertView:(UIAlertView*)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end
