@@ -20,7 +20,7 @@
     [profileManager createServiceWithUUID:GNOSUS_HELLO_WORLD_SERVICE_UUID
                                      name:@"Hello World"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
-                                    [serviceProfile createCharacteristicWithUUID:@"2f0a0001-69aa-f316-3e78-4194989a6c1a" name:@"Greeting" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                    [serviceProfile createCharacteristicWithUUID:GNOSUS_HELLO_WORLD_GREETING_CHARACTERISTIC_UUID name:@"Greeting" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                         characteristicProfile.properties = CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify;
                                         [characteristicProfile deserializeData:^NSDictionary*(NSData* data) {
                                             return @{GNOSUS_HELLO_WORLD_GREETING:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]};
@@ -33,7 +33,7 @@
                                         }];
                                         characteristicProfile.initialValue = [@"Hello" dataUsingEncoding:NSUTF8StringEncoding];
                                     }];
-                                    [serviceProfile createCharacteristicWithUUID:@"2f0a0002-69aa-f316-3e78-4194989a6c1a" name:@"Update Period" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
+                                    [serviceProfile createCharacteristicWithUUID:GNOSUS_HELLO_WORLD_UPDATE_PERIOD_CHARACTERISTIC_UUID name:@"Update Period" andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                         characteristicProfile.properties = CBCharacteristicPropertyRead;
                                         [characteristicProfile serializeObject:^NSData*(id data) {
                                             uint16_t value = (uint16_t)[data intValue];
@@ -56,7 +56,7 @@
     [profileManager createServiceWithUUID:GNOSUS_LOCATION_SERVICE_UUID
                                      name:@"Location"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
-                                   [serviceProfile createCharacteristicWithUUID:@"2f0a0017-69aa-f316-3e78-4194989a6c1a"
+                                   [serviceProfile createCharacteristicWithUUID:GNOSUS_LOCATION_LATITUDE_AND_LONGITUDE_CHARACTERISTIC_UUID
                                                                            name:@"Latitude and Longitude"
                                                                      andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                                                          characteristicProfile.properties = CBCharacteristicPropertyRead | CBCharacteristicPropertyWrite;
@@ -89,7 +89,7 @@
     [profileManager createServiceWithUUID:GNOSUS_EPOC_TIME_SERVICE_UUID
                                      name:@"Epoc Time"
                                andProfile:^(BlueCapServiceProfile* serviceProfile) {
-                                   [serviceProfile createCharacteristicWithUUID:@"2f0a0026-69aa-f316-3e78-4194989a6c1a"
+                                   [serviceProfile createCharacteristicWithUUID:GNOSUS_EPOC_TIME_TIME_CHARACTERISTIC_UUID
                                                                            name:@"Time"
                                                                      andProfile:^(BlueCapCharacteristicProfile* characteristicProfile) {
                                                                          characteristicProfile.properties = CBCharacteristicPropertyRead | CBCharacteristicPropertyWrite | CBCharacteristicPropertyNotify;
