@@ -44,6 +44,14 @@
     return __characteristics;
 }
 
+- (BlueCapCharacteristic*)characteristicWithUUID:(NSString*)characteristicUUID {
+    __block BlueCapCharacteristic* characteristic = nil;
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
+        characteristic = [self.discoveredCharacteristics objectForKey:[CBUUID UUIDWithString:characteristicUUID]];
+    }];
+    return characteristic;
+}
+
 - (NSArray*)includedServices {
     return [NSArray arrayWithArray:self.discoveredIncludedServices];
 }

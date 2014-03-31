@@ -58,7 +58,11 @@
 }
 
 - (BlueCapService*)serviceWithUUID:(NSString*)serviceUUID {
-    return [self.discoveredServices objectForKey:[CBUUID UUIDWithString:serviceUUID]];
+    __block BlueCapService* service = nil;
+    [[BlueCapCentralManager sharedInstance] syncMain:^{
+        service = [self.discoveredServices objectForKey:[CBUUID UUIDWithString:serviceUUID]];
+    }];
+    return service;
 }
 
 - (NSString*)name {
